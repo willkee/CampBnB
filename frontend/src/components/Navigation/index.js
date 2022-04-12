@@ -30,7 +30,9 @@ function Navigation({ isLoaded }) {
 		sessionLinks = (
 			<>
 				<div onClick={displaySignupForm}>Sign Up</div>
-				<div onClick={displayLoginForm}>Log In</div>
+				<div onClick={displayLoginForm}>
+					<i className="fa-light fa-right-to-bracket"></i>
+				</div>
 			</>
 		);
 	}
