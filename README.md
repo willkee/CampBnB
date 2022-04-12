@@ -46,6 +46,8 @@ CampBnB is based off of AirBnB for users to list their spots or make bookings at
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/canva/canva-original.svg" style="width:75px;" />
   &nbsp;
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" style="width:75px;" />
+  &nbsp;
+   <img src="./frontend/public/images/gmaps_logo.png" style="width:75px;" />
 
 </p>
 
