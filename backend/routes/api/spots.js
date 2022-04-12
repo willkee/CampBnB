@@ -1,0 +1,64 @@
+const express = require("express");
+const { check } = require("express-validator");
+const asyncHandler = require("express-async-handler");
+
+const { handleValidationErrors } = require("../../utils/validation");
+const { setTokenCookie, requireAuth } = require("../../utils/auth");
+const { Spot, User } = require("../../db/models");
+
+const router = express.Router();
+
+// const validateSignup = [
+// 	check("firstName")
+// 		.exists({ checkFalsy: true })
+// 		.notEmpty()
+// 		.withMessage("Please enter your first name."),
+// 	check("lastName")
+// 		.exists({ checkFalsy: true })
+// 		.notEmpty()
+// 		.withMessage("Please enter your last name."),
+// 	check("email")
+// 		.exists({ checkFalsy: true })
+// 		.isEmail()
+// 		.withMessage("Please provide a valid email."),
+// 	check("password")
+// 		.exists({ checkFalsy: true })
+// 		.isLength({ min: 6 })
+// 		.withMessage("Password must be 6 characters or more."),
+// 	handleValidationErrors,
+// ];
+
+router.get(
+	"/",
+	asyncHandler(async (req, res) => {
+		const spots = await Spot.findAll({
+			include: [{ model: User }],
+			order: [["id"]],
+		});
+
+		return res.json({ spots });
+	})
+);
+
+// Sign up
+// router.post(
+// 	"",
+// 	validateSignup,
+// 	asyncHandler(async (req, res) => {
+// 		const { firstName, lastName, email, password } = req.body;
+// 		const user = await User.signup({
+// 			firstName,
+// 			lastName,
+// 			email,
+// 			password,
+// 		});
+
+// 		await setTokenCookie(res, user);
+
+// 		return res.json({
+// 			user,
+// 		});
+// 	})
+// );
+
+module.exports = router;
