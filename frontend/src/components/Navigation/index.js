@@ -1,35 +1,52 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import ProfileButton from './ProfileButton';
-import LoginFormModal from '../LoginFormModal';
-import './Navigation.css';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import ProfileButton from "./ProfileButton";
+// import LoginFormModal from '../LoginFormModal';
+import { showModal, currentModal } from "../../store/modal";
+import SignUpForm from "../SignUpForm";
+import LoginForm from "../LoginForm";
 
-function Navigation({ isLoaded }){
-  const sessionUser = useSelector(state => state.session.user);
+import "./Navigation.css";
 
-  let sessionLinks;
-  if (sessionUser) {
-    sessionLinks = (
-      <ProfileButton user={sessionUser} />
-    );
-  } else {
-    sessionLinks = (
-      <>
-        <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
-      </>
-    );
-  }
+function Navigation({ isLoaded }) {
+	const dispatch = useDispatch();
+	const sessionUser = useSelector((state) => state.session.user);
 
-  return (
-    <ul>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
-        {isLoaded && sessionLinks}
-      </li>
-    </ul>
-  );
+	const displaySignupForm = () => {
+		dispatch(currentModal(SignUpForm));
+		dispatch(showModal());
+	};
+
+	const displayLoginForm = () => {
+		dispatch(currentModal(LoginForm));
+		dispatch(showModal());
+	};
+
+	let sessionLinks;
+	if (sessionUser) {
+		sessionLinks = <ProfileButton user={sessionUser} />;
+	} else {
+		sessionLinks = (
+			<>
+				<div onClick={displaySignupForm}>Sign Up</div>
+				<div onClick={displayLoginForm}>
+					<i className="fa-light fa-right-to-bracket"></i>
+				</div>
+			</>
+		);
+	}
+
+	return (
+		<ul>
+			<li>
+				<NavLink exact to="/">
+					Home
+				</NavLink>
+				{isLoaded && sessionLinks}
+			</li>
+		</ul>
+	);
 }
 
 export default Navigation;
