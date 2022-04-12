@@ -9,62 +9,63 @@ const { User } = require("../../db/models");
 const router = express.Router();
 
 const validateLogin = [
-  check("credential")
-    .exists({ checkFalsy: true })
-    .notEmpty()
-    .withMessage("Please provide a valid email or username."),
-  check("password")
-    .exists({ checkFalsy: true })
-    .withMessage("Please provide a password."),
-  handleValidationErrors,
+	check("firstName")
+		.exists({ checkFalsy: true })
+		.notEmpty()
+		.withMessage("Please enter your first name."),
+	check("lastName")
+		.exists({ checkFalsy: true })
+		.notEmpty()
+		.withMessage("Please enter your last name."),
+	check("email")
+		.exists({ checkFalsy: true })
+		.notEmpty()
+		.withMessage("Please provide a valid email."),
+	check("password")
+		.exists({ checkFalsy: true })
+		.withMessage("Please provide a password."),
+	handleValidationErrors,
 ];
 
 // Log in
 router.post(
-  '/',
-  validateLogin,
-  asyncHandler(async (req, res, next) => {
-    const { credential, password } = req.body;
+	"/",
+	validateLogin,
+	asyncHandler(async (req, res, next) => {
+		const { firstName, lastName, email, password } = req.body;
 
-    const user = await User.login({ credential, password });
+		const user = await User.login({ firstName, lastName, email, password });
 
-    if (!user) {
-      const err = new Error('Login failed');
-      err.status = 401;
-      err.title = 'Login failed';
-      err.errors = ['The provided credentials were invalid.'];
-      return next(err);
-    }
+		if (!user) {
+			const err = new Error("Login failed");
+			err.status = 401;
+			err.title = "Login failed";
+			err.errors = ["The provided credentials were invalid."];
+			return next(err);
+		}
 
-    await setTokenCookie(res, user);
+		await setTokenCookie(res, user);
 
-    return res.json({
-      user,
-    });
-  }),
+		return res.json({
+			user,
+		});
+	})
 );
 
 // Log out
-router.delete(
-  '/',
-  (_req, res) => {
-    res.clearCookie('token');
-    return res.json({ message: 'success' });
-  }
-);
+router.delete("/", (_req, res) => {
+	res.clearCookie("token");
+	return res.json({ message: "success" });
+});
 
 // Restore session user
-router.get(
-  '/',
-  restoreUser,
-  (req, res) => {
-    const { user } = req;
-    if (user) {
-      return res.json({
-        user: user.toSafeObject()
-      });
-    } else return res.json({});
-  }
-);
+router.get("/", restoreUser, (req, res) => {
+	const { user } = req;
+	if (user) {
+		return res.json({
+			user: user.toSafeObject(),
+		});
+	} else return res.json({});
+});
 
 module.exports = router;
