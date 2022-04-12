@@ -9,17 +9,9 @@ const { User } = require("../../db/models");
 const router = express.Router();
 
 const validateLogin = [
-	check("firstName")
-		.exists({ checkFalsy: true })
-		.notEmpty()
-		.withMessage("Please enter your first name."),
-	check("lastName")
-		.exists({ checkFalsy: true })
-		.notEmpty()
-		.withMessage("Please enter your last name."),
 	check("email")
 		.exists({ checkFalsy: true })
-		.notEmpty()
+		.isEmail()
 		.withMessage("Please provide a valid email."),
 	check("password")
 		.exists({ checkFalsy: true })
@@ -32,9 +24,9 @@ router.post(
 	"/",
 	validateLogin,
 	asyncHandler(async (req, res, next) => {
-		const { firstName, lastName, email, password } = req.body;
+		const { email, password } = req.body;
 
-		const user = await User.login({ firstName, lastName, email, password });
+		const user = await User.login({ email, password });
 
 		if (!user) {
 			const err = new Error("Login failed");
