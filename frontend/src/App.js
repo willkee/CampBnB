@@ -1,18 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-// import LoginForm from "./components/LoginForm";
+import { getAllSpots } from "./store/spots";
+
 import * as sessionActions from "./store/session";
+
 import Navigation from "./components/Navigation";
-// import { Modal } from './context/Modal';
+import Homepage from "./components/Homepage";
 import Modal from "./components/Modal";
 
 function App() {
 	const dispatch = useDispatch();
 	const [isLoaded, setIsLoaded] = useState(false);
-	// const [showModal, setShowModal] = useState(false);
+
+	const sessionUser = useSelector((state) => state.session.user);
+	const spotsList = useSelector((state) => Object.values(state.spots));
+
 	useEffect(() => {
-		dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+		const load = async () => {
+			await dispatch(sessionActions.restoreUser());
+			await dispatch(getAllSpots());
+			setIsLoaded(true);
+		};
+		load();
 	}, [dispatch]);
 
 	return (
@@ -21,8 +31,11 @@ function App() {
 			<Modal />
 			{isLoaded && (
 				<Switch>
-					<Route path="/">
-						<h1>Hello</h1>
+					<Route exact path="/">
+						<Homepage spots={spotsList} />
+					</Route>
+					<Route>
+						<h1>Page Not Found</h1>
 					</Route>
 				</Switch>
 			)}
