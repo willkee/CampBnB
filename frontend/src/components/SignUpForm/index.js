@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-import "./SignupForm.css";
+import { hideModal } from "../../store/modal";
+import "./SignUpForm.css";
 
-function SignupFormPage() {
+function SignUpForm() {
 	const dispatch = useDispatch();
 	const sessionUser = useSelector((state) => state.session.user);
 	const [firstName, setFirstName] = useState("");
@@ -22,10 +23,12 @@ function SignupFormPage() {
 			setErrors([]);
 			return dispatch(
 				sessionActions.signup({ firstName, lastName, email, password })
-			).catch(async (res) => {
-				const data = await res.json();
-				if (data && data.errors) setErrors(data.errors);
-			});
+			)
+				.then(() => dispatch(hideModal()))
+				.catch(async (res) => {
+					const data = await res.json();
+					if (data && data.errors) setErrors(data.errors);
+				});
 		}
 		return setErrors(["Passwords do not match."]);
 	};
@@ -85,9 +88,12 @@ function SignupFormPage() {
 					/>
 				</label>
 				<button type="submit">Sign Up</button>
+				<button type="button" onClick={() => dispatch(hideModal())}>
+					Cancel
+				</button>
 			</form>
 		</>
 	);
 }
 
-export default SignupFormPage;
+export default SignUpForm;

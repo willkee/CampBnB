@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { hideModal } from "../../store/modal";
 import "./LoginForm.css";
 
-function LoginFormPage() {
+function LoginForm() {
 	const dispatch = useDispatch();
 	const sessionUser = useSelector((state) => state.session.user);
 	const [email, setEmail] = useState("");
@@ -16,12 +17,12 @@ function LoginFormPage() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		setErrors([]);
-		return dispatch(sessionActions.login({ email, password })).catch(
-			async (res) => {
+		dispatch(sessionActions.login({ email, password }))
+			.then(() => dispatch(hideModal()))
+			.catch(async (res) => {
 				const data = await res.json();
 				if (data && data.errors) setErrors(data.errors);
-			}
-		);
+			});
 	};
 
 	return (
@@ -52,9 +53,12 @@ function LoginFormPage() {
 					/>
 				</label>
 				<button type="submit">Log In</button>
+				<button type="button" onClick={() => dispatch(hideModal())}>
+					Cancel
+				</button>
 			</form>
 		</>
 	);
 }
 
-export default LoginFormPage;
+export default LoginForm;
