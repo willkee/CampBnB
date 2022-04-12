@@ -1,6 +1,6 @@
 # CampBnB
 
-![CampBnB logo](https://github.com/willkee/CampBnB/blob/main/frontend/public/images/logo_dark.png)
+<img src="./frontend/public/images/logo_dark.png" />
 
 <br>
 
