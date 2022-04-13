@@ -4,7 +4,7 @@ const CREATED_SPOT = "spots/CREATED_SPOT";
 const RETRIEVED_SPOTS = "spots/RETRIEVED_SPOTS";
 // const ONE_SPOT_RETRIEVED = "spots/ONE_SPOT_RETRIEVED";
 const UPDATED_SPOT = "spots/UPDATED_SPOT";
-// const DELETED_SPOT = "spots/DELETED_SPOT";
+const DELETED_SPOT = "spots/DELETED_SPOT";
 
 const retrievedSpots = (spots) => ({
 	type: RETRIEVED_SPOTS,
@@ -19,6 +19,11 @@ const createdSpot = (payload) => ({
 const updatedSpot = (payload) => ({
 	type: UPDATED_SPOT,
 	payload,
+});
+
+const deletedSpot = (deletedId) => ({
+	type: DELETED_SPOT,
+	deletedId,
 });
 
 // CREATE
@@ -68,6 +73,19 @@ export const updateOneSpot = (data) => async (dispatch) => {
 	}
 };
 
+// DELETE ONE
+// Delete a spot.
+
+export const deleteSpot = (id) => async (dispatch) => {
+	const res = await csrfFetch(`/api/spots/${id}`, {
+		method: "DELETE",
+	});
+	if (res.ok) {
+		const { id } = await res.json();
+		await dispatch(deletedSpot(id));
+	}
+};
+
 const initialState = {};
 
 const spotsReducer = (state = initialState, action) => {
@@ -88,6 +106,11 @@ const spotsReducer = (state = initialState, action) => {
 		// UPDATE
 		case UPDATED_SPOT: {
 			newState[action.payload.id] = action.payload;
+			return newState;
+		}
+		// DELETE
+		case DELETED_SPOT: {
+			delete newState[action.deletedId];
 			return newState;
 		}
 		default:

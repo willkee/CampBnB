@@ -42,9 +42,19 @@ const validateSpot = [
 		.exists({ checkFalsy: true })
 		.withMessage("Please enter an image URL.")
 		.isLength({ min: 3, max: 2048 })
-		.withMessage(
-			"Please enter an image URL between 3 and 2048 characters."
-		),
+		.withMessage("Please enter an image URL between 3 and 2048 characters.")
+		.custom(async (_value, { req }) => {
+			if (
+				!req.body.imageUrl.endsWith(".jpg") &&
+				!req.body.imageUrl.endsWith(".jpeg") &&
+				!req.body.imageUrl.endsWith(".png") &&
+				!req.body.imageUrl.endsWith(".gif")
+			) {
+				return await Promise.reject(
+					"Please enter a valid image URL ending in .jpg, .jpeg, .png, or .gif."
+				);
+			}
+		}),
 	check("type")
 		.exists({ checkFalsy: true })
 		.isIn(["vehicle", "rv", "tent", "backpacking"])
@@ -136,6 +146,22 @@ router.put(
 			}
 		} catch (e) {
 			console.error("Error: Spot not found: ", e);
+		}
+	})
+);
+
+router.delete(
+	"/:id",
+	requireAuth,
+	asyncHandler(async (req, res) => {
+		const id = parseInt(req.params.id, 10);
+		const spot = await Spot.findByPk(id);
+
+		if (spot) {
+			await Spot.destroy({ where: { id } });
+			return res.json({ id });
+		} else {
+			throw new Error("Spot not found.");
 		}
 	})
 );
