@@ -1,0 +1,15 @@
+.footer_container {
+	position: sticky;
+	display: flex;
+	bottom: 0;
+	width: 100%;
+	height: 50px;
+	color: white;
+	background-color: black;
+	z-index: 999;
+	vertical-align: bottom;
+	font-size: 14px;
+	align-items: center;
+	justify-content: flex-end;
+	padding: 20px;
+}
