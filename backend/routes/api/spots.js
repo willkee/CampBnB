@@ -11,10 +11,8 @@ const router = express.Router();
 const validateNewSpot = [
 	oneOf([
 		[check("lat").exists(), check("long").exists()],
-		check("address").exists(),
-	]).withMessage(
-		"Please enter a street address, or valid latitude AND longitude coordinates."
-	),
+		check("address").exists().isLength({ max: 255 }),
+	]),
 	check("name")
 		.exists({ checkFalsy: true })
 		.withMessage("Please enter a name for your spot"),

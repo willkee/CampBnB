@@ -8,6 +8,8 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Homepage from "./components/Homepage";
 import Modal from "./components/Modal";
+import SplashPage from "./components/SplashPage";
+import Footer from "./Footer";
 
 function App() {
 	const dispatch = useDispatch();
@@ -26,12 +28,15 @@ function App() {
 	}, [dispatch]);
 
 	return (
-		<div>
-			<Navigation isLoaded={isLoaded} />
+		<div className="app_page_container">
+			<Navigation sessionUser={sessionUser} isLoaded={isLoaded} />
 			<Modal />
 			{isLoaded && (
 				<Switch>
 					<Route exact path="/">
+						<SplashPage sessionUser={sessionUser} />
+					</Route>
+					<Route exact path="/main">
 						<Homepage spots={spotsList} />
 					</Route>
 					<Route>
@@ -39,6 +44,7 @@ function App() {
 					</Route>
 				</Switch>
 			)}
+			<Footer />
 		</div>
 	);
 }
