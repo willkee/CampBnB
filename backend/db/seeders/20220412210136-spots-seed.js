@@ -15,7 +15,7 @@ module.exports = {
 					imageUrl:
 						"https://images.pexels.com/photos/11795851/pexels-photo-11795851.jpeg",
 					type: "tent",
-					price: 14.59,
+					price: 14,
 					description:
 						"Eos cum et veniam nulla. Rerum nostrum alias quae architecto ut omnis quisquam vero. Harum nobis qui quia ipsam.",
 					capacity: 8,
@@ -31,7 +31,7 @@ module.exports = {
 					imageUrl:
 						"https://cdn.pixabay.com/photo/2016/11/21/16/03/campfire-1846142_960_720.jpg",
 					type: "rv",
-					price: 39.43,
+					price: 39,
 					description:
 						"Autem voluptate aspernatur expedita debitis blanditiis ea accusamus deleniti. Sed accusamus sed dolor sed fuga quo odit veniam est. Et soluta ut dolorum velit optio commodi sed et. Ipsam perferendis in culpa optio libero itaque delectus consequatur voluptates. Rerum eum possimus quis.",
 					capacity: 8,
@@ -47,7 +47,7 @@ module.exports = {
 					imageUrl:
 						"https://images.pexels.com/photos/1687845/pexels-photo-1687845.jpeg",
 					type: "rv",
-					price: 72.14,
+					price: 72,
 					description:
 						"Reprehenderit eveniet ad est perspiciatis eveniet. Animi id ipsum dolores sunt saepe qui earum nobis. Dolore et facilis aut cum quo laudantium consequatur ex. Quam libero sapiente rem facilis nihil ducimus ipsam esse eum. Rerum consequatur laborum consequuntur possimus quisquam.",
 					capacity: 8,
@@ -63,7 +63,7 @@ module.exports = {
 					imageUrl:
 						"https://cdn.pixabay.com/photo/2020/07/27/14/34/forest-5442598_960_720.jpg",
 					type: "rv",
-					price: 87.05,
+					price: 87,
 					description:
 						"Deleniti sint natus et eligendi nesciunt pariatur dolor dolor. Aut repudiandae esse molestias quo dicta beatae. Labore eius placeat facere maxime harum corrupti.",
 					capacity: 8,
@@ -79,7 +79,7 @@ module.exports = {
 					imageUrl:
 						"https://cdn.pixabay.com/photo/2017/08/17/08/08/camp-2650359_960_720.jpg",
 					type: "vehicle",
-					price: 24.86,
+					price: 24,
 					description:
 						"Eligendi veniam repellat vero sapiente iusto corporis dolorem sit qui. Aut est itaque id repellat ea sunt ea enim ea. Aut odio corrupti assumenda dolores eos labore. Ducimus ipsa nam.",
 					capacity: 8,
@@ -95,7 +95,7 @@ module.exports = {
 					imageUrl:
 						"https://cdn.pixabay.com/photo/2017/06/17/03/17/gongga-snow-mountain-2411069_960_720.jpg",
 					type: "vehicle",
-					price: 71.25,
+					price: 71,
 					description:
 						"Reprehenderit illo temporibus. A sunt ea aut id dignissimos nam necessitatibus. Assumenda rem veritatis autem exercitationem deleniti impedit. Quisquam quae voluptatem dolorem in sed possimus id reprehenderit. Est cupiditate enim earum accusamus provident aut illum.",
 					capacity: 8,
@@ -111,7 +111,7 @@ module.exports = {
 					imageUrl:
 						"https://cdn.pixabay.com/photo/2014/11/27/18/36/tent-548022_960_720.jpg",
 					type: "rv",
-					price: 27.09,
+					price: 27,
 					description:
 						"Natus amet quidem assumenda incidunt dolorem in et. Iusto fugit nihil veniam quis cumque quam itaque vel eum. Quo at iste soluta est tempore harum. Suscipit similique rerum rerum et. Est at mollitia maiores.",
 					capacity: 8,
@@ -127,7 +127,7 @@ module.exports = {
 					imageUrl:
 						"https://cdn.pixabay.com/photo/2021/10/09/00/15/landscape-6692712_960_720.jpg",
 					type: "rv",
-					price: 75.69,
+					price: 75,
 					description:
 						"Tempora eaque quia quod molestiae distinctio asperiores fugit rerum sunt. Incidunt libero est aut aut culpa. Consequatur veniam quo et quis dolores.",
 					capacity: 8,
@@ -143,7 +143,7 @@ module.exports = {
 					imageUrl:
 						"https://images.pexels.com/photos/753299/pexels-photo-753299.jpeg",
 					type: "tent",
-					price: 77.51,
+					price: 77,
 					description:
 						"Sunt aspernatur soluta modi quia excepturi fuga quam. Iusto quasi dolores accusantium ut molestias eligendi eos consequatur alias. Quos at quos aut dignissimos dolorem numquam deserunt. Placeat expedita necessitatibus blanditiis veritatis cum optio dolorem omnis. Quisquam eveniet qui et vitae voluptatem.",
 					capacity: 8,
@@ -159,7 +159,7 @@ module.exports = {
 					imageUrl:
 						"https://cdn.pixabay.com/photo/2021/10/09/00/15/landscape-6692712_960_720.jpg",
 					type: "rv",
-					price: 79.15,
+					price: 79,
 					description:
 						"Tempora enim aut ipsa facilis officiis molestias iusto aspernatur debitis. Quidem alias ut ut pariatur possimus dolores blanditiis corporis. Nemo veniam et qui rerum quis. Quis repudiandae aut aspernatur minus quibusdam quo beatae sed. Quibusdam inventore et impedit ut voluptatem sequi doloremque est non. Consectetur aut non sint temporibus veritatis est est.",
 					capacity: 8,
@@ -175,7 +175,7 @@ module.exports = {
 					imageUrl:
 						"https://cdn.pixabay.com/photo/2014/11/27/18/36/tent-548022_960_720.jpg",
 					type: "rv",
-					price: 59.59,
+					price: 59,
 					description:
 						"Illo sint et incidunt qui et. Libero labore quis. Et aut hic excepturi ut harum perspiciatis libero rerum. Distinctio saepe et vel optio.",
 					capacity: 8,
@@ -191,7 +191,7 @@ module.exports = {
 					imageUrl:
 						"https://cdn.pixabay.com/photo/2020/06/14/17/57/mountains-5298769_960_720.jpg",
 					type: "tent",
-					price: 31.93,
+					price: 31,
 					description:
 						"Voluptas et sunt sed modi voluptates ab. Et voluptatem id quae et. Molestiae est earum est reprehenderit aliquid officia iure et. Rerum consequatur eum enim debitis. Aliquid repudiandae necessitatibus aut voluptas amet voluptas. Repudiandae sunt nobis explicabo corporis aliquid.",
 					capacity: 8,
@@ -207,7 +207,7 @@ module.exports = {
 					imageUrl:
 						"https://cdn.pixabay.com/photo/2016/11/21/16/03/campfire-1846142_960_720.jpg",
 					type: "vehicle",
-					price: 26.4,
+					price: 25,
 					description:
 						"Qui eaque alias ut sequi et ut itaque consequuntur nam. Dolores ea ex deleniti sint et velit. Velit quae similique laboriosam aut asperiores. Occaecati est accusantium et.",
 					capacity: 8,
@@ -223,7 +223,7 @@ module.exports = {
 					imageUrl:
 						"https://images.pexels.com/photos/803226/pexels-photo-803226.jpeg",
 					type: "tent",
-					price: 19.23,
+					price: 19,
 					description:
 						"Tempora culpa et et. Autem debitis necessitatibus minima occaecati sapiente dolore aut. Similique et minus vitae.",
 					capacity: 8,
@@ -239,7 +239,7 @@ module.exports = {
 					imageUrl:
 						"https://images.pexels.com/photos/11795851/pexels-photo-11795851.jpeg",
 					type: "vehicle",
-					price: 49.35,
+					price: 49,
 					description:
 						"Nesciunt iure reprehenderit. Non natus unde. Nihil laboriosam qui. Eveniet fugit cumque harum veniam asperiores. Labore officiis laudantium vel. Repellendus qui ut nostrum.",
 					capacity: 8,
@@ -255,7 +255,7 @@ module.exports = {
 					imageUrl:
 						"https://cdn.pixabay.com/photo/2015/08/19/16/00/campfire-896196_960_720.jpg",
 					type: "vehicle",
-					price: 98.11,
+					price: 98,
 					description:
 						"Et a dolores qui occaecati quia. Animi a quis rerum commodi distinctio. Aliquam eius a asperiores rerum doloremque veritatis officia molestiae voluptatem.",
 					capacity: 8,
@@ -271,7 +271,7 @@ module.exports = {
 					imageUrl:
 						"https://cdn.pixabay.com/photo/2014/11/27/18/36/tent-548022_960_720.jpg",
 					type: "vehicle",
-					price: 37.76,
+					price: 37,
 					description:
 						"Deleniti ea molestias. Et sequi velit est molestias. Nam labore assumenda. Aut qui est velit aliquid ut. Nihil voluptates fugit unde minus repellat.",
 					capacity: 8,
@@ -287,7 +287,7 @@ module.exports = {
 					imageUrl:
 						"https://cdn.pixabay.com/photo/2019/10/03/11/14/camp-4522970_960_720.jpg",
 					type: "tent",
-					price: 28.7,
+					price: 20,
 					description:
 						"Voluptas ut doloremque magni ex tenetur aut voluptatibus sequi. Vel cumque adipisci. Accusamus autem exercitationem qui natus. Fugit aut aliquid est. Autem tempora aperiam quis assumenda sunt. Voluptates voluptatem sequi sequi qui excepturi.",
 					capacity: 8,
@@ -303,7 +303,7 @@ module.exports = {
 					imageUrl:
 						"https://cdn.pixabay.com/photo/2014/11/27/18/36/tent-548022_960_720.jpg",
 					type: "vehicle",
-					price: 95.15,
+					price: 95,
 					description:
 						"Et et dolores qui eligendi quis. Iure eligendi non soluta cumque. Aperiam adipisci quasi omnis quis incidunt molestias porro voluptas.",
 					capacity: 8,
@@ -319,7 +319,7 @@ module.exports = {
 					imageUrl:
 						"https://cdn.pixabay.com/photo/2021/10/09/00/15/landscape-6692712_960_720.jpg",
 					type: "vehicle",
-					price: 76.85,
+					price: 76,
 					description:
 						"Vel officiis quos nemo similique commodi accusamus iure quaerat id. Corrupti consequatur et quis eius quibusdam blanditiis. Sapiente ea odio. Aut placeat in non eos quibusdam. Odio voluptatum tenetur officiis quod ea qui.",
 					capacity: 7,
@@ -335,7 +335,7 @@ module.exports = {
 					imageUrl:
 						"https://cdn.pixabay.com/photo/2016/11/21/16/03/campfire-1846142_960_720.jpg",
 					type: "vehicle",
-					price: 19.45,
+					price: 19,
 					description:
 						"Aliquid quo ut repellendus corrupti hic. Nesciunt recusandae sapiente. Laborum quos tenetur quae et ex iste praesentium omnis voluptas. Ab accusamus facilis animi aliquam id qui excepturi.",
 					capacity: 8,
@@ -351,7 +351,7 @@ module.exports = {
 					imageUrl:
 						"https://images.pexels.com/photos/753299/pexels-photo-753299.jpeg",
 					type: "rv",
-					price: 85.08,
+					price: 85,
 					description:
 						"Vel pariatur possimus quo et. Quo perferendis quia maiores sint et culpa voluptatibus rerum. Quae doloribus modi.",
 					capacity: 8,
@@ -367,7 +367,7 @@ module.exports = {
 					imageUrl:
 						"https://images.pexels.com/photos/753299/pexels-photo-753299.jpeg",
 					type: "tent",
-					price: 41.54,
+					price: 41,
 					description:
 						"Officiis excepturi minima et est asperiores harum fuga cupiditate impedit. Omnis non et quas magni est voluptas natus. Consequuntur illum aut quia beatae aut. Aliquam ipsam vitae quis voluptas expedita qui rerum quia. Sequi ea officiis exercitationem quaerat consequatur. Quibusdam recusandae quia iste dignissimos rerum.",
 					capacity: 8,
@@ -383,7 +383,7 @@ module.exports = {
 					imageUrl:
 						"https://cdn.pixabay.com/photo/2016/01/26/23/32/camp-1163419_960_720.jpg",
 					type: "vehicle",
-					price: 6.95,
+					price: 16,
 					description:
 						"Labore sint modi maiores quidem eos occaecati et natus sed. Et ut impedit tempora tempora debitis. Quisquam id aliquid magni. Quisquam eos consequatur dolorum voluptas et ut blanditiis. Sapiente qui deleniti eos vitae ut velit error. Consectetur deserunt possimus.",
 					capacity: 4,
@@ -399,7 +399,7 @@ module.exports = {
 					imageUrl:
 						"https://cdn.pixabay.com/photo/2016/03/30/02/57/camping-1289930_960_720.jpg",
 					type: "tent",
-					price: 38.87,
+					price: 38,
 					description:
 						"Laudantium repudiandae qui commodi omnis. Voluptatem excepturi culpa quia quae maxime. Ea necessitatibus consectetur quo. Quo aliquam rem voluptatem officiis aut sint eum ut distinctio.",
 					capacity: 8,
@@ -415,7 +415,7 @@ module.exports = {
 					imageUrl:
 						"https://cdn.pixabay.com/photo/2016/01/26/23/32/camp-1163419_960_720.jpg",
 					type: "rv",
-					price: 67.88,
+					price: 67,
 					description:
 						"Labore doloribus consequuntur quisquam at dolorem. Non quo repellat sequi. Natus non omnis veniam maxime doloremque eum exercitationem. Ducimus aut nemo inventore est magni aut. Deserunt nemo maiores. Enim eos occaecati unde corporis laudantium reprehenderit.",
 					capacity: 6,
@@ -431,7 +431,7 @@ module.exports = {
 					imageUrl:
 						"https://cdn.pixabay.com/photo/2016/11/21/16/03/campfire-1846142_960_720.jpg",
 					type: "tent",
-					price: 86.73,
+					price: 86,
 					description:
 						"Non ex dicta. Itaque et sequi et. Qui rerum et.",
 					capacity: 8,
@@ -447,7 +447,7 @@ module.exports = {
 					imageUrl:
 						"https://images.pexels.com/photos/803226/pexels-photo-803226.jpeg",
 					type: "vehicle",
-					price: 44.01,
+					price: 44,
 					description:
 						"Cupiditate aperiam fuga laudantium. Velit quas enim debitis optio et beatae. Earum optio id.",
 					capacity: 8,
@@ -463,7 +463,7 @@ module.exports = {
 					imageUrl:
 						"https://cdn.pixabay.com/photo/2017/06/17/03/17/gongga-snow-mountain-2411069_960_720.jpg",
 					type: "rv",
-					price: 15.04,
+					price: 15,
 					description:
 						"Ea dicta ut officia quis necessitatibus deleniti voluptatum reiciendis. Dignissimos aspernatur excepturi veritatis est sit laudantium voluptatem aliquam et. Explicabo maiores quia sunt esse consequatur sit. Ipsam eius ex aut. Earum labore exercitationem atque pariatur sapiente et distinctio sed eum.",
 					capacity: 8,
@@ -479,7 +479,7 @@ module.exports = {
 					imageUrl:
 						"https://cdn.pixabay.com/photo/2015/08/19/16/00/campfire-896196_960_720.jpg",
 					type: "rv",
-					price: 20.14,
+					price: 20,
 					description:
 						"Cumque ut vero aut qui dolore. Autem quasi error modi ut et nemo. Aliquam autem quo velit sunt maiores et labore aliquid blanditiis. Aut dolorum voluptates corrupti eligendi beatae enim aut id aut. Saepe eaque neque unde laborum. Totam harum facere quas debitis consequatur ea molestiae facilis.",
 					capacity: 8,
@@ -495,7 +495,7 @@ module.exports = {
 					imageUrl:
 						"https://cdn.pixabay.com/photo/2020/06/14/17/57/mountains-5298769_960_720.jpg",
 					type: "tent",
-					price: 81.06,
+					price: 81,
 					description:
 						"Repellendus quis corporis non reprehenderit reiciendis eveniet repellendus doloremque. Ratione earum impedit sint sed nostrum voluptas et maiores accusamus. Dolorem unde est placeat accusantium at. Sed quia iste qui quos voluptates necessitatibus. In id consectetur tempora hic quis nostrum. Dicta exercitationem eum enim officiis.",
 					capacity: 8,

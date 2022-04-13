@@ -1,17 +1,17 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { NavLink, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import ProfileButton from "./ProfileButton";
-// import LoginFormModal from '../LoginFormModal';
+
 import { showModal, currentModal } from "../../store/modal";
 import SignUpForm from "../SignUpForm";
 import LoginForm from "../LoginForm";
 
 import "./Navigation.css";
 
-function Navigation({ isLoaded }) {
+function Navigation({ sessionUser, isLoaded }) {
 	const dispatch = useDispatch();
-	const sessionUser = useSelector((state) => state.session.user);
+	const location = useLocation();
 
 	const displaySignupForm = () => {
 		dispatch(currentModal(SignUpForm));
@@ -31,21 +31,27 @@ function Navigation({ isLoaded }) {
 			<>
 				<div onClick={displaySignupForm}>Sign Up</div>
 				<div onClick={displayLoginForm}>
-					<i className="fa-light fa-right-to-bracket"></i>
+					<i className="fa-light fa-right-to-bracket"></i>Log In
 				</div>
 			</>
 		);
 	}
 
 	return (
-		<ul>
-			<li>
-				<NavLink exact to="/">
-					Home
-				</NavLink>
-				{isLoaded && sessionLinks}
-			</li>
-		</ul>
+		<nav>
+			{location.pathname !== "/" && (
+				<>
+					<NavLink exact to="/">
+						<img
+							src="images/logo_dark.png"
+							alt="CampBnB Logo"
+							width="200px"
+						/>
+					</NavLink>
+					{isLoaded && sessionLinks}
+				</>
+			)}
+		</nav>
 	);
 }
 
