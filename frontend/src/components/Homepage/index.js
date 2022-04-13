@@ -29,7 +29,11 @@ const Homepage = ({ spots }) => {
 		<div>
 			{loaded && (
 				<>
-					<h1>Welcome to CampBnB</h1>
+					{sessionUser ? (
+						<h1>{`Welcome back, ${sessionUser.firstName}!`}</h1>
+					) : (
+						<h1>Welcome to CampBnB!</h1>
+					)}
 					<NavLink exact to="/">
 						<i class="fa-light fa-arrow-left"></i> Trying to return
 						to the splash page? Click here.
