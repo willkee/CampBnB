@@ -51,7 +51,6 @@ router.get(
 			include: [{ model: User }],
 			order: [["id"]],
 		});
-
 		return res.json({ spots });
 	})
 );
