@@ -81,10 +81,10 @@ module.exports = (sequelize, DataTypes) => {
 			},
 			price: {
 				allowNull: false,
-				type: DataTypes.DECIMAL,
+				type: DataTypes.INTEGER,
 				validate: {
 					min: 0,
-					max: 99999999.99,
+					max: 1000,
 				},
 			},
 			description: {
