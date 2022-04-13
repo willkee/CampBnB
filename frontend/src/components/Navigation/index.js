@@ -7,7 +7,7 @@ import { showModal, currentModal } from "../../store/modal";
 import SignUpForm from "../SignUpForm";
 import LoginForm from "../LoginForm";
 
-import "./Navigation.css";
+import styles from "./Navigation.module.css";
 
 function Navigation({ sessionUser, isLoaded }) {
 	const dispatch = useDispatch();
@@ -23,36 +23,37 @@ function Navigation({ sessionUser, isLoaded }) {
 		dispatch(showModal());
 	};
 
-	let sessionLinks;
-	if (sessionUser) {
-		sessionLinks = <ProfileButton user={sessionUser} />;
-	} else {
-		sessionLinks = (
-			<>
-				<div onClick={displaySignupForm}>Sign Up</div>
-				<div onClick={displayLoginForm}>
-					<i className="fa-light fa-right-to-bracket"></i>Log In
-				</div>
-			</>
-		);
-	}
-
 	return (
-		<nav>
-			{location.pathname !== "/" && (
-				<>
-					<NavLink exact to="/">
-						{/* <img
-							src="images/logo_dark.png"
-							alt="CampBnB Logo"
-							width="200px"
-						/> */}
-					</NavLink>
-					<NavLink exact to="/spots/new">
-						Create a Spot
-					</NavLink>
-					{isLoaded && sessionLinks}
-				</>
+		<nav className={styles.nav_container}>
+			{isLoaded && location.pathname !== "/" && (
+				<div className={styles.loaded_container}>
+					<img
+						src={`${process.env.PUBLIC_URL}/images/logo_dark.png`}
+						alt="CampBnB Logo"
+						width="200px"
+					/>
+					<div>
+						<NavLink exact to="/main">
+							<i className="fa-light fa-campground"></i>
+							<span>Explore</span>
+						</NavLink>
+						<NavLink exact to="/spots/new">
+							<i className="fa-solid fa-location-plus"></i>
+							<span>Add New Spot</span>
+						</NavLink>
+						{sessionUser ? (
+							<ProfileButton user={sessionUser} />
+						) : (
+							<>
+								<div onClick={displaySignupForm}>Sign Up</div>
+								<div onClick={displayLoginForm}>
+									<i className="fa-light fa-right-to-bracket"></i>
+									Log In
+								</div>
+							</>
+						)}
+					</div>
+				</div>
 			)}
 		</nav>
 	);

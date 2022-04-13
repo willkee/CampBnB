@@ -1,0 +1,23 @@
+.nav_container {
+	background-color: black;
+	color: white;
+	width: 100%;
+}
+
+.loaded_container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.loaded_container a {
+	text-decoration: none;
+	color: white;
+}
+
+.profile_dropdown {
+	position: absolute;
+	z-index: 200;
+	background-color: rgb(101, 101, 101);
+	padding: 50px;
+}

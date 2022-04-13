@@ -13,3 +13,10 @@
 	justify-content: flex-end;
 	padding: 20px;
 }
+
+.footer_container a {
+	color: white;
+	text-decoration: none;
+	font-size: 24px;
+	margin-left: 15px;
+}

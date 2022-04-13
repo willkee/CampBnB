@@ -44,6 +44,7 @@ module.exports = (sequelize, DataTypes) => {
 			},
 			lat: {
 				type: DataTypes.DECIMAL,
+				allowNull: true,
 				validate: {
 					max: {
 						args: 41.0,
@@ -57,6 +58,7 @@ module.exports = (sequelize, DataTypes) => {
 			},
 			long: {
 				type: DataTypes.DECIMAL,
+				allowNull: true,
 				validate: {
 					max: {
 						args: -102.0,

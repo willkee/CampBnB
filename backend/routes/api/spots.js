@@ -10,16 +10,28 @@ const router = express.Router();
 
 const validateNewSpot = [
 	check("lat").custom(async (_value, { req }) => {
-		if (
-			(req.body.lat && !req.body.long) ||
-			(!req.body.lat && req.body.long)
-		) {
+		if (req.body.lat && !req.body.long) {
 			return await Promise.reject(
-				"Please enter both a latitude and longitude."
+				"You have only entered latitude coordinates. Please enter a longitude."
+			);
+		} else if (!req.body.lat && req.body.long) {
+			return await Promise.reject(
+				"You have only entered longitude coordinates. Please enter a latitude."
 			);
 		}
 	}),
-	check("address").exists().isLength({ max: 255 }),
+	check("address")
+		.isLength({ max: 255 })
+		.withMessage(
+			"Please enter no more than 255 characters for your street address."
+		)
+		.custom(async (_value, { req }) => {
+			if (!req.body.address && !req.body.lat && !req.body.long) {
+				return await Promise.reject(
+					"Please enter either an address or latitude and longitude coordinates."
+				);
+			}
+		}),
 	check("name")
 		.exists({ checkFalsy: true })
 		.withMessage("Please enter a name for your spot"),
@@ -38,7 +50,7 @@ const validateNewSpot = [
 		.isIn(["vehicle", "rv", "tent", "backpacking"])
 		.withMessage("Please enter a valid type."),
 	check("price")
-		.exists({ checkFalsy: true })
+		.exists()
 		.withMessage(
 			"Please enter a nightly price for your spot. Enter '0' if it is free of charge."
 		)
