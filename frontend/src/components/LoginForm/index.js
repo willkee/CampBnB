@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useLocation } from "react-router-dom";
-import { hideModal } from "../../store/modal";
+import { hideModal, currentModal } from "../../store/modal";
 import "./LoginForm.css";
+import SignUpForm from "../SignUpForm";
 
 function LoginForm() {
 	const dispatch = useDispatch();
@@ -14,6 +15,8 @@ function LoginForm() {
 	const [errors, setErrors] = useState([]);
 
 	if (sessionUser) return dispatch(hideModal());
+
+	const showSignUp = () => dispatch(currentModal(SignUpForm));
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -33,7 +36,7 @@ function LoginForm() {
 	};
 
 	return (
-		<>
+		<div className="log_in_container">
 			<h1>Log In</h1>
 			<form onSubmit={handleSubmit}>
 				<ul>
@@ -63,8 +66,11 @@ function LoginForm() {
 				<button type="button" onClick={() => dispatch(hideModal())}>
 					Cancel
 				</button>
+				<div role="button" onClick={showSignUp}>
+					Don't have an account? Sign up here.
+				</div>
 			</form>
-		</>
+		</div>
 	);
 }
 
