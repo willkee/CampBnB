@@ -42,11 +42,14 @@ function Navigation({ sessionUser, isLoaded }) {
 			{location.pathname !== "/" && (
 				<>
 					<NavLink exact to="/">
-						<img
+						{/* <img
 							src="images/logo_dark.png"
 							alt="CampBnB Logo"
 							width="200px"
-						/>
+						/> */}
+					</NavLink>
+					<NavLink exact to="/spots/new">
+						Create a Spot
 					</NavLink>
 					{isLoaded && sessionLinks}
 				</>

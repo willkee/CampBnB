@@ -9,6 +9,7 @@ import Navigation from "./components/Navigation";
 import Homepage from "./components/Homepage";
 import Modal from "./components/Modal";
 import SplashPage from "./components/SplashPage";
+import NewSpotForm from "./components/NewSpotForm";
 import Footer from "./Footer";
 
 function App() {
@@ -38,6 +39,9 @@ function App() {
 					</Route>
 					<Route exact path="/main">
 						<Homepage spots={spotsList} />
+					</Route>
+					<Route exact path="/spots/new">
+						<NewSpotForm />
 					</Route>
 					<Route>
 						<h1>Page Not Found</h1>

@@ -29,7 +29,10 @@ module.exports = (sequelize, DataTypes) => {
 			address: {
 				type: DataTypes.STRING,
 				validate: {
-					max: 255,
+					len: {
+						args: [0, 255],
+						msg: "Please enter a street address less than 255 characters.",
+					},
 				},
 			},
 			city: {
@@ -69,23 +72,19 @@ module.exports = (sequelize, DataTypes) => {
 				allowNull: false,
 				type: DataTypes.STRING,
 				validate: {
-					len: [3, 2048],
+					len: {
+						args: [3, 2048],
+						msg: "Please enter an image URL between 3 and 2048 characters.",
+					},
 				},
 			},
 			type: {
 				allowNull: false,
 				type: DataTypes.STRING,
-				validate: {
-					len: [1, 60],
-				},
 			},
 			price: {
 				allowNull: false,
 				type: DataTypes.INTEGER,
-				validate: {
-					min: 0,
-					max: 1000,
-				},
 			},
 			description: {
 				type: DataTypes.TEXT,

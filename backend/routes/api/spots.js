@@ -1,5 +1,5 @@
 const express = require("express");
-const { check, oneOf } = require("express-validator");
+const { check } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 
 const { handleValidationErrors } = require("../../utils/validation");
@@ -9,10 +9,17 @@ const { Spot, User } = require("../../db/models");
 const router = express.Router();
 
 const validateNewSpot = [
-	oneOf([
-		[check("lat").exists(), check("long").exists()],
-		check("address").exists().isLength({ max: 255 }),
-	]),
+	check("lat").custom(async (_value, { req }) => {
+		if (
+			(req.body.lat && !req.body.long) ||
+			(!req.body.lat && req.body.long)
+		) {
+			return await Promise.reject(
+				"Please enter both a latitude and longitude."
+			);
+		}
+	}),
+	check("address").exists().isLength({ max: 255 }),
 	check("name")
 		.exists({ checkFalsy: true })
 		.withMessage("Please enter a name for your spot"),
@@ -46,7 +53,7 @@ const validateNewSpot = [
 
 router.get(
 	"/",
-	asyncHandler(async (req, res) => {
+	asyncHandler(async (_req, res) => {
 		const spots = await Spot.findAll({
 			include: [{ model: User }],
 			order: [["id"]],
@@ -61,7 +68,7 @@ router.post(
 	validateNewSpot,
 	asyncHandler(async (req, res) => {
 		const { user } = req;
-		console.log("\n\n\n USER \n\n\n", user, "\n\n\n USER \n\n\n");
+
 		const {
 			name,
 			address,
@@ -73,7 +80,6 @@ router.post(
 			price,
 			description,
 			capacity,
-			open,
 		} = req.body;
 
 		const newSpot = await Spot.create({
@@ -88,35 +94,11 @@ router.post(
 			price,
 			description,
 			capacity,
-			open,
+			open: true,
 		});
-		const createdSpot = await Spot.findOne({
-			include: [{ model: User }],
-			where: { id: newSpot.id },
-		});
-		return res.json(createdSpot);
+
+		return res.json(newSpot);
 	})
 );
-
-// Sign up
-// router.post(
-// 	"",
-// 	validateSignup,
-// 	asyncHandler(async (req, res) => {
-// 		const { firstName, lastName, email, password } = req.body;
-// 		const user = await User.signup({
-// 			firstName,
-// 			lastName,
-// 			email,
-// 			password,
-// 		});
-
-// 		await setTokenCookie(res, user);
-
-// 		return res.json({
-// 			user,
-// 		});
-// 	})
-// );
 
 module.exports = router;
