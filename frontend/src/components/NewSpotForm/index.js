@@ -59,7 +59,7 @@ const NewSpotForm = () => {
 			{loaded && (
 				<>
 					<h1>Create Your Spot!</h1>
-					<div>
+					<div className={styles.sub_heading}>
 						We are currently only accepting spots within the State
 						of Colorado. More states coming soon!
 					</div>

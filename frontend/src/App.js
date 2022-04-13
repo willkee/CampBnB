@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { getAllSpots } from "./store/spots";
 
 import * as sessionActions from "./store/session";
@@ -41,7 +41,11 @@ function App() {
 						<Homepage spots={spotsList} />
 					</Route>
 					<Route exact path="/spots/new">
-						<NewSpotForm />
+						{sessionUser ? (
+							<NewSpotForm />
+						) : (
+							<Redirect to="/main" />
+						)}
 					</Route>
 					<Route>
 						<h1>Page Not Found</h1>

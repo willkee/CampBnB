@@ -31,7 +31,7 @@ function ProfileButton({ user }) {
 
 	return (
 		<>
-			<div onClick={openMenu}>
+			<div className={styles.profile_icon} onClick={openMenu}>
 				<i className="fa-light fa-user" />
 			</div>
 			{showMenu && (

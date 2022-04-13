@@ -27,26 +27,38 @@ function Navigation({ sessionUser, isLoaded }) {
 		<nav className={styles.nav_container}>
 			{isLoaded && location.pathname !== "/" && (
 				<div className={styles.loaded_container}>
-					<img
-						src={`${process.env.PUBLIC_URL}/images/logo_dark.png`}
-						alt="CampBnB Logo"
-						width="200px"
-					/>
-					<div>
+					<NavLink exact to="/main">
+						<img
+							src={`${process.env.PUBLIC_URL}/images/logo_dark.png`}
+							alt="CampBnB Logo"
+							width="200px"
+						/>
+					</NavLink>
+					<div className={styles.right}>
 						<NavLink exact to="/main">
 							<i className="fa-light fa-campground"></i>
 							<span>Explore</span>
 						</NavLink>
-						<NavLink exact to="/spots/new">
-							<i className="fa-solid fa-location-plus"></i>
-							<span>Add New Spot</span>
-						</NavLink>
 						{sessionUser ? (
-							<ProfileButton user={sessionUser} />
+							<>
+								<NavLink exact to="/spots/new">
+									<i className="fa-solid fa-location-plus"></i>
+									<span>Add New Spot</span>
+								</NavLink>
+								<ProfileButton user={sessionUser} />
+							</>
 						) : (
 							<>
-								<div onClick={displaySignupForm}>Sign Up</div>
-								<div onClick={displayLoginForm}>
+								<div
+									className={styles.sign_up}
+									onClick={displaySignupForm}
+								>
+									Sign Up
+								</div>
+								<div
+									className={styles.log_in}
+									onClick={displayLoginForm}
+								>
 									<i className="fa-light fa-right-to-bracket"></i>
 									Log In
 								</div>

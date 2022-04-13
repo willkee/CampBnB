@@ -8,7 +8,7 @@ const { Spot, User } = require("../../db/models");
 
 const router = express.Router();
 
-const validateNewSpot = [
+const validateSpot = [
 	check("lat").custom(async (_value, { req }) => {
 		if (req.body.lat && !req.body.long) {
 			return await Promise.reject(
@@ -77,7 +77,7 @@ router.get(
 router.post(
 	"/",
 	requireAuth,
-	validateNewSpot,
+	validateSpot,
 	asyncHandler(async (req, res) => {
 		const { user } = req;
 
@@ -110,6 +110,33 @@ router.post(
 		});
 
 		return res.json(newSpot);
+	})
+);
+
+router.put(
+	"/:id",
+	requireAuth,
+	validateSpot,
+	asyncHandler(async (req, res) => {
+		const id = parseInt(req.params.id, 10);
+		const spot = await Spot.findOne({ where: { id } });
+
+		try {
+			if (spot) {
+				await Spot.update(req.body, {
+					where: { id },
+					returning: true,
+					plain: true,
+				});
+
+				const updatedSpot = await Spot.findByPk(id, {
+					include: [{ model: User }],
+				});
+				return res.json(updatedSpot);
+			}
+		} catch (e) {
+			console.error("Error: Spot not found: ", e);
+		}
 	})
 );
 

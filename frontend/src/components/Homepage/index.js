@@ -1,8 +1,19 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { showModal, currentModal } from "../../store/modal";
+import EditSpotForm from "../EditSpotForm";
 import styles from "./Homepage.module.css";
 
 const Homepage = ({ spots }) => {
+	const sessionUser = useSelector((state) => state.session.user);
+	const dispatch = useDispatch();
+
+	const editSpotForm = () => {
+		dispatch(currentModal(EditSpotForm));
+		dispatch(showModal());
+	};
+
 	return (
 		<div>
 			<h1>Welcome to CampBnB</h1>
@@ -31,7 +42,14 @@ const Homepage = ({ spots }) => {
 						<div>Lat: {spot.lat}</div>
 						<div>Long: {spot.long}</div>
 						<div>Capacity: {spot.capacity}</div>
-						<div>{spot.open ? "Open" : "Closed"}</div>
+						{sessionUser && sessionUser.id === spot.ownerId && (
+							<div>
+								<div onClick={editSpotForm} spot={spot}>
+									Edit
+								</div>
+								<div>Delete</div>
+							</div>
+						)}
 					</div>
 				))}
 			</div>
