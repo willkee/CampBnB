@@ -57,12 +57,12 @@ module.exports = {
 			createdAt: {
 				allowNull: false,
 				type: Sequelize.DATE,
-				defaultValue: new Date("2021-12-01"),
+				defaultValue: new Date(),
 			},
 			updatedAt: {
 				allowNull: false,
 				type: Sequelize.DATE,
-				defaultValue: new Date("2021-12-01"),
+				defaultValue: new Date(),
 			},
 		});
 	},

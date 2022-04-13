@@ -45,14 +45,20 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.STRING,
 				allowNull: false,
 				validate: {
-					len: [1, 50],
+					len: {
+						args: [1, 50],
+						msg: "Please enter a first name between 1 and 50 characters.",
+					},
 				},
 			},
 			lastName: {
 				type: DataTypes.STRING,
 				allowNull: false,
 				validate: {
-					len: [1, 50],
+					len: {
+						args: [1, 50],
+						msg: "Please enter a last name between 1 and 50 characters.",
+					},
 				},
 			},
 			email: {
@@ -63,7 +69,10 @@ module.exports = (sequelize, DataTypes) => {
 					msg: "That email address already exists. Login instead?",
 				},
 				validate: {
-					len: [3, 255],
+					len: {
+						args: [3, 255],
+						msg: "Please enter an email between 3 and 255 characters.",
+					},
 					isEmail: true,
 				},
 			},
@@ -71,7 +80,10 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.STRING.BINARY,
 				allowNull: false,
 				validate: {
-					len: [60, 60],
+					len: {
+						args: [60, 60],
+						msg: "Error in hashing password.",
+					},
 				},
 			},
 		},

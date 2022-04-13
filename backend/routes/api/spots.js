@@ -1,5 +1,5 @@
 const express = require("express");
-const { check, oneOf } = require("express-validator");
+const { check } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 
 const { handleValidationErrors } = require("../../utils/validation");
@@ -8,11 +8,30 @@ const { Spot, User } = require("../../db/models");
 
 const router = express.Router();
 
-const validateNewSpot = [
-	oneOf([
-		[check("lat").exists(), check("long").exists()],
-		check("address").exists().isLength({ max: 255 }),
-	]),
+const validateSpot = [
+	check("lat").custom(async (_value, { req }) => {
+		if (req.body.lat && !req.body.long) {
+			return await Promise.reject(
+				"You have only entered latitude coordinates. Please enter a longitude."
+			);
+		} else if (!req.body.lat && req.body.long) {
+			return await Promise.reject(
+				"You have only entered longitude coordinates. Please enter a latitude."
+			);
+		}
+	}),
+	check("address")
+		.isLength({ max: 255 })
+		.withMessage(
+			"Please enter no more than 255 characters for your street address."
+		)
+		.custom(async (_value, { req }) => {
+			if (!req.body.address && !req.body.lat && !req.body.long) {
+				return await Promise.reject(
+					"Please enter either an address or latitude and longitude coordinates."
+				);
+			}
+		}),
 	check("name")
 		.exists({ checkFalsy: true })
 		.withMessage("Please enter a name for your spot"),
@@ -23,15 +42,25 @@ const validateNewSpot = [
 		.exists({ checkFalsy: true })
 		.withMessage("Please enter an image URL.")
 		.isLength({ min: 3, max: 2048 })
-		.withMessage(
-			"Please enter an image URL between 3 and 2048 characters."
-		),
+		.withMessage("Please enter an image URL between 3 and 2048 characters.")
+		.custom(async (_value, { req }) => {
+			if (
+				!req.body.imageUrl.endsWith(".jpg") &&
+				!req.body.imageUrl.endsWith(".jpeg") &&
+				!req.body.imageUrl.endsWith(".png") &&
+				!req.body.imageUrl.endsWith(".gif")
+			) {
+				return await Promise.reject(
+					"Please enter a valid image URL ending in .jpg, .jpeg, .png, or .gif."
+				);
+			}
+		}),
 	check("type")
 		.exists({ checkFalsy: true })
 		.isIn(["vehicle", "rv", "tent", "backpacking"])
 		.withMessage("Please enter a valid type."),
 	check("price")
-		.exists({ checkFalsy: true })
+		.exists()
 		.withMessage(
 			"Please enter a nightly price for your spot. Enter '0' if it is free of charge."
 		)
@@ -46,7 +75,7 @@ const validateNewSpot = [
 
 router.get(
 	"/",
-	asyncHandler(async (req, res) => {
+	asyncHandler(async (_req, res) => {
 		const spots = await Spot.findAll({
 			include: [{ model: User }],
 			order: [["id"]],
@@ -58,10 +87,10 @@ router.get(
 router.post(
 	"/",
 	requireAuth,
-	validateNewSpot,
+	validateSpot,
 	asyncHandler(async (req, res) => {
 		const { user } = req;
-		console.log("\n\n\n USER \n\n\n", user, "\n\n\n USER \n\n\n");
+
 		const {
 			name,
 			address,
@@ -73,7 +102,6 @@ router.post(
 			price,
 			description,
 			capacity,
-			open,
 		} = req.body;
 
 		const newSpot = await Spot.create({
@@ -88,35 +116,54 @@ router.post(
 			price,
 			description,
 			capacity,
-			open,
+			open: true,
 		});
-		const createdSpot = await Spot.findOne({
-			include: [{ model: User }],
-			where: { id: newSpot.id },
-		});
-		return res.json(createdSpot);
+
+		return res.json(newSpot);
 	})
 );
 
-// Sign up
-// router.post(
-// 	"",
-// 	validateSignup,
-// 	asyncHandler(async (req, res) => {
-// 		const { firstName, lastName, email, password } = req.body;
-// 		const user = await User.signup({
-// 			firstName,
-// 			lastName,
-// 			email,
-// 			password,
-// 		});
+router.put(
+	"/:id",
+	requireAuth,
+	validateSpot,
+	asyncHandler(async (req, res) => {
+		const id = parseInt(req.params.id, 10);
+		const spot = await Spot.findOne({ where: { id } });
 
-// 		await setTokenCookie(res, user);
+		try {
+			if (spot) {
+				await Spot.update(req.body, {
+					where: { id },
+					returning: true,
+					plain: true,
+				});
 
-// 		return res.json({
-// 			user,
-// 		});
-// 	})
-// );
+				const updatedSpot = await Spot.findByPk(id, {
+					include: [{ model: User }],
+				});
+				return res.json(updatedSpot);
+			}
+		} catch (e) {
+			console.error("Error: Spot not found: ", e);
+		}
+	})
+);
+
+router.delete(
+	"/:id",
+	requireAuth,
+	asyncHandler(async (req, res) => {
+		const id = parseInt(req.params.id, 10);
+		const spot = await Spot.findByPk(id);
+
+		if (spot) {
+			await Spot.destroy({ where: { id } });
+			return res.json({ id });
+		} else {
+			throw new Error("Spot not found.");
+		}
+	})
+);
 
 module.exports = router;

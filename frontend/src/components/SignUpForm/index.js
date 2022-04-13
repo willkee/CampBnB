@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import { currentModal, hideModal } from "../../store/modal";
@@ -11,15 +11,12 @@ function SignUpForm() {
 	const location = useLocation();
 	const history = useHistory();
 
-	const sessionUser = useSelector((state) => state.session.user);
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [errors, setErrors] = useState([]);
-
-	if (sessionUser) return dispatch(hideModal());
 
 	const showLogin = () => dispatch(currentModal(LoginForm));
 

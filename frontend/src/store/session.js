@@ -12,17 +12,15 @@ const removeUser = () => ({
 	type: REMOVE_USER,
 });
 
-export const login =
-	({ email, password }) =>
-	async (dispatch) => {
-		const response = await csrfFetch("/api/session", {
-			method: "POST",
-			body: JSON.stringify({ email, password }),
-		});
-		const data = await response.json();
-		dispatch(setUser(data.user));
-		return response;
-	};
+export const login = (email, password) => async (dispatch) => {
+	const response = await csrfFetch("/api/session", {
+		method: "POST",
+		body: JSON.stringify({ email, password }),
+	});
+	const data = await response.json();
+	dispatch(setUser(data.user));
+	return response;
+};
 
 export const restoreUser = () => async (dispatch) => {
 	const response = await csrfFetch("/api/session");

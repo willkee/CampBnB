@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Redirect, useLocation } from "react-router-dom";
 import { hideModal, currentModal } from "../../store/modal";
 import "./LoginForm.css";
@@ -9,12 +9,9 @@ import SignUpForm from "../SignUpForm";
 function LoginForm() {
 	const dispatch = useDispatch();
 	const location = useLocation();
-	const sessionUser = useSelector((state) => state.session.user);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [errors, setErrors] = useState([]);
-
-	if (sessionUser) return dispatch(hideModal());
 
 	const showSignUp = () => dispatch(currentModal(SignUpForm));
 
@@ -23,12 +20,13 @@ function LoginForm() {
 		setErrors([]);
 
 		try {
-			await dispatch(sessionActions.login({ email, password }));
+			await dispatch(sessionActions.login(email, password));
 			await dispatch(hideModal());
 
 			if (location.pathname === "/") {
 				return <Redirect to="/main" />;
 			}
+			return;
 		} catch (res) {
 			const data = await res.json();
 			if (data && data.errors) setErrors(data.errors);

@@ -7,7 +7,7 @@ import { showModal, currentModal } from "../../store/modal";
 import SignUpForm from "../SignUpForm";
 import LoginForm from "../LoginForm";
 
-import "./Navigation.css";
+import styles from "./Navigation.module.css";
 
 function Navigation({ sessionUser, isLoaded }) {
 	const dispatch = useDispatch();
@@ -23,33 +23,49 @@ function Navigation({ sessionUser, isLoaded }) {
 		dispatch(showModal());
 	};
 
-	let sessionLinks;
-	if (sessionUser) {
-		sessionLinks = <ProfileButton user={sessionUser} />;
-	} else {
-		sessionLinks = (
-			<>
-				<div onClick={displaySignupForm}>Sign Up</div>
-				<div onClick={displayLoginForm}>
-					<i className="fa-light fa-right-to-bracket"></i>Log In
-				</div>
-			</>
-		);
-	}
-
 	return (
-		<nav>
-			{location.pathname !== "/" && (
-				<>
-					<NavLink exact to="/">
+		<nav className={styles.nav_container}>
+			{isLoaded && location.pathname !== "/" && (
+				<div className={styles.loaded_container}>
+					<NavLink exact to="/main">
 						<img
-							src="images/logo_dark.png"
+							src={`${process.env.PUBLIC_URL}/images/logo_dark.png`}
 							alt="CampBnB Logo"
 							width="200px"
 						/>
 					</NavLink>
-					{isLoaded && sessionLinks}
-				</>
+					<div className={styles.right}>
+						<NavLink exact to="/main">
+							<i className="fa-light fa-campground"></i>
+							<span>Explore</span>
+						</NavLink>
+						{sessionUser ? (
+							<>
+								<NavLink exact to="/spots/new">
+									<i className="fa-solid fa-location-plus"></i>
+									<span>Add New Spot</span>
+								</NavLink>
+								<ProfileButton user={sessionUser} />
+							</>
+						) : (
+							<>
+								<div
+									className={styles.sign_up}
+									onClick={displaySignupForm}
+								>
+									Sign Up
+								</div>
+								<div
+									className={styles.log_in}
+									onClick={displayLoginForm}
+								>
+									<i className="fa-light fa-right-to-bracket"></i>
+									Log In
+								</div>
+							</>
+						)}
+					</div>
+				</div>
 			)}
 		</nav>
 	);

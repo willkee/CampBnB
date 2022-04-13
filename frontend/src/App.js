@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { getAllSpots } from "./store/spots";
 
 import * as sessionActions from "./store/session";
@@ -9,6 +9,7 @@ import Navigation from "./components/Navigation";
 import Homepage from "./components/Homepage";
 import Modal from "./components/Modal";
 import SplashPage from "./components/SplashPage";
+import NewSpotForm from "./components/NewSpotForm";
 import Footer from "./Footer";
 
 function App() {
@@ -38,6 +39,13 @@ function App() {
 					</Route>
 					<Route exact path="/main">
 						<Homepage spots={spotsList} />
+					</Route>
+					<Route exact path="/spots/new">
+						{sessionUser ? (
+							<NewSpotForm />
+						) : (
+							<Redirect to="/main" />
+						)}
 					</Route>
 					<Route>
 						<h1>Page Not Found</h1>
