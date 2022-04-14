@@ -13,19 +13,20 @@
 }
 
 .splash_header {
-	background-color: black;
+	background-color: #132128;
 	width: 100%;
 	position: absolute;
+	display: flex;
+	align-items: center;
 	top: 0;
 	height: 130px;
 	z-index: 2;
 }
 
 .splash_content {
-	background-color: rgb(0, 70, 0);
+	background-color: #354f52;
 	position: absolute;
 	top: 150px;
-	height: 720px;
 	width: 100%;
 	border-left: 50px solid white;
 	border-right: 50px solid white;
@@ -36,10 +37,20 @@
 	align-items: center;
 	flex-direction: column;
 	text-align: center;
+	height: 720px;
 }
 
 .splash_content img {
-	width: 250px;
+	width: 200px;
+}
+
+.splash_content * {
+	font-size: 14px;
+	margin: 10px 0;
+}
+
+.splash_button_container {
+	margin-top: 20px;
 }
 .buttons {
 	display: flex;
@@ -64,7 +75,6 @@
 .new_user div,
 .existing_user div,
 .just_browsing div {
-	margin-top: 15px;
 	color: black;
 	width: 200px;
 	height: 50px;
@@ -93,18 +103,18 @@
 }
 
 .new_user div {
-	background-color: #d0f0d1;
+	background-color: #84a98c;
 }
 
 .existing_user div {
-	background-color: #d4c17c;
+	background-color: #dda15e;
 }
 
 .just_browsing {
-	margin-top: 50px;
+	margin-top: 0px;
 	width: 100%;
 }
 .just_browsing div {
-	background-color: #c4c4c4;
+	background-color: #cad2c5;
 	width: 100%;
 }

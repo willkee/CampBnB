@@ -5,6 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"rebuild": "npx dotenv sequelize-cli db:seed:undo:all && npx dotenv sequelize-cli db:migrate:undo:all && npx dotenv sequelize-cli db:migrate && npx dotenv sequelize-cli db:seed:all",
+		"heroku-rebuild": "heroku run npm run sequelize db:seed:undo:all && heroku run npm run sequelize db:migrate:undo:all && heroku run npm run sequelize db:migrate && heroku run npm run sequelize db:seed:all",
 		"sequelize": "sequelize",
 		"sequelize-cli": "sequelize-cli",
 		"start": "per-env",

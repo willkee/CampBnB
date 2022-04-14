@@ -29,7 +29,7 @@ function Navigation({ sessionUser, isLoaded }) {
 				<div className={styles.loaded_container}>
 					<NavLink exact to="/main">
 						<img
-							src={`${process.env.PUBLIC_URL}/images/logo_dark.png`}
+							src={`${process.env.PUBLIC_URL}/images/logo_title.png`}
 							alt="CampBnB Logo"
 							width="200px"
 						/>

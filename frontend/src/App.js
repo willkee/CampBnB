@@ -10,7 +10,7 @@ import Homepage from "./components/Homepage";
 import Modal from "./components/Modal";
 import SplashPage from "./components/SplashPage";
 import NewSpotForm from "./components/NewSpotForm";
-import Footer from "./Footer";
+import Footer from "./components/Footer";
 
 function App() {
 	const dispatch = useDispatch();

@@ -25,6 +25,14 @@ const validateSignup = [
 		.exists({ checkFalsy: true })
 		.isLength({ min: 6 })
 		.withMessage("Password must be 6 characters or more."),
+	check("confirmPassword")
+		.exists({ checkFalsy: true })
+		.withMessage("Please confirm your password.")
+		.custom(async (_value, { req }) => {
+			if (req.body.password !== req.body.confirmPassword) {
+				return await Promise.reject("Your passwords do not match.");
+			}
+		}),
 	handleValidationErrors,
 ];
 
@@ -33,7 +41,8 @@ router.post(
 	"",
 	validateSignup,
 	asyncHandler(async (req, res) => {
-		const { firstName, lastName, email, password } = req.body;
+		const { firstName, lastName, email, password, confirmPassword } =
+			req.body;
 		const user = await User.signup({
 			firstName,
 			lastName,
