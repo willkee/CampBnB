@@ -2,13 +2,18 @@ import { csrfFetch } from "./csrf";
 
 const CREATED_SPOT = "spots/CREATED_SPOT";
 const RETRIEVED_SPOTS = "spots/RETRIEVED_SPOTS";
-// const ONE_SPOT_RETRIEVED = "spots/ONE_SPOT_RETRIEVED";
+const ONE_SPOT_RETRIEVED = "spots/ONE_SPOT_RETRIEVED";
 const UPDATED_SPOT = "spots/UPDATED_SPOT";
 const DELETED_SPOT = "spots/DELETED_SPOT";
 
 const retrievedSpots = (spots) => ({
 	type: RETRIEVED_SPOTS,
 	spots,
+});
+
+const retrievedOneSpot = (spot) => ({
+	type: ONE_SPOT_RETRIEVED,
+	spot,
 });
 
 const createdSpot = (payload) => ({
@@ -53,10 +58,14 @@ export const getAllSpots = () => async (dispatch) => {
 
 // READ ONE
 // Get all details of one spot only.
-
-// export const getOneSpot = () => async (dispatch) => {
-
-// }
+export const getOneSpot = (id) => async (dispatch) => {
+	const res = await csrfFetch(`/api/spots/${id}`);
+	if (res.ok) {
+		const spot = await res.json();
+		await dispatch(retrievedOneSpot(spot));
+		return spot;
+	}
+};
 
 // UPDATE ONE
 // Update the details of one spot.
@@ -101,6 +110,11 @@ const spotsReducer = (state = initialState, action) => {
 			action.spots[0].forEach((spot) => {
 				newState[spot.id] = spot;
 			});
+			return newState;
+		}
+		// READ ONE
+		case ONE_SPOT_RETRIEVED: {
+			newState[action.spot.id] = action.spot;
 			return newState;
 		}
 		// UPDATE

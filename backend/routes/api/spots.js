@@ -76,11 +76,24 @@ const validateSpot = [
 router.get(
 	"/",
 	asyncHandler(async (_req, res) => {
-		const spots = await Spot.findAll({
-			include: [{ model: User }],
-			order: [["id"]],
-		});
+		const spots = await Spot.findAll();
 		return res.json({ spots });
+	})
+);
+
+router.get(
+	"/:id",
+	asyncHandler(async (req, res) => {
+		const id = parseInt(req.params.id, 10);
+		const spot = await Spot.findByPk(id, {
+			include: [{ model: User }],
+		});
+
+		if (spot) {
+			return res.json(spot);
+		} else {
+			throw new Error("Spot not found.");
+		}
 	})
 );
 

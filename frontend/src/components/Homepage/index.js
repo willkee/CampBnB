@@ -1,48 +1,48 @@
-import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { NavLink, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { showModal, currentModal } from "../../store/modal";
-import EditSpotForm from "../EditSpotForm";
-import DeleteConfirmation from "../DeleteConfirmation";
 import styles from "./Homepage.module.css";
 
 const Homepage = ({ spots }) => {
 	const [loaded, setLoaded] = useState(false);
 	const sessionUser = useSelector((state) => state.session.user);
-	const dispatch = useDispatch();
+	const history = useHistory();
 
 	useEffect(() => {
 		setLoaded(true);
 	}, []);
 
-	const editSpotForm = (spot) => {
-		dispatch(currentModal(() => <EditSpotForm spot={spot} />));
-		dispatch(showModal());
-	};
-
-	const showDeleteConfirmation = (id) => {
-		dispatch(currentModal(() => <DeleteConfirmation id={id} />));
-		dispatch(showModal());
-	};
+	const sendToSpot = (id) => history.push(`/spots/${id}`);
 
 	return (
 		<div>
 			{loaded && (
 				<>
+					<div className={styles.c1}>
+						<NavLink
+							className={styles.return_to_splash}
+							exact
+							to="/"
+						>
+							<i class="fa-light fa-arrow-left"></i> Trying to
+							return to the splash page? Click here.
+						</NavLink>
+					</div>
 					{sessionUser ? (
-						<h1>{`Welcome back, ${sessionUser.firstName}!`}</h1>
+						<h1
+							className={styles.h1_element}
+						>{`Welcome back, ${sessionUser.firstName}!`}</h1>
 					) : (
-						<h1>Welcome to CampBnB!</h1>
+						<h1 className={styles.h1_element}>
+							Welcome to CampBnB!
+						</h1>
 					)}
-					<NavLink exact to="/">
-						<i class="fa-light fa-arrow-left"></i> Trying to return
-						to the splash page? Click here.
-					</NavLink>
 					<div className={styles.container}>
 						{spots.map((spot) => (
 							<div
 								key={spot.id}
 								className={styles.each_spot_container}
+								onClick={() => sendToSpot(spot.id)}
 							>
 								<img
 									src={spot.imageUrl}
@@ -54,35 +54,15 @@ const Homepage = ({ spots }) => {
 										e.onerror = null;
 									}}
 								/>
-								<div>{`Host: ${spot.User.firstName} ${spot.User.lastName}`}</div>
-								<div>{spot.name}</div>
-								<div>{spot.address}</div>
-								<div>{spot.city}</div>
-								<div>${spot.price}/night</div>
-								<div>Lat: {spot.lat}</div>
-								<div>Long: {spot.long}</div>
-								<div>Capacity: {spot.capacity}</div>
-								{sessionUser &&
-									sessionUser.id === spot.ownerId && (
-										<div>
-											<div
-												onClick={() =>
-													editSpotForm(spot)
-												}
-											>
-												Edit
-											</div>
-											<div
-												onClick={() =>
-													showDeleteConfirmation(
-														spot.id
-													)
-												}
-											>
-												Delete
-											</div>
-										</div>
-									)}
+								<h4>{spot.name}</h4>
+								<div className={styles.city_info}>
+									<i class="fa-light fa-mountain-city"></i>
+									{spot.city}
+								</div>
+								<div className={styles.price_info}>
+									<span>${spot.price}</span>
+									<span>night</span>
+								</div>
 							</div>
 						))}
 					</div>

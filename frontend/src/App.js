@@ -10,6 +10,7 @@ import Homepage from "./components/Homepage";
 import Modal from "./components/Modal";
 import SplashPage from "./components/SplashPage";
 import NewSpotForm from "./components/NewSpotForm";
+import SingleSpot from "./components/SingleSpot";
 import Footer from "./components/Footer";
 
 function App() {
@@ -46,6 +47,9 @@ function App() {
 						) : (
 							<Redirect to="/main" />
 						)}
+					</Route>
+					<Route exact path="/spots/:id">
+						<SingleSpot />
 					</Route>
 					<Route>
 						<h1>Page Not Found</h1>

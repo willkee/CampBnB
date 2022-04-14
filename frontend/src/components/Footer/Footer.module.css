@@ -12,7 +12,7 @@
 	align-items: center;
 	justify-content: flex-end;
 	padding: 20px;
-	min-width: 800px;
+	min-width: 1000px;
 	max-width: 1200px;
 	filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.328));
 }
