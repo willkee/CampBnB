@@ -25,4 +25,23 @@ body {
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
+	padding-bottom: 70px;
+	filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.328));
+}
+
+#COLOR_THEME_LIBRARY {
+	color: #cad2c5;
+	color: #84a98c;
+	color: #52796f;
+	color: #354f52;
+	color: #2f3e46;
+
+	background-color: #cad2c5;
+	background-color: #84a98c;
+	background-color: #52796f;
+	background-color: #354f52;
+	background-color: #2f3e46;
+
+	/* accent color */
+	color: #dda15e;
 }

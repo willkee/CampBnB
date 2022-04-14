@@ -35,15 +35,22 @@ function LoginForm() {
 
 	return (
 		<div className="log_in_container">
-			<h1>Log In</h1>
+			<img
+				src={`${process.env.PUBLIC_URL}/images/logo_only_dark.png`}
+				alt="CampBnB Logo"
+				className="sign_up_logo"
+			/>
+			<h2>Welcome back!</h2>
 			<form onSubmit={handleSubmit}>
-				<ul>
-					{errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
-					))}
-				</ul>
-				<label>
-					Email
+				{errors.length > 0 && (
+					<div className="error_container">
+						{errors.map((error, idx) => (
+							<div key={idx}>{error}</div>
+						))}
+					</div>
+				)}
+				<label className="login_label">
+					<span>Email</span>
 					<input
 						type="text"
 						value={email}
@@ -51,8 +58,8 @@ function LoginForm() {
 						required
 					/>
 				</label>
-				<label>
-					Password
+				<label className="login_label">
+					<span>Password</span>
 					<input
 						type="password"
 						value={password}
@@ -60,11 +67,17 @@ function LoginForm() {
 						required
 					/>
 				</label>
-				<button type="submit">Log In</button>
-				<button type="button" onClick={() => dispatch(hideModal())}>
-					Cancel
-				</button>
-				<div role="button" onClick={showSignUp}>
+				<div className="login_button_container">
+					<button type="submit">Log In</button>
+					<button type="button" onClick={() => dispatch(hideModal())}>
+						Cancel
+					</button>
+				</div>
+				<div
+					role="button"
+					className="login_signup_switch"
+					onClick={showSignUp}
+				>
 					Don't have an account? Sign up here.
 				</div>
 			</form>

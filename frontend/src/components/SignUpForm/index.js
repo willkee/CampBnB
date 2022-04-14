@@ -22,41 +22,48 @@ function SignUpForm() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (password === confirmPassword) {
-			setErrors([]);
+		setErrors([]);
 
-			try {
-				await dispatch(
-					sessionActions.signup({
-						firstName,
-						lastName,
-						email,
-						password,
-					})
-				);
-				await dispatch(hideModal());
-				if (location.pathname === "/") {
-					return history.push("/main");
-				}
-				return;
-			} catch (res) {
-				const data = await res.json();
-				if (data && data.errors) setErrors(data.errors);
+		try {
+			await dispatch(
+				sessionActions.signup({
+					firstName,
+					lastName,
+					email,
+					password,
+				})
+			);
+			await dispatch(hideModal());
+			if (location.pathname === "/") {
+				return history.push("/main");
 			}
+			return;
+		} catch (res) {
+			const data = await res.json();
+			if (data && data.errors) setErrors(data.errors);
+			return;
 		}
-		return setErrors(["Passwords do not match."]);
 	};
 
 	return (
-		<>
-			<h1>Sign Up</h1>
-			<form onSubmit={handleSubmit}>
-				<ul>
-					{errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
-					))}
-				</ul>
-				<label>
+		<div className="sign_up_outer_container">
+			<img
+				src={`${process.env.PUBLIC_URL}/images/logo_only_dark.png`}
+				alt="CampBnB Logo"
+				className="sign_up_logo"
+			/>
+			<h2>Welcome to CampBnB!</h2>
+			<form className="sign_up_form_container" onSubmit={handleSubmit}>
+				<div className="error_outer_container">
+					{errors.length > 0 && (
+						<div className="error_container">
+							{errors.map((error, idx) => (
+								<div key={idx}>{error}</div>
+							))}
+						</div>
+					)}
+				</div>
+				<label className="signup_label">
 					First Name
 					<input
 						type="text"
@@ -65,7 +72,7 @@ function SignUpForm() {
 						required
 					/>
 				</label>
-				<label>
+				<label className="signup_label">
 					Last Name
 					<input
 						type="text"
@@ -74,7 +81,7 @@ function SignUpForm() {
 						required
 					/>
 				</label>
-				<label>
+				<label className="signup_label">
 					Email
 					<input
 						type="text"
@@ -83,7 +90,7 @@ function SignUpForm() {
 						required
 					/>
 				</label>
-				<label>
+				<label className="signup_label">
 					Password
 					<input
 						type="password"
@@ -92,7 +99,7 @@ function SignUpForm() {
 						required
 					/>
 				</label>
-				<label>
+				<label className="signup_label">
 					Confirm Password
 					<input
 						type="password"
@@ -101,15 +108,21 @@ function SignUpForm() {
 						required
 					/>
 				</label>
-				<button type="submit">Sign Up</button>
-				<button type="button" onClick={() => dispatch(hideModal())}>
-					Cancel
-				</button>
-				<div role="button" onClick={showLogin}>
+				<div className="signup_button_container">
+					<button type="submit">Sign Up</button>
+					<button type="button" onClick={() => dispatch(hideModal())}>
+						Cancel
+					</button>
+				</div>
+				<div
+					className="login_signup_switch"
+					role="button"
+					onClick={showLogin}
+				>
 					Already have an account? Log in here.
 				</div>
 			</form>
-		</>
+		</div>
 	);
 }
 

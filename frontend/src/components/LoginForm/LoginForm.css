@@ -1,8 +1,90 @@
 .log_in_container {
-	width: 500px;
-	height: 500px;
+	width: 450px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	padding: 30px 0;
+	background-color: #cad2c5;
+}
+
+.log_in_container h2 {
+	margin-bottom: 25px;
+}
+
+.log_in_container form {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	height: 300px;
+}
+
+.error_container {
+	background-color: #2f3e46;
+	padding: 10px;
+	font-size: 14px;
+	color: white;
+	margin: 10px 0;
+}
+
+.login_label {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	font-size: 14px;
+}
+
+.login_label span {
+	margin-bottom: 5px;
+}
+
+.login_label input {
+	height: 30px;
+	padding: 5px;
+	width: 100%;
+	border-radius: 3px;
+	border: 1px solid rgba(0, 0, 0, 0.521);
+}
+
+.login_button_container {
+	width: 100%;
+	display: flex;
+	justify-content: space-evenly;
+	margin: 20px 0;
+}
+
+.login_button_container button:first-child {
+	background-color: #dda15e;
+	color: black;
+}
+.login_button_container button:first-child:hover {
+	background-color: #a26d31;
+	color: white;
+}
+
+.login_button_container button:last-child:hover {
+	background-color: black;
+}
+
+.login_button_container button {
+	padding: 10px;
+	width: 100px;
+	background-color: #2f3e46;
+	color: white;
+	border: none;
+	filter: none;
+	transition: all linear 0.2s;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.login_signup_switch {
+	font-size: 14px;
+	cursor: pointer;
+}
+.login_signup_switch:hover {
+	color: #2f3e46;
 }

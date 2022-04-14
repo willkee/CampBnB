@@ -1,17 +1,20 @@
 .footer_container {
-	position: sticky;
+	position: fixed;
 	display: flex;
 	bottom: 0;
-	width: 100%;
+	width: 85vw;
 	height: 50px;
 	color: white;
-	background-color: black;
+	background-color: #132128;
 	z-index: 999;
 	vertical-align: bottom;
 	font-size: 14px;
 	align-items: center;
 	justify-content: flex-end;
 	padding: 20px;
+	min-width: 800px;
+	max-width: 1200px;
+	filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.328));
 }
 
 .footer_container a {
