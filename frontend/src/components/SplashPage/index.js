@@ -34,7 +34,8 @@ const SplashPage = ({ sessionUser }) => {
 					src={`${process.env.PUBLIC_URL}/images/logo_only.png`}
 					alt="green logo"
 				/>
-				<p>Welcome to CampBnB</p>
+				<h1>Welcome to CampBnB</h1>
+				<p>Escape and discover your next outdoor adventure.</p>
 				<p>
 					CampBnB is a site where you can find and discover new places
 					to camp within the state of Colorado. If you have a place to
@@ -52,7 +53,7 @@ const SplashPage = ({ sessionUser }) => {
 							</div>
 						</>
 					) : (
-						<>
+						<div className={styles.splash_button_container}>
 							<div className={styles.signup_login}>
 								<div className={styles.new_user}>
 									Joining us for the first time?
@@ -79,7 +80,7 @@ const SplashPage = ({ sessionUser }) => {
 							>
 								Just browsing?<div>Explore the Site</div>
 							</div>
-						</>
+						</div>
 					)}
 				</div>
 			</div>

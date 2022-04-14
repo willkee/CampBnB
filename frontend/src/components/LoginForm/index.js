@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
-import { Redirect, useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import { hideModal, currentModal } from "../../store/modal";
 import "./LoginForm.css";
 import SignUpForm from "../SignUpForm";
 
 function LoginForm() {
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const location = useLocation();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -24,13 +25,23 @@ function LoginForm() {
 			await dispatch(hideModal());
 
 			if (location.pathname === "/") {
-				return <Redirect to="/main" />;
+				return history.push("/main");
 			}
 			return;
 		} catch (res) {
 			const data = await res.json();
 			if (data && data.errors) setErrors(data.errors);
 		}
+	};
+
+	const demoLogin = async (e) => {
+		e.preventDefault();
+		await dispatch(sessionActions.login("demo@user.io", "password"));
+		await dispatch(hideModal());
+		if (location.pathname === "/") {
+			return history.push("/main");
+		}
+		return;
 	};
 
 	return (
@@ -72,6 +83,9 @@ function LoginForm() {
 					<button type="button" onClick={() => dispatch(hideModal())}>
 						Cancel
 					</button>
+				</div>
+				<div className="demo_user_button" onClick={demoLogin}>
+					Demo User
 				</div>
 				<div
 					role="button"

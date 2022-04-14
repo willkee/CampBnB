@@ -27,7 +27,6 @@
 	background-color: #354f52;
 	position: absolute;
 	top: 150px;
-	height: 720px;
 	width: 100%;
 	border-left: 50px solid white;
 	border-right: 50px solid white;
@@ -38,10 +37,20 @@
 	align-items: center;
 	flex-direction: column;
 	text-align: center;
+	height: 720px;
 }
 
 .splash_content img {
-	width: 250px;
+	width: 200px;
+}
+
+.splash_content * {
+	font-size: 14px;
+	margin: 10px 0;
+}
+
+.splash_button_container {
+	margin-top: 20px;
 }
 .buttons {
 	display: flex;
@@ -66,7 +75,6 @@
 .new_user div,
 .existing_user div,
 .just_browsing div {
-	margin-top: 15px;
 	color: black;
 	width: 200px;
 	height: 50px;
@@ -103,7 +111,7 @@
 }
 
 .just_browsing {
-	margin-top: 50px;
+	margin-top: 0px;
 	width: 100%;
 }
 .just_browsing div {

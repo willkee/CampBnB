@@ -20,6 +20,16 @@ function SignUpForm() {
 
 	const showLogin = () => dispatch(currentModal(LoginForm));
 
+	const demoLogin = async (e) => {
+		e.preventDefault();
+		await dispatch(sessionActions.login("demo@user.io", "password"));
+		await dispatch(hideModal());
+		if (location.pathname === "/") {
+			return history.push("/main");
+		}
+		return;
+	};
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setErrors([]);
@@ -113,6 +123,9 @@ function SignUpForm() {
 					<button type="button" onClick={() => dispatch(hideModal())}>
 						Cancel
 					</button>
+				</div>
+				<div className="demo_user_button" onClick={demoLogin}>
+					Demo User
 				</div>
 				<div
 					className="login_signup_switch"

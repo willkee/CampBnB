@@ -88,3 +88,23 @@
 .login_signup_switch:hover {
 	color: #2f3e46;
 }
+
+.demo_user_button {
+	background-color: #284d11;
+	color: white;
+	padding: 5px;
+	width: 150px;
+	height: 35px;
+	border-radius: 5px;
+	font-size: 14px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 10px;
+	cursor: pointer;
+	transition: all linear 0.2s;
+}
+
+.demo_user_button:hover {
+	background-color: #4a7f28;
+}
