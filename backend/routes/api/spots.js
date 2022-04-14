@@ -76,7 +76,17 @@ const validateSpot = [
 router.get(
 	"/",
 	asyncHandler(async (_req, res) => {
-		const spots = await Spot.findAll();
+		const spots = await Spot.findAll({
+			attributes: [
+				"id",
+				"name",
+				"city",
+				"imageUrl",
+				"type",
+				"price",
+				"open",
+			],
+		});
 		return res.json(spots);
 	})
 );

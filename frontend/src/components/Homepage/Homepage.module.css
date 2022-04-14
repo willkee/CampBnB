@@ -1,24 +1,3 @@
-.c1 {
-	padding: 8px;
-	margin-bottom: 35px;
-	width: 100%;
-	background-color: #2f3e46;
-	display: flex;
-	align-items: center;
-	filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.328));
-}
-
-.return_to_splash {
-	text-decoration: none;
-	color: white;
-	cursor: pointer;
-	font-size: 12px;
-}
-
-.return_to_splash:hover {
-	color: #cad2c5;
-}
-
 .h1_element {
 	margin: 15px;
 }

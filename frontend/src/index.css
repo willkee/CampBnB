@@ -26,7 +26,6 @@ body {
 	justify-content: flex-start;
 	align-items: center;
 	padding-bottom: 70px;
-	filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.328));
 }
 
 #COLOR_THEME_LIBRARY {

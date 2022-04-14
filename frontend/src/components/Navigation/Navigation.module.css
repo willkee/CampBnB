@@ -21,9 +21,10 @@
 	position: absolute;
 	top: 100px;
 	right: 10px;
-	z-index: 200;
+	z-index: 999;
 	background-color: rgb(101, 101, 101);
-	padding: 50px;
+	filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.328));
+	width: 250px;
 }
 
 .right {
@@ -51,4 +52,59 @@
 .log_in,
 .sign_up {
 	margin-left: 20px;
+}
+
+.go_to_profile {
+	cursor: pointer;
+	background-color: rgb(138, 138, 138);
+	width: 100%;
+	margin-top: 20px;
+	display: flex;
+	font-size: 14px;
+	justify-content: center;
+	height: 40px;
+	align-items: center;
+}
+
+.go_to_profile:hover {
+	opacity: 0.7;
+}
+
+.log_out {
+	background-color: rgb(138, 138, 138);
+	border: none;
+	filter: none;
+	width: 100%;
+	cursor: pointer;
+	color: white;
+	display: flex;
+	font-size: 14px;
+	height: 40px;
+	justify-content: center;
+	align-items: center;
+}
+.log_out:hover {
+	opacity: 0.7;
+	border: none;
+	filter: none;
+	color: black;
+}
+
+.c1 {
+	padding: 8px;
+	width: 100%;
+	background-color: #2f3e46;
+	display: flex;
+	align-items: center;
+}
+
+.return_to_splash {
+	text-decoration: none;
+	color: white;
+	cursor: pointer;
+	font-size: 12px;
+}
+
+.return_to_splash:hover {
+	color: #cad2c5;
 }

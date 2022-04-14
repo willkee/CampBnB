@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { getAllSpots } from "./store/spots";
-import { getMyBookings } from "./store/bookings";
 
 import * as sessionActions from "./store/session";
 
@@ -26,7 +25,6 @@ function App() {
 		const load = async () => {
 			await dispatch(sessionActions.restoreUser());
 			await dispatch(getAllSpots());
-			await dispatch(getMyBookings());
 			setIsLoaded(true);
 		};
 		load();
