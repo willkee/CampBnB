@@ -107,9 +107,7 @@ const spotsReducer = (state = initialState, action) => {
 		}
 		// READ ALL
 		case RETRIEVED_SPOTS: {
-			action.spots[0].forEach((spot) => {
-				newState[spot.id] = spot;
-			});
+			action.spots.forEach((spot) => (newState[spot.id] = spot));
 			return newState;
 		}
 		// READ ONE

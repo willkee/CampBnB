@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { getAllSpots } from "./store/spots";
+import { getMyBookings } from "./store/bookings";
 
 import * as sessionActions from "./store/session";
 
@@ -11,6 +12,7 @@ import Modal from "./components/Modal";
 import SplashPage from "./components/SplashPage";
 import NewSpotForm from "./components/NewSpotForm";
 import SingleSpot from "./components/SingleSpot";
+import ProfilePage from "./components/ProfilePage";
 import Footer from "./components/Footer";
 
 function App() {
@@ -24,6 +26,7 @@ function App() {
 		const load = async () => {
 			await dispatch(sessionActions.restoreUser());
 			await dispatch(getAllSpots());
+			await dispatch(getMyBookings());
 			setIsLoaded(true);
 		};
 		load();
@@ -50,6 +53,13 @@ function App() {
 					</Route>
 					<Route exact path="/spots/:id">
 						<SingleSpot />
+					</Route>
+					<Route exact path="/profile">
+						{sessionUser ? (
+							<ProfilePage />
+						) : (
+							<Redirect to="/main" />
+						)}
 					</Route>
 					<Route>
 						<h1>Page Not Found</h1>

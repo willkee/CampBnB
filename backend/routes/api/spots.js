@@ -4,7 +4,7 @@ const asyncHandler = require("express-async-handler");
 
 const { handleValidationErrors } = require("../../utils/validation");
 const { requireAuth } = require("../../utils/auth");
-const { Spot, User } = require("../../db/models");
+const { Spot, User, Booking } = require("../../db/models");
 
 const router = express.Router();
 
@@ -77,7 +77,7 @@ router.get(
 	"/",
 	asyncHandler(async (_req, res) => {
 		const spots = await Spot.findAll();
-		return res.json({ spots });
+		return res.json(spots);
 	})
 );
 
@@ -86,7 +86,7 @@ router.get(
 	asyncHandler(async (req, res) => {
 		const id = parseInt(req.params.id, 10);
 		const spot = await Spot.findByPk(id, {
-			include: [{ model: User }],
+			include: [{ model: User }, { model: Booking }],
 		});
 
 		if (spot) {

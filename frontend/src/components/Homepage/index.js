@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import styles from "./Homepage.module.css";
 
 const Homepage = ({ spots }) => {
@@ -24,7 +24,7 @@ const Homepage = ({ spots }) => {
 							exact
 							to="/"
 						>
-							<i class="fa-light fa-arrow-left"></i> Trying to
+							<i className="fa-light fa-arrow-left"></i> Trying to
 							return to the splash page? Click here.
 						</NavLink>
 					</div>
@@ -56,7 +56,7 @@ const Homepage = ({ spots }) => {
 								/>
 								<h4>{spot.name}</h4>
 								<div className={styles.city_info}>
-									<i class="fa-light fa-mountain-city"></i>
+									<i className="fa-light fa-mountain-city"></i>
 									{spot.city}
 								</div>
 								<div className={styles.price_info}>
