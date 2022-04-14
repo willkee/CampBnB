@@ -41,6 +41,7 @@ function SignUpForm() {
 					lastName,
 					email,
 					password,
+					confirmPassword,
 				})
 			);
 			await dispatch(hideModal());

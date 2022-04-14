@@ -20,7 +20,17 @@ const validateSignup = [
 	check("email")
 		.exists({ checkFalsy: true })
 		.isEmail()
-		.withMessage("Please provide a valid email."),
+		.withMessage("Please provide a valid email.")
+		.custom(async (_value, { req }) => {
+			const query = await User.findOne({
+				where: { email: req.body.email },
+			});
+			if (query) {
+				return await Promise.reject(
+					"Email address is already in use. Login instead?"
+				);
+			}
+		}),
 	check("password")
 		.exists({ checkFalsy: true })
 		.isLength({ min: 6 })
@@ -41,8 +51,7 @@ router.post(
 	"",
 	validateSignup,
 	asyncHandler(async (req, res) => {
-		const { firstName, lastName, email, password, confirmPassword } =
-			req.body;
+		const { firstName, lastName, email, password } = req.body;
 		const user = await User.signup({
 			firstName,
 			lastName,
