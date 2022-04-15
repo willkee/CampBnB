@@ -37,13 +37,13 @@ function Navigation({ sessionUser, isLoaded }) {
 						</NavLink>
 						<div className={styles.right}>
 							<NavLink exact to="/main">
-								<i className="fa-light fa-campground"></i>
+								<i className="fa-light fa-campground" />
 								<span>Explore</span>
 							</NavLink>
 							{sessionUser ? (
 								<>
 									<NavLink exact to="/spots/new">
-										<i className="fa-solid fa-location-plus"></i>
+										<i className="fa-solid fa-location-plus" />
 										<span>Add New Spot</span>
 									</NavLink>
 									<ProfileButton user={sessionUser} />
@@ -60,7 +60,7 @@ function Navigation({ sessionUser, isLoaded }) {
 										className={styles.log_in}
 										onClick={displayLoginForm}
 									>
-										<i className="fa-light fa-right-to-bracket"></i>
+										<i className="fa-light fa-right-to-bracket" />
 										Log In
 									</div>
 								</>
@@ -71,8 +71,8 @@ function Navigation({ sessionUser, isLoaded }) {
 			</nav>
 			<div className={styles.c1}>
 				<NavLink className={styles.return_to_splash} exact to="/">
-					<i className="fa-light fa-arrow-left"></i> Trying to return
-					to the splash page? Click here.
+					<i className="fa-light fa-arrow-left" /> Trying to return to
+					the splash page? Click here.
 				</NavLink>
 			</div>
 		</>

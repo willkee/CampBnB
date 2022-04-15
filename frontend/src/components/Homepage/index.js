@@ -9,8 +9,10 @@ const Homepage = ({ spots }) => {
 	const history = useHistory();
 
 	useEffect(() => {
-		setLoaded(true);
-	}, []);
+		if (spots) {
+			setLoaded(true);
+		}
+	}, [spots]);
 
 	const sendToSpot = (id) => history.push(`/spots/${id}`);
 
@@ -18,16 +20,6 @@ const Homepage = ({ spots }) => {
 		<div>
 			{loaded && (
 				<>
-					{/* <div className={styles.c1}>
-						<NavLink
-							className={styles.return_to_splash}
-							exact
-							to="/"
-						>
-							<i className="fa-light fa-arrow-left"></i> Trying to
-							return to the splash page? Click here.
-						</NavLink>
-					</div> */}
 					{sessionUser ? (
 						<h1
 							className={styles.h1_element}
@@ -60,7 +52,7 @@ const Homepage = ({ spots }) => {
 										: spot.name}
 								</h4>
 								<div className={styles.city_info}>
-									<i className="fa-light fa-mountain-city"></i>
+									<i className="fa-light fa-mountain-city" />
 									{spot.city}
 								</div>
 								<div className={styles.price_info}>

@@ -9,14 +9,14 @@ const Footer = () => {
 				target="_blank"
 				rel="noreferrer"
 			>
-				<i className="fa-brands fa-github-square"></i>
+				<i className="fa-brands fa-github-square" />
 			</a>
 			<a
 				href="https://www.linkedin.com/in/will-kee/"
 				target="_blank"
 				rel="noreferrer"
 			>
-				<i className="fa-brands fa-linkedin"></i>
+				<i className="fa-brands fa-linkedin" />
 			</a>
 		</div>
 	);

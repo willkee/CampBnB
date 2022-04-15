@@ -22,7 +22,7 @@
 	color: white;
 	text-align: end;
 	height: 100%;
-	width: 650px;
+	width: 800px;
 }
 
 .form_container * {
@@ -34,17 +34,37 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	margin-bottom: 15px;
+}
+
+.input_container i {
+	margin-left: 5px;
+	font-size: 20px;
+}
+
+#yes {
+	color: green;
+}
+
+#no {
+	color: red;
+}
+
+#opt {
+	color: transparent;
 }
 
 .form_container label input,
-.form_container label textarea,
 .form_container label select {
-	width: 250px;
+	width: 400px;
 	height: 40px;
 	padding: 5px;
 }
 
-textarea {
+.add_spot_textarea {
+	height: 300px;
+	width: 400px;
+	padding: 5px;
 	resize: none;
 }
 
