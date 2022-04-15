@@ -214,10 +214,6 @@ const validateBooking = [
 					spotId: req.body.spotId,
 				},
 			});
-			console.log(
-				bookings,
-				"JHDSKJFHSKDJFHSKJDFHKJSDHFKJSHDF \n\n\n\n\n\n"
-			);
 			if (req.body.startDate && req.body.endDate && bookings.length) {
 				return await Promise.reject(
 					"Some or all of the dates you selected are not available."
