@@ -22,6 +22,7 @@ function LoginForm() {
 
 		try {
 			await dispatch(sessionActions.login(email, password));
+			await dispatch(sessionActions.getMyBookings());
 			await dispatch(hideModal());
 
 			if (location.pathname === "/") {
@@ -40,6 +41,7 @@ function LoginForm() {
 	const demoLogin = async (e) => {
 		e.preventDefault();
 		await dispatch(sessionActions.login("demo@user.io", "password"));
+		await dispatch(sessionActions.getMyBookings());
 		await dispatch(hideModal());
 		if (location.pathname === "/") {
 			return history.push("/main");

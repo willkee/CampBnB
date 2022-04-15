@@ -152,6 +152,41 @@ router.post(
 // ---------------------------------------------------------------------------------
 
 const validateBooking = [
+	// check("startDate")
+	// 	.exists({ checkFalsy: true })
+	// 	.withMessage("Please enter a start date.")
+	// 	.custom(async (_value, { req }) => {
+	// 		const bookings = await Booking.findAll({
+	// 			where: {
+	// 				[Op.or]: [
+	// 					{
+	// 						startDate: {
+	// 							[Op.between]: [
+	// 								req.body.startDate,
+	// 								req.body.endDate,
+	// 							],
+	// 						},
+	// 					},
+	// 					{
+	// 						endDate: {
+	// 							[Op.between]: [
+	// 								req.body.startDate,
+	// 								req.body.endDate,
+	// 							],
+	// 						},
+	// 					},
+	// 				],
+	// 				spotId: {
+	// 					[Op.in]: req.body.spotId,
+	// 				},
+	// 			},
+	// 		});
+	// 		if (bookings) {
+	// 			return await Promise.reject(
+	// 				"Some or all of the dates you selected are not available."
+	// 			);
+	// 		}
+	// 	}),
 	check("startDate")
 		.exists({ checkFalsy: true })
 		.withMessage("Please enter a start date.")
@@ -176,12 +211,14 @@ const validateBooking = [
 							},
 						},
 					],
-					spotId: {
-						[Op.in]: req.body.spotId,
-					},
+					spotId: req.body.spotId,
 				},
 			});
-			if (bookings.length) {
+			console.log(
+				bookings,
+				"JHDSKJFHSKDJFHSKJDFHKJSDHFKJSHDF \n\n\n\n\n\n"
+			);
+			if (req.body.startDate && req.body.endDate && bookings.length) {
 				return await Promise.reject(
 					"Some or all of the dates you selected are not available."
 				);
@@ -206,7 +243,7 @@ const validateBooking = [
 ];
 
 router.post(
-	"/:spotId",
+	"/:spotId/book",
 	requireAuth,
 	validateBooking,
 	asyncHandler(async (req, res) => {
@@ -223,7 +260,6 @@ router.post(
 		});
 
 		const newBooking = await Booking.findByPk(booking.id);
-
 		return res.json(newBooking);
 	})
 );

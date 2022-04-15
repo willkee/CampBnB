@@ -1,37 +1,35 @@
-import { csrfFetch } from "./csrf";
+// import { csrfFetch } from "./csrf";
 
-const RETRIEVED_BOOKINGS = "bookings/RETRIEVED_BOOKINGS";
+// const CREATED_BOOKING = "bookings/CREATED_BOOKING";
 
-const retrievedBookings = (bookings) => ({
-	type: RETRIEVED_BOOKINGS,
-	bookings,
-});
+// const createdBooking = (booking) => ({
+// 	type: CREATED_BOOKING,
+// 	booking,
+// });
 
-// READ ALL
-// Get a list of all bookings for current session user.
-export const getMyBookings = () => async (dispatch) => {
-	const res = await csrfFetch("/api/bookings/");
-	if (res.ok) {
-		const bookings = await res.json();
-		await dispatch(retrievedBookings(Object.values(bookings)));
-		return bookings;
-	}
-};
+// export const createBooking = (data) => async (dispatch) => {
+// 	const res = await csrfFetch("/api/spots/:spotId/book", {
+// 		method: "POST",
+// 		body: JSON.stringify(data),
+// 	});
 
-const initialState = {};
+// 	if (res.ok) {
+// 		const booking = await res.json();
+// 		await dispatch(createdBooking(booking));
+// 		return booking;
+// 	}
+// };
 
-const bookingsReducer = (state = initialState, action) => {
-	const newState = { ...state };
-	switch (action.type) {
-		case RETRIEVED_BOOKINGS: {
-			action.bookings.forEach(
-				(booking) => (newState[booking.id] = booking)
-			);
-			return newState;
-		}
-		default:
-			return state;
-	}
-};
+// const bookingsReducer = (state = {}, action) => {
+// 	const newState = { ...state };
+// 	switch (action.type) {
+// 		case CREATED_BOOKING: {
+// 			newState[action.booking.id] = action.booking;
+// 			return newState;
+// 		}
+// 		default:
+// 			return state;
+// 	}
+// };
 
-export default bookingsReducer;
+// export default bookingsReducer;

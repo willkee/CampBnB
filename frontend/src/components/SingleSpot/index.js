@@ -1,11 +1,12 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { getOneSpot } from "../../store/spots";
 import { currentModal, showModal } from "../../store/modal";
 import EditSpotForm from "../EditSpotForm";
 import DeleteConfirmation from "../DeleteConfirmation";
+import NewBookingForm from "../NewBookingForm";
 import styles from "./SingleSpot.module.css";
 
 import { switchOpening } from "../../store/spots";
@@ -19,6 +20,7 @@ const SingleSpot = () => {
 	const [isLoaded, setIsLoaded] = useState(false);
 
 	const dispatch = useDispatch();
+	const history = useHistory();
 
 	useEffect(() => {
 		const loadData = async () => {
@@ -37,6 +39,11 @@ const SingleSpot = () => {
 		dispatch(currentModal(() => <DeleteConfirmation id={id} />));
 		dispatch(showModal());
 	};
+
+	if (isLoaded && !spot) {
+		history.push("/main");
+		return null;
+	}
 
 	const acceptBookings = () => {
 		return (
@@ -138,11 +145,18 @@ const SingleSpot = () => {
 							</div>
 						</div>
 						<div className={styles.booking_form}>
-							<div>
-								{sessionUser && sessionUser.id === spot.ownerId
-									? ownerControls()
-									: acceptBookings()}
-							</div>
+							{sessionUser && (
+								<>
+									<div>
+										{sessionUser.id === spot.ownerId
+											? ownerControls()
+											: acceptBookings()}
+									</div>
+									{sessionUser.id !== spot.ownerId && (
+										<NewBookingForm spot={spot} />
+									)}
+								</>
+							)}
 						</div>
 					</div>
 				</div>
