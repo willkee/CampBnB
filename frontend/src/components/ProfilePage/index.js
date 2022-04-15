@@ -74,7 +74,7 @@ const ProfilePage = () => {
 										</div>
 										<div className={styles.each_more_info}>
 											<div>
-												<i class="fa-thin fa-people-group"></i>{" "}
+												<i className="fa-thin fa-people-group"></i>{" "}
 												<span className={styles.num}>
 													{booking.people}
 												</span>
@@ -82,16 +82,16 @@ const ProfilePage = () => {
 											<div>
 												{booking.Spot.type ===
 												"vehicle" ? (
-													<i class="fa-solid fa-car-mirrors"></i>
+													<i className="fa-solid fa-car-mirrors"></i>
 												) : booking.Spot.type ===
 												  "rv" ? (
-													<i class="fa-solid fa-rv"></i>
+													<i className="fa-solid fa-rv"></i>
 												) : booking.Spot.type ===
 												  "tent" ? (
-													<i class="fa-solid fa-tent"></i>
+													<i className="fa-solid fa-tent"></i>
 												) : booking.Spot.type ===
 												  "backpacking" ? (
-													<i class="fa-solid fa-backpack"></i>
+													<i className="fa-solid fa-backpack"></i>
 												) : (
 													""
 												)}
@@ -145,7 +145,7 @@ const ProfilePage = () => {
 										</div>
 										<div className={styles.each_more_info}>
 											<div>
-												<i class="fa-thin fa-people-group"></i>{" "}
+												<i className="fa-thin fa-people-group"></i>{" "}
 												<span className={styles.num}>
 													{booking.people}
 												</span>
@@ -153,16 +153,16 @@ const ProfilePage = () => {
 											<div>
 												{booking.Spot.type ===
 												"vehicle" ? (
-													<i class="fa-solid fa-car-mirrors"></i>
+													<i className="fa-solid fa-car-mirrors"></i>
 												) : booking.Spot.type ===
 												  "rv" ? (
-													<i class="fa-solid fa-rv"></i>
+													<i className="fa-solid fa-rv"></i>
 												) : booking.Spot.type ===
 												  "tent" ? (
-													<i class="fa-solid fa-tent"></i>
+													<i className="fa-solid fa-tent"></i>
 												) : booking.Spot.type ===
 												  "backpacking" ? (
-													<i class="fa-solid fa-backpack"></i>
+													<i className="fa-solid fa-backpack"></i>
 												) : (
 													""
 												)}

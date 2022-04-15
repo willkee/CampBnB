@@ -158,7 +158,6 @@ const validateBooking = [
 		.custom(async (_value, { req }) => {
 			const bookings = await Booking.findAll({
 				where: {
-					spotId: req.body.spotId,
 					[Op.or]: [
 						{
 							startDate: {
@@ -177,6 +176,9 @@ const validateBooking = [
 							},
 						},
 					],
+					spotId: {
+						[Op.in]: req.body.spotId,
+					},
 				},
 			});
 			if (bookings.length) {
@@ -185,7 +187,6 @@ const validateBooking = [
 				);
 			}
 		}),
-	,
 	check("endDate")
 		.exists({ checkFalsy: true })
 		.withMessage("Please enter an end date."),
@@ -203,6 +204,7 @@ const validateBooking = [
 
 	handleValidationErrors,
 ];
+
 router.post(
 	"/:spotId",
 	requireAuth,
@@ -210,15 +212,17 @@ router.post(
 	asyncHandler(async (req, res) => {
 		const id = parseInt(req.params.spotId, 10);
 		const { user } = req;
-		const { spotId, startDate, endDate, people } = req.body;
+		const { startDate, endDate, people } = req.body;
 
-		const newBooking = await Booking.create({
+		const booking = await Booking.create({
 			spotId: id,
 			userId: user.id,
 			startDate,
 			endDate,
 			people,
 		});
+
+		const newBooking = await Booking.findByPk(booking.id);
 
 		return res.json(newBooking);
 	})
