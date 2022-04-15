@@ -24,50 +24,58 @@ function Navigation({ sessionUser, isLoaded }) {
 	};
 
 	return (
-		<nav className={styles.nav_container}>
-			{isLoaded && location.pathname !== "/" && (
-				<div className={styles.loaded_container}>
-					<NavLink exact to="/main">
-						<img
-							src={`${process.env.PUBLIC_URL}/images/logo_title.png`}
-							alt="CampBnB Logo"
-							width="200px"
-						/>
-					</NavLink>
-					<div className={styles.right}>
+		<>
+			<nav className={styles.nav_container}>
+				{isLoaded && location.pathname !== "/" && (
+					<div className={styles.loaded_container}>
 						<NavLink exact to="/main">
-							<i className="fa-light fa-campground"></i>
-							<span>Explore</span>
+							<img
+								src={`${process.env.PUBLIC_URL}/images/logo_title.png`}
+								alt="CampBnB Logo"
+								width="200px"
+							/>
 						</NavLink>
-						{sessionUser ? (
-							<>
-								<NavLink exact to="/spots/new">
-									<i className="fa-solid fa-location-plus"></i>
-									<span>Add New Spot</span>
-								</NavLink>
-								<ProfileButton user={sessionUser} />
-							</>
-						) : (
-							<>
-								<div
-									className={styles.sign_up}
-									onClick={displaySignupForm}
-								>
-									Sign Up
-								</div>
-								<div
-									className={styles.log_in}
-									onClick={displayLoginForm}
-								>
-									<i className="fa-light fa-right-to-bracket"></i>
-									Log In
-								</div>
-							</>
-						)}
+						<div className={styles.right}>
+							<NavLink exact to="/main">
+								<i className="fa-light fa-campground"></i>
+								<span>Explore</span>
+							</NavLink>
+							{sessionUser ? (
+								<>
+									<NavLink exact to="/spots/new">
+										<i className="fa-solid fa-location-plus"></i>
+										<span>Add New Spot</span>
+									</NavLink>
+									<ProfileButton user={sessionUser} />
+								</>
+							) : (
+								<>
+									<div
+										className={styles.sign_up}
+										onClick={displaySignupForm}
+									>
+										Sign Up
+									</div>
+									<div
+										className={styles.log_in}
+										onClick={displayLoginForm}
+									>
+										<i className="fa-light fa-right-to-bracket"></i>
+										Log In
+									</div>
+								</>
+							)}
+						</div>
 					</div>
-				</div>
-			)}
-		</nav>
+				)}
+			</nav>
+			<div className={styles.c1}>
+				<NavLink className={styles.return_to_splash} exact to="/">
+					<i className="fa-light fa-arrow-left"></i> Trying to return
+					to the splash page? Click here.
+				</NavLink>
+			</div>
+		</>
 	);
 }
 

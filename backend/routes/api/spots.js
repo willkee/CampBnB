@@ -4,7 +4,8 @@ const asyncHandler = require("express-async-handler");
 
 const { handleValidationErrors } = require("../../utils/validation");
 const { requireAuth } = require("../../utils/auth");
-const { Spot, User } = require("../../db/models");
+const { Spot, User, Booking } = require("../../db/models");
+const { Op } = require("sequelize");
 
 const router = express.Router();
 
@@ -77,10 +78,33 @@ router.get(
 	"/",
 	asyncHandler(async (_req, res) => {
 		const spots = await Spot.findAll({
-			include: [{ model: User }],
-			order: [["id"]],
+			attributes: [
+				"id",
+				"name",
+				"city",
+				"imageUrl",
+				"type",
+				"price",
+				"open",
+			],
 		});
-		return res.json({ spots });
+		return res.json(spots);
+	})
+);
+
+router.get(
+	"/:id",
+	asyncHandler(async (req, res) => {
+		const id = parseInt(req.params.id, 10);
+		const spot = await Spot.findByPk(id, {
+			include: [{ model: User }, { model: Booking }],
+		});
+
+		if (spot) {
+			return res.json(spot);
+		} else {
+			throw new Error("Spot not found.");
+		}
 	})
 );
 
@@ -122,6 +146,90 @@ router.post(
 		return res.json(newSpot);
 	})
 );
+
+// ---------------------------------------------------------------------------------
+// CREATE NEW BOOKING
+// ---------------------------------------------------------------------------------
+
+const validateBooking = [
+	check("startDate")
+		.exists({ checkFalsy: true })
+		.withMessage("Please enter a start date.")
+		.custom(async (_value, { req }) => {
+			const bookings = await Booking.findAll({
+				where: {
+					[Op.or]: [
+						{
+							startDate: {
+								[Op.between]: [
+									req.body.startDate,
+									req.body.endDate,
+								],
+							},
+						},
+						{
+							endDate: {
+								[Op.between]: [
+									req.body.startDate,
+									req.body.endDate,
+								],
+							},
+						},
+					],
+					spotId: {
+						[Op.in]: req.body.spotId,
+					},
+				},
+			});
+			if (bookings.length) {
+				return await Promise.reject(
+					"Some or all of the dates you selected are not available."
+				);
+			}
+		}),
+	check("endDate")
+		.exists({ checkFalsy: true })
+		.withMessage("Please enter an end date."),
+	check("people")
+		.exists({ checkFalsy: true })
+		.withMessage("Please enter the number of people for your booking.")
+		.custom(async (_value, { req }) => {
+			const spot = await Spot.findByPk(req.body.spotId);
+			if (spot && !spot.open) {
+				return await Promise.reject(
+					"This spot is not currently accepting new bookings."
+				);
+			}
+		}),
+
+	handleValidationErrors,
+];
+
+router.post(
+	"/:spotId",
+	requireAuth,
+	validateBooking,
+	asyncHandler(async (req, res) => {
+		const id = parseInt(req.params.spotId, 10);
+		const { user } = req;
+		const { startDate, endDate, people } = req.body;
+
+		const booking = await Booking.create({
+			spotId: id,
+			userId: user.id,
+			startDate,
+			endDate,
+			people,
+		});
+
+		const newBooking = await Booking.findByPk(booking.id);
+
+		return res.json(newBooking);
+	})
+);
+
+// ---------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------
 
 router.put(
 	"/:id",

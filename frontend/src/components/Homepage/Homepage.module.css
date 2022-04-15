@@ -1,0 +1,40 @@
+.h1_element {
+	margin: 15px;
+}
+
+.container {
+	display: grid;
+	padding: 20px;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.each_spot_container {
+	cursor: pointer;
+	margin: 10px;
+	height: 250px;
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.each_spot_container img {
+	width: 100%;
+	height: 180px;
+	object-fit: cover;
+	border-radius: 8px;
+}
+
+.city_info {
+	font-size: 14px;
+}
+
+.city_info i {
+	margin-right: 5px;
+}
+
+.price_info span:first-child {
+	font-weight: 600;
+}
+.price_info span:last-child {
+	font-size: 12px;
+	margin-left: 5px;
+}

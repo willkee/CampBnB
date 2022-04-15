@@ -10,6 +10,8 @@ import Homepage from "./components/Homepage";
 import Modal from "./components/Modal";
 import SplashPage from "./components/SplashPage";
 import NewSpotForm from "./components/NewSpotForm";
+import SingleSpot from "./components/SingleSpot";
+import ProfilePage from "./components/ProfilePage";
 import Footer from "./components/Footer";
 
 function App() {
@@ -43,6 +45,16 @@ function App() {
 					<Route exact path="/spots/new">
 						{sessionUser ? (
 							<NewSpotForm />
+						) : (
+							<Redirect to="/main" />
+						)}
+					</Route>
+					<Route exact path="/spots/:id">
+						<SingleSpot />
+					</Route>
+					<Route exact path="/profile">
+						{sessionUser ? (
+							<ProfilePage />
 						) : (
 							<Redirect to="/main" />
 						)}
