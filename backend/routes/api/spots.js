@@ -258,6 +258,34 @@ router.put(
 	})
 );
 
+router.patch(
+	"/:id/switch",
+	requireAuth,
+	asyncHandler(async (req, res) => {
+		const id = parseInt(req.params.id, 10);
+		const spot = await Spot.findOne({ where: { id } });
+
+		try {
+			if (spot) {
+				await Spot.update(
+					{ open: !spot.open },
+					{
+						where: { id: spot.id },
+						returning: true,
+					}
+				);
+
+				const result = await Spot.findByPk(spot.id, {
+					include: User,
+				});
+				return res.json(result);
+			}
+		} catch (e) {
+			console.error("Error: Spot not found: ", e);
+		}
+	})
+);
+
 router.delete(
 	"/:id",
 	requireAuth,

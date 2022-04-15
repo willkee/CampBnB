@@ -4,6 +4,7 @@ const CREATED_SPOT = "spots/CREATED_SPOT";
 const RETRIEVED_SPOTS = "spots/RETRIEVED_SPOTS";
 const ONE_SPOT_RETRIEVED = "spots/ONE_SPOT_RETRIEVED";
 const UPDATED_SPOT = "spots/UPDATED_SPOT";
+const SWITCHED_OPENING = "spots/SWITCHED_OPENING";
 const DELETED_SPOT = "spots/DELETED_SPOT";
 
 const retrievedSpots = (spots) => ({
@@ -23,6 +24,11 @@ const createdSpot = (payload) => ({
 
 const updatedSpot = (payload) => ({
 	type: UPDATED_SPOT,
+	payload,
+});
+
+const switchedOpening = (payload) => ({
+	type: SWITCHED_OPENING,
 	payload,
 });
 
@@ -82,6 +88,21 @@ export const updateOneSpot = (data) => async (dispatch) => {
 	}
 };
 
+// UPDATE (PATCH)
+// Allow owner of spot to switch from open to closed or vice versa.
+
+export const switchOpening = (id) => async (dispatch) => {
+	const res = await csrfFetch(`/api/spots/${id}/switch`, {
+		method: "PATCH",
+		body: JSON.stringify({ id }),
+	});
+
+	if (res.ok) {
+		const switched = await res.json();
+		await dispatch(switchedOpening(switched));
+	}
+};
+
 // DELETE ONE
 // Delete a spot.
 
@@ -117,6 +138,12 @@ const spotsReducer = (state = initialState, action) => {
 		}
 		// UPDATE
 		case UPDATED_SPOT: {
+			newState[action.payload.id] = action.payload;
+			return newState;
+		}
+		//SWITCH OPENING
+		case SWITCHED_OPENING: {
+			console.log(action.payload.id, "ACTION PAYLOAD");
 			newState[action.payload.id] = action.payload;
 			return newState;
 		}
