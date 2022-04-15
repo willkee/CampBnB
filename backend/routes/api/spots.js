@@ -5,6 +5,7 @@ const asyncHandler = require("express-async-handler");
 const { handleValidationErrors } = require("../../utils/validation");
 const { requireAuth } = require("../../utils/auth");
 const { Spot, User, Booking } = require("../../db/models");
+const { Op } = require("sequelize");
 
 const router = express.Router();
 
@@ -145,6 +146,86 @@ router.post(
 		return res.json(newSpot);
 	})
 );
+
+// ---------------------------------------------------------------------------------
+// CREATE NEW BOOKING
+// ---------------------------------------------------------------------------------
+
+const validateBooking = [
+	check("startDate")
+		.exists({ checkFalsy: true })
+		.withMessage("Please enter a start date.")
+		.custom(async (_value, { req }) => {
+			const bookings = await Booking.findAll({
+				where: {
+					spotId: req.body.spotId,
+					[Op.or]: [
+						{
+							startDate: {
+								[Op.between]: [
+									req.body.startDate,
+									req.body.endDate,
+								],
+							},
+						},
+						{
+							endDate: {
+								[Op.between]: [
+									req.body.startDate,
+									req.body.endDate,
+								],
+							},
+						},
+					],
+				},
+			});
+			if (bookings.length) {
+				return await Promise.reject(
+					"Some or all of the dates you selected are not available."
+				);
+			}
+		}),
+	,
+	check("endDate")
+		.exists({ checkFalsy: true })
+		.withMessage("Please enter an end date."),
+	check("people")
+		.exists({ checkFalsy: true })
+		.withMessage("Please enter the number of people for your booking.")
+		.custom(async (_value, { req }) => {
+			const spot = await Spot.findByPk(req.body.spotId);
+			if (spot && !spot.open) {
+				return await Promise.reject(
+					"This spot is not currently accepting new bookings."
+				);
+			}
+		}),
+
+	handleValidationErrors,
+];
+router.post(
+	"/:spotId",
+	requireAuth,
+	validateBooking,
+	asyncHandler(async (req, res) => {
+		const id = parseInt(req.params.spotId, 10);
+		const { user } = req;
+		const { spotId, startDate, endDate, people } = req.body;
+
+		const newBooking = await Booking.create({
+			spotId: id,
+			userId: user.id,
+			startDate,
+			endDate,
+			people,
+		});
+
+		return res.json(newBooking);
+	})
+);
+
+// ---------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------
 
 router.put(
 	"/:id",
