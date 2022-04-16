@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getMyBookings } from "../../store/session";
+import { deleteBooking } from "../../store/session";
+import { showModal, hideModal, currentModal } from "../../store/modal";
 import styles from "./ProfilePage.module.css";
 
 const ProfilePage = () => {
 	const [isLoaded, setIsLoaded] = useState(false);
+
 	const history = useHistory();
 	const dispatch = useDispatch();
 
@@ -30,6 +33,29 @@ const ProfilePage = () => {
 		return history.push("/main");
 	}
 
+	const showConfirm = (id) => {
+		dispatch(currentModal(() => <ConfirmCancel id={id} />));
+		dispatch(showModal());
+	};
+
+	const ConfirmCancel = ({ id }) => {
+		return (
+			<div className={styles.confirm_window}>
+				Are you sure you wish to cancel this booking?
+				<button type="button" onClick={() => cancelBooking(id)}>
+					Cancel Booking
+				</button>
+				<button onClick={() => dispatch(hideModal())} type="button">
+					Keep My Booking
+				</button>
+			</div>
+		);
+	};
+
+	const cancelBooking = (id) => {
+		dispatch(deleteBooking(id)).then(() => dispatch(hideModal()));
+	};
+
 	return (
 		<div className={styles.pf_oc}>
 			{isLoaded && (
@@ -41,6 +67,10 @@ const ProfilePage = () => {
 						<div className={styles.left}>Bookings</div>
 
 						<div className={styles.main}>
+							{/* ----------------------------- */}
+							{/* ----- UPCOMING BOOKINGS ----- */}
+							{/* ----------------------------- */}
+
 							<h2 className={styles.subheading}>
 								Upcoming Bookings
 							</h2>
@@ -68,13 +98,13 @@ const ProfilePage = () => {
 										</div>
 										<div className={styles.time_container}>
 											<div>
-												Start:
+												Start:{" "}
 												{new Date(
 													booking.startDate
 												).toDateString()}
 											</div>
 											<div>
-												End:
+												End:{" "}
 												{new Date(
 													booking.endDate
 												).toDateString()}
@@ -104,14 +134,24 @@ const ProfilePage = () => {
 													""
 												)}
 											</div>
-
-											<button className={styles.delete}>
+											<button
+												type="button"
+												onClick={() =>
+													showConfirm(booking.id)
+												}
+												className={styles.delete}
+											>
 												Cancel Booking
 											</button>
 										</div>
 									</div>
 								</div>
 							))}
+
+							{/* ----------------------------- */}
+							{/* ------- PAST BOOKINGS ------- */}
+							{/* ----------------------------- */}
+
 							<h2 className={styles.subheading}>Past Bookings</h2>
 							{pastBookings.map((booking) => (
 								<div
