@@ -1,18 +1,25 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllSpots } from "../../store/spots";
 import styles from "./Homepage.module.css";
 
 const Homepage = ({ spots }) => {
 	const [loaded, setLoaded] = useState(false);
+
 	const sessionUser = useSelector((state) => state.session.user);
+	// const spots = useSelector((state) => Object.values(state.spots));
+
 	const history = useHistory();
+	const dispatch = useDispatch();
 
 	useEffect(() => {
-		if (spots) {
+		const loader = async () => {
+			await dispatch(getAllSpots());
 			setLoaded(true);
-		}
-	}, [spots]);
+		};
+		loader();
+	}, [dispatch]);
 
 	const sendToSpot = (id) => history.push(`/spots/${id}`);
 

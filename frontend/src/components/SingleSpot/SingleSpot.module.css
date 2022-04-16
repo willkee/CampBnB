@@ -39,12 +39,14 @@
 
 .accept_container_green {
 	background-color: rgb(172, 217, 149);
-	border-radius: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 }
 
 .accept_container_red {
 	background-color: rgb(251, 224, 224);
-	border-radius: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 }
 
 #green,

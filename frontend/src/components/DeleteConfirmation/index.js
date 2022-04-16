@@ -1,15 +1,18 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { hideModal } from "../../store/modal";
 import { deleteSpot } from "../../store/spots";
 
 const DeleteConfirmation = ({ id }) => {
 	const dispatch = useDispatch();
+	const history = useHistory();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		await dispatch(deleteSpot(id));
 		await dispatch(hideModal());
+		return history.push("/main");
 	};
 
 	return (

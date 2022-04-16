@@ -12,6 +12,7 @@ module.exports = {
 				allowNull: false,
 				type: Sequelize.INTEGER,
 				references: { model: "Spots" },
+				onDelete: "CASCADE",
 			},
 			userId: {
 				allowNull: false,

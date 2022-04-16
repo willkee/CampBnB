@@ -45,7 +45,7 @@ export const createSpot = (data) => async (dispatch) => {
 		body: JSON.stringify(data),
 	});
 	if (res.ok) {
-		const result = res.json();
+		const result = await res.json();
 		await dispatch(createdSpot(result));
 		return result;
 	}

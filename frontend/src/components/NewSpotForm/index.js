@@ -74,11 +74,13 @@ const NewSpotForm = () => {
 						className={styles.form_container}
 						onSubmit={handleSubmit}
 					>
-						<div className={styles.error_container}>
-							{errors.map((error, idx) => (
-								<div key={idx}>{error}</div>
-							))}
-						</div>
+						{errors.length > 0 && (
+							<div className={styles.error_container}>
+								{errors.map((error, idx) => (
+									<div key={idx}>{error}</div>
+								))}
+							</div>
+						)}
 						<label>
 							Name Your Spot!
 							<div className={styles.input_container}>
@@ -138,6 +140,15 @@ const NewSpotForm = () => {
 												id={styles.latitude}
 												type="number"
 												value={lat}
+												onBlur={(e) =>
+													setLat(
+														parseFloat(
+															e.target.value
+														)
+															.toFixed(6)
+															.toString()
+													)
+												}
 												onChange={(e) =>
 													setLat(e.target.value)
 												}
@@ -155,6 +166,19 @@ const NewSpotForm = () => {
 												id={styles.longitude}
 												type="number"
 												value={long}
+												onBlur={(e) =>
+													setLong(
+														parseFloat(
+															e.target.value > 0
+																? e.target
+																		.value *
+																		-1
+																: e.target.value
+														)
+															.toFixed(6)
+															.toString()
+													)
+												}
 												onChange={(e) =>
 													setLong(e.target.value)
 												}

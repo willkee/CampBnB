@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getMyBookings } from "../../store/bookings";
+import { getMyBookings } from "../../store/session";
 import styles from "./ProfilePage.module.css";
 
 const ProfilePage = () => {
@@ -10,7 +10,9 @@ const ProfilePage = () => {
 	const dispatch = useDispatch();
 
 	const sessionUser = useSelector((state) => state.session.user);
-	const myBookings = useSelector((state) => Object.values(state.bookings));
+	const myBookings = useSelector((state) =>
+		Object.values(state.session.bookings)
+	);
 
 	const futureBookings = myBookings.filter(
 		(booking) => new Date(booking.startDate) > new Date()
@@ -50,6 +52,12 @@ const ProfilePage = () => {
 									<img
 										src={booking.Spot.imageUrl}
 										alt="spot"
+										className={styles.booking_img}
+										onError={(e) => {
+											e.target.src =
+												"https://upload.wikimedia.org/wikipedia/commons/4/46/Flag_of_Colorado.svg";
+											e.onerror = null;
+										}}
 									/>
 									<div className={styles.each_booking_right}>
 										<div
@@ -96,11 +104,9 @@ const ProfilePage = () => {
 													""
 												)}
 											</div>
-											<button className={styles.edit}>
-												Edit
-											</button>
+
 											<button className={styles.delete}>
-												Cancel
+												Cancel Booking
 											</button>
 										</div>
 									</div>
@@ -116,6 +122,11 @@ const ProfilePage = () => {
 									<img
 										src={booking.Spot.imageUrl}
 										alt="spot"
+										onError={(e) => {
+											e.target.src =
+												"https://upload.wikimedia.org/wikipedia/commons/4/46/Flag_of_Colorado.svg";
+											e.onerror = null;
+										}}
 										className={styles.img_past}
 									/>
 									<div className={styles.each_booking_right}>
