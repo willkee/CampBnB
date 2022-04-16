@@ -28,7 +28,10 @@ module.exports = (sequelize, DataTypes) => {
 				allowNull: false,
 				type: DataTypes.STRING,
 				validate: {
-					len: [1, 255],
+					len: {
+						args: [1, 255],
+						msg: "Please enter a name under 255 characters long.",
+					},
 				},
 			},
 			address: {
@@ -44,7 +47,10 @@ module.exports = (sequelize, DataTypes) => {
 				allowNull: false,
 				type: DataTypes.STRING,
 				validate: {
-					len: [1, 255],
+					len: {
+						args: [1, 255],
+						msg: "Please enter a city under 255 characters long.",
+					},
 				},
 			},
 			lat: {

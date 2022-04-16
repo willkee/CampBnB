@@ -41,13 +41,15 @@ const ProfilePage = () => {
 	const ConfirmCancel = ({ id }) => {
 		return (
 			<div className={styles.confirm_window}>
-				Are you sure you wish to cancel this booking?
-				<button type="button" onClick={() => cancelBooking(id)}>
-					Cancel Booking
-				</button>
-				<button onClick={() => dispatch(hideModal())} type="button">
-					Keep My Booking
-				</button>
+				<h2>Are you sure you wish to cancel this booking?</h2>
+				<div className={styles.confirm_button_container}>
+					<button type="button" onClick={() => cancelBooking(id)}>
+						Cancel Booking
+					</button>
+					<button onClick={() => dispatch(hideModal())} type="button">
+						Keep My Booking
+					</button>
+				</div>
 			</div>
 		);
 	};

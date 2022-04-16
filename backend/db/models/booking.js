@@ -35,7 +35,10 @@ module.exports = (sequelize, DataTypes) => {
 				allowNull: false,
 				type: DataTypes.INTEGER,
 				validate: {
-					min: 1,
+					min: {
+						args: 1,
+						msg: "Please enter at least one person.",
+					},
 				},
 			},
 		},

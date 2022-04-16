@@ -35,10 +35,18 @@ const validateSpot = [
 		}),
 	check("name")
 		.exists({ checkFalsy: true })
-		.withMessage("Please enter a name for your spot"),
+		.withMessage("Please enter a name for your spot")
+		.isLength({ max: 255 })
+		.withMessage(
+			"Please enter no more than 255 characters for the name of your spot."
+		),
 	check("city")
 		.exists({ checkFalsy: true })
-		.withMessage("Please enter the city of your spot."),
+		.withMessage("Please enter the city of your spot.")
+		.isLength({ max: 255 })
+		.withMessage(
+			"There's no city name in the world longer than 255 characters! (Much less 🇺🇸 or Colorado!) 😄"
+		),
 	check("imageUrl")
 		.exists({ checkFalsy: true })
 		.withMessage("Please enter an image URL.")
@@ -63,7 +71,7 @@ const validateSpot = [
 	check("price")
 		.exists()
 		.withMessage(
-			"Please enter a nightly price for your spot. Enter '0' if it is free of charge."
+			"Please enter a nightly price for your spot. Enter '0' if free of charge."
 		)
 		.isInt()
 		.withMessage("Please enter a integer for the price (No cents)."),

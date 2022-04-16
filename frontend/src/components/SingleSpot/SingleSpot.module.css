@@ -12,11 +12,15 @@
 }
 
 .content {
-	padding: 20px;
+	padding: 30px;
 	width: 100%;
 	display: grid;
 	grid-template-columns: 3fr 1fr;
 	gap: 20px;
+}
+
+.text_content {
+	padding: 10px;
 }
 
 .desc {
@@ -81,17 +85,56 @@
 	flex-direction: column;
 	justify-content: space-evenly;
 	text-align: center;
-	height: 200px;
+	height: 300px;
 }
 
+.switch,
 .edit,
 .delete {
 	height: 40px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: grey;
 	margin-bottom: 10px;
 	text-transform: uppercase;
 	cursor: pointer;
+}
+
+.switch {
+	font-size: 14px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	font-weight: 600;
+	transition: all 0.2s linear;
+}
+
+.switch {
+	background-color: rgb(176, 176, 176);
+}
+.switch:hover {
+	background-color: rgb(91, 91, 91);
+	color: white;
+}
+
+.edit,
+.delete {
+	border-radius: 5px;
+	font-size: 14px;
+	font-weight: 500;
+	height: 50px;
+	transition: all linear 0.2s;
+}
+.edit {
+	background-color: #dda15e;
+}
+.delete {
+	color: white;
+	background-color: rgb(130, 0, 0);
+}
+.edit:hover {
+	background-color: #efb470;
+}
+.delete:hover {
+	color: white;
+	background-color: rgb(156, 10, 10);
 }

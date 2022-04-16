@@ -75,6 +75,7 @@
 	padding: 20px;
 	display: flex;
 	justify-content: space-around;
+	align-items: center;
 }
 
 .num {
@@ -93,9 +94,10 @@
 
 .edit,
 .delete {
-	width: 80px;
+	width: 100px;
 	text-transform: uppercase;
 	border-radius: 5px;
+	padding: 10px;
 	border: 1px solid black;
 	cursor: pointer;
 	color: white;
@@ -107,11 +109,17 @@
 }
 .delete {
 	background-color: rgb(87, 10, 10);
+	transition: all linear 0.1s;
 }
 
-.edit:hover,
 .delete:hover {
-	opacity: 0.7;
+	background-color: rgb(133, 13, 13);
+	border: 1px solid #e51919;
+	transform: translateY(-1px);
+	filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.397));
+}
+.delete:active {
+	transform: translateY(0px);
 }
 
 .booking_img {
@@ -120,10 +128,49 @@
 
 .confirm_window {
 	position: fixed;
-	background-color: red;
+	background-color: white;
 	opacity: 0.8;
 	height: 200px;
-	width: 400px;
+	width: 600px;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	border: 2px solid rgb(118, 7, 7);
+}
 
-	z-index: 999;
+.confirm_button_container {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	text-align: center;
+	margin-top: 30px;
+	width: 100%;
+}
+
+.confirm_button_container button {
+	height: 40px;
+	width: 200px;
+	border: 1px solid #a2b298;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: all linear 0.1s;
+	font-weight: 600;
+}
+.confirm_button_container button:first-child {
+	background-color: rgb(135, 0, 0);
+	color: white;
+}
+.confirm_button_container button:last-child {
+	background-color: #cad2c5;
+}
+.confirm_button_container button:hover {
+	opacity: 0.7;
+	transform: translateY(-2px);
+	filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.397));
+}
+.confirm_button_container button:active {
+	transform: translateY(0);
 }
