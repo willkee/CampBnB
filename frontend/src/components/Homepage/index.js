@@ -54,10 +54,9 @@ const Homepage = ({ spots }) => {
 									}}
 								/>
 								<h4>
-									{/* {spot.name.length > 20
+									{spot.name.length > 20
 										? spot.name.slice(0, 20) + "..."
-										: spot.name} */}
-									{spot.name}
+										: spot.name}
 								</h4>
 								<div className={styles.city_info}>
 									<i className="fa-light fa-mountain-city" />

@@ -41,7 +41,6 @@ function ProfileButton({ user }) {
 					className={styles.profile_dropdown}
 					onClick={(e) => e.stopPropagation()}
 				>
-					<div>{user.email}</div>
 					<div
 						className={styles.go_to_profile}
 						onClick={() => history.push("/profile")}

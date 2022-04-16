@@ -52,6 +52,12 @@ const ProfilePage = () => {
 									<img
 										src={booking.Spot.imageUrl}
 										alt="spot"
+										className={styles.booking_img}
+										onError={(e) => {
+											e.target.src =
+												"https://upload.wikimedia.org/wikipedia/commons/4/46/Flag_of_Colorado.svg";
+											e.onerror = null;
+										}}
 									/>
 									<div className={styles.each_booking_right}>
 										<div
@@ -116,6 +122,11 @@ const ProfilePage = () => {
 									<img
 										src={booking.Spot.imageUrl}
 										alt="spot"
+										onError={(e) => {
+											e.target.src =
+												"https://upload.wikimedia.org/wikipedia/commons/4/46/Flag_of_Colorado.svg";
+											e.onerror = null;
+										}}
 										className={styles.img_past}
 									/>
 									<div className={styles.each_booking_right}>

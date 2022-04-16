@@ -1,0 +1,156 @@
+.error_container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	font-size: 14px;
+	background-color: rgb(215, 139, 139);
+	padding: 10px;
+}
+
+.container_green,
+.container_red {
+	padding: 20px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.container_green {
+	background-color: rgb(214, 214, 214);
+}
+
+.container_red {
+	background-color: rgb(212, 132, 132);
+}
+
+.title_booking {
+	margin-bottom: 20px;
+}
+
+.booking_form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.booking_form label {
+	text-align: center;
+	margin: 10px 0;
+}
+
+.startDateBox,
+.endDateBox {
+	width: 100%;
+	background-color: white;
+	height: 40px;
+	border: 1px solid black;
+}
+
+.num_people {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+}
+
+.people_changer {
+	display: flex;
+	justify-content: space-between;
+	width: 80px;
+}
+
+.dec i:hover,
+.inc i:hover {
+	color: #dda15e;
+	cursor: pointer;
+}
+
+.disable {
+	color: rgb(167, 167, 167);
+}
+
+.book_button {
+	background-color: #2f3e46;
+	color: white;
+	border: 1px solid rgba(0, 0, 0, 0.448);
+	padding: 10px;
+	width: 150px;
+	margin: 20px 0;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.book_button:hover {
+	background-color: #354f52;
+}
+
+/* CALENDAR */
+
+.calendar_container {
+	width: 250px;
+	margin-top: 10px;
+}
+.calendar_container * {
+	font-size: 12px;
+}
+
+.calendar_container abbr {
+	font-size: 10px;
+}
+
+.calendar_container button {
+	padding: 5px !important;
+	font-size: 18px !important;
+}
+
+.labels {
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.num_days {
+	margin-top: 20px;
+	font-size: 14px;
+	color: rgb(16, 16, 134);
+}
+
+.total_price {
+	font-size: 14px;
+	margin-top: 10px;
+	color: rgb(156, 0, 0);
+}
+
+.disabled_button {
+	padding: 10px;
+	width: 150px;
+	margin: 20px 0;
+	border-radius: 5px;
+}
+
+.confirm_box {
+	z-index: 999;
+	background-color: white;
+	opacity: 0.5;
+	margin-top: 10px;
+	text-align: center;
+	padding: 20px;
+}
+
+.confirm_box div {
+	font-size: 14px;
+}
+
+.confirm_box h4,
+.confirm_box h5 {
+	margin-top: 10px;
+}
+
+.confirm_booking {
+	margin-top: 20px;
+}
