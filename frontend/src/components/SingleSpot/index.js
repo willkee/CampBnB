@@ -81,23 +81,25 @@ const SingleSpot = () => {
 			if (sessionUser.id === spot.ownerId) {
 				return (
 					<div className={styles.owner_controls}>
-						<div>{acceptBookings()}</div>
-						<div className={styles.edit} onClick={openClose}>
-							{spot.open
-								? "Stop New Bookings"
-								: "Accept New Bookings"}
+						<div>
+							<div>{acceptBookings()}</div>
+							<div className={styles.switch} onClick={openClose}>
+								{spot.open
+									? "Stop New Bookings?"
+									: "Accept New Bookings?"}
+							</div>
 						</div>
 						<div
 							className={styles.edit}
 							onClick={() => editSpotForm(spot)}
 						>
-							Edit
+							Edit Spot
 						</div>
 						<div
 							className={styles.delete}
 							onClick={() => showDeleteConfirmation(spot.id)}
 						>
-							Delete
+							Delete Spot
 						</div>
 					</div>
 				);
@@ -120,25 +122,32 @@ const SingleSpot = () => {
 						}}
 					></img>
 					<div className={styles.content}>
-						<div>
+						<div className={styles.text_content}>
 							<h1>{spot.name}</h1>
 							<div>
-								<i className="fa-light fa-crown" />
-								{` ${spot.User.firstName} ${spot.User.lastName}`}
+								Host:{" "}
+								{spot.ownerId === sessionUser.id
+									? "You!"
+									: spot.User.firstName +
+									  " " +
+									  spot.User.lastName}
 							</div>
 							{spot.address && <div>Address: {spot.address}</div>}
-							<div>
-								<i className="fa-light fa-location-crosshairs" />
-								{` ${spot.lat}, ${spot.long}`}
-							</div>
+							{spot.lat && spot.long && (
+								<div>
+									<i className="fa-light fa-location-crosshairs" />
+									{` ${spot.lat}, ${spot.long}`}
+								</div>
+							)}
 							<div>
 								<i className="fa-light fa-mountain-city" />{" "}
 								{spot.city}
 							</div>
 							<div>
-								<i className="fa-light fa-square-dollar" /> $
-								{spot.price}
-								/night
+								<i className="fa-light fa-square-dollar" />{" "}
+								{spot.price === 0
+									? "Free"
+									: "$" + spot.price + "/night"}
 							</div>
 							<div className={styles.desc}>
 								{spot.description}

@@ -27,4 +27,30 @@ router.get(
 	})
 );
 
+router.delete(
+	"/:bookingId",
+	requireAuth,
+	asyncHandler(async (req, res) => {
+		const { user } = req;
+		const id = parseInt(req.params.bookingId, 10);
+		const booking = await Booking.findByPk(id);
+
+		// Check to see if the booking exists.
+		if (booking) {
+			// Check to see if the current user is the owner of the booking
+			if (booking.userId === user.id) {
+				// Both validations checked and passed:
+				await Booking.destroy({ where: { id } });
+				return res.json({ id });
+			} else {
+				throw new Error(
+					"Unauthorized: You are not permitted to delete this booking."
+				);
+			}
+		} else {
+			throw new Error("Booking Not Found.");
+		}
+	})
+);
+
 module.exports = router;

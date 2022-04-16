@@ -4,6 +4,8 @@ import { useHistory } from "react-router-dom";
 import { hideModal } from "../../store/modal";
 import { deleteSpot } from "../../store/spots";
 
+import styles from "./DeleteSpot.module.css";
+
 const DeleteConfirmation = ({ id }) => {
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -16,12 +18,16 @@ const DeleteConfirmation = ({ id }) => {
 	};
 
 	return (
-		<div>
+		<div className={styles.container}>
 			<h1>Are you sure you want to delete this spot?</h1>
-			<button type="button" onClick={handleSubmit}>
-				Delete
-			</button>
-			<div onClick={() => dispatch(hideModal())}>Cancel</div>
+			<div className={styles.buttons}>
+				<button type="button" onClick={handleSubmit}>
+					Delete
+				</button>
+				<button type="button" onClick={() => dispatch(hideModal())}>
+					Cancel
+				</button>
+			</div>
 		</div>
 	);
 };

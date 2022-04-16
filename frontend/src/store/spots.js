@@ -143,7 +143,6 @@ const spotsReducer = (state = initialState, action) => {
 		}
 		//SWITCH OPENING
 		case SWITCHED_OPENING: {
-			console.log(action.payload.id, "ACTION PAYLOAD");
 			newState[action.payload.id] = action.payload;
 			return newState;
 		}
