@@ -1,11 +1,12 @@
 const faker = require("faker");
+const bcrypt = require("bcryptjs");
 
 const randomNum = (max) => Math.ceil(Math.random() * max);
 const randomNumFloor = (max) => Math.floor(Math.random() * max);
 
 const spotNames = [
 	{
-		name: "Guanella Pass Campground\n",
+		name: "Guanella Pass Campground",
 		address: "",
 		city: "Bailey",
 		lat: 39.611617,
@@ -235,28 +236,71 @@ const tf = [true, false];
 const types = ["vehicle", "rv", "tent", "backpacking"];
 
 const images = [
-	"https://cdn.pixabay.com/photo/2021/10/09/00/15/landscape-6692712_960_720.jpg",
-	"https://cdn.pixabay.com/photo/2020/06/14/17/57/mountains-5298769_960_720.jpg",
-	"https://cdn.pixabay.com/photo/2016/07/01/07/51/tent-1490599_960_720.jpg",
-	"https://cdn.pixabay.com/photo/2020/07/27/14/34/forest-5442598_960_720.jpg",
-	"https://cdn.pixabay.com/photo/2020/07/27/02/09/tent-5441144_960_720.jpg",
-	"https://cdn.pixabay.com/photo/2018/12/24/22/19/camping-3893587_960_720.jpg",
-	"https://cdn.pixabay.com/photo/2014/11/27/18/36/tent-548022_960_720.jpg",
-	"https://cdn.pixabay.com/photo/2016/11/21/16/03/campfire-1846142_960_720.jpg",
-	"https://cdn.pixabay.com/photo/2017/08/17/08/08/camp-2650359_960_720.jpg",
-	"https://cdn.pixabay.com/photo/2019/10/03/11/14/camp-4522970_960_720.jpg",
-	"https://cdn.pixabay.com/photo/2015/08/19/16/00/campfire-896196_960_720.jpg",
-	"https://cdn.pixabay.com/photo/2016/03/30/02/57/camping-1289930_960_720.jpg",
-	"https://cdn.pixabay.com/photo/2016/01/26/23/32/camp-1163419_960_720.jpg",
-	"https://cdn.pixabay.com/photo/2017/06/17/03/17/gongga-snow-mountain-2411069_960_720.jpg",
-	"https://images.pexels.com/photos/1687845/pexels-photo-1687845.jpeg",
-	"https://images.pexels.com/photos/1061640/pexels-photo-1061640.jpeg",
-	"https://images.pexels.com/photos/803226/pexels-photo-803226.jpeg",
-	"https://images.pexels.com/photos/11795851/pexels-photo-11795851.jpeg",
-	"https://images.pexels.com/photos/11775761/pexels-photo-11775761.jpeg",
-	"https://images.pexels.com/photos/753299/pexels-photo-753299.jpeg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/2607013389940-e1496544310584.jpeg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/94ee1e29-6296-4206-bd95-9b7989266ff6.jpg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/aaker-_LvWJqlORuQ-unsplash.jpg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/benchesonisland.jpeg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/camping-in-colorado.jpeg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/campsiteislandlg.jpeg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/colorado-photos_8501335c-HDR.jpeg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/daan-weijers-pSaEMIiUO84-unsplash.jpg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/dave-hoefler-a3e7yEtQxJs-unsplash.jpg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/dino-reichmuth-5Rhl-kSRydQ-unsplash.jpg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/everett-mcintire-BPCsppbNRMI-unsplash.jpg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/GettyImages-1046288666.jpeg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/grand-lake-colorado2-1600x800-1-1600x800.jpeg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/hugues-de-buyer-mimeure-hGuGRayJrv0-unsplash.jpg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/ihor-malytskyi-WvakV_ag-EQ-unsplash.jpg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/kameron-kincade-7wZ94rjLfkQ-unsplash.jpg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/kenneth-gaerlan-FKAANdTWen0-unsplash.jpg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/kevin-ianeselli-ebnlHkqfUHY-unsplash.jpg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/luca-baggio-GKLIsLZxhj0-unsplash.jpg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/Lupnies.jpeg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/michael-guite-1o41Wy3Z3kc-unsplash.jpg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/natural-wonder-colorado-garden-of-the-gods-path-1440x960.jpeg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/natural-wonder-colorado-trappers-lake-1440x960.jpeg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/nima-sarram-O1Xln_1_R0Q-unsplash.jpg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/pavel-brodsky-IMPs8FtEyHc-unsplash.jpg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/pexels-photo-618848.jpeg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/photo-1600683575273-39de9491d8a3.jpeg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/pmx070118summercamping-005-1529681336.jpeg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/Private-Camp.jpeg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/rockymountain.jpeg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/ryan-de-hamer-DrvIEt-N-Po-unsplash.jpg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/sara-moezzi-OPzoMjIyBOo-unsplash.jpg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/scott-goodwill-y8Ngwq34_Ak-unsplash.jpg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/shutterstock_538634797-1.jpeg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/vail-1732961_960_720.jpeg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/valery-sysoev-3tXhHMFvNc4-unsplash.jpg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/w5bx4klr-2-e1615214483265.jpeg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/Yampa-River_LaurynWachs.jpeg",
+	"https://campbnb.s3.us-west-1.amazonaws.com/yatharth-roy-vibhakar-JfAAiJrzW2M-unsplash.jpg",
 ];
 
+// const spotFakerSeed = (num) => {
+// 	let i = 0;
+
+// 	while (i < num) {
+// 		const spot = {
+// 			ownerId: randomNum(30),
+// 			name: faker.lorem.sentence(),
+// 			address: randomAddresses[i].address,
+// 			city: randomAddresses[i].city,
+// 			lat: null,
+// 			long: null,
+// 			imageUrl: images[randomNumFloor(38)],
+// 			type: types[randomNumFloor(3)],
+// 			price: randomNum(100),
+// 			description: faker.lorem.paragraph(),
+// 			capacity: 4 + randomNum(4),
+// 			open: tf[randomNumFloor(2)],
+// 		};
+
+// 		console.log(spot, ",");
+// 		i++;
+// 	}
+// };
+// spotFakerSeed(20);
 const spotSeed = (num) => {
 	let i = 0;
 
@@ -268,11 +312,11 @@ const spotSeed = (num) => {
 			city: spotNames[i].city,
 			lat: spotNames[i].lat,
 			long: spotNames[i].long,
-			imageUrl: images[randomNumFloor(20)],
+			imageUrl: images[randomNumFloor(38)],
 			type: types[randomNumFloor(3)],
-			price: faker.finance.amount(0, 100, 2),
+			price: randomNum(100),
 			description: faker.lorem.paragraph(),
-			capacity: randomNum(6),
+			capacity: 4 + randomNum(4),
 			open: tf[randomNumFloor(2)],
 		};
 
@@ -281,27 +325,70 @@ const spotSeed = (num) => {
 	}
 };
 
-// spotSeed(31);
+spotSeed(31);
 
 const bookingSeed = (num) => {
 	let i = 0;
-
+	const booked = {};
 	while (i < num) {
-		const start = faker.date.between(
-			"2022-01-01T00:00:00.000Z",
-			"2022-04-10T00:00:00.000Z"
+		const start = faker.date.between("2021-01-01", "2023-12-31");
+		const end = new Date(
+			new Date(start).setDate(start.getDate() + 1 + randomNum(4))
 		);
-		const end = faker.date.between(start, "2022-04-10T00:00:00.000Z");
+
+		const allDates = [];
+		let tempStart = new Date(start);
+		let tempEnd = new Date(end);
+
+		while (tempStart <= tempEnd) {
+			allDates.push(new Date(tempStart));
+			tempStart.setDate(tempStart.getDate() + 1);
+		}
+
+		const spotId = randomNum(31);
+
+		if (booked[spotId]) {
+			if (
+				booked[spotId].includes(start) ||
+				booked[spotId].includes(end)
+			) {
+				continue;
+			}
+			booked[spotId].concat(allDates);
+		} else {
+			booked[spotId] = [...allDates];
+		}
+
 		const booking = {
-			spotId: randomNum(31),
-			userId: randomNum(25),
+			spotId: spotId,
+			userId: randomNum(30),
 			startDate: start,
 			endDate: end,
-			people: randomNum(4),
+			people: 1 + randomNum(3),
 		};
 
 		console.log(booking, ",");
 		i++;
 	}
 };
-bookingSeed(30);
+// bookingSeed(50);
+// const day = faker.date.between("2022-01-01", "2023-12-31");
+// const day2 = new Date(new Date(day).setDate(day.getDate() + 3));
+// console.log("day", day, "day + 1", day2);
+
+const userSeed = (max) => {
+	let i = 0;
+	while (i < max) {
+		const user = {
+			firstName: faker.name.firstName(),
+			lastName: faker.name.lastName(),
+			email: faker.internet.email(),
+			hashedPassword: bcrypt.hashSync(faker.internet.password()),
+		};
+
+		console.log(user, ",");
+		i++;
+	}
+};
+
+// userSeed(29);

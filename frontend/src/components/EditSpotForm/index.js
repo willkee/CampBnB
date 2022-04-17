@@ -245,7 +245,7 @@ const EditSpotForm = ({ spot }) => {
 						/>
 						{price === 0
 							? rightInput()
-							: price
+							: price > 0
 							? rightInput()
 							: wrongInput()}
 					</div>
