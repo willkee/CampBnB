@@ -45,6 +45,13 @@
 	margin-right: 8px;
 }
 
+.explore_button {
+	color: white;
+}
+.explore_button:hover {
+	color: #84a98c;
+}
+
 .profile_icon {
 	font-size: 28px;
 	margin-left: 30px;
@@ -53,7 +60,17 @@
 
 .log_in,
 .sign_up {
-	margin-left: 20px;
+	margin-left: 40px;
+	cursor: pointer;
+}
+.log_in:hover,
+.sign_up:hover {
+	color: #84a98c;
+}
+
+.log_in i,
+.sign_up i {
+	margin-right: 5px;
 }
 
 .go_to_profile {

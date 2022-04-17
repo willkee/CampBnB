@@ -36,7 +36,11 @@ function Navigation({ sessionUser, isLoaded }) {
 							/>
 						</NavLink>
 						<div className={styles.right}>
-							<NavLink exact to="/main">
+							<NavLink
+								className={styles.explore_button}
+								exact
+								to="/main"
+							>
 								<i className="fa-light fa-campground" />
 								<span>Explore</span>
 							</NavLink>
@@ -54,6 +58,7 @@ function Navigation({ sessionUser, isLoaded }) {
 										className={styles.sign_up}
 										onClick={displaySignupForm}
 									>
+										<i className="fa-light fa-face-smile-plus"></i>
 										Sign Up
 									</div>
 									<div
