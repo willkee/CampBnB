@@ -1,3 +1,8 @@
+.no_bookings {
+	padding: 20px;
+	font-size: 14px;
+}
+
 .each_booking {
 	display: flex;
 	position: relative;

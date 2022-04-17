@@ -59,6 +59,11 @@ const Bookings = () => {
 					{/* ----------------------------- */}
 
 					<h2 className={styles.subheading}>Upcoming Bookings</h2>
+					{futureBookings.length === 0 && (
+						<div className={styles.no_bookings}>
+							No Upcoming Bookings.
+						</div>
+					)}
 					{futureBookings.map((booking) => (
 						<div className={styles.each_booking} key={booking.id}>
 							<img
@@ -130,6 +135,11 @@ const Bookings = () => {
 					<h2 id={styles.past_bookings} className={styles.subheading}>
 						Past Bookings
 					</h2>
+					{pastBookings.length === 0 && (
+						<div className={styles.no_bookings}>
+							No previous bookings.
+						</div>
+					)}
 					{pastBookings.map((booking) => (
 						<div
 							className={styles.each_booking}
