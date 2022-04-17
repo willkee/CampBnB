@@ -23,10 +23,21 @@
 	overflow: hidden;
 	top: 85px;
 	right: 10px;
-	z-index: 999;
+	z-index: 9999;
 	background-color: rgb(101, 101, 101);
 	filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.328));
 	width: 250px;
+	animation: dropdown 0.2s ease-in-out;
+}
+
+@keyframes dropdown {
+	0% {
+		transform: translateY(-15px);
+		opacity: 0.3;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 
 .right {
@@ -48,7 +59,8 @@
 .explore_button {
 	color: white;
 }
-.explore_button:hover {
+.explore_button:hover,
+.add_new:hover {
 	color: #84a98c;
 }
 
@@ -56,6 +68,10 @@
 	font-size: 28px;
 	margin-left: 30px;
 	cursor: pointer;
+}
+
+.profile_icon:hover {
+	color: #84a98c;
 }
 
 .log_in,
@@ -79,6 +95,7 @@
 	width: 100%;
 	display: flex;
 	font-size: 14px;
+	font-weight: 600;
 	justify-content: center;
 	height: 40px;
 	align-items: center;
@@ -98,6 +115,8 @@
 	color: white;
 	display: flex;
 	font-size: 14px;
+	font-weight: 600;
+
 	height: 40px;
 	justify-content: center;
 	align-items: center;

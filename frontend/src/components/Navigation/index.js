@@ -46,11 +46,15 @@ function Navigation({ sessionUser, isLoaded }) {
 							</NavLink>
 							{sessionUser ? (
 								<>
-									<NavLink exact to="/spots/new">
+									<NavLink
+										className={styles.add_new}
+										exact
+										to="/spots/new"
+									>
 										<i className="fa-solid fa-location-plus" />
 										<span>Add New Spot</span>
 									</NavLink>
-									<ProfileButton user={sessionUser} />
+									<ProfileButton />
 								</>
 							) : (
 								<>
