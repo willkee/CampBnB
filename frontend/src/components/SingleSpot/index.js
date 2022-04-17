@@ -117,7 +117,7 @@ const SingleSpot = () => {
 						className={styles.img_header}
 						onError={(e) => {
 							e.target.src =
-								"https://upload.wikimedia.org/wikipedia/commons/4/46/Flag_of_Colorado.svg";
+								"https://campbnb.s3.us-west-1.amazonaws.com/photo-1613513058775-cfc915838437.jpeg";
 							e.onerror = null;
 						}}
 					></img>
