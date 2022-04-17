@@ -46,6 +46,102 @@ const validateSignup = [
 	handleValidationErrors,
 ];
 
+const validateNameChange = [
+	check("firstName")
+		.exists({ checkFalsy: true })
+		.notEmpty()
+		.withMessage("Please enter your first name.")
+		.isLength({ min: 1, max: 50 })
+		.withMessage("Please enter a first name between 1 and 50 characters."),
+	check("lastName")
+		.exists({ checkFalsy: true })
+		.notEmpty()
+		.withMessage("Please enter your last name.")
+		.isLength({ min: 1, max: 50 })
+		.withMessage("Please enter a last name between 1 and 50 characters."),
+	handleValidationErrors,
+];
+
+// Update Name Changes
+router.put(
+	"/:userId",
+	requireAuth,
+	validateNameChange,
+	asyncHandler(async (req, res) => {
+		const id = parseInt(req.params.userId, 10);
+		const user = await User.findByPk(id);
+
+		try {
+			if (user) {
+				await User.update(req.body, {
+					where: { id },
+					returning: true,
+					plain: true,
+				});
+
+				const updatedUser = await User.findByPk(id);
+				return res.json(updatedUser);
+			}
+		} catch (e) {
+			console.error("User not found: ", e);
+		}
+	})
+);
+
+const validateEmailChange = [
+	check("id")
+		.isInt({ min: 2 })
+		.withMessage("Please don't try to update the Demo User email address."),
+	check("email")
+		.exists({ checkFalsy: true })
+		.isEmail()
+		.withMessage("Please provide a valid email.")
+		.custom(async (_value, { req }) => {
+			const query = await User.findOne({
+				where: { email: req.body.email },
+			});
+
+			if (query) {
+				const foundUser = await User.getCurrentUserById(query.id);
+
+				if (foundUser.email === req.body.email) {
+					return await Promise.reject(
+						"You are already using that email address!"
+					);
+				} else {
+					return await Promise.reject(
+						"Email address is already in use."
+					);
+				}
+			}
+		}),
+	handleValidationErrors,
+];
+
+router.put(
+	"/:id/email",
+	requireAuth,
+	validateEmailChange,
+	asyncHandler(async (req, res) => {
+		const { id, email } = req.body;
+		console.log("ID!!!! \n\n\n\n\n", id, "IDIDIDIDIDIDIDID \n\n\n\n\n");
+		const user = await User.findByPk(id);
+
+		if (user) {
+			await User.update(
+				{ email },
+				{
+					where: { id },
+					returning: true,
+					plain: true,
+				}
+			);
+
+			return res.json({ email });
+		}
+	})
+);
+
 // Sign up
 router.post(
 	"",
