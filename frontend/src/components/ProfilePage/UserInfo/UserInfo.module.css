@@ -1,0 +1,110 @@
+.container h3 {
+	margin-bottom: 30px;
+}
+
+.container button {
+	height: 30px;
+	width: 200px;
+	border-radius: 8px;
+	border: 1px solid rgba(0, 0, 0, 0.413);
+	position: relative;
+	background-color: #2f3e46;
+	color: white;
+	cursor: pointer;
+	transition: all linear 0.2s;
+}
+
+.container button:hover {
+	background-color: #354f52;
+	transform: translateY(-1px);
+}
+
+.container button:active {
+	transform: translateY(0);
+}
+
+.errors_container {
+	background-color: rgb(63, 63, 63);
+	font-size: 14px;
+	color: white;
+	padding: 20px;
+}
+
+.names,
+.email {
+	display: flex;
+	justify-content: space-between;
+	padding: 30px;
+}
+
+.email {
+	height: 150px;
+}
+
+.info_text {
+	font-size: 14px;
+}
+
+.fn,
+.ln {
+	display: flex;
+	justify-content: space-between;
+	background-color: rgb(255, 255, 255);
+	width: 400px;
+	padding: 15px 0;
+}
+
+.email_info {
+	display: flex;
+	flex-direction: column;
+}
+
+.email_info h4 {
+	margin-bottom: 15px;
+}
+
+#update_name {
+	position: relative;
+	top: 10px;
+}
+
+.update_name_buttons,
+.update_email_buttons {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
+.update_name_buttons button:last-child,
+.update_email_buttons button:last-child {
+	background-color: #cecece;
+	color: black;
+}
+.update_name_buttons button:last-child:hover,
+.update_email_buttons button:last-child:hover {
+	background-color: #acacac;
+}
+
+.names input {
+	height: 30px;
+	padding: 5px;
+	width: 250px;
+	border-radius: 5px;
+	border: 1px solid rgb(130, 130, 130);
+}
+
+#update_email_disabled {
+	background-color: #939393;
+	cursor: not-allowed;
+}
+#update_email_disabled:hover {
+	transform: none;
+}
+
+.email_info input {
+	height: 30px;
+	padding: 5px;
+	width: 400px;
+	border-radius: 5px;
+	border: 1px solid rgb(130, 130, 130);
+}

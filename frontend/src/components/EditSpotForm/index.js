@@ -1,13 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateOneSpot } from "../../store/spots";
 import { hideModal } from "../../store/modal";
 import styles from "./EditSpot.module.css";
 
 const EditSpotForm = ({ spot }) => {
-	const history = useHistory();
 	const [errors, setErrors] = useState([]);
 	const [name, setName] = useState(spot.name);
 	const [address, setAddress] = useState(spot.address);

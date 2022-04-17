@@ -1,6 +1,8 @@
 import { csrfFetch } from "./csrf.js";
 
 const SET_USER = "session/setUser";
+const UPDATED_USER_NAMES = "session/updateUserNames";
+const UPDATED_USER_EMAIL = "session/updateUserEmail";
 const REMOVE_USER = "session/removeUser";
 
 const CREATED_BOOKING = "bookings/CREATED_BOOKING";
@@ -20,6 +22,16 @@ const setUser = (user) => ({
 
 const removeUser = () => ({
 	type: REMOVE_USER,
+});
+
+const updatedUserNames = (data) => ({
+	type: UPDATED_USER_NAMES,
+	data,
+});
+
+const updatedUserEmail = (email) => ({
+	type: UPDATED_USER_EMAIL,
+	email,
 });
 
 // -----------------------------  BOOKINGS  -----------------------------
@@ -83,6 +95,30 @@ export const signup = (user) => async (dispatch) => {
 	const data = await response.json();
 	dispatch(setUser(data.user));
 	return response;
+};
+
+export const updateUserNames = (user) => async (dispatch) => {
+	const res = await csrfFetch(`/api/users/${user.id}`, {
+		method: "PUT",
+		body: JSON.stringify(user),
+	});
+	if (res.ok) {
+		const userData = await res.json();
+		await dispatch(updatedUserNames(userData));
+		return userData;
+	}
+};
+
+export const updateUserEmail = (id, email) => async (dispatch) => {
+	const res = await csrfFetch(`/api/users/${id}/email`, {
+		method: "PUT",
+		body: JSON.stringify({ id, email }),
+	});
+	if (res.ok) {
+		const { email } = await res.json();
+		await dispatch(updatedUserEmail(email));
+		return email;
+	}
 };
 
 export const logout = () => async (dispatch) => {
@@ -151,6 +187,17 @@ function sessionReducer(state = initialState, action) {
 		case REMOVE_USER:
 			newState = Object.assign({}, state, { user: null });
 			newState.bookings = {};
+			return newState;
+
+		case UPDATED_USER_NAMES:
+			newState = { ...state };
+			newState.user.firstName = action.data.firstName;
+			newState.user.lastName = action.data.lastName;
+			return newState;
+
+		case UPDATED_USER_EMAIL:
+			newState = { ...state };
+			newState.user.email = action.email;
 			return newState;
 
 		// ---------- BOOKINGS ----------

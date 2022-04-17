@@ -112,6 +112,7 @@ function SignUpForm() {
 						type="password"
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
+						autoComplete="none"
 						required
 					/>
 				</label>
@@ -121,6 +122,7 @@ function SignUpForm() {
 						type="password"
 						value={confirmPassword}
 						onChange={(e) => setConfirmPassword(e.target.value)}
+						autoComplete="none"
 						required
 					/>
 				</label>

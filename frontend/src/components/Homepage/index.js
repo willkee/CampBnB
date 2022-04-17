@@ -15,7 +15,6 @@ const Homepage = ({ spots }) => {
 
 	const spotsOpen = spots.filter((spot) => spot.open);
 	const spotsClosed = spots.filter((spot) => !spot.open);
-	console.log(spotsClosed);
 
 	useEffect(() => {
 		const loader = async () => {
