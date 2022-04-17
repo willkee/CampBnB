@@ -86,9 +86,9 @@ const ProfilePage = () => {
 										alt="spot"
 										className={styles.booking_img}
 										onError={(e) => {
-											e.target.src =
-												"https://campbnb.s3.us-west-1.amazonaws.com/photo-1613513058775-cfc915838437.jpeg";
 											e.onerror = null;
+											e.target.src =
+												"https://campbnb.s3.us-west-1.amazonaws.com/placeholder.jpeg";
 										}}
 									/>
 									<div className={styles.each_booking_right}>
@@ -165,9 +165,9 @@ const ProfilePage = () => {
 										src={booking.Spot.imageUrl}
 										alt="spot"
 										onError={(e) => {
-											e.target.src =
-												"https://campbnb.s3.us-west-1.amazonaws.com/photo-1613513058775-cfc915838437.jpeg";
 											e.onerror = null;
+											e.target.src =
+												"https://campbnb.s3.us-west-1.amazonaws.com/placeholder.jpeg";
 										}}
 										className={styles.img_past}
 									/>
