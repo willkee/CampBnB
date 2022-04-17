@@ -76,6 +76,14 @@ const NewBookingForm = ({ spot }) => {
 		return 0;
 	};
 
+	const cancelChanges = () => {
+		setStartDate();
+		setEndDate();
+		setPeople(1);
+		setErrors([]);
+		setConfirm(false);
+	};
+
 	return (
 		<div
 			className={
@@ -184,16 +192,6 @@ const NewBookingForm = ({ spot }) => {
 							<span className={styles.labels}>
 								Number of people
 							</span>
-							{/* <select
-								value={people}
-								onChange={(e) => setPeople(e.target.value)}
-							>
-								{capacities().map((cap) => (
-									<option key={cap} value={cap}>
-										{cap}
-									</option>
-								))}
-							</select> */}
 							<div className={styles.people_changer}>
 								<div
 									className={
@@ -223,9 +221,6 @@ const NewBookingForm = ({ spot }) => {
 								</div>
 							</div>
 						</label>
-						{/*
-						<div>{startDate && startDate.toDateString()}</div>
-						<div>{endDate && endDate.toDateString()}</div> */}
 						<div
 							className={styles.num_days}
 						>{`Total Days: ${totalDays()}`}</div>
@@ -293,6 +288,12 @@ const NewBookingForm = ({ spot }) => {
 							>
 								Confirm Booking
 							</button>
+							<div
+								className={styles.cancel_confirm}
+								onClick={cancelChanges}
+							>
+								Cancel
+							</div>
 						</div>
 					)}
 				</>

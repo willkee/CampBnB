@@ -36,17 +36,25 @@ function Navigation({ sessionUser, isLoaded }) {
 							/>
 						</NavLink>
 						<div className={styles.right}>
-							<NavLink exact to="/main">
+							<NavLink
+								className={styles.explore_button}
+								exact
+								to="/main"
+							>
 								<i className="fa-light fa-campground" />
 								<span>Explore</span>
 							</NavLink>
 							{sessionUser ? (
 								<>
-									<NavLink exact to="/spots/new">
+									<NavLink
+										className={styles.add_new}
+										exact
+										to="/spots/new"
+									>
 										<i className="fa-solid fa-location-plus" />
 										<span>Add New Spot</span>
 									</NavLink>
-									<ProfileButton user={sessionUser} />
+									<ProfileButton />
 								</>
 							) : (
 								<>
@@ -54,6 +62,7 @@ function Navigation({ sessionUser, isLoaded }) {
 										className={styles.sign_up}
 										onClick={displaySignupForm}
 									>
+										<i className="fa-light fa-face-smile-plus"></i>
 										Sign Up
 									</div>
 									<div

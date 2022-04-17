@@ -4,7 +4,7 @@ import * as sessionActions from "../../store/session";
 import { useHistory } from "react-router-dom";
 import styles from "./Navigation.module.css";
 
-function ProfileButton({ user }) {
+function ProfileButton() {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const [showMenu, setShowMenu] = useState(false);
