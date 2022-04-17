@@ -126,7 +126,7 @@ const SingleSpot = () => {
 							<h1>{spot.name}</h1>
 							<div>
 								Host:{" "}
-								{spot.ownerId === sessionUser.id
+								{sessionUser && spot.ownerId === sessionUser.id
 									? "You!"
 									: spot.User.firstName +
 									  " " +
