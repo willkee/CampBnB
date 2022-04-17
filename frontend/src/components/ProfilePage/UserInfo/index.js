@@ -67,6 +67,7 @@ const UserInfo = () => {
 
 	const cancelEmailChange = () => {
 		setEmailErrors([]);
+		setEmail(sessionUser.email);
 		setShowEmailUpdate(false);
 	};
 

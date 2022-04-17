@@ -23,6 +23,13 @@
 	transform: translateY(0);
 }
 
+.errors_container {
+	background-color: rgb(63, 63, 63);
+	font-size: 14px;
+	color: white;
+	padding: 20px;
+}
+
 .names,
 .email {
 	display: flex;

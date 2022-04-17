@@ -21,6 +21,10 @@ const validateSignup = [
 		.exists({ checkFalsy: true })
 		.isEmail()
 		.withMessage("Please provide a valid email.")
+		.isLength({ min: 3, max: 255 })
+		.withMessage(
+			"Please enter an email address between 3 and 255 characters."
+		)
 		.custom(async (_value, { req }) => {
 			const query = await User.findOne({
 				where: { email: req.body.email },
@@ -96,6 +100,10 @@ const validateEmailChange = [
 		.exists({ checkFalsy: true })
 		.isEmail()
 		.withMessage("Please provide a valid email.")
+		.isLength({ min: 3, max: 255 })
+		.withMessage(
+			"Please enter an email address between 3 and 255 characters."
+		)
 		.custom(async (_value, { req }) => {
 			const query = await User.findOne({
 				where: { email: req.body.email },
