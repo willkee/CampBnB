@@ -74,7 +74,11 @@ const validateSpot = [
 			"Please enter a nightly price for your spot. Enter '0' if free of charge."
 		)
 		.isInt()
-		.withMessage("Please enter a integer for the price (No cents)."),
+		.withMessage("Please enter a integer for the price (No cents).")
+		.isInt({ min: 0 })
+		.withMessage(
+			"Nice try. Please don't enter a negative value for the price!"
+		),
 	check("capacity")
 		.exists({ checkFalsy: true })
 		.isInt()
@@ -234,6 +238,10 @@ const validateBooking = [
 	check("people")
 		.exists({ checkFalsy: true })
 		.withMessage("Please enter the number of people for your booking.")
+		.isInt({ min: 1 })
+		.withMessage(
+			"Please enter at least one person for the number of people."
+		)
 		.custom(async (_value, { req }) => {
 			const spot = await Spot.findByPk(req.body.spotId);
 			if (spot && !spot.open) {

@@ -22,9 +22,32 @@
 	transition: all linear 0.2s;
 }
 
-.each_spot_container img {
+.img_container {
 	width: 100%;
 	height: 180px;
+	position: relative;
+}
+
+.img_overlay_grid {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 800;
+	background-color: red;
+	opacity: 0.5;
+	border-radius: 8px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	color: white;
+	font-weight: 600;
+}
+
+.each_spot_container img {
+	width: 100%;
+	height: 100%;
 	object-fit: cover;
 	border-radius: 8px;
 }
@@ -37,10 +60,14 @@
 	margin-right: 5px;
 }
 
-.price_info span:first-child {
+.price_type {
+	display: flex;
+	justify-content: space-between;
+}
+.price_type span:first-child {
 	font-weight: 600;
 }
-.price_info span:last-child {
+.price_type span:last-child {
 	font-size: 12px;
 	margin-left: 5px;
 }

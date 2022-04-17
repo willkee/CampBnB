@@ -13,6 +13,7 @@ import NewSpotForm from "./components/NewSpotForm";
 import SingleSpot from "./components/SingleSpot";
 import ProfilePage from "./components/ProfilePage";
 import Footer from "./components/Footer";
+import ErrorPage from "./components/ErrorPage";
 
 function App() {
 	const dispatch = useDispatch();
@@ -60,7 +61,7 @@ function App() {
 						)}
 					</Route>
 					<Route>
-						<h1>Page Not Found</h1>
+						<ErrorPage />
 					</Route>
 				</Switch>
 			)}

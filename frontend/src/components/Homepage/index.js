@@ -13,6 +13,10 @@ const Homepage = ({ spots }) => {
 	const history = useHistory();
 	const dispatch = useDispatch();
 
+	const spotsOpen = spots.filter((spot) => spot.open);
+	const spotsClosed = spots.filter((spot) => !spot.open);
+	console.log(spotsClosed);
+
 	useEffect(() => {
 		const loader = async () => {
 			await dispatch(getAllSpots());
@@ -37,22 +41,31 @@ const Homepage = ({ spots }) => {
 						</h1>
 					)}
 					<div className={styles.container}>
-						{spots.map((spot) => (
+						{spotsOpen.map((spot) => (
 							<div
 								key={spot.id}
 								className={styles.each_spot_container}
 								onClick={() => sendToSpot(spot.id)}
 							>
-								<img
-									src={spot.imageUrl}
-									alt="spot"
-									width="100px"
-									onError={(e) => {
-										e.target.src =
-											"https://upload.wikimedia.org/wikipedia/commons/4/46/Flag_of_Colorado.svg";
-										e.onerror = null;
-									}}
-								/>
+								<div className={styles.img_container}>
+									<img
+										src={spot.imageUrl}
+										alt="spot"
+										width="100px"
+										onError={(e) => {
+											e.onerror = null;
+											e.target.src =
+												"https://campbnb.s3.us-west-1.amazonaws.com/placeholder.jpeg";
+										}}
+									/>
+									{!spot.open && (
+										<div
+											className={styles.img_overlay_grid}
+										>
+											Not Accepting New Bookings
+										</div>
+									)}
+								</div>
 								<h4>
 									{spot.name.length > 20
 										? spot.name.slice(0, 20) + "..."
@@ -62,9 +75,60 @@ const Homepage = ({ spots }) => {
 									<i className="fa-light fa-mountain-city" />
 									{spot.city}
 								</div>
-								<div className={styles.price_info}>
-									<span>${spot.price}</span>
-									<span>night</span>
+								<div className={styles.price_type}>
+									<div>
+										<span>${spot.price}</span>
+										<span>night</span>
+									</div>
+									<div>
+										{spot.type === "vehicle" ? (
+											<i className="fa-solid fa-car-mirrors" />
+										) : spot.type === "rv" ? (
+											<i className="fa-solid fa-rv" />
+										) : spot.type === "tent" ? (
+											<i className="fa-solid fa-tent" />
+										) : spot.type === "backpacking" ? (
+											<i className="fa-solid fa-backpack" />
+										) : (
+											""
+										)}
+									</div>
+								</div>
+							</div>
+						))}
+						{spotsClosed.map((spot) => (
+							<div
+								key={spot.id}
+								className={styles.each_spot_container}
+								onClick={() => sendToSpot(spot.id)}
+							>
+								<div className={styles.img_container}>
+									<img
+										src={spot.imageUrl}
+										alt="spot"
+										width="100px"
+										onError={(e) => {
+											e.onerror = null;
+											e.target.src =
+												"https://campbnb.s3.us-west-1.amazonaws.com/placeholder.jpeg";
+										}}
+									/>
+									{!spot.open && (
+										<div
+											className={styles.img_overlay_grid}
+										>
+											Not Accepting New Bookings
+										</div>
+									)}
+								</div>
+								<h4>
+									{spot.name.length > 20
+										? spot.name.slice(0, 20) + "..."
+										: spot.name}
+								</h4>
+								<div className={styles.city_info}>
+									<i className="fa-light fa-mountain-city" />
+									{spot.city}
 								</div>
 							</div>
 						))}
