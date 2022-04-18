@@ -23,12 +23,9 @@ function App() {
 	const spotsList = useSelector((state) => Object.values(state.spots));
 
 	useEffect(() => {
-		const load = async () => {
-			await dispatch(sessionActions.restoreUser());
-			await dispatch(getAllSpots());
-			setIsLoaded(true);
-		};
-		load();
+		dispatch(sessionActions.restoreUser()).then(() =>
+			dispatch(getAllSpots()).then(() => setIsLoaded(true))
+		);
 	}, [dispatch]);
 
 	return (

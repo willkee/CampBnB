@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { hideModal } from "../../store/modal";
 import { deleteSpot } from "../../store/spots";
 import { getOneSpot } from "../../store/spots";
@@ -12,8 +12,9 @@ const DeleteConfirmation = ({ id }) => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 
-	const bookings = useSelector((state) => state.spots[id]).Bookings;
-	const dates = bookings.map((booking) => booking.endDate);
+	const spots = useSelector((state) => state.spots);
+	const spot = spots[id];
+	const dates = spot?.Bookings?.map((booking) => booking.endDate);
 
 	useEffect(() => {
 		dispatch(getOneSpot(id));
@@ -25,10 +26,12 @@ const DeleteConfirmation = ({ id }) => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dispatch, id]);
 
-	const handleSubmit = async (e) => {
+	if (!id || !spot) return <Redirect to="/main" />;
+
+	const handleSubmit = (e) => {
 		e.preventDefault();
-		await dispatch(deleteSpot(id));
-		await dispatch(hideModal());
+		dispatch(deleteSpot(id));
+		dispatch(hideModal());
 		return history.push("/main");
 	};
 

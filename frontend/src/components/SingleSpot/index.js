@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 import { getOneSpot } from "../../store/spots";
 import { currentModal, showModal } from "../../store/modal";
 import EditSpotForm from "../EditSpotForm";
@@ -18,16 +18,10 @@ const SingleSpot = () => {
 	const spot = useSelector((state) => state.spots[intId]);
 	const sessionUser = useSelector((state) => state.session.user);
 	const [isLoaded, setIsLoaded] = useState(false);
-
 	const dispatch = useDispatch();
-	const history = useHistory();
 
 	useEffect(() => {
-		const loadData = async () => {
-			await dispatch(getOneSpot(id));
-			setIsLoaded(true);
-		};
-		loadData();
+		dispatch(getOneSpot(id)).then(() => setIsLoaded(true));
 	}, [dispatch, id]);
 
 	const editSpotForm = (spot) => {
@@ -40,10 +34,7 @@ const SingleSpot = () => {
 		dispatch(showModal());
 	};
 
-	if (isLoaded && !spot) {
-		history.push("/main");
-		return null;
-	}
+	if (isLoaded && !spot) return <Redirect to="/main" />;
 
 	const acceptBookings = () => {
 		return (
@@ -124,31 +115,58 @@ const SingleSpot = () => {
 					<div className={styles.content}>
 						<div className={styles.text_content}>
 							<h1>{spot.name}</h1>
-							<div>
-								Host:{" "}
-								{sessionUser && spot.ownerId === sessionUser.id
-									? "You!"
-									: spot.User.firstName +
-									  " " +
-									  spot.User.lastName}
-							</div>
-							{spot.address && <div>Address: {spot.address}</div>}
-							{spot.lat && spot.long && (
-								<div>
-									<i className="fa-light fa-location-crosshairs" />
-									{` ${spot.lat}, ${spot.long}`}
+							<div className={styles.host}>
+								<div className={styles.cap_price_info}>
+									<span>
+										<span className={styles.cap_text}>
+											Max Capacity:
+										</span>
+										<span className={styles.cap_num}>
+											{spot.capacity}
+										</span>
+									</span>
+									<i class="fa-solid fa-circle-small"></i>
+									<span className={styles.price_header}>
+										<span>${spot.price}</span>
+										<span>night</span>
+									</span>
 								</div>
-							)}
-							<div>
-								<i className="fa-light fa-mountain-city" />{" "}
-								{spot.city}
+								<div>
+									Host:{" "}
+									{sessionUser &&
+									spot.ownerId === sessionUser.id
+										? "You!"
+										: spot.User.firstName +
+										  " " +
+										  spot.User.lastName}
+								</div>
 							</div>
-							<div>
-								<i className="fa-light fa-square-dollar" />{" "}
-								{spot.price === 0
-									? "Free"
-									: "$" + spot.price + "/night"}
+
+							<div className={styles.location_container}>
+								{spot.address && (
+									<div>
+										<i
+											id={styles.road_icon}
+											className="fa-regular fa-road"
+										></i>
+										{spot.address}
+									</div>
+								)}
+								{spot.lat && spot.long && (
+									<div>
+										<i
+											id={styles.x_hairs}
+											className="fa-light fa-location-crosshairs"
+										/>
+										{`${spot.lat}, ${spot.long}`}
+									</div>
+								)}
+								<div>
+									<i className="fa-light fa-mountain-city" />
+									{spot.city}
+								</div>
 							</div>
+
 							<div className={styles.desc}>
 								{spot.description}
 							</div>

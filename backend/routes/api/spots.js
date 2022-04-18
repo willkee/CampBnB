@@ -100,6 +100,7 @@ router.get(
 				"price",
 				"open",
 			],
+			include: Booking,
 		});
 		return res.json(spots);
 	})
@@ -156,7 +157,11 @@ router.post(
 			open: true,
 		});
 
-		return res.json(newSpot);
+		const spot = await Spot.findByPk(newSpot.id, {
+			include: Booking,
+		});
+
+		return res.json(spot);
 	})
 );
 
@@ -272,7 +277,9 @@ router.post(
 			people,
 		});
 
-		const newBooking = await Booking.findByPk(booking.id);
+		const newBooking = await Booking.findByPk(booking.id, {
+			include: Spot,
+		});
 		return res.json(newBooking);
 	})
 );
@@ -297,7 +304,7 @@ router.put(
 				});
 
 				const updatedSpot = await Spot.findByPk(id, {
-					include: [{ model: User }],
+					include: [{ model: User }, { model: Booking }],
 				});
 				return res.json(updatedSpot);
 			}
@@ -325,7 +332,7 @@ router.patch(
 				);
 
 				const result = await Spot.findByPk(spot.id, {
-					include: User,
+					include: [{ model: User }, { model: Booking }],
 				});
 				return res.json(result);
 			}

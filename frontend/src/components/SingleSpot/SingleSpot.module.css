@@ -19,12 +19,66 @@
 	gap: 20px;
 }
 
+.cap_price_info {
+	display: flex;
+	align-items: center;
+	margin-top: 20px;
+}
+
+.cap_price_info i {
+	margin: 0 20px;
+	font-size: 10px;
+	align-items: center;
+}
+
+.cap_text {
+	font-size: 12px;
+	margin-right: 5px;
+}
+
+.cap_num {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.price_header span:first-child {
+	font-weight: 600;
+	font-size: 18px;
+}
+
+.price_header span:last-child {
+	font-size: 12px;
+	margin-left: 5px;
+}
+
+.host {
+	margin: 20px;
+	font-size: 14px;
+}
+
 .text_content {
 	padding: 10px;
 }
 
+.location_container {
+	margin-left: 20px;
+	font-size: 14px;
+}
+
+.location_container i {
+	margin-right: 8px;
+}
+
+#x_hairs {
+	font-size: 18px;
+}
+#road_icon {
+	font-size: 16px;
+}
+
 .desc {
 	margin-top: 30px;
+	font-size: 15px;
 }
 
 .booking_form {
