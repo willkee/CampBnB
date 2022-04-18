@@ -100,6 +100,7 @@ export const switchOpening = (id) => async (dispatch) => {
 	if (res.ok) {
 		const switched = await res.json();
 		await dispatch(switchedOpening(switched));
+		return switched;
 	}
 };
 
@@ -113,6 +114,7 @@ export const deleteSpot = (id) => async (dispatch) => {
 	if (res.ok) {
 		const { id } = await res.json();
 		await dispatch(deletedSpot(id));
+		return id;
 	}
 };
 
