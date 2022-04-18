@@ -22,27 +22,35 @@ const MySpots = () => {
 			<h2>My Spots</h2>
 			{loaded && (
 				<div className={styles.spots_container}>
-					{mySpots.map((spot) => (
-						<div
-							key={spot.id}
-							className={styles.my_each_spot}
-							onClick={() => history.push(`/spots/${spot.id}`)}
-						>
-							<img
-								src={spot.imageUrl}
-								alt="spot"
-								onError={(e) => {
-									e.onerror = null;
-									e.target.src =
-										"https://campbnb.s3.us-west-1.amazonaws.com/placeholder.jpeg";
-								}}
-							></img>
-							<div className={styles.spot_info}>
-								<h3>{spot.name}</h3>
-								<div>{spot.city}</div>
-							</div>
-						</div>
-					))}
+					{mySpots.length === 0 ? (
+						"You don't own any spots!"
+					) : (
+						<>
+							{mySpots.map((spot) => (
+								<div
+									key={spot.id}
+									className={styles.my_each_spot}
+									onClick={() =>
+										history.push(`/spots/${spot.id}`)
+									}
+								>
+									<img
+										src={spot.imageUrl}
+										alt="spot"
+										onError={(e) => {
+											e.onerror = null;
+											e.target.src =
+												"https://campbnb.s3.us-west-1.amazonaws.com/placeholder.jpeg";
+										}}
+									></img>
+									<div className={styles.spot_info}>
+										<h3>{spot.name}</h3>
+										<div>{spot.city}</div>
+									</div>
+								</div>
+							))}
+						</>
+					)}
 				</div>
 			)}
 		</div>

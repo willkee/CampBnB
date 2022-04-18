@@ -23,6 +23,11 @@
 .booking_spotInfo {
 	background-color: #cad2c598;
 	padding: 5px;
+	cursor: pointer;
+}
+
+.booking_spotInfo:hover {
+	color: #4c7136;
 }
 
 .subheading {
