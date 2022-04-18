@@ -92,6 +92,7 @@ router.get(
 		const spots = await Spot.findAll({
 			attributes: [
 				"id",
+				"ownerId",
 				"name",
 				"city",
 				"imageUrl",

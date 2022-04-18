@@ -113,7 +113,7 @@ const NewBookingForm = ({ spot }) => {
 											)
 										)
 									}
-									minDetail="year"
+									minDetail="month"
 									value={startDate}
 									onChange={(e) => {
 										setStartDate(e);
@@ -160,7 +160,7 @@ const NewBookingForm = ({ spot }) => {
 											)
 										)
 									}
-									minDetail="year"
+									minDetail="month"
 									value={endDate}
 									onChange={(e) => setEndDate(e)}
 									tileDisabled={({ date, view }) =>

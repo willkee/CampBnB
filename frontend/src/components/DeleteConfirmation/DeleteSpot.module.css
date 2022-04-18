@@ -45,3 +45,10 @@
 .buttons button:active {
 	transform: translateY(0);
 }
+
+.upcoming_bookings_warning {
+	margin-top: 30px;
+	color: red;
+	font-size: 14px;
+	width: 400px;
+}

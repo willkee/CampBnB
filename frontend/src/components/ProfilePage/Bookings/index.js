@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { getMyBookings } from "../../../store/session";
 import { deleteBooking } from "../../../store/session";
 import { showModal, hideModal, currentModal } from "../../../store/modal";
@@ -7,6 +8,7 @@ import styles from "./Bookings.module.css";
 
 const Bookings = () => {
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const [isLoaded, setIsLoaded] = useState(false);
 
 	useEffect(() => {
@@ -77,7 +79,14 @@ const Bookings = () => {
 								}}
 							/>
 							<div className={styles.each_booking_right}>
-								<div className={styles.booking_spotInfo}>
+								<div
+									className={styles.booking_spotInfo}
+									onClick={() =>
+										history.push(
+											`/spots/${booking.Spot.id}`
+										)
+									}
+								>
 									<h3>{booking.Spot.name}</h3>
 									<div>{booking.Spot.city}</div>
 								</div>
@@ -157,7 +166,14 @@ const Bookings = () => {
 								className={styles.img_past}
 							/>
 							<div className={styles.each_booking_right}>
-								<div className={styles.booking_spotInfo}>
+								<div
+									className={styles.booking_spotInfo}
+									onClick={() =>
+										history.push(
+											`/spots/${booking.Spot.id}`
+										)
+									}
+								>
 									<h3 id={styles.past_info}>
 										{booking.Spot.name}
 									</h3>
