@@ -5,6 +5,7 @@ import styles from "./ProfilePage.module.css";
 
 import Bookings from "./Bookings/";
 import UserInfo from "./UserInfo/";
+import MySpots from "./MySpots";
 
 const ProfilePage = () => {
 	const [activePage, setActivePage] = useState(<Bookings />);
@@ -26,6 +27,9 @@ const ProfilePage = () => {
 					<div className={styles.left}>
 						<div onClick={() => setActivePage(<Bookings />)}>
 							Bookings
+						</div>
+						<div onClick={() => setActivePage(<MySpots />)}>
+							My Spots
 						</div>
 						<div onClick={() => setActivePage(<UserInfo />)}>
 							Profile Settings
