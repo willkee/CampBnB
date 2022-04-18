@@ -192,3 +192,9 @@
 	color: white;
 	background-color: rgb(156, 10, 10);
 }
+
+.google_maps {
+	width: 100%;
+	height: 350px;
+	margin: 20px 0 0 0;
+}

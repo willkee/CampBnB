@@ -51,6 +51,7 @@ const NewSpotForm = () => {
 		} catch (err) {
 			const data = await err.json();
 			if (data && data.errors) setErrors(data.errors);
+			window.scrollTo({ top: 0 });
 		}
 	};
 

@@ -1,4 +1,5 @@
 import React from "react";
+import { csrfFetch } from "../../store/csrf";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Redirect } from "react-router-dom";
@@ -18,10 +19,18 @@ const SingleSpot = () => {
 	const spot = useSelector((state) => state.spots[intId]);
 	const sessionUser = useSelector((state) => state.session.user);
 	const [isLoaded, setIsLoaded] = useState(false);
+	const [apiKey, setApiKey] = useState("");
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(getOneSpot(id)).then(() => setIsLoaded(true));
+		const load = async () => {
+			await dispatch(getOneSpot(id));
+			const res = await csrfFetch("/api/google/maps");
+			const data = await res.json();
+			setApiKey(data.key);
+			setIsLoaded(true);
+		};
+		load();
 	}, [dispatch, id]);
 
 	const editSpotForm = (spot) => {
@@ -125,7 +134,7 @@ const SingleSpot = () => {
 											{spot.capacity}
 										</span>
 									</span>
-									<i class="fa-solid fa-circle-small"></i>
+									<i className="fa-solid fa-circle-small"></i>
 									<span className={styles.price_header}>
 										<span>${spot.price}</span>
 										<span>night</span>
@@ -166,6 +175,28 @@ const SingleSpot = () => {
 									{spot.city}
 								</div>
 							</div>
+							{(console.disableYellowBox = true)}
+							{spot.lat && spot.long ? (
+								<iframe
+									title={id}
+									className={styles.google_maps}
+									src={`
+									https://www.google.com/maps/embed/v1/place
+									?key=${apiKey}
+									&q=${spot.lat}%2C${spot.long}&zoom=13
+								`}
+								></iframe>
+							) : (
+								<iframe
+									title={id}
+									className={styles.google_maps}
+									src={`
+									https://www.google.com/maps/embed/v1/place
+									?key=${apiKey}
+									&q=${spot.address}%2C${spot.city}&zoom=13
+								`}
+								></iframe>
+							)}
 
 							<div className={styles.desc}>
 								{spot.description}
