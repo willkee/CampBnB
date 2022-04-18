@@ -71,5 +71,13 @@ CampBnB is based off of AirBnB for users to list their spots or make bookings at
 
 ## Screenshots
 
-(Coming Soon)
-
+<img src="https://campbnb.s3.us-west-1.amazonaws.com/ss_splash.png" style="width:800px;" />
+<img src="https://campbnb.s3.us-west-1.amazonaws.com/ss_home.png" style="width:800px;" />
+<img src="https://campbnb.s3.us-west-1.amazonaws.com/ss_signup.png" style="width:800px;" />
+<img src="https://campbnb.s3.us-west-1.amazonaws.com/ss_login.png" style="width:800px;" />
+<img src="https://campbnb.s3.us-west-1.amazonaws.com/ss_create_spot.png" style="width:800px;" />
+<img src="https://campbnb.s3.us-west-1.amazonaws.com/ss_create_errors.png" style="width:800px;" />
+<img src="https://campbnb.s3.us-west-1.amazonaws.com/ss_myspots.png" style="width:800px;" />
+<img src="https://campbnb.s3.us-west-1.amazonaws.com/ss_spot.png" style="width:800px;" />
+<img src="https://campbnb.s3.us-west-1.amazonaws.com/ss_bookings.png" style="width:800px;" />
+<img src="https://campbnb.s3.us-west-1.amazonaws.com/ss_settings.png" style="width:800px;"/>
