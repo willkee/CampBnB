@@ -1,16 +1,15 @@
-import React from "react";
-
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Redirect } from "react-router-dom";
-import { getOneSpot } from "../../store/spots";
+
+import { csrfFetch } from "../../store/csrf";
 import { currentModal, showModal } from "../../store/modal";
+import { getOneSpot, switchOpening } from "../../store/spots";
+
 import EditSpotForm from "../EditSpotForm";
 import DeleteConfirmation from "../DeleteConfirmation";
 import NewBookingForm from "../NewBookingForm";
 import styles from "./SingleSpot.module.css";
-import { csrfFetch } from "../../store/csrf";
-import { switchOpening } from "../../store/spots";
 
 const SingleSpot = () => {
 	const { id } = useParams();
