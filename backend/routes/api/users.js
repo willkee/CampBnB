@@ -132,7 +132,6 @@ router.put(
 	validateEmailChange,
 	asyncHandler(async (req, res) => {
 		const { id, email } = req.body;
-		console.log("ID!!!! \n\n\n\n\n", id, "IDIDIDIDIDIDIDID \n\n\n\n\n");
 		const user = await User.findByPk(id);
 
 		if (user) {

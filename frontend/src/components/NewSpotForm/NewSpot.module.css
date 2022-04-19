@@ -18,7 +18,7 @@
 	flex-direction: column;
 	justify-content: space-around;
 	padding: 50px;
-	background-color: rgb(33, 33, 33);
+	background: linear-gradient(45deg, #10191d, rgb(3, 52, 34));
 	color: white;
 	text-align: end;
 	height: 100%;

@@ -7,6 +7,7 @@ const REMOVE_USER = "session/removeUser";
 
 const CREATED_BOOKING = "bookings/CREATED_BOOKING";
 const RETRIEVED_BOOKINGS = "bookings/RETRIEVED_BOOKINGS";
+const UPDATED_PEOPLE_FOR_BOOKING = "bookings/UPDATED_PEOPLE_FOR_BOOKING";
 const DELETED_BOOKING = "bookings/DELETED_BOOKING";
 
 // ---------------------------------------------------------------------------
@@ -48,6 +49,11 @@ const createdBooking = (booking) => ({
 const retrievedBookings = (bookings) => ({
 	type: RETRIEVED_BOOKINGS,
 	bookings,
+});
+
+const updatedPeopleForBooking = (booking) => ({
+	type: UPDATED_PEOPLE_FOR_BOOKING,
+	booking,
 });
 
 // ----------------------------- DELETE -----------------------------
@@ -157,6 +163,21 @@ export const getMyBookings = () => async (dispatch) => {
 	}
 };
 
+// ----- UPDATE -----
+
+export const updatePeopleInBooking =
+	(id, spotId, people) => async (dispatch) => {
+		const res = await csrfFetch(`/api/bookings/${id}`, {
+			method: "PATCH",
+			body: JSON.stringify({ id, spotId, people }),
+		});
+		if (res.ok) {
+			const data = await res.json();
+			await dispatch(updatedPeopleForBooking(data));
+			return data;
+		}
+	};
+
 // ----- DELETE -----
 export const deleteBooking = (id) => async (dispatch) => {
 	const res = await csrfFetch(`/api/bookings/${id}`, {
@@ -215,6 +236,12 @@ function sessionReducer(state = initialState, action) {
 				(booking) => (newState.bookings[booking.id] = booking)
 			);
 			return newState;
+
+		// Update
+		case UPDATED_PEOPLE_FOR_BOOKING:
+			const bookings = { ...state.bookings };
+			bookings[action.booking.id] = action.booking;
+			return { ...state, bookings };
 
 		// Delete
 		case DELETED_BOOKING:

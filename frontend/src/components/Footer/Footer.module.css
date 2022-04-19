@@ -5,7 +5,7 @@
 	width: 85vw;
 	height: 50px;
 	color: white;
-	background-color: #132128;
+	background: linear-gradient(45deg, rgb(10, 61, 85), #10191d);
 	z-index: 999;
 	vertical-align: bottom;
 	font-size: 14px;

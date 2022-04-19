@@ -83,11 +83,19 @@
 }
 
 .edit {
-	background-color: #d68d39;
+	background-color: #e39e4e;
+	color: black;
+	transition: all linear 0.2s;
+	font-weight: 600;
+}
+.edit:hover {
+	background-color: #ca7a20;
+	color: rgb(255, 255, 255);
 }
 .delete {
 	background-color: rgb(87, 10, 10);
 	transition: all linear 0.1s;
+	font-weight: 600;
 }
 
 .delete:hover {
