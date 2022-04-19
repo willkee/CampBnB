@@ -52,7 +52,7 @@
 }
 
 .host {
-	margin: 20px;
+	margin: 20px 20px 20px 0;
 	font-size: 14px;
 }
 
@@ -60,8 +60,19 @@
 	padding: 10px;
 }
 
+.type_site_container {
+	margin: 20px 20px 5px 0;
+}
+
+.type_info i {
+	margin-right: 5px;
+}
+
+.type_info span {
+	font-size: 14px;
+}
+
 .location_container {
-	margin-left: 20px;
 	font-size: 14px;
 }
 

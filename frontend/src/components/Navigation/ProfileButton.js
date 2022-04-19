@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import styles from "./Navigation.module.css";
 
 function ProfileButton() {
 	const dispatch = useDispatch();
 	const history = useHistory();
+	const location = useLocation();
 	const [showMenu, setShowMenu] = useState(false);
 
 	const openMenu = () => {
@@ -26,9 +27,14 @@ function ProfileButton() {
 		return () => document.removeEventListener("click", closeMenu);
 	}, [showMenu]);
 
-	const logout = (e) => {
-		e.preventDefault();
+	const logout = () => {
+		setShowMenu(false);
 		dispatch(sessionActions.logout());
+	};
+
+	const goToProfile = () => {
+		history.push("/profile");
+		setShowMenu(false);
 	};
 
 	return (
@@ -42,10 +48,16 @@ function ProfileButton() {
 					onClick={(e) => e.stopPropagation()}
 				>
 					<div
-						className={styles.go_to_profile}
-						onClick={() => history.push("/profile")}
+						className={
+							location.pathname === "/profile"
+								? styles.disabled_link
+								: styles.go_to_profile
+						}
+						onClick={goToProfile}
 					>
-						My Profile
+						{location.pathname === "/profile"
+							? "Welcome to your Profile!"
+							: "My Profile"}
 					</div>
 					<div>
 						<button className={styles.log_out} onClick={logout}>
