@@ -18,10 +18,8 @@ const EditPeople = ({ booking }) => {
 				updatePeopleInBooking(booking.id, booking.spotId, people)
 			);
 			await dispatch(hideModal());
-			console.log("A");
 		} catch (e) {
 			const data = await e.json();
-			console.log(data);
 			if (data && data.errors) setErrors(data.errors);
 		}
 	};

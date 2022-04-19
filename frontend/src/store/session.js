@@ -173,7 +173,6 @@ export const updatePeopleInBooking =
 		});
 		if (res.ok) {
 			const data = await res.json();
-			console.log(data, "SJHDKJASHDKJASHDKJSHDKJAH DATA");
 			await dispatch(updatedPeopleForBooking(data));
 			return data;
 		}
