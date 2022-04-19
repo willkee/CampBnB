@@ -16,13 +16,59 @@ router.get(
 
 		const myBookings = await Booking.findAll({
 			where: { userId: user.id },
-			include: [{ model: User }, { model: Spot }],
+			include: Spot,
 		});
 
 		try {
 			return res.json(myBookings);
 		} catch (e) {
 			console.error("Error: No bookings found: ", e);
+		}
+	})
+);
+
+const peopleValidation = [
+	check("people")
+		.exists({ checkFalsy: true })
+		.isInt({ min: 1 })
+		.withMessage("Please enter a valid value for the number of people.")
+		.custom(async (_value, { req }) => {
+			const spot = await Spot.findByPk(req.body.spotId);
+			if (spot && spot.capacity < req.body.people) {
+				return await Promise.reject(
+					"Please enter a value for the number of people less than the capacity of the spot."
+				);
+			}
+		}),
+	handleValidationErrors,
+];
+
+router.patch(
+	"/:bookingId",
+	requireAuth,
+	peopleValidation,
+	asyncHandler(async (req, res) => {
+		const id = parseInt(req.params.bookingId, 10);
+		const booking = await Booking.findByPk(id);
+		const { user } = req;
+
+		try {
+			if (booking && user.id === booking.userId) {
+				const update = await Booking.update(
+					{ people: req.body.people },
+					{ where: { id }, returning: true }
+				);
+
+				const updatedBooking = await Booking.findByPk(booking.id, {
+					include: Spot,
+				});
+				return res.json(updatedBooking);
+			}
+		} catch (e) {
+			console.error(
+				"Error: Booking not found, or you are not authorized to perform this operation. ",
+				e
+			);
 		}
 	})
 );

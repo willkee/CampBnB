@@ -4,6 +4,8 @@ import { useHistory } from "react-router-dom";
 import { getMyBookings } from "../../../store/session";
 import { deleteBooking } from "../../../store/session";
 import { showModal, hideModal, currentModal } from "../../../store/modal";
+
+import EditPeople from "./EditPeople";
 import styles from "./Bookings.module.css";
 
 const Bookings = () => {
@@ -11,21 +13,15 @@ const Bookings = () => {
 	const history = useHistory();
 	const [isLoaded, setIsLoaded] = useState(false);
 
+	const myBookings = useSelector((state) => state.session.bookings);
 	useEffect(() => {
 		dispatch(getMyBookings()).then(() => setIsLoaded(true));
 	}, [dispatch]);
 
-	const myBookings = useSelector((state) =>
-		Object.values(state.session.bookings)
-	);
-
-	const futureBookings = myBookings.filter(
-		(booking) => new Date(booking.startDate) > new Date()
-	);
-
-	const pastBookings = myBookings.filter(
-		(booking) => new Date(booking.startDate) < new Date()
-	);
+	const showEditPeopleModal = (booking) => {
+		dispatch(currentModal(() => <EditPeople booking={booking} />));
+		dispatch(showModal());
+	};
 
 	const showConfirm = (id) => {
 		dispatch(currentModal(() => <ConfirmCancel id={id} />));
@@ -61,81 +57,103 @@ const Bookings = () => {
 					{/* ----------------------------- */}
 
 					<h2 className={styles.subheading}>Upcoming Bookings</h2>
-					{futureBookings.length === 0 && (
+					{Object.values(myBookings).filter(
+						(booking) => new Date(booking.startDate) > new Date()
+					).length === 0 && (
 						<div className={styles.no_bookings}>
 							No Upcoming Bookings.
 						</div>
 					)}
-					{futureBookings.map((booking) => (
-						<div className={styles.each_booking} key={booking.id}>
-							<img
-								src={booking.Spot.imageUrl}
-								alt="spot"
-								className={styles.booking_img}
-								onError={(e) => {
-									e.onerror = null;
-									e.target.src =
-										"https://campbnb.s3.us-west-1.amazonaws.com/placeholder.jpeg";
-								}}
-							/>
-							<div className={styles.each_booking_right}>
-								<div
-									className={styles.booking_spotInfo}
-									onClick={() =>
-										history.push(
-											`/spots/${booking.Spot.id}`
-										)
-									}
-								>
-									<h3>{booking.Spot.name}</h3>
-									<div>{booking.Spot.city}</div>
-								</div>
-								<div className={styles.time_container}>
-									<div>
-										Start:{" "}
-										{new Date(
-											booking.startDate
-										).toDateString()}
-									</div>
-									<div>
-										End:{" "}
-										{new Date(
-											booking.endDate
-										).toDateString()}
-									</div>
-								</div>
-								<div className={styles.each_more_info}>
-									<div>
-										<i className="fa-thin fa-people-group" />{" "}
-										<span className={styles.num}>
-											{booking.people}
-										</span>
-									</div>
-									<div>
-										{booking.Spot.type === "vehicle" ? (
-											<i className="fa-solid fa-car-mirrors" />
-										) : booking.Spot.type === "rv" ? (
-											<i className="fa-solid fa-rv" />
-										) : booking.Spot.type === "tent" ? (
-											<i className="fa-solid fa-tent" />
-										) : booking.Spot.type ===
-										  "backpacking" ? (
-											<i className="fa-solid fa-backpack" />
-										) : (
-											""
-										)}
-									</div>
-									<button
-										type="button"
-										onClick={() => showConfirm(booking.id)}
-										className={styles.delete}
+					{Object.values(myBookings)
+						.filter(
+							(booking) =>
+								new Date(booking.startDate) > new Date()
+						)
+						.map((booking) => (
+							<div
+								className={styles.each_booking}
+								key={booking.id}
+							>
+								<img
+									src={booking.Spot.imageUrl}
+									alt="spot"
+									className={styles.booking_img}
+									onError={(e) => {
+										e.onerror = null;
+										e.target.src =
+											"https://campbnb.s3.us-west-1.amazonaws.com/placeholder.jpeg";
+									}}
+								/>
+								<div className={styles.each_booking_right}>
+									<div
+										className={styles.booking_spotInfo}
+										onClick={() =>
+											history.push(
+												`/spots/${booking.Spot.id}`
+											)
+										}
 									>
-										Cancel Booking
-									</button>
+										<h3>{booking.Spot.name}</h3>
+										<div>{booking.Spot.city}</div>
+									</div>
+									<div className={styles.time_container}>
+										<div>
+											Start:{" "}
+											{new Date(
+												booking.startDate
+											).toDateString()}
+										</div>
+										<div>
+											End:{" "}
+											{new Date(
+												booking.endDate
+											).toDateString()}
+										</div>
+									</div>
+									<div className={styles.each_more_info}>
+										<div>
+											<i className="fa-thin fa-people-group" />{" "}
+											<span className={styles.num}>
+												{booking.people}
+											</span>
+										</div>
+										<div>
+											{booking.Spot.type === "vehicle" ? (
+												<i className="fa-solid fa-car-mirrors" />
+											) : booking.Spot.type === "rv" ? (
+												<i className="fa-solid fa-rv" />
+											) : booking.Spot.type === "tent" ? (
+												<i className="fa-solid fa-tent" />
+											) : booking.Spot.type ===
+											  "backpacking" ? (
+												<i className="fa-solid fa-backpack" />
+											) : (
+												""
+											)}
+										</div>
+
+										<button
+											type="button"
+											onClick={() =>
+												showEditPeopleModal(booking)
+											}
+											className={styles.edit}
+										>
+											Edit People
+										</button>
+										<button
+											type="button"
+											onClick={() =>
+												showConfirm(booking.id)
+											}
+											className={styles.delete}
+										>
+											Cancel Booking
+										</button>
+									</div>
 								</div>
 							</div>
-						</div>
-					))}
+						))}
 
 					{/* ----------------------------- */}
 					{/* ------- PAST BOOKINGS ------- */}
@@ -144,82 +162,89 @@ const Bookings = () => {
 					<h2 id={styles.past_bookings} className={styles.subheading}>
 						Past Bookings
 					</h2>
-					{pastBookings.length === 0 && (
+					{Object.values(myBookings).filter(
+						(booking) => new Date(booking.startDate) < new Date()
+					).length === 0 && (
 						<div className={styles.no_bookings}>
 							No previous bookings.
 						</div>
 					)}
-					{pastBookings.map((booking) => (
-						<div
-							className={styles.each_booking}
-							key={booking.id}
-							id={styles.past_info}
-						>
-							<img
-								src={booking.Spot.imageUrl}
-								alt="spot"
-								onError={(e) => {
-									e.onerror = null;
-									e.target.src =
-										"https://campbnb.s3.us-west-1.amazonaws.com/placeholder.jpeg";
-								}}
-								className={styles.img_past}
-							/>
-							<div className={styles.each_booking_right}>
-								<div
-									className={styles.booking_spotInfo}
-									onClick={() =>
-										history.push(
-											`/spots/${booking.Spot.id}`
-										)
-									}
-								>
-									<h3 id={styles.past_info}>
-										{booking.Spot.name}
-									</h3>
-									<div id={styles.past_info}>
-										{booking.Spot.city}
+					{Object.values(myBookings)
+						.filter(
+							(booking) =>
+								new Date(booking.startDate) < new Date()
+						)
+						.map((booking) => (
+							<div
+								className={styles.each_booking}
+								key={booking.id}
+								id={styles.past_info}
+							>
+								<img
+									src={booking.Spot.imageUrl}
+									alt="spot"
+									onError={(e) => {
+										e.onerror = null;
+										e.target.src =
+											"https://campbnb.s3.us-west-1.amazonaws.com/placeholder.jpeg";
+									}}
+									className={styles.img_past}
+								/>
+								<div className={styles.each_booking_right}>
+									<div
+										className={styles.booking_spotInfo}
+										onClick={() =>
+											history.push(
+												`/spots/${booking.Spot.id}`
+											)
+										}
+									>
+										<h3 id={styles.past_info}>
+											{booking.Spot.name}
+										</h3>
+										<div id={styles.past_info}>
+											{booking.Spot.city}
+										</div>
 									</div>
-								</div>
-								<div className={styles.time_container}>
-									<div>
-										Started:{"  "}
-										{new Date(
-											booking.startDate
-										).toDateString()}
+									<div className={styles.time_container}>
+										<div>
+											Started:{"  "}
+											{new Date(
+												booking.startDate
+											).toDateString()}
+										</div>
+										<div>
+											Ended:{"  "}
+											{new Date(
+												booking.endDate
+											).toDateString()}
+										</div>
 									</div>
-									<div>
-										Ended:{"  "}
-										{new Date(
-											booking.endDate
-										).toDateString()}
-									</div>
-								</div>
-								<div className={styles.each_more_info}>
-									<div>
-										<i className="fa-thin fa-people-group" />{" "}
-										<span className={styles.num}>
-											{booking.people}
-										</span>
-									</div>
-									<div>
-										{booking.Spot.type === "vehicle" ? (
-											<i className="fa-solid fa-car-mirrors" />
-										) : booking.Spot.type === "rv" ? (
-											<i className="fa-solid fa-rv" />
-										) : booking.Spot.type === "tent" ? (
-											<i className="fa-solid fa-tent" />
-										) : booking.Spot.type ===
-										  "backpacking" ? (
-											<i className="fa-solid fa-backpack" />
-										) : (
-											""
-										)}
+									<div className={styles.each_more_info}>
+										<div>
+											<i className="fa-thin fa-people-group" />{" "}
+											<span className={styles.num}>
+												{booking.people}
+											</span>
+										</div>
+										<div>
+											{booking.Spot.type === "vehicle" ? (
+												<i className="fa-solid fa-car-mirrors" />
+											) : booking.Spot.type === "rv" ? (
+												<i className="fa-solid fa-rv" />
+											) : booking.Spot.type === "tent" ? (
+												<i className="fa-solid fa-tent" />
+											) : booking.Spot.type ===
+											  "backpacking" ? (
+												<i className="fa-solid fa-backpack" />
+											) : (
+												""
+											)}
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					))}
+						))}
 				</div>
 			)}
 		</>

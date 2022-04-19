@@ -76,9 +76,7 @@ const validateSpot = [
 		.isInt()
 		.withMessage("Please enter a integer for the price (No cents).")
 		.isInt({ min: 0 })
-		.withMessage(
-			"Nice try. Please don't enter a negative value for the price!"
-		),
+		.withMessage("Please enter a valid value for the price."),
 	check("capacity")
 		.exists({ checkFalsy: true })
 		.isInt()
