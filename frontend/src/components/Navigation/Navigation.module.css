@@ -91,7 +91,18 @@
 
 .go_to_profile {
 	cursor: pointer;
-	background-color: rgb(138, 138, 138);
+	background-color: rgb(102, 102, 102);
+	width: 100%;
+	display: flex;
+	font-size: 14px;
+	font-weight: 600;
+	justify-content: center;
+	height: 40px;
+	align-items: center;
+}
+
+.disabled_link {
+	background-color: rgb(102, 102, 102);
 	width: 100%;
 	display: flex;
 	font-size: 14px;
@@ -107,7 +118,7 @@
 }
 
 .log_out {
-	background-color: rgb(138, 138, 138);
+	background-color: rgb(102, 102, 102);
 	border: none;
 	filter: none;
 	width: 100%;

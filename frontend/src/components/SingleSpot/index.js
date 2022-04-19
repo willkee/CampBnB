@@ -150,6 +150,32 @@ const SingleSpot = () => {
 								</div>
 							</div>
 
+							<div className={styles.type_site_container}>
+								{spot.type === "vehicle" ? (
+									<div className={styles.type_info}>
+										<i className="fa-solid fa-car-mirrors" />
+										<span>Car Camping Site</span>
+									</div>
+								) : spot.type === "rv" ? (
+									<div className={styles.type_info}>
+										<i className="fa-solid fa-rv" />
+										<span>RV Camping Site</span>
+									</div>
+								) : spot.type === "tent" ? (
+									<div className={styles.type_info}>
+										<i className="fa-solid fa-tent" />
+										<span>Tent Camping Site</span>
+									</div>
+								) : (
+									<div className={styles.type_info}>
+										<i className="fa-solid fa-backpack" />
+										<span>
+											Backpacking Site (No Road Access)
+										</span>
+									</div>
+								)}
+							</div>
+
 							<div className={styles.location_container}>
 								{spot.address && (
 									<div>
