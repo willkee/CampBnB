@@ -1,5 +1,5 @@
 .nav_container {
-	background-color: #10191d;
+	background: linear-gradient(45deg, #10191d, rgb(21, 91, 124));
 	color: white;
 	width: 100%;
 	filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.581));

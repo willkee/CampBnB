@@ -3,19 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, Redirect } from "react-router-dom";
 
 import { csrfFetch } from "../../store/csrf";
-import { currentModal, showModal } from "../../store/modal";
-import { getOneSpot, switchOpening } from "../../store/spots";
+import { getOneSpot } from "../../store/spots";
 
-import EditSpotForm from "../EditSpotForm";
-import DeleteConfirmation from "../DeleteConfirmation";
 import NewBookingForm from "../NewBookingForm";
+import OwnerControls from "./Utilities/OwnerControls";
+import AcceptBookings from "./Utilities/AcceptBookings";
 import styles from "./SingleSpot.module.css";
 
 const SingleSpot = () => {
 	const { id } = useParams();
-	const intId = parseInt(id, 10);
 
-	const spot = useSelector((state) => state.spots[intId]);
+	const spot = useSelector((state) => state.spots[parseInt(id, 10)]);
 	const sessionUser = useSelector((state) => state.session.user);
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [apiKey, setApiKey] = useState("");
@@ -32,79 +30,7 @@ const SingleSpot = () => {
 		load();
 	}, [dispatch, id]);
 
-	const editSpotForm = (spot) => {
-		dispatch(currentModal(() => <EditSpotForm spot={spot} />));
-		dispatch(showModal());
-	};
-
-	const showDeleteConfirmation = (id) => {
-		dispatch(currentModal(() => <DeleteConfirmation id={id} />));
-		dispatch(showModal());
-	};
-
 	if (isLoaded && !spot) return <Redirect to="/main" />;
-
-	const acceptBookings = () => {
-		return (
-			<div
-				className={
-					spot.open
-						? styles.accept_container_green
-						: styles.accept_container_red
-				}
-			>
-				<span>
-					{spot.open ? (
-						<i
-							id={styles.green}
-							className="fa-light fa-hexagon-check"
-						/>
-					) : (
-						<i
-							id={styles.red}
-							className="fa-light fa-hexagon-xmark"
-						/>
-					)}
-				</span>
-				<span className={spot.open ? styles.green : styles.red}>
-					{spot.open ? "Accepting New Bookings" : "No New Bookings"}
-				</span>
-			</div>
-		);
-	};
-
-	const openClose = async () => await dispatch(switchOpening(intId));
-
-	const ownerControls = () => {
-		if (sessionUser) {
-			if (sessionUser.id === spot.ownerId) {
-				return (
-					<div className={styles.owner_controls}>
-						<div>
-							<div>{acceptBookings()}</div>
-							<div className={styles.switch} onClick={openClose}>
-								{spot.open
-									? "Stop New Bookings?"
-									: "Accept New Bookings?"}
-							</div>
-						</div>
-						<div
-							className={styles.edit}
-							onClick={() => editSpotForm(spot)}
-						>
-							Edit Spot
-						</div>
-						<div
-							className={styles.delete}
-							onClick={() => showDeleteConfirmation(spot.id)}
-						>
-							Delete Spot
-						</div>
-					</div>
-				);
-			}
-		}
-	};
 
 	return (
 		<div className={styles.container1}>
@@ -230,9 +156,14 @@ const SingleSpot = () => {
 							{sessionUser && (
 								<>
 									<div>
-										{sessionUser.id === spot.ownerId
-											? ownerControls()
-											: acceptBookings()}
+										{sessionUser.id === spot.ownerId ? (
+											<OwnerControls
+												sessionUser={sessionUser}
+												spot={spot}
+											/>
+										) : (
+											<AcceptBookings spot={spot} />
+										)}
 									</div>
 									{sessionUser.id !== spot.ownerId && (
 										<NewBookingForm spot={spot} />

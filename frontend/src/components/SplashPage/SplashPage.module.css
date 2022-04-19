@@ -24,7 +24,7 @@
 }
 
 .splash_content {
-	background-color: #354f52;
+	background: linear-gradient(45deg, #10191d, rgb(22, 81, 8));
 	position: absolute;
 	top: 150px;
 	width: 100%;

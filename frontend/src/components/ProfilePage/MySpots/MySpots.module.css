@@ -11,7 +11,7 @@
 	margin-bottom: 30px;
 	border-radius: 10px;
 	overflow: hidden;
-	background-color: white;
+	background: linear-gradient(45deg, rgb(255, 255, 255), #c1c1c1);
 	cursor: pointer;
 	transition: all 0.25s ease-in-out;
 }
@@ -20,6 +20,7 @@
 	width: 300px;
 	height: 200px;
 	object-fit: cover;
+	filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.328));
 }
 
 .spot_info {
