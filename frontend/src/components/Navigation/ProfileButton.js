@@ -60,7 +60,11 @@ function ProfileButton() {
 							: "My Profile"}
 					</div>
 					<div>
-						<button className={styles.log_out} onClick={logout}>
+						<button
+							className={styles.log_out}
+							type="button"
+							onClick={logout}
+						>
 							Log Out
 						</button>
 					</div>
