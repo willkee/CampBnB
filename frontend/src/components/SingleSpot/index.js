@@ -10,9 +10,7 @@ import DeleteConfirmation from "../DeleteConfirmation";
 import NewBookingForm from "../NewBookingForm";
 import styles from "./SingleSpot.module.css";
 import { csrfFetch } from "../../store/csrf";
-
 import { switchOpening } from "../../store/spots";
-import GoogleMaps from "./GoogleMaps";
 
 const SingleSpot = () => {
 	const { id } = useParams();
@@ -177,7 +175,6 @@ const SingleSpot = () => {
 									{spot.city}
 								</div>
 							</div>
-							{/* <GoogleMaps spot={spot} /> */}
 							{spot.lat && spot.long ? (
 								<iframe
 									title={id}
