@@ -1,5 +1,5 @@
 import React from "react";
-import { csrfFetch } from "../../store/csrf";
+
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Redirect } from "react-router-dom";
@@ -9,8 +9,10 @@ import EditSpotForm from "../EditSpotForm";
 import DeleteConfirmation from "../DeleteConfirmation";
 import NewBookingForm from "../NewBookingForm";
 import styles from "./SingleSpot.module.css";
+import { csrfFetch } from "../../store/csrf";
 
 import { switchOpening } from "../../store/spots";
+import GoogleMaps from "./GoogleMaps";
 
 const SingleSpot = () => {
 	const { id } = useParams();
@@ -175,7 +177,7 @@ const SingleSpot = () => {
 									{spot.city}
 								</div>
 							</div>
-							{(console.disableYellowBox = true)}
+							{/* <GoogleMaps spot={spot} /> */}
 							{spot.lat && spot.long ? (
 								<iframe
 									title={id}
