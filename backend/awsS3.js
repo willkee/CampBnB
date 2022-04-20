@@ -1,6 +1,6 @@
 const AWS = require("aws-sdk");
 const multer = require("multer");
-const S3_BUCKET = "campbnb";
+const S3_BUCKET = process.env.S3_BUCKET;
 
 const s3 = new AWS.S3({ apiVersion: "2006-03-01" });
 

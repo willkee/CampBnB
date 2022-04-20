@@ -33,7 +33,6 @@ const NewSpotForm = () => {
 		setErrors([]);
 
 		try {
-			console.log(imageUrl, "img url");
 			const newSpot = await dispatch(
 				createSpot({
 					name,

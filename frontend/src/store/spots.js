@@ -119,8 +119,6 @@ export const updateOneSpot = (data) => async (dispatch) => {
 		capacity,
 	} = data;
 
-	console.log(data, "STORE DATA");
-
 	const formData = new FormData();
 	formData.append("name", name);
 	formData.append("address", address);

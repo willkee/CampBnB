@@ -178,8 +178,6 @@ router.put(
 		const id = parseInt(req.params.id, 10);
 		const spot = await Spot.findOne({ where: { id } });
 
-		console.log("REQ EDIT", req.body);
-
 		try {
 			if (spot) {
 				const {
