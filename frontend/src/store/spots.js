@@ -53,8 +53,6 @@ export const createSpot = (data) => async (dispatch) => {
 		capacity,
 	} = data;
 
-	// console.log("STORE", imageUrl);
-
 	const formData = new FormData();
 	formData.append("name", name);
 	formData.append("address", address);
@@ -67,8 +65,6 @@ export const createSpot = (data) => async (dispatch) => {
 	if (description) formData.append("description", description);
 	formData.append("capacity", capacity);
 
-	console.log(formData, "form data");
-
 	const res = await csrfFetch(`/api/spots`, {
 		method: "POST",
 		headers: {
@@ -76,10 +72,7 @@ export const createSpot = (data) => async (dispatch) => {
 		},
 		body: formData,
 	});
-	// const res = await csrfFetch("/api/spots/", {
-	// 	method: "POST",
-	// 	body: JSON.stringify(data),
-	// });
+
 	if (res.ok) {
 		const result = await res.json();
 		await dispatch(createdSpot(result));
@@ -113,9 +106,39 @@ export const getOneSpot = (id) => async (dispatch) => {
 // Update the details of one spot.
 
 export const updateOneSpot = (data) => async (dispatch) => {
+	const {
+		name,
+		address,
+		city,
+		lat,
+		long,
+		imageUrl,
+		type,
+		price,
+		description,
+		capacity,
+	} = data;
+
+	console.log(data, "STORE DATA");
+
+	const formData = new FormData();
+	formData.append("name", name);
+	formData.append("address", address);
+	formData.append("city", city);
+	if (lat) formData.append("lat", lat);
+	if (long) formData.append("long", long);
+	formData.append("imageUrl", imageUrl);
+	formData.append("type", type);
+	formData.append("price", price);
+	if (description) formData.append("description", description);
+	formData.append("capacity", capacity);
+
 	const res = await csrfFetch(`/api/spots/${data.id}`, {
 		method: "PUT",
-		body: JSON.stringify(data),
+		headers: {
+			"Content-Type": "multipart/form-data",
+		},
+		body: formData,
 	});
 	if (res.ok) {
 		const update = await res.json();

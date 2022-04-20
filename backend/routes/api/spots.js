@@ -46,12 +46,15 @@ const validateSpot = [
 		.withMessage("Please enter the city of your spot.")
 		.isLength({ max: 255 })
 		.withMessage(
-			"There's no city name in the world longer than 255 characters! (Much less 🇺🇸 or Colorado!) 😄"
+			"There's no city name in the world longer than 255 characters!"
 		),
-	// check("imageUrl").notEmpty().withMessage("Please upload an image."),
-	// check("imageUrl")
-	// 	.exists()
-	// 	.withMessage("Please enter an image URL.")
+	check("imageUrl").custom(async (_value, { req }) => {
+		if (!req.file) {
+			if (!req.body.imageUrl) {
+				return await Promise.reject("Please upload an image.");
+			}
+		}
+	}),
 	// 	.isLength({ min: 3, max: 2048 })
 	// 	.withMessage("Please enter an image URL between 3 and 2048 characters.")
 	// 	.custom(async (_value, { req }) => {
@@ -135,28 +138,12 @@ router.post(
 			city,
 			lat,
 			long,
-			imageUrl,
 			type,
 			price,
 			description,
 			capacity,
 		} = req.body;
 
-		// console.log("IMG URL ROUTER POST", imageUrl);
-
-		// console.log(req.body);
-
-		// console.log(
-		// 	"REQ START \n\n\n\n\n",
-		// 	req.body,
-		// 	"\n\n\n\n\n FILE FILE FILE FILE FILE"
-		// );
-
-		console.log(
-			"REQ FILE REQ FILE REQ FILE \n\n\n\n\n\n",
-			req.file,
-			"\n\n\n\n\n\n REQ FILE REQ FILE"
-		);
 		const imageUpload = await singlePublicFileUpload(req.file);
 
 		const newSpot = await Spot.create({
@@ -166,7 +153,6 @@ router.post(
 			city,
 			lat,
 			long,
-			// imageUrl,
 			imageUrl: imageUpload,
 			type,
 			price,
@@ -183,46 +169,138 @@ router.post(
 	})
 );
 
+router.put(
+	"/:id",
+	singleMulterUpload("imageUrl"),
+	requireAuth,
+	validateSpot,
+	asyncHandler(async (req, res) => {
+		const id = parseInt(req.params.id, 10);
+		const spot = await Spot.findOne({ where: { id } });
+
+		console.log("REQ EDIT", req.body);
+
+		try {
+			if (spot) {
+				const {
+					name,
+					address,
+					city,
+					lat,
+					long,
+					imageUrl,
+					type,
+					price,
+					description,
+					capacity,
+				} = req.body;
+
+				let imageUpload;
+				if (req.file)
+					imageUpload = await singlePublicFileUpload(req.file);
+
+				if (!req.file && imageUrl) {
+					await Spot.update(
+						{
+							name,
+							address,
+							city,
+							lat,
+							long,
+							imageUrl,
+							type,
+							price,
+							description,
+							capacity,
+						},
+						{
+							where: { id },
+							returning: true,
+							plain: true,
+						}
+					);
+				} else {
+					await Spot.update(
+						{
+							name,
+							address,
+							city,
+							lat,
+							long,
+							imageUrl: imageUpload,
+							type,
+							price,
+							description,
+							capacity,
+						},
+						{
+							where: { id },
+							returning: true,
+							plain: true,
+						}
+					);
+				}
+
+				const updatedSpot = await Spot.findByPk(id, {
+					include: [{ model: User }, { model: Booking }],
+				});
+				return res.json(updatedSpot);
+			}
+		} catch (e) {
+			console.error("Error: Spot not found: ", e);
+		}
+	})
+);
+
+router.patch(
+	"/:id/switch",
+	requireAuth,
+	asyncHandler(async (req, res) => {
+		const id = parseInt(req.params.id, 10);
+		const spot = await Spot.findOne({ where: { id } });
+
+		try {
+			if (spot) {
+				await Spot.update(
+					{ open: !spot.open },
+					{
+						where: { id: spot.id },
+						returning: true,
+					}
+				);
+
+				const result = await Spot.findByPk(spot.id, {
+					include: [{ model: User }, { model: Booking }],
+				});
+				return res.json(result);
+			}
+		} catch (e) {
+			console.error("Error: Spot not found: ", e);
+		}
+	})
+);
+
+router.delete(
+	"/:id",
+	requireAuth,
+	asyncHandler(async (req, res) => {
+		const id = parseInt(req.params.id, 10);
+		const spot = await Spot.findByPk(id);
+
+		if (spot) {
+			await Spot.destroy({ where: { id } });
+			return res.json({ id });
+		} else {
+			throw new Error("Spot not found.");
+		}
+	})
+);
+
 // ---------------------------------------------------------------------------------
 // CREATE NEW BOOKING
 // ---------------------------------------------------------------------------------
 
 const validateBooking = [
-	// check("startDate")
-	// 	.exists({ checkFalsy: true })
-	// 	.withMessage("Please enter a start date.")
-	// 	.custom(async (_value, { req }) => {
-	// 		const bookings = await Booking.findAll({
-	// 			where: {
-	// 				[Op.or]: [
-	// 					{
-	// 						startDate: {
-	// 							[Op.between]: [
-	// 								req.body.startDate,
-	// 								req.body.endDate,
-	// 							],
-	// 						},
-	// 					},
-	// 					{
-	// 						endDate: {
-	// 							[Op.between]: [
-	// 								req.body.startDate,
-	// 								req.body.endDate,
-	// 							],
-	// 						},
-	// 					},
-	// 				],
-	// 				spotId: {
-	// 					[Op.in]: req.body.spotId,
-	// 				},
-	// 			},
-	// 		});
-	// 		if (bookings) {
-	// 			return await Promise.reject(
-	// 				"Some or all of the dates you selected are not available."
-	// 			);
-	// 		}
-	// 	}),
 	check("startDate")
 		.exists({ checkFalsy: true })
 		.withMessage("Please enter a start date.")
@@ -304,76 +382,5 @@ router.post(
 
 // ---------------------------------------------------------------------------------
 // ---------------------------------------------------------------------------------
-
-router.put(
-	"/:id",
-	requireAuth,
-	validateSpot,
-	asyncHandler(async (req, res) => {
-		const id = parseInt(req.params.id, 10);
-		const spot = await Spot.findOne({ where: { id } });
-
-		try {
-			if (spot) {
-				await Spot.update(req.body, {
-					where: { id },
-					returning: true,
-					plain: true,
-				});
-
-				const updatedSpot = await Spot.findByPk(id, {
-					include: [{ model: User }, { model: Booking }],
-				});
-				return res.json(updatedSpot);
-			}
-		} catch (e) {
-			console.error("Error: Spot not found: ", e);
-		}
-	})
-);
-
-router.patch(
-	"/:id/switch",
-	requireAuth,
-	asyncHandler(async (req, res) => {
-		const id = parseInt(req.params.id, 10);
-		const spot = await Spot.findOne({ where: { id } });
-
-		try {
-			if (spot) {
-				await Spot.update(
-					{ open: !spot.open },
-					{
-						where: { id: spot.id },
-						returning: true,
-					}
-				);
-
-				const result = await Spot.findByPk(spot.id, {
-					include: [{ model: User }, { model: Booking }],
-				});
-				return res.json(result);
-			}
-		} catch (e) {
-			console.error("Error: Spot not found: ", e);
-		}
-	})
-);
-
-router.delete(
-	"/:id",
-	requireAuth,
-	asyncHandler(async (req, res) => {
-		const id = parseInt(req.params.id, 10);
-		const spot = await Spot.findByPk(id);
-
-		if (spot) {
-			await Spot.destroy({ where: { id } });
-			return res.json({ id });
-		} else {
-			throw new Error("Spot not found.");
-		}
-	})
-);
 
 module.exports = router;

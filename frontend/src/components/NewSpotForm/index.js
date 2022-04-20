@@ -58,13 +58,7 @@ const NewSpotForm = () => {
 
 	const updateFile = (e) => {
 		const file = e.target.files[0];
-		console.log(e.target.files, file);
-		// console.log(file, "frontend file");
-		// // if (file) setImageUrl(file);
-		// // console.log(imageUrl);
 		setImageUrl(file);
-		console.log(imageUrl);
-		// console.log(imageUrl);
 	};
 
 	const rightInput = () => (
@@ -234,7 +228,8 @@ const NewSpotForm = () => {
 								<input
 									type="file"
 									onChange={updateFile}
-									required
+									accept="image/*"
+									// required
 								/>
 							</div>
 						</label>
