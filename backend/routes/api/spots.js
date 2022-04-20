@@ -6,7 +6,7 @@ const { handleValidationErrors } = require("../../utils/validation");
 const { requireAuth } = require("../../utils/auth");
 const { Spot, User, Booking } = require("../../db/models");
 const { Op } = require("sequelize");
-const { singlePublicFileUpload, singleMulterUpload } = require("../../awsS3");
+const { fileUpload, multerUpload } = require("../../awsS3");
 
 const router = express.Router();
 
@@ -127,7 +127,7 @@ router.get(
 
 router.post(
 	"/",
-	singleMulterUpload("imageUrl"),
+	multerUpload("imageUrl"),
 	requireAuth,
 	validateSpot,
 	asyncHandler(async (req, res) => {
@@ -144,7 +144,7 @@ router.post(
 			capacity,
 		} = req.body;
 
-		const imageUpload = await singlePublicFileUpload(req.file);
+		const imageUpload = await fileUpload(req.file);
 
 		const newSpot = await Spot.create({
 			ownerId: user.id,
@@ -171,7 +171,7 @@ router.post(
 
 router.put(
 	"/:id",
-	singleMulterUpload("imageUrl"),
+	multerUpload("imageUrl"),
 	requireAuth,
 	validateSpot,
 	asyncHandler(async (req, res) => {
@@ -196,8 +196,7 @@ router.put(
 				} = req.body;
 
 				let imageUpload;
-				if (req.file)
-					imageUpload = await singlePublicFileUpload(req.file);
+				if (req.file) imageUpload = await fileUpload(req.file);
 
 				if (!req.file && imageUrl) {
 					await Spot.update(

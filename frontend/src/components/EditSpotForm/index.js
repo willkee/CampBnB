@@ -48,6 +48,7 @@ const EditSpotForm = ({ spot }) => {
 					})
 				);
 			} else {
+				chooseOld();
 				await dispatch(
 					updateOneSpot({
 						id: spot.id,
@@ -255,7 +256,10 @@ const EditSpotForm = ({ spot }) => {
 									: wrongInput()}
 							</div>
 						</label>
-						<div onClick={() => setChooseNewImg(true)}>
+						<div
+							className={styles.switch_upload}
+							onClick={() => setChooseNewImg(true)}
+						>
 							Want to upload a new image? Click here.
 						</div>
 					</>
@@ -272,7 +276,10 @@ const EditSpotForm = ({ spot }) => {
 								/>
 							</div>
 						</label>
-						<div onClick={chooseOld}>
+						<div
+							onClick={chooseOld}
+							className={styles.switch_upload}
+						>
 							Want to use the same image? Click here.
 						</div>
 					</>
