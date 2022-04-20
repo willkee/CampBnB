@@ -63,7 +63,7 @@ module.exports = {
 				},
 				{
 					spotId: 16,
-					userId: 1,
+					userId: 2,
 					startDate: "2022-02-16",
 					endDate: "2022-02-19",
 					people: 3,

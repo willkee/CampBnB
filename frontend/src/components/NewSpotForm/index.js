@@ -232,6 +232,45 @@ const NewSpotForm = () => {
 								/>
 							</div>
 						</label>
+						{imageUrl && (
+							<>
+								<div className={styles.upload_info}>
+									Please limit file sizes to 1MB. File types
+									accepted: .jpg, .jpeg, .png, .gif
+								</div>
+								<div className={styles.upload_file_info}>
+									<div className={styles.section}>
+										Your upload:
+										<span
+											className={
+												imageUrl.size > 1000000
+													? styles.bad_entry
+													: ""
+											}
+										>
+											{(imageUrl.size / 1000).toFixed(2)}{" "}
+											KB
+										</span>
+									</div>
+									<div>
+										File Type:
+										<span
+											className={
+												imageUrl.type ===
+													"image/jpeg" ||
+												imageUrl.type === "image/jpg" ||
+												imageUrl.type === "image/png" ||
+												imageUrl.type === "image/gif"
+													? ""
+													: styles.bad_entry
+											}
+										>
+											{imageUrl.type}
+										</span>
+									</div>
+								</div>
+							</>
+						)}
 						{/* <label>
 							Image URL
 							<div className={styles.input_container}>
