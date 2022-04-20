@@ -53,22 +53,23 @@ const validateSpot = [
 			if (!req.body.imageUrl) {
 				return await Promise.reject("Please upload an image.");
 			}
+		} else {
+			if (
+				req.file.mimetype !== "image/jpeg" &&
+				req.file.mimetype !== "image/jpg" &&
+				req.file.mimetype !== "image/png" &&
+				req.file.mimetype !== "image/gif"
+			) {
+				return await Promise.reject(
+					"Please upload an image with one of the following file types: .jpeg, .jpg, .png, .gif."
+				);
+			} else if (req.file.size > 1000000) {
+				return await Promise.reject(
+					"Please upload an image less than 1MB in size. Try an image compressor tool!"
+				);
+			}
 		}
 	}),
-	// 	.isLength({ min: 3, max: 2048 })
-	// 	.withMessage("Please enter an image URL between 3 and 2048 characters.")
-	// 	.custom(async (_value, { req }) => {
-	// 		if (
-	// 			!req.body.imageUrl.endsWith(".jpg") &&
-	// 			!req.body.imageUrl.endsWith(".jpeg") &&
-	// 			!req.body.imageUrl.endsWith(".png") &&
-	// 			!req.body.imageUrl.endsWith(".gif")
-	// 		) {
-	// 			return await Promise.reject(
-	// 				"Please enter a valid image URL ending in .jpg, .jpeg, .png, or .gif."
-	// 			);
-	// 		}
-	// 	}),
 	check("type")
 		.exists({ checkFalsy: true })
 		.isIn(["vehicle", "rv", "tent", "backpacking"])

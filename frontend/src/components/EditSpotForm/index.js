@@ -142,7 +142,11 @@ const EditSpotForm = ({ spot }) => {
 						</label>
 						<div
 							className={styles.loc_switch}
-							onClick={() => setLatLongOnly(true)}
+							onClick={() => {
+								setLatLongOnly(true);
+								setLat(parseFloat("37").toFixed(6));
+								setLong(parseFloat("-102").toFixed(6));
+							}}
 						>
 							No street address? Click here.
 						</div>
@@ -211,7 +215,11 @@ const EditSpotForm = ({ spot }) => {
 						</div>
 						<div
 							className={styles.loc_switch}
-							onClick={() => setLatLongOnly(false)}
+							onClick={() => {
+								setLatLongOnly(false);
+								setLat(null);
+								setLong(null);
+							}}
 						>
 							Want to enter a street address instead? Click here.
 						</div>
@@ -240,9 +248,12 @@ const EditSpotForm = ({ spot }) => {
 									type="text"
 									value={imageUrl}
 									disabled
-									onChange={(e) =>
-										setImageUrl(e.target.value)
-									}
+									onChange={() => {
+										alert(
+											"Nice try. Please upload an image instead."
+										);
+										setImageUrl(spot.imageUrl);
+									}}
 									placeholder="Accepted formats: .jpg, .jpeg, .png, .gif."
 								/>
 								{imageUrl &&
@@ -276,6 +287,43 @@ const EditSpotForm = ({ spot }) => {
 								/>
 							</div>
 						</label>
+						{newImg && (
+							<>
+								<div className={styles.upload_info}>
+									Please limit file sizes to 1MB. File types
+									accepted: .jpg, .jpeg, .png, .gif
+								</div>
+								<div className={styles.upload_file_info}>
+									<div className={styles.section}>
+										Your upload:
+										<span
+											className={
+												newImg.size > 1000000
+													? styles.bad_entry
+													: ""
+											}
+										>
+											{(newImg.size / 1000).toFixed(2)} KB
+										</span>
+									</div>
+									<div>
+										File Type:
+										<span
+											className={
+												newImg.type === "image/jpeg" ||
+												newImg.type === "image/jpg" ||
+												newImg.type === "image/png" ||
+												newImg.type === "image/gif"
+													? ""
+													: styles.bad_entry
+											}
+										>
+											{newImg.type}
+										</span>
+									</div>
+								</div>
+							</>
+						)}
 						<div
 							onClick={chooseOld}
 							className={styles.switch_upload}

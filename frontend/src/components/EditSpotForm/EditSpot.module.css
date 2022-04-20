@@ -130,6 +130,13 @@
 .loc_switch {
 	font-size: 12px;
 	margin: 10px 0 20px 0;
+	cursor: pointer;
+	width: fit-content;
+	align-self: flex-end;
+}
+
+.loc_switch:hover {
+	color: green;
 }
 
 .button_container {
@@ -190,8 +197,34 @@
 	font-size: 12px;
 	cursor: pointer;
 	margin-bottom: 20px;
+	width: fit-content;
+	align-self: flex-end;
 }
 
 .switch_upload:hover {
 	color: green;
+}
+
+.upload_info {
+	font-size: 12px;
+	margin-bottom: 5px;
+}
+
+.upload_file_info {
+	margin-bottom: 20px;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.upload_file_info * {
+	font-size: 12px;
+	margin-left: 15px;
+}
+
+.bad_entry {
+	color: red;
+}
+
+.section {
+	margin-right: 20px;
 }
