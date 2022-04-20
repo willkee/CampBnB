@@ -22,6 +22,8 @@ const Homepage = ({ spots }) => {
 			setLoaded(true);
 		};
 		loader();
+
+		return () => setLoaded(false);
 	}, [dispatch]);
 
 	const sendToSpot = (id) => history.push(`/spots/${id}`);

@@ -90,6 +90,10 @@
 .desc {
 	margin-top: 30px;
 	font-size: 15px;
+	max-width: 800px;
+	height: 600px;
+	overflow-y: scroll;
+	overflow-wrap: break-word;
 }
 
 .booking_form {

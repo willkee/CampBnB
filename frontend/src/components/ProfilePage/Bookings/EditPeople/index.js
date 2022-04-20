@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { hideModal } from "../../../../store/modal";
 import { updatePeopleInBooking } from "../../../../store/session";
@@ -8,6 +8,18 @@ const EditPeople = ({ booking }) => {
 	const dispatch = useDispatch();
 	const [people, setPeople] = useState(booking.people);
 	const [errors, setErrors] = useState([]);
+
+	useEffect(() => {
+		loader();
+
+		return () => setPeople();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	const loader = () => {
+		setPeople(booking.people);
+		setErrors([]);
+	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();

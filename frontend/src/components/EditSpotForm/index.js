@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateOneSpot } from "../../store/spots";
 import { hideModal } from "../../store/modal";
@@ -27,6 +27,42 @@ const EditSpotForm = ({ spot }) => {
 	const [submitted, setSubmitted] = useState(false);
 
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		loader();
+		return () => {
+			setName();
+			setAddress();
+			setCity();
+			setLat();
+			setLong();
+			setImageUrl();
+			setNewImg(null);
+			setType();
+			setPrice();
+			setDescription("");
+			setCapacity();
+		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	const loader = () => {
+		setErrors([]);
+		setName(spot.name);
+		setAddress(spot.address);
+		setCity(spot.city);
+		setLat(spot.lat);
+		setLong(spot.long);
+		setImageUrl(spot.imageUrl);
+		setNewImg(null);
+		setType(spot.type);
+		setPrice(spot.price);
+		setDescription(spot.description || "");
+		setCapacity(spot.capacity);
+		setLatLongOnly(false);
+		setChooseNewImg(false);
+		setSubmitted(false);
+	};
 
 	const handleSubmit = async () => {
 		setErrors([]);
