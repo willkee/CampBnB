@@ -6,6 +6,7 @@ const { handleValidationErrors } = require("../../utils/validation");
 const { requireAuth } = require("../../utils/auth");
 const { Spot, User, Booking } = require("../../db/models");
 const { Op } = require("sequelize");
+const { singlePublicFileUpload, singleMulterUpload } = require("../../awsS3");
 
 const router = express.Router();
 
@@ -47,23 +48,24 @@ const validateSpot = [
 		.withMessage(
 			"There's no city name in the world longer than 255 characters! (Much less 🇺🇸 or Colorado!) 😄"
 		),
-	check("imageUrl")
-		.exists({ checkFalsy: true })
-		.withMessage("Please enter an image URL.")
-		.isLength({ min: 3, max: 2048 })
-		.withMessage("Please enter an image URL between 3 and 2048 characters.")
-		.custom(async (_value, { req }) => {
-			if (
-				!req.body.imageUrl.endsWith(".jpg") &&
-				!req.body.imageUrl.endsWith(".jpeg") &&
-				!req.body.imageUrl.endsWith(".png") &&
-				!req.body.imageUrl.endsWith(".gif")
-			) {
-				return await Promise.reject(
-					"Please enter a valid image URL ending in .jpg, .jpeg, .png, or .gif."
-				);
-			}
-		}),
+	// check("imageUrl").notEmpty().withMessage("Please upload an image."),
+	// check("imageUrl")
+	// 	.exists()
+	// 	.withMessage("Please enter an image URL.")
+	// 	.isLength({ min: 3, max: 2048 })
+	// 	.withMessage("Please enter an image URL between 3 and 2048 characters.")
+	// 	.custom(async (_value, { req }) => {
+	// 		if (
+	// 			!req.body.imageUrl.endsWith(".jpg") &&
+	// 			!req.body.imageUrl.endsWith(".jpeg") &&
+	// 			!req.body.imageUrl.endsWith(".png") &&
+	// 			!req.body.imageUrl.endsWith(".gif")
+	// 		) {
+	// 			return await Promise.reject(
+	// 				"Please enter a valid image URL ending in .jpg, .jpeg, .png, or .gif."
+	// 			);
+	// 		}
+	// 	}),
 	check("type")
 		.exists({ checkFalsy: true })
 		.isIn(["vehicle", "rv", "tent", "backpacking"])
@@ -122,11 +124,11 @@ router.get(
 
 router.post(
 	"/",
+	singleMulterUpload("imageUrl"),
 	requireAuth,
 	validateSpot,
 	asyncHandler(async (req, res) => {
 		const { user } = req;
-
 		const {
 			name,
 			address,
@@ -140,6 +142,23 @@ router.post(
 			capacity,
 		} = req.body;
 
+		// console.log("IMG URL ROUTER POST", imageUrl);
+
+		// console.log(req.body);
+
+		// console.log(
+		// 	"REQ START \n\n\n\n\n",
+		// 	req.body,
+		// 	"\n\n\n\n\n FILE FILE FILE FILE FILE"
+		// );
+
+		console.log(
+			"REQ FILE REQ FILE REQ FILE \n\n\n\n\n\n",
+			req.file,
+			"\n\n\n\n\n\n REQ FILE REQ FILE"
+		);
+		const imageUpload = await singlePublicFileUpload(req.file);
+
 		const newSpot = await Spot.create({
 			ownerId: user.id,
 			name,
@@ -147,7 +166,8 @@ router.post(
 			city,
 			lat,
 			long,
-			imageUrl,
+			// imageUrl,
+			imageUrl: imageUpload,
 			type,
 			price,
 			description,

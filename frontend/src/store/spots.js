@@ -40,10 +40,46 @@ const deletedSpot = (deletedId) => ({
 // CREATE
 // Create a new spot.
 export const createSpot = (data) => async (dispatch) => {
-	const res = await csrfFetch("/api/spots/", {
+	const {
+		name,
+		address,
+		city,
+		lat,
+		long,
+		imageUrl,
+		type,
+		price,
+		description,
+		capacity,
+	} = data;
+
+	// console.log("STORE", imageUrl);
+
+	const formData = new FormData();
+	formData.append("name", name);
+	formData.append("address", address);
+	formData.append("city", city);
+	if (lat) formData.append("lat", lat);
+	if (long) formData.append("long", long);
+	formData.append("imageUrl", imageUrl);
+	formData.append("type", type);
+	formData.append("price", price);
+	if (description) formData.append("description", description);
+	formData.append("capacity", capacity);
+
+	console.log(formData, "form data");
+
+	const res = await csrfFetch(`/api/spots`, {
 		method: "POST",
-		body: JSON.stringify(data),
+		headers: {
+			"Content-Type": "multipart/form-data",
+		},
+		body: formData,
 	});
+	// const res = await csrfFetch("/api/spots/", {
+	// 	method: "POST",
+	// 	body: JSON.stringify(data),
+	// });
 	if (res.ok) {
 		const result = await res.json();
 		await dispatch(createdSpot(result));

@@ -15,7 +15,7 @@ const NewSpotForm = () => {
 	const [city, setCity] = useState("");
 	const [lat, setLat] = useState();
 	const [long, setLong] = useState();
-	const [imageUrl, setImageUrl] = useState("");
+	const [imageUrl, setImageUrl] = useState(null);
 	const [type, setType] = useState("tent");
 	const [price, setPrice] = useState(0);
 	const [description, setDescription] = useState("");
@@ -33,6 +33,7 @@ const NewSpotForm = () => {
 		setErrors([]);
 
 		try {
+			console.log(imageUrl, "img url");
 			const newSpot = await dispatch(
 				createSpot({
 					name,
@@ -53,6 +54,17 @@ const NewSpotForm = () => {
 			if (data && data.errors) setErrors(data.errors);
 			window.scrollTo({ top: 0 });
 		}
+	};
+
+	const updateFile = (e) => {
+		const file = e.target.files[0];
+		console.log(e.target.files, file);
+		// console.log(file, "frontend file");
+		// // if (file) setImageUrl(file);
+		// // console.log(imageUrl);
+		setImageUrl(file);
+		console.log(imageUrl);
+		// console.log(imageUrl);
 	};
 
 	const rightInput = () => (
@@ -217,6 +229,16 @@ const NewSpotForm = () => {
 							</div>
 						</label>
 						<label>
+							Image Upload
+							<div className={styles.input_container}>
+								<input
+									type="file"
+									onChange={updateFile}
+									required
+								/>
+							</div>
+						</label>
+						{/* <label>
 							Image URL
 							<div className={styles.input_container}>
 								<input
@@ -237,7 +259,7 @@ const NewSpotForm = () => {
 									? rightInput()
 									: wrongInput()}
 							</div>
-						</label>
+						</label> */}
 						<label>
 							Type of Site
 							<div className={styles.input_container}>
