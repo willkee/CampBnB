@@ -24,10 +24,11 @@ const EditSpotForm = ({ spot }) => {
 	const [latLongOnly, setLatLongOnly] = useState(false);
 	const [chooseNewImg, setChooseNewImg] = useState(false);
 
+	const [submitted, setSubmitted] = useState(false);
+
 	const dispatch = useDispatch();
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
+	const handleSubmit = async () => {
 		setErrors([]);
 
 		try {
@@ -66,10 +67,12 @@ const EditSpotForm = ({ spot }) => {
 				);
 			}
 			await dispatch(hideModal());
+			setSubmitted(false);
 			return;
 		} catch (err) {
 			const data = await err.json();
 			if (data && data.errors) setErrors(data.errors);
+			setSubmitted(false);
 		}
 	};
 
@@ -104,7 +107,7 @@ const EditSpotForm = ({ spot }) => {
 					states coming soon!
 				</div>
 			</div>
-			<form className={styles.form_container} onSubmit={handleSubmit}>
+			<form className={styles.form_container}>
 				{errors.length > 0 && (
 					<div className={styles.error_container}>
 						{errors.map((error, idx) => (
@@ -394,8 +397,16 @@ const EditSpotForm = ({ spot }) => {
 				)}
 
 				<div className={styles.button_container}>
-					<button className={styles.submit} type="submit">
-						Edit Details
+					<button
+						onClick={() => {
+							handleSubmit();
+							setSubmitted(true);
+						}}
+						disabled={submitted}
+						className={submitted ? styles.loading : styles.submit}
+						type="submit"
+					>
+						{submitted ? "Loading..." : "Edit Details"}
 					</button>
 					<div
 						role="button"

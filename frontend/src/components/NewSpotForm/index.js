@@ -21,6 +21,8 @@ const NewSpotForm = () => {
 	const [description, setDescription] = useState("");
 	const [capacity, setCapacity] = useState(4);
 
+	const [submitted, setSubmitted] = useState(false);
+
 	const [latLongOnly, setLatLongOnly] = useState(false);
 
 	const dispatch = useDispatch();
@@ -28,8 +30,7 @@ const NewSpotForm = () => {
 	useEffect(() => {
 		setLoaded(true);
 	}, []);
-	const handleSubmit = async (e) => {
-		e.preventDefault();
+	const handleSubmit = async () => {
 		setErrors([]);
 
 		try {
@@ -47,10 +48,12 @@ const NewSpotForm = () => {
 					capacity,
 				})
 			);
+			setSubmitted(false);
 			return history.push(`/spots/${newSpot.id}`);
 		} catch (err) {
 			const data = await err.json();
 			if (data && data.errors) setErrors(data.errors);
+			setSubmitted(false);
 			window.scrollTo({ top: 0 });
 		}
 	};
@@ -76,10 +79,7 @@ const NewSpotForm = () => {
 						We are currently only accepting spots within Colorado.
 						More states coming soon!
 					</div>
-					<form
-						className={styles.form_container}
-						onSubmit={handleSubmit}
-					>
+					<form className={styles.form_container}>
 						{errors.length > 0 && (
 							<div className={styles.error_container}>
 								{errors.map((error, idx) => (
@@ -357,8 +357,18 @@ const NewSpotForm = () => {
 							</div>
 						</label>
 						<div className={styles.button_container}>
-							<button className={styles.submit} type="submit">
-								Create your Spot
+							<button
+								onClick={() => {
+									handleSubmit();
+									setSubmitted(true);
+								}}
+								className={
+									submitted ? styles.loading : styles.submit
+								}
+								disabled={submitted}
+								type="button"
+							>
+								{submitted ? "Loading" : "Create your Spot"}
 							</button>
 							<div
 								role="button"
