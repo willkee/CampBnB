@@ -399,12 +399,12 @@ const EditSpotForm = ({ spot }) => {
 				<div className={styles.button_container}>
 					<button
 						onClick={() => {
-							handleSubmit();
 							setSubmitted(true);
+							handleSubmit();
 						}}
 						disabled={submitted}
 						className={submitted ? styles.loading : styles.submit}
-						type="submit"
+						type="button"
 					>
 						{submitted ? "Loading..." : "Edit Details"}
 					</button>

@@ -359,8 +359,8 @@ const NewSpotForm = () => {
 						<div className={styles.button_container}>
 							<button
 								onClick={() => {
-									handleSubmit();
 									setSubmitted(true);
+									handleSubmit();
 								}}
 								className={
 									submitted ? styles.loading : styles.submit
@@ -368,7 +368,7 @@ const NewSpotForm = () => {
 								disabled={submitted}
 								type="button"
 							>
-								{submitted ? "Loading" : "Create your Spot"}
+								{submitted ? "Loading..." : "Create your Spot"}
 							</button>
 							<div
 								role="button"
