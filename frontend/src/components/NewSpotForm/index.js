@@ -15,7 +15,7 @@ const NewSpotForm = () => {
 	const [city, setCity] = useState("");
 	const [lat, setLat] = useState();
 	const [long, setLong] = useState();
-	const [imageUrl, setImageUrl] = useState("");
+	const [imageUrl, setImageUrl] = useState(null);
 	const [type, setType] = useState("tent");
 	const [price, setPrice] = useState(0);
 	const [description, setDescription] = useState("");
@@ -53,6 +53,11 @@ const NewSpotForm = () => {
 			if (data && data.errors) setErrors(data.errors);
 			window.scrollTo({ top: 0 });
 		}
+	};
+
+	const updateFile = (e) => {
+		const file = e.target.files[0];
+		setImageUrl(file);
 	};
 
 	const rightInput = () => (
@@ -217,6 +222,17 @@ const NewSpotForm = () => {
 							</div>
 						</label>
 						<label>
+							Image Upload
+							<div className={styles.input_container}>
+								<input
+									type="file"
+									onChange={updateFile}
+									accept="image/*"
+									// required
+								/>
+							</div>
+						</label>
+						{/* <label>
 							Image URL
 							<div className={styles.input_container}>
 								<input
@@ -237,7 +253,7 @@ const NewSpotForm = () => {
 									? rightInput()
 									: wrongInput()}
 							</div>
-						</label>
+						</label> */}
 						<label>
 							Type of Site
 							<div className={styles.input_container}>

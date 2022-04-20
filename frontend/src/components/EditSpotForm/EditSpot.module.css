@@ -185,3 +185,13 @@
 		transform: translateY(-2px);
 	}
 }
+
+.switch_upload {
+	font-size: 12px;
+	cursor: pointer;
+	margin-bottom: 20px;
+}
+
+.switch_upload:hover {
+	color: green;
+}

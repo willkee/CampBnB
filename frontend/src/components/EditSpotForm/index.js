@@ -12,13 +12,17 @@ const EditSpotForm = ({ spot }) => {
 	const [city, setCity] = useState(spot.city);
 	const [lat, setLat] = useState(spot.lat);
 	const [long, setLong] = useState(spot.long);
+
 	const [imageUrl, setImageUrl] = useState(spot.imageUrl);
+	const [newImg, setNewImg] = useState(null);
+
 	const [type, setType] = useState(spot.type);
 	const [price, setPrice] = useState(spot.price);
-	const [description, setDescription] = useState(spot.description);
+	const [description, setDescription] = useState(spot.description || "");
 	const [capacity, setCapacity] = useState(spot.capacity);
 
 	const [latLongOnly, setLatLongOnly] = useState(false);
+	const [chooseNewImg, setChooseNewImg] = useState(false);
 
 	const dispatch = useDispatch();
 
@@ -27,27 +31,57 @@ const EditSpotForm = ({ spot }) => {
 		setErrors([]);
 
 		try {
-			await dispatch(
-				updateOneSpot({
-					id: spot.id,
-					name,
-					address,
-					city,
-					lat,
-					long,
-					imageUrl,
-					type,
-					price,
-					description,
-					capacity,
-				})
-			);
+			if (newImg) {
+				await dispatch(
+					updateOneSpot({
+						id: spot.id,
+						name,
+						address,
+						city,
+						lat,
+						long,
+						imageUrl: newImg,
+						type,
+						price,
+						description,
+						capacity,
+					})
+				);
+			} else {
+				chooseOld();
+				await dispatch(
+					updateOneSpot({
+						id: spot.id,
+						name,
+						address,
+						city,
+						lat,
+						long,
+						imageUrl,
+						type,
+						price,
+						description,
+						capacity,
+					})
+				);
+			}
 			await dispatch(hideModal());
 			return;
 		} catch (err) {
 			const data = await err.json();
 			if (data && data.errors) setErrors(data.errors);
 		}
+	};
+
+	const updateFile = (e) => {
+		const file = e.target.files[0];
+		setNewImg(file);
+	};
+
+	const chooseOld = () => {
+		setImageUrl(spot.imageUrl);
+		setNewImg(null);
+		setChooseNewImg(false);
 	};
 
 	const rightInput = () => (
@@ -197,26 +231,59 @@ const EditSpotForm = ({ spot }) => {
 							: wrongInput()}
 					</div>
 				</label>
-				<label>
-					Image URL
-					<div className={styles.input_container}>
-						<input
-							type="text"
-							value={imageUrl}
-							onChange={(e) => setImageUrl(e.target.value)}
-							placeholder="Accepted formats: .jpg, .jpeg, .png, .gif."
-						/>
-						{imageUrl &&
-						imageUrl.length >= 3 &&
-						imageUrl.length <= 2048 &&
-						(imageUrl.endsWith(".jpg") ||
-							imageUrl.endsWith(".jpeg") ||
-							imageUrl.endsWith(".png") ||
-							imageUrl.endsWith(".gif"))
-							? rightInput()
-							: wrongInput()}
-					</div>
-				</label>
+				{!chooseNewImg && (
+					<>
+						<label>
+							Image URL
+							<div className={styles.input_container}>
+								<input
+									type="text"
+									value={imageUrl}
+									disabled
+									onChange={(e) =>
+										setImageUrl(e.target.value)
+									}
+									placeholder="Accepted formats: .jpg, .jpeg, .png, .gif."
+								/>
+								{imageUrl &&
+								imageUrl.length >= 3 &&
+								imageUrl.length <= 2048 &&
+								(imageUrl.endsWith(".jpg") ||
+									imageUrl.endsWith(".jpeg") ||
+									imageUrl.endsWith(".png") ||
+									imageUrl.endsWith(".gif"))
+									? rightInput()
+									: wrongInput()}
+							</div>
+						</label>
+						<div
+							className={styles.switch_upload}
+							onClick={() => setChooseNewImg(true)}
+						>
+							Want to upload a new image? Click here.
+						</div>
+					</>
+				)}
+				{chooseNewImg && (
+					<>
+						<label>
+							Image Upload
+							<div className={styles.input_container}>
+								<input
+									type="file"
+									onChange={updateFile}
+									accept="image/*"
+								/>
+							</div>
+						</label>
+						<div
+							onClick={chooseOld}
+							className={styles.switch_upload}
+						>
+							Want to use the same image? Click here.
+						</div>
+					</>
+				)}
 				<label>
 					Type of Site
 					<div className={styles.input_container}>

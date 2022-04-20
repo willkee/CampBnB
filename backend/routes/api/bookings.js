@@ -4,7 +4,7 @@ const asyncHandler = require("express-async-handler");
 
 const { handleValidationErrors } = require("../../utils/validation");
 const { requireAuth } = require("../../utils/auth");
-const { Spot, User, Booking } = require("../../db/models");
+const { Spot, Booking } = require("../../db/models");
 
 const router = express.Router();
 

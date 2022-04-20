@@ -245,9 +245,9 @@ function sessionReducer(state = initialState, action) {
 
 		// Delete
 		case DELETED_BOOKING:
-			newState = { ...state };
-			delete newState.bookings[action.deletedId];
-			return newState;
+			const oldBookings = { ...state.bookings };
+			delete oldBookings[action.deletedId];
+			return { ...state, bookings: oldBookings };
 
 		// ---------- DEFAULT ----------
 		default:
