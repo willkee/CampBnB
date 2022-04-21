@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateOneSpot } from "../../store/spots";
 import { hideModal } from "../../store/modal";
@@ -27,6 +27,48 @@ const EditSpotForm = ({ spot }) => {
 	const [submitted, setSubmitted] = useState(false);
 
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		loader();
+		return () => {
+			setName();
+			setAddress();
+			setCity();
+			setLat();
+			setLong();
+			setImageUrl();
+			setNewImg(null);
+			setType();
+			setPrice();
+			setDescription("");
+			setCapacity();
+		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	const loader = () => {
+		setErrors([]);
+		setName(spot.name);
+		setAddress(spot.address);
+		setCity(spot.city);
+		setLat(spot.lat);
+		setLong(spot.long);
+		setImageUrl(spot.imageUrl);
+		setNewImg(null);
+		setType(spot.type);
+		setPrice(spot.price);
+		setDescription(spot.description || "");
+		setCapacity(spot.capacity);
+		setLatLongOnly(false);
+		setChooseNewImg(false);
+		setSubmitted(false);
+	};
+
+	const submitClicked = (e) => {
+		e.preventDefault();
+		setSubmitted(true);
+		handleSubmit();
+	};
 
 	const handleSubmit = async () => {
 		setErrors([]);
@@ -107,7 +149,7 @@ const EditSpotForm = ({ spot }) => {
 					states coming soon!
 				</div>
 			</div>
-			<form className={styles.form_container}>
+			<form onSubmit={submitClicked} className={styles.form_container}>
 				{errors.length > 0 && (
 					<div className={styles.error_container}>
 						{errors.map((error, idx) => (
@@ -398,13 +440,9 @@ const EditSpotForm = ({ spot }) => {
 
 				<div className={styles.button_container}>
 					<button
-						onClick={() => {
-							setSubmitted(true);
-							handleSubmit();
-						}}
 						disabled={submitted}
 						className={submitted ? styles.loading : styles.submit}
-						type="button"
+						type="submit"
 					>
 						{submitted ? "Loading..." : "Edit Details"}
 					</button>

@@ -30,8 +30,22 @@ const NewSpotForm = () => {
 	useEffect(() => {
 		setLoaded(true);
 	}, []);
+
+	const submitClicked = (e) => {
+		e.preventDefault();
+		setSubmitted(true);
+		handleSubmit();
+	};
+
 	const handleSubmit = async () => {
 		setErrors([]);
+
+		if (!imageUrl) {
+			setSubmitted(false);
+			window.scrollTo({ top: 0 });
+			setErrors(["Please upload an image."]);
+			return;
+		}
 
 		try {
 			const newSpot = await dispatch(
@@ -79,7 +93,10 @@ const NewSpotForm = () => {
 						We are currently only accepting spots within Colorado.
 						More states coming soon!
 					</div>
-					<form className={styles.form_container}>
+					<form
+						onSubmit={submitClicked}
+						className={styles.form_container}
+					>
 						{errors.length > 0 && (
 							<div className={styles.error_container}>
 								{errors.map((error, idx) => (
@@ -228,7 +245,7 @@ const NewSpotForm = () => {
 									type="file"
 									onChange={updateFile}
 									accept="image/*"
-									// required
+									required
 								/>
 							</div>
 						</label>
@@ -336,7 +353,9 @@ const NewSpotForm = () => {
 										setCapacity(e.target.value)
 									}
 								/>
-								{capacity ? rightInput() : wrongInput()}
+								{capacity && capacity >= 1
+									? rightInput()
+									: wrongInput()}
 							</div>
 						</label>
 						<label>
@@ -358,15 +377,11 @@ const NewSpotForm = () => {
 						</label>
 						<div className={styles.button_container}>
 							<button
-								onClick={() => {
-									setSubmitted(true);
-									handleSubmit();
-								}}
 								className={
 									submitted ? styles.loading : styles.submit
 								}
 								disabled={submitted}
-								type="button"
+								type="submit"
 							>
 								{submitted ? "Loading..." : "Create your Spot"}
 							</button>

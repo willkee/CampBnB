@@ -49,25 +49,22 @@ const validateSpot = [
 			"There's no city name in the world longer than 255 characters!"
 		),
 	check("imageUrl").custom(async (_value, { req }) => {
-		if (!req.file) {
-			if (!req.body.imageUrl) {
-				return await Promise.reject("Please upload an image.");
-			}
-		} else {
-			if (
-				req.file.mimetype !== "image/jpeg" &&
-				req.file.mimetype !== "image/jpg" &&
-				req.file.mimetype !== "image/png" &&
-				req.file.mimetype !== "image/gif"
-			) {
-				return await Promise.reject(
-					"Please upload an image with one of the following file types: .jpeg, .jpg, .png, .gif."
-				);
-			} else if (req.file.size > 1000000) {
-				return await Promise.reject(
-					"Please upload an image less than 1MB in size. Try an image compressor tool!"
-				);
-			}
+		if (!req.file && !req.body.imageUrl) {
+			return await Promise.reject("Please upload an image.");
+		} else if (
+			req.file &&
+			req.file.mimetype !== "image/jpeg" &&
+			req.file.mimetype !== "image/jpg" &&
+			req.file.mimetype !== "image/png" &&
+			req.file.mimetype !== "image/gif"
+		) {
+			return await Promise.reject(
+				"Please upload an image with one of the following file types: .jpeg, .jpg, .png, .gif."
+			);
+		} else if (req.file && req.file.size > 1000000) {
+			return await Promise.reject(
+				"Please upload an image less than 1MB in size. Try an image compressor tool!"
+			);
 		}
 	}),
 	check("type")
@@ -85,8 +82,13 @@ const validateSpot = [
 		.withMessage("Please enter a valid value for the price."),
 	check("capacity")
 		.exists({ checkFalsy: true })
-		.isInt()
-		.withMessage("Please enter a valid maximum capacity."),
+		.isInt({ min: 1 })
+		.withMessage("Please enter a valid maximum capacity.")
+		.isInt({ max: 1000 })
+		.withMessage("Please don't enter a maximum capacity over 1000 people."),
+	check("description")
+		.isLength({ min: 0, max: 2500 })
+		.withMessage("Please keep your description under 2500 characters."),
 	handleValidationErrors,
 ];
 

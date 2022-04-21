@@ -44,8 +44,16 @@ const MySpots = () => {
 										}}
 									></img>
 									<div className={styles.spot_info}>
-										<h3>{spot.name}</h3>
-										<div>{spot.city}</div>
+										<h3>
+											{spot.name.length > 50
+												? spot.name.slice(0, 50) + "..."
+												: spot.name}
+										</h3>
+										<div>
+											{spot.city.length > 50
+												? spot.city.slice(0, 50) + "..."
+												: spot.city}
+										</div>
 									</div>
 								</div>
 							))}

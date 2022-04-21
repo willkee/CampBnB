@@ -93,8 +93,22 @@ const Bookings = () => {
 											)
 										}
 									>
-										<h3>{booking.Spot.name}</h3>
-										<div>{booking.Spot.city}</div>
+										<h3>
+											{booking?.Spot?.name?.length > 50
+												? booking?.Spot?.name?.slice(
+														0,
+														50
+												  ) + "..."
+												: booking?.Spot?.name}
+										</h3>
+										<div>
+											{booking?.Spot?.city?.length > 50
+												? booking?.Spot?.city?.slice(
+														0,
+														50
+												  ) + "..."
+												: booking?.Spot?.city}
+										</div>
 									</div>
 									<div className={styles.time_container}>
 										<div>

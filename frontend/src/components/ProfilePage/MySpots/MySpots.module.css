@@ -1,10 +1,10 @@
 .spots_container {
 	width: 100%;
-	padding: 20px 50px 20px 0;
+	padding: 20px 20px 20px 0;
 	margin-top: 20px;
 }
 .my_each_spot {
-	width: 80%;
+	width: 90%;
 	display: grid;
 	grid-template-columns: 1fr 2fr;
 	border: 1px solid black;
@@ -30,6 +30,11 @@
 	align-items: center;
 	text-align: center;
 	font-size: 18px;
+}
+
+.spot_info * {
+	overflow-wrap: break-word;
+	width: 400px;
 }
 
 .my_each_spot:hover {

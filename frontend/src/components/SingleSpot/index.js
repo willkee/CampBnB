@@ -48,7 +48,9 @@ const SingleSpot = () => {
 					></img>
 					<div className={styles.content}>
 						<div className={styles.text_content}>
-							<h1>{spot.name}</h1>
+							<h1 className={styles.spot_title_name}>
+								{spot.name}
+							</h1>
 							<div className={styles.host}>
 								<div className={styles.cap_price_info}>
 									<span>

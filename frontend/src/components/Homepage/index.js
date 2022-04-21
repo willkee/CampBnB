@@ -22,6 +22,8 @@ const Homepage = ({ spots }) => {
 			setLoaded(true);
 		};
 		loader();
+
+		return () => setLoaded(false);
 	}, [dispatch]);
 
 	const sendToSpot = (id) => history.push(`/spots/${id}`);
@@ -72,7 +74,9 @@ const Homepage = ({ spots }) => {
 								</h4>
 								<div className={styles.city_info}>
 									<i className="fa-light fa-mountain-city" />
-									{spot.city}
+									{spot?.city?.length > 20
+										? spot?.city?.slice(0, 20) + "..."
+										: spot?.city}
 								</div>
 								<div className={styles.price_type}>
 									<div>
@@ -121,13 +125,15 @@ const Homepage = ({ spots }) => {
 									)}
 								</div>
 								<h4>
-									{spot.name.length > 20
-										? spot.name.slice(0, 20) + "..."
-										: spot.name}
+									{spot?.name?.length > 20
+										? spot?.name?.slice(0, 20) + "..."
+										: spot?.name}
 								</h4>
 								<div className={styles.city_info}>
 									<i className="fa-light fa-mountain-city" />
-									{spot.city}
+									{spot?.city?.length > 20
+										? spot?.city?.slice(0, 20) + "..."
+										: spot?.city}
 								</div>
 							</div>
 						))}
