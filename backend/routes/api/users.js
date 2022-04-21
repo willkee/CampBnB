@@ -12,11 +12,15 @@ const validateSignup = [
 	check("firstName")
 		.exists({ checkFalsy: true })
 		.notEmpty()
-		.withMessage("Please enter your first name."),
+		.withMessage("Please enter your first name.")
+		.isLength({ min: 1, max: 50 })
+		.withMessage("Please enter a first name between 1 and 50 characters."),
 	check("lastName")
 		.exists({ checkFalsy: true })
 		.notEmpty()
-		.withMessage("Please enter your last name."),
+		.withMessage("Please enter your last name.")
+		.isLength({ min: 1, max: 50 })
+		.withMessage("Please enter a last name between 1 and 50 characters."),
 	check("email")
 		.exists({ checkFalsy: true })
 		.isEmail()
@@ -38,7 +42,9 @@ const validateSignup = [
 	check("password")
 		.exists({ checkFalsy: true })
 		.isLength({ min: 6 })
-		.withMessage("Password must be 6 characters or more."),
+		.withMessage("Password must be 6 characters or more.")
+		.isLength({ max: 50 })
+		.withMessage("Please keep your password under 50 characters long."),
 	check("confirmPassword")
 		.exists({ checkFalsy: true })
 		.withMessage("Please confirm your password.")
