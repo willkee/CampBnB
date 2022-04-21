@@ -61,7 +61,7 @@ const validateSpot = [
 			return await Promise.reject(
 				"Please upload an image with one of the following file types: .jpeg, .jpg, .png, .gif."
 			);
-		} else if (req.file.size > 1000000) {
+		} else if (req.file && req.file.size > 1000000) {
 			return await Promise.reject(
 				"Please upload an image less than 1MB in size. Try an image compressor tool!"
 			);

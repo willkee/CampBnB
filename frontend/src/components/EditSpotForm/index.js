@@ -64,6 +64,12 @@ const EditSpotForm = ({ spot }) => {
 		setSubmitted(false);
 	};
 
+	const submitClicked = (e) => {
+		e.preventDefault();
+		setSubmitted(true);
+		handleSubmit();
+	};
+
 	const handleSubmit = async () => {
 		setErrors([]);
 
@@ -143,7 +149,7 @@ const EditSpotForm = ({ spot }) => {
 					states coming soon!
 				</div>
 			</div>
-			<form className={styles.form_container}>
+			<form onSubmit={submitClicked} className={styles.form_container}>
 				{errors.length > 0 && (
 					<div className={styles.error_container}>
 						{errors.map((error, idx) => (
@@ -434,13 +440,9 @@ const EditSpotForm = ({ spot }) => {
 
 				<div className={styles.button_container}>
 					<button
-						onClick={() => {
-							setSubmitted(true);
-							handleSubmit();
-						}}
 						disabled={submitted}
 						className={submitted ? styles.loading : styles.submit}
-						type="button"
+						type="submit"
 					>
 						{submitted ? "Loading..." : "Edit Details"}
 					</button>
