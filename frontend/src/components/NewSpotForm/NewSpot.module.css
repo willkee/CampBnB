@@ -210,11 +210,11 @@
 	transition: all linear 0.2s;
 	border-radius: 5px;
 	font-weight: 600;
-	animation: spin 3.5s linear infinite;
+	animation: flash 3.5s linear infinite;
 	background-color: #2f3e46;
 }
 
-@keyframes spin {
+@keyframes flash {
 	20% {
 		opacity: 0.2;
 	}
