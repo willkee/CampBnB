@@ -10,7 +10,7 @@
 	vertical-align: bottom;
 	font-size: 14px;
 	align-items: center;
-	justify-content: flex-end;
+	justify-content: space-between;
 	padding: 20px;
 	width: 1200px;
 	filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.328));
@@ -21,4 +21,74 @@
 	text-decoration: none;
 	font-size: 24px;
 	margin-left: 15px;
+}
+
+.right {
+	display: flex;
+	align-items: center;
+}
+
+.left {
+	display: flex;
+	align-items: center;
+}
+.left i {
+	font-size: 20px;
+	margin-right: 15px;
+	animation: flash 4s linear infinite;
+}
+
+#icon2 {
+	animation-delay: 0.2s;
+}
+#icon3 {
+	animation-delay: 0.4s;
+}
+#icon4 {
+	animation-delay: 0.6s;
+}
+#icon5 {
+	animation-delay: 0.8s;
+}
+#icon6 {
+	animation-delay: 1s;
+}
+#icon7 {
+	animation-delay: 1.2s;
+}
+#icon8 {
+	animation-delay: 1.4s;
+}
+#icon9 {
+	animation-delay: 1.6s;
+}
+#icon10 {
+	animation-delay: 1.8s;
+}
+#icon11 {
+	animation-delay: 2s;
+}
+#icon12 {
+	animation-delay: 2.2s;
+}
+#icon13 {
+	animation-delay: 2.4s;
+}
+#icon14 {
+	animation-delay: 2.6s;
+}
+#icon15 {
+	animation-delay: 2.8s;
+}
+
+@keyframes flash {
+	20% {
+		opacity: 0.2;
+	}
+	50% {
+		opacity: 1;
+	}
+	80% {
+		opacity: 0.2;
+	}
 }
