@@ -2,10 +2,10 @@ const express = require("express");
 const { check } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 
-const { handleValidationErrors } = require("../../utils/validation");
+const { Op } = require("sequelize");
 const { requireAuth } = require("../../utils/auth");
 const { Spot, User, Booking } = require("../../db/models");
-const { Op } = require("sequelize");
+const { handleValidationErrors } = require("../../utils/validation");
 const { fileUpload, multerUpload } = require("../../awsS3");
 
 const router = express.Router();
@@ -54,7 +54,7 @@ const validateSpot = [
 		}),
 	check("name")
 		.exists({ checkFalsy: true })
-		.withMessage("Please enter a name for your spot")
+		.withMessage("Please enter a name for your spot.")
 		.isLength({ max: 255 })
 		.withMessage(
 			"Please enter no more than 255 characters for the name of your spot."
@@ -93,12 +93,12 @@ const validateSpot = [
 		.exists({ checkFalsy: true })
 		.isInt({ min: 1, max: 9999 })
 		.withMessage(
-			"Please enter an integer for the price between $1 and $9999"
+			"Please enter an integer for the price between $1 and $9999."
 		),
 	check("capacity")
 		.exists({ checkFalsy: true })
 		.isInt({ min: 1, max: 999 })
-		.withMessage("Please enter a valid maximum capacity. (1 - 999)"),
+		.withMessage("Please enter a valid maximum capacity (1 - 999)."),
 	check("description")
 		.isLength({ min: 0, max: 2500 })
 		.withMessage("Please keep your description under 2500 characters."),

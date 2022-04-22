@@ -13,8 +13,8 @@ const NewSpotForm = () => {
 	const [name, setName] = useState("");
 	const [address, setAddress] = useState("");
 	const [city, setCity] = useState("");
-	const [lat, setLat] = useState();
-	const [long, setLong] = useState();
+	const [lat, setLat] = useState("");
+	const [long, setLong] = useState("");
 	const [imageUrl, setImageUrl] = useState(null);
 	const [type, setType] = useState("tent");
 	const [price, setPrice] = useState(0);
@@ -138,8 +138,8 @@ const NewSpotForm = () => {
 									className={styles.loc_switch}
 									onClick={() => {
 										setLatLongOnly(true);
-										setLat(parseFloat("37").toFixed(6));
-										setLong(parseFloat("-102").toFixed(6));
+										// setLat(parseFloat("37").toFixed(6));
+										// setLong(parseFloat("-102").toFixed(6));
 									}}
 								>
 									No street address? Click here.

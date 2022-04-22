@@ -57,19 +57,14 @@ export const createSpot = (data) => async (dispatch) => {
 	formData.append("name", name);
 	formData.append("address", address);
 	formData.append("city", city);
-	console.log("STORE LOG", lat, long);
 	if (lat && lat !== "0") formData.append("lat", lat);
 	if (long && long !== "0") formData.append("long", long);
 	formData.append("imageUrl", imageUrl);
 	formData.append("type", type);
 	formData.append("price", price);
-	// formData.append("description", description);
 	if (description) {
-		console.log(description, "stuff1");
-
 		formData.append("description", description);
 	} else {
-		console.log(description, "stuff2");
 		formData.append("description", "");
 	}
 	formData.append("capacity", capacity);
@@ -132,6 +127,7 @@ export const updateOneSpot = (data) => async (dispatch) => {
 	formData.append("name", name);
 	formData.append("address", address);
 	formData.append("city", city);
+	console.log(lat, long, "STORE LOG TESTING LAT LONG");
 	if (lat) {
 		formData.append("lat", lat);
 	}

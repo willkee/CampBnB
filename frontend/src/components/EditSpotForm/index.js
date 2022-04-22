@@ -249,9 +249,9 @@ const EditSpotForm = ({ spot }) => {
 								<span> Longitude -102° to -109°</span>
 							</p>
 							<p></p>
-							<div>
-								Note: To skip, leave values at 0, or clear the
-								input fields.
+							<div className={styles.skip_message}>
+								Note: To skip/delete, leave values at 0, or
+								clear the input fields.
 							</div>
 						</div>
 						<div className={styles.coordinates}>
@@ -262,14 +262,6 @@ const EditSpotForm = ({ spot }) => {
 										id={styles.latitude}
 										type="number"
 										value={lat}
-										onBlur={(e) =>
-											setLat(
-												e.target.value
-												// parseFloat(
-												// 	e.target.value
-												// ).toFixed(6)
-											)
-										}
 										onChange={(e) => setLat(e.target.value)}
 										placeholder="XX.XXXXXX"
 									/>
@@ -285,16 +277,6 @@ const EditSpotForm = ({ spot }) => {
 										id={styles.longitude}
 										type="number"
 										value={long}
-										onBlur={(e) =>
-											setLong(
-												e.target.value
-												// parseFloat(
-												// 	e.target.value > 0
-												// 		? e.target.value * -1
-												// 		: e.target.value
-												// ).toFixed(6)
-											)
-										}
 										onChange={(e) =>
 											setLong(e.target.value)
 										}
@@ -339,7 +321,7 @@ const EditSpotForm = ({ spot }) => {
 									disabled
 									onChange={() => {
 										alert(
-											"Nice try. Please upload an image instead."
+											"Please upload an image instead."
 										);
 										setImageUrl(spot.imageUrl);
 									}}
