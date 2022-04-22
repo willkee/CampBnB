@@ -4,11 +4,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAllSpots } from "../../store/spots";
 import styles from "./Homepage.module.css";
 
-const Homepage = ({ spots }) => {
+const Homepage = () => {
 	const [loaded, setLoaded] = useState(false);
 
 	const sessionUser = useSelector((state) => state.session.user);
-	// const spots = useSelector((state) => Object.values(state.spots));
+	const spots = useSelector((state) => Object.values(state.spots));
 
 	const history = useHistory();
 	const dispatch = useDispatch();

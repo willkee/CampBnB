@@ -20,7 +20,7 @@ function App() {
 	const [isLoaded, setIsLoaded] = useState(false);
 
 	const sessionUser = useSelector((state) => state.session.user);
-	const spotsList = useSelector((state) => Object.values(state.spots));
+	// const spotsList = useSelector((state) => Object.values(state.spots));
 
 	useEffect(() => {
 		dispatch(sessionActions.restoreUser()).then(() =>
@@ -38,7 +38,7 @@ function App() {
 						<SplashPage sessionUser={sessionUser} />
 					</Route>
 					<Route exact path="/main">
-						<Homepage spots={spotsList} />
+						<Homepage />
 					</Route>
 					<Route exact path="/spots/new">
 						{sessionUser ? (
