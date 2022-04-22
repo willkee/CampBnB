@@ -88,6 +88,10 @@
 	margin-top: 30px;
 }
 
+.coordinates_info h5 {
+	margin-bottom: 5px;
+}
+
 .coordinates {
 	margin-top: 20px;
 	display: flex;
@@ -146,8 +150,6 @@
 }
 .submit:hover {
 	background-color: #354f52;
-	transform: translateY(-2px);
-	animation: button-hover 0.25s ease-in;
 }
 .cancel {
 	background-color: rgb(201, 201, 201);
@@ -155,21 +157,6 @@
 }
 .cancel:hover {
 	background-color: #cad2c5;
-	transform: translateY(-2px);
-	animation: button-hover 0.15s ease-in;
-}
-.cancel:active,
-.submit:active {
-	transform: translateY(0);
-}
-
-@keyframes button-hover {
-	0% {
-		transform: translateY(-1px);
-	}
-	100% {
-		transform: translateY(-2px);
-	}
 }
 
 .upload_info {

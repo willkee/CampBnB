@@ -46,7 +46,7 @@
 	color: rgb(0, 0, 0);
 	text-align: center;
 	padding: 20px;
-	margin-bottom: 30px;
+	margin: 100px 0 30px 0;
 }
 
 .error_notification {
@@ -167,7 +167,6 @@
 }
 .submit:hover {
 	background-color: #354f52;
-	transform: translateY(-2px);
 	animation: button-hover 0.25s ease-in;
 }
 .cancel {
@@ -176,21 +175,6 @@
 }
 .cancel:hover {
 	background-color: #cad2c5;
-	transform: translateY(-2px);
-	animation: button-hover 0.15s ease-in;
-}
-.cancel:active,
-.submit:active {
-	transform: translateY(0);
-}
-
-@keyframes button-hover {
-	0% {
-		transform: translateY(-1px);
-	}
-	100% {
-		transform: translateY(-2px);
-	}
 }
 
 .switch_upload {

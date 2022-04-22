@@ -75,45 +75,86 @@ const EditSpotForm = ({ spot }) => {
 
 		try {
 			if (newImg) {
-				await dispatch(
-					updateOneSpot({
-						id: spot.id,
-						name,
-						address,
-						city,
-						lat,
-						long,
-						imageUrl: newImg,
-						type,
-						price,
-						description,
-						capacity,
-					})
-				);
+				// eslint-disable-next-line eqeqeq
+				if (lat == 0 && long == 0) {
+					await dispatch(
+						updateOneSpot({
+							id: spot.id,
+							name,
+							address,
+							city,
+							lat: null,
+							long: null,
+							imageUrl: newImg,
+							type,
+							price,
+							description,
+							capacity,
+						})
+					);
+				} else {
+					await dispatch(
+						updateOneSpot({
+							id: spot.id,
+							name,
+							address,
+							city,
+							lat,
+							long,
+							imageUrl: newImg,
+							type,
+							price,
+							description,
+							capacity,
+						})
+					);
+				}
 			} else {
 				chooseOld();
-				await dispatch(
-					updateOneSpot({
-						id: spot.id,
-						name,
-						address,
-						city,
-						lat,
-						long,
-						imageUrl,
-						type,
-						price,
-						description,
-						capacity,
-					})
-				);
+				// eslint-disable-next-line eqeqeq
+				if (lat == 0 && long == 0) {
+					await dispatch(
+						updateOneSpot({
+							id: spot.id,
+							name,
+							address,
+							city,
+							lat: null,
+							long: null,
+							imageUrl,
+							type,
+							price,
+							description,
+							capacity,
+						})
+					);
+				} else {
+					await dispatch(
+						updateOneSpot({
+							id: spot.id,
+							name,
+							address,
+							city,
+							lat,
+							long,
+							imageUrl,
+							type,
+							price,
+							description,
+							capacity,
+						})
+					);
+				}
 			}
 			await dispatch(hideModal());
 			setSubmitted(false);
 			return;
 		} catch (err) {
 			const data = await err.json();
-			if (data && data.errors) setErrors(data.errors);
+			if (data && data.errors)
+				setErrors(
+					data.errors.filter((error) => error !== "Invalid value")
+				);
 			setSubmitted(false);
 		}
 	};
@@ -145,8 +186,8 @@ const EditSpotForm = ({ spot }) => {
 			>
 				<h1>Edit Spot Details</h1>
 				<div className={styles.sub_heading}>
-					Please limit any location changes to within Colorado. More
-					states coming soon!
+					We encourage any location changes to be within Colorado.
+					More states coming soon!
 				</div>
 			</div>
 			<form onSubmit={submitClicked} className={styles.form_container}>
@@ -189,8 +230,8 @@ const EditSpotForm = ({ spot }) => {
 							className={styles.loc_switch}
 							onClick={() => {
 								setLatLongOnly(true);
-								setLat(parseFloat("37").toFixed(6));
-								setLong(parseFloat("-102").toFixed(6));
+								setLat(spot?.lat ? spot.lat : 0);
+								setLong(spot?.long ? spot.long : 0);
 							}}
 						>
 							No street address? Click here.
@@ -199,12 +240,19 @@ const EditSpotForm = ({ spot }) => {
 				) : (
 					<>
 						<div className={styles.coordinates_info}>
-							<h5>Valid coordinates for Colorado:</h5>
-							<p>Latitude: 37° to 41° (37°N to 41°N).</p>
-							<p>Longitude -102° to -109° (102° to 109°W).</p>
+							<h5>
+								Valid coordinates for Colorado (please enter in
+								decimal format only):
+							</h5>
 							<p>
-								Please enter coordinates in decimal format only.
+								<span>Latitude: 37° to 41°</span> /
+								<span> Longitude -102° to -109°</span>
 							</p>
+							<p></p>
+							<div>
+								Note: To skip, leave values at 0, or clear the
+								input fields.
+							</div>
 						</div>
 						<div className={styles.coordinates}>
 							<label id={styles.cord1}>
@@ -216,9 +264,10 @@ const EditSpotForm = ({ spot }) => {
 										value={lat}
 										onBlur={(e) =>
 											setLat(
-												parseFloat(e.target.value)
-													.toFixed(6)
-													.toString()
+												e.target.value
+												// parseFloat(
+												// 	e.target.value
+												// ).toFixed(6)
 											)
 										}
 										onChange={(e) => setLat(e.target.value)}
@@ -238,13 +287,12 @@ const EditSpotForm = ({ spot }) => {
 										value={long}
 										onBlur={(e) =>
 											setLong(
-												parseFloat(
-													e.target.value > 0
-														? e.target.value * -1
-														: e.target.value
-												)
-													.toFixed(6)
-													.toString()
+												e.target.value
+												// parseFloat(
+												// 	e.target.value > 0
+												// 		? e.target.value * -1
+												// 		: e.target.value
+												// ).toFixed(6)
 											)
 										}
 										onChange={(e) =>
@@ -260,11 +308,7 @@ const EditSpotForm = ({ spot }) => {
 						</div>
 						<div
 							className={styles.loc_switch}
-							onClick={() => {
-								setLatLongOnly(false);
-								setLat(null);
-								setLong(null);
-							}}
+							onClick={() => setLatLongOnly(false)}
 						>
 							Want to enter a street address instead? Click here.
 						</div>

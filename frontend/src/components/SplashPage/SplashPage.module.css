@@ -91,13 +91,11 @@
 .just_browsing div:hover {
 	opacity: 0.8;
 	animation: button-hover 0.3s ease-out;
-	transform: translateY(-2px);
 	font-size: 15px;
 }
 
 @keyframes button-hover {
 	0% {
-		transform: translateY(-2px);
 		font-size: 15px;
 	}
 }

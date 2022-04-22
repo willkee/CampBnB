@@ -114,15 +114,18 @@ const SingleSpot = () => {
 										{spot.address}
 									</div>
 								)}
-								{spot.lat && spot.long && (
-									<div>
-										<i
-											id={styles.x_hairs}
-											className="fa-light fa-location-crosshairs"
-										/>
-										{`${spot.lat}, ${spot.long}`}
-									</div>
-								)}
+								{spot?.lat &&
+									spot?.long &&
+									spot?.lat !== "NaN" &&
+									spot?.long !== "NaN" && (
+										<div>
+											<i
+												id={styles.x_hairs}
+												className="fa-light fa-location-crosshairs"
+											/>
+											{`${spot.lat}, ${spot.long}`}
+										</div>
+									)}
 								<div>
 									<i className="fa-light fa-mountain-city" />
 									{spot.city}

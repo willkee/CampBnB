@@ -101,11 +101,10 @@
 .delete:hover {
 	background-color: rgb(133, 13, 13);
 	border: 1px solid #e51919;
-	transform: translateY(-1px);
 	filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.397));
 }
 .delete:active {
-	transform: translateY(0px);
+	transform: translateY(1px);
 }
 
 .booking_img {
@@ -154,9 +153,5 @@
 }
 .confirm_button_container button:hover {
 	opacity: 0.7;
-	transform: translateY(-2px);
 	filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.397));
-}
-.confirm_button_container button:active {
-	transform: translateY(0);
 }
