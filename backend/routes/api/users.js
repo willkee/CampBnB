@@ -116,17 +116,9 @@ const validateEmailChange = [
 			});
 
 			if (query) {
-				const foundUser = await User.getCurrentUserById(query.id);
-
-				if (foundUser.email === req.body.email) {
-					return await Promise.reject(
-						"You are already using that email address!"
-					);
-				} else {
-					return await Promise.reject(
-						"Email address is already in use."
-					);
-				}
+				return await Promise.reject(
+					"You are already using that email, or that email is already in use by another account."
+				);
 			}
 		}),
 	handleValidationErrors,
