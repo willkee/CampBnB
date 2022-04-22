@@ -30,9 +30,9 @@ const DeleteConfirmation = ({ id }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		dispatch(deleteSpot(id));
-		dispatch(hideModal());
-		return history.push("/main");
+		dispatch(deleteSpot(id))
+			.then(() => dispatch(hideModal()))
+			.then(() => history.push("/main"));
 	};
 
 	return (
