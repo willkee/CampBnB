@@ -2,10 +2,10 @@ const express = require("express");
 const { check } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 
-const { handleValidationErrors } = require("../../utils/validation");
+const { Op } = require("sequelize");
 const { requireAuth } = require("../../utils/auth");
 const { Spot, User, Booking } = require("../../db/models");
-const { Op } = require("sequelize");
+const { handleValidationErrors } = require("../../utils/validation");
 const { fileUpload, multerUpload } = require("../../awsS3");
 
 const router = express.Router();
@@ -22,13 +22,31 @@ const validateSpot = [
 			);
 		}
 	}),
+	check("lat").custom(async (_value, { req }) => {
+		if ((req.body.lat && req.body.lat < 37) || req.body.lat > 41) {
+			return await Promise.reject(
+				"Please enter a valid latitude within the State of Colorado."
+			);
+		}
+	}),
+	check("long").custom(async (_value, { req }) => {
+		if ((req.body.long && req.body.long < -109) || req.body.long > -102) {
+			return await Promise.reject(
+				"Please enter a valid longitude within the State of Colorado."
+			);
+		}
+	}),
 	check("address")
 		.isLength({ max: 255 })
 		.withMessage(
 			"Please enter no more than 255 characters for your street address."
 		)
 		.custom(async (_value, { req }) => {
-			if (!req.body.address && !req.body.lat && !req.body.long) {
+			if (
+				(!req.body.address && !req.body.lat && !req.body.long) ||
+				req.body.lat === "NaN" ||
+				req.body.long === "NaN"
+			) {
 				return await Promise.reject(
 					"Please enter either an address or latitude and longitude coordinates."
 				);
@@ -36,7 +54,7 @@ const validateSpot = [
 		}),
 	check("name")
 		.exists({ checkFalsy: true })
-		.withMessage("Please enter a name for your spot")
+		.withMessage("Please enter a name for your spot.")
 		.isLength({ max: 255 })
 		.withMessage(
 			"Please enter no more than 255 characters for the name of your spot."
@@ -72,20 +90,15 @@ const validateSpot = [
 		.isIn(["vehicle", "rv", "tent", "backpacking"])
 		.withMessage("Please enter a valid type."),
 	check("price")
-		.exists()
+		.exists({ checkFalsy: true })
+		.isInt({ min: 1, max: 9999 })
 		.withMessage(
-			"Please enter a nightly price for your spot. Enter '0' if free of charge."
-		)
-		.isInt()
-		.withMessage("Please enter a integer for the price (No cents).")
-		.isInt({ min: 0 })
-		.withMessage("Please enter a valid value for the price."),
+			"Please enter an integer for the price between $1 and $9999."
+		),
 	check("capacity")
 		.exists({ checkFalsy: true })
-		.isInt({ min: 1 })
-		.withMessage("Please enter a valid maximum capacity.")
-		.isInt({ max: 1000 })
-		.withMessage("Please don't enter a maximum capacity over 1000 people."),
+		.isInt({ min: 1, max: 999 })
+		.withMessage("Please enter a valid maximum capacity (1 - 999)."),
 	check("description")
 		.isLength({ min: 0, max: 2500 })
 		.withMessage("Please keep your description under 2500 characters."),
@@ -181,6 +194,12 @@ router.put(
 		const id = parseInt(req.params.id, 10);
 		const spot = await Spot.findOne({ where: { id } });
 
+		console.log(
+			"REQ BODY PUT REQUEST \n\n\n\n\n",
+			req.body,
+			"REQ BODY \n\n\n\n\n\n"
+		);
+
 		try {
 			if (spot) {
 				const {
@@ -200,25 +219,47 @@ router.put(
 				if (req.file) imageUpload = await fileUpload(req.file);
 
 				if (!req.file && imageUrl) {
-					await Spot.update(
-						{
-							name,
-							address,
-							city,
-							lat,
-							long,
-							imageUrl,
-							type,
-							price,
-							description,
-							capacity,
-						},
-						{
-							where: { id },
-							returning: true,
-							plain: true,
-						}
-					);
+					if (!req.body.lat || !req.body.long) {
+						await Spot.update(
+							{
+								name,
+								address,
+								city,
+								lat: null,
+								long: null,
+								imageUrl,
+								type,
+								price,
+								description,
+								capacity,
+							},
+							{
+								where: { id },
+								returning: true,
+								plain: true,
+							}
+						);
+					} else {
+						await Spot.update(
+							{
+								name,
+								address,
+								city,
+								lat,
+								long,
+								imageUrl,
+								type,
+								price,
+								description,
+								capacity,
+							},
+							{
+								where: { id },
+								returning: true,
+								plain: true,
+							}
+						);
+					}
 				} else {
 					await Spot.update(
 						{

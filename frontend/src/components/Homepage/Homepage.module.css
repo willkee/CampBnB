@@ -20,6 +20,7 @@
 	filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.141));
 	transform: translateY(-5px);
 	transition: all linear 0.2s;
+	transition-delay: 0.5s;
 }
 
 .img_container {

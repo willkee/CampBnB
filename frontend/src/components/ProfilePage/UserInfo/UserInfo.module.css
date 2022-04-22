@@ -16,11 +16,6 @@
 
 .container button:hover {
 	background-color: #354f52;
-	transform: translateY(-1px);
-}
-
-.container button:active {
-	transform: translateY(0);
 }
 
 .errors_container {

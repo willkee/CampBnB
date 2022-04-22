@@ -226,17 +226,9 @@ const NewBookingForm = ({ spot }) => {
 							className={styles.num_days}
 						>{`Total Days: ${totalDays()}`}</div>
 						<div className={styles.total_price}>
-							{spot.price === 0 ? (
-								"Total: Free"
-							) : (
-								<>
-									{`Total: $${
-										spot.price
-									} x ${totalDays()} Days = $${
-										spot.price * totalDays()
-									}`}
-								</>
-							)}
+							{`Total: $${spot.price} x ${totalDays()} Days = $${
+								spot.price * totalDays()
+							}`}
 						</div>
 
 						{!confirm && (

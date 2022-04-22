@@ -13,8 +13,8 @@ const NewSpotForm = () => {
 	const [name, setName] = useState("");
 	const [address, setAddress] = useState("");
 	const [city, setCity] = useState("");
-	const [lat, setLat] = useState();
-	const [long, setLong] = useState();
+	const [lat, setLat] = useState("");
+	const [long, setLong] = useState("");
 	const [imageUrl, setImageUrl] = useState(null);
 	const [type, setType] = useState("tent");
 	const [price, setPrice] = useState(0);
@@ -90,8 +90,8 @@ const NewSpotForm = () => {
 				<>
 					<h1>Create Your Spot!</h1>
 					<div className={styles.sub_heading}>
-						We are currently only accepting spots within Colorado.
-						More states coming soon!
+						We encourage users to post spots within Colorado at this
+						time. More states coming soon!
 					</div>
 					<form
 						onSubmit={submitClicked}
@@ -136,7 +136,11 @@ const NewSpotForm = () => {
 								</label>
 								<div
 									className={styles.loc_switch}
-									onClick={() => setLatLongOnly(true)}
+									onClick={() => {
+										setLatLongOnly(true);
+										// setLat(parseFloat("37").toFixed(6));
+										// setLong(parseFloat("-102").toFixed(6));
+									}}
 								>
 									No street address? Click here.
 								</div>
@@ -144,7 +148,12 @@ const NewSpotForm = () => {
 						) : (
 							<>
 								<div className={styles.coordinates_info}>
-									<h5>Valid coordinates for Colorado:</h5>
+									<h5>
+										Please limit latitude and longitude
+										coordinates to within Colorado. (We are
+										expanding to more states soon!) Valid
+										coordinates:
+									</h5>
 									<p>Latitude: 37° to 41° (37°N to 41°N).</p>
 									<p>
 										Longitude -102° to -109° (102° to
@@ -217,7 +226,11 @@ const NewSpotForm = () => {
 								</div>
 								<div
 									className={styles.loc_switch}
-									onClick={() => setLatLongOnly(false)}
+									onClick={() => {
+										setLatLongOnly(false);
+										setLat(null);
+										setLong(null);
+									}}
 								>
 									Want to enter a street address instead?
 									Click here.
@@ -336,9 +349,7 @@ const NewSpotForm = () => {
 									value={price}
 									onChange={(e) => setPrice(e.target.value)}
 								/>
-								{price === 0
-									? rightInput()
-									: price
+								{price && price >= 1
 									? rightInput()
 									: wrongInput()}
 							</div>

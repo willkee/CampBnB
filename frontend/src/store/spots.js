@@ -57,12 +57,16 @@ export const createSpot = (data) => async (dispatch) => {
 	formData.append("name", name);
 	formData.append("address", address);
 	formData.append("city", city);
-	if (lat) formData.append("lat", lat);
-	if (long) formData.append("long", long);
+	if (lat && lat !== "0") formData.append("lat", lat);
+	if (long && long !== "0") formData.append("long", long);
 	formData.append("imageUrl", imageUrl);
 	formData.append("type", type);
 	formData.append("price", price);
-	if (description) formData.append("description", description);
+	if (description) {
+		formData.append("description", description);
+	} else {
+		formData.append("description", "");
+	}
 	formData.append("capacity", capacity);
 
 	const res = await csrfFetch(`/api/spots`, {
@@ -123,12 +127,22 @@ export const updateOneSpot = (data) => async (dispatch) => {
 	formData.append("name", name);
 	formData.append("address", address);
 	formData.append("city", city);
-	if (lat) formData.append("lat", lat);
-	if (long) formData.append("long", long);
+	console.log(lat, long, "STORE LOG TESTING LAT LONG");
+	if (lat) {
+		formData.append("lat", lat);
+	}
+	if (long) {
+		formData.append("long", long);
+	}
 	formData.append("imageUrl", imageUrl);
 	formData.append("type", type);
 	formData.append("price", price);
-	if (description) formData.append("description", description);
+
+	if (description) {
+		formData.append("description", description);
+	} else {
+		formData.append("description", "");
+	}
 	formData.append("capacity", capacity);
 
 	const res = await csrfFetch(`/api/spots/${data.id}`, {
