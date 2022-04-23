@@ -135,13 +135,18 @@ CampBnB is based off of AirBnB for users to list their spots or make bookings at
 
 ## Screenshots
 
-<img src="https://campbnb.s3.us-west-1.amazonaws.com/ss_splash.png" style="width:800px;" />
-<img src="https://campbnb.s3.us-west-1.amazonaws.com/ss_home.png" style="width:800px;" />
+<img src="https://campbnb.s3.us-west-1.amazonaws.com/new_ss_splash1.png" style="width:800px;" />
+<img src="https://campbnb.s3.us-west-1.amazonaws.com/new_ss_splash2.png" style="width:800px;" />
+<img src="https://campbnb.s3.us-west-1.amazonaws.com/new_ss_home.png" style="width:800px;" />
+<img src="https://campbnb.s3.us-west-1.amazonaws.com/new_ss_homeclosed.png" style="width:800px;" />
 <img src="https://campbnb.s3.us-west-1.amazonaws.com/ss_signup.png" style="width:800px;" />
 <img src="https://campbnb.s3.us-west-1.amazonaws.com/ss_login.png" style="width:800px;" />
-<img src="https://campbnb.s3.us-west-1.amazonaws.com/ss_create_spot.png" style="width:800px;" />
-<img src="https://campbnb.s3.us-west-1.amazonaws.com/ss_create_errors.png" style="width:800px;" />
-<img src="https://campbnb.s3.us-west-1.amazonaws.com/ss_myspots.png" style="width:800px;" />
+<img src="https://campbnb.s3.us-west-1.amazonaws.com/new_ss_newspot.png" style="width:800px;" />
+<img src="https://campbnb.s3.us-west-1.amazonaws.com/new_ss_editspot.png" style="width:800px;" />
+<img src="https://campbnb.s3.us-west-1.amazonaws.com/new_ss_imgupload.png" style="width:800px;" />
+<img src="https://campbnb.s3.us-west-1.amazonaws.com/new_ss_myspots.png" style="width:800px;" />
 <img src="https://campbnb.s3.us-west-1.amazonaws.com/ss_spot.png" style="width:800px;" />
-<img src="https://campbnb.s3.us-west-1.amazonaws.com/ss_bookings.png" style="width:800px;" />
+<img src="https://campbnb.s3.us-west-1.amazonaws.com/new_ss_booking.png" style="width:800px;" />
+<img src="https://campbnb.s3.us-west-1.amazonaws.com/new_ss_mybookings.png" style="width:800px;" />
+<img src="https://campbnb.s3.us-west-1.amazonaws.com/new_ss_myspots.png" style="width:800px;"/>
 <img src="https://campbnb.s3.us-west-1.amazonaws.com/ss_settings.png" style="width:800px;"/>
