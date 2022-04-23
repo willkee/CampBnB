@@ -12,7 +12,7 @@
 - [Getting Started](https://github.com/willkee/CampBnB#getting-started)
 - [Features](https://github.com/willkee/CampBnB#features)
 - [Screenshots](https://github.com/willkee/CampBnB#screenshots)
-- [Screenshots](https://github.com/willkee/CampBnB#future-development-ideas)
+- [Future Development Ideas](https://github.com/willkee/CampBnB#future-development-ideas)
 
 ---
 
