@@ -98,9 +98,12 @@ CampBnB is based off of AirBnB for users to list their spots or make bookings at
 4.  In the backend directory, create a `.env` file based on the `.env.example` file.
     <br>
 
-5.  Enter your username and password into the respective fields in the `.env` file you just created. Enter your chosen database name and `PORT`. You may enter a secure combination of characters into `JWT_SECRET` or use the following in `node` in your terminal to generate a secure string. You may use `localhost` for `DB_HOST`. You may also need to set up Google Maps API credentials [here](https://developers.google.com/maps/documentation/embed/get-api-key) to obtain an API key for the `MAPS_API_KEY`.
+5.  Enter your username and password into the respective fields in the `.env` file you just created. Enter your chosen database name and `PORT`. You may enter a secure combination of characters into `JWT_SECRET` or use the `require("crypto")` code below in `node` in your terminal to generate a secure string. You may use `localhost` for `DB_HOST`. 
+    - require("crypto").randomBytes(32).toString("hex")
+    - You may need to set up Google Maps API credentials [here](https://developers.google.com/maps/documentation/embed/get-api-key) to obtain an API key for the `MAPS_API_KEY`.
+    - You may need to set up an Amazon Web Services (AWS) S3 account [here](https://aws.amazon.com/) to create a S3 bucket, and generate an AWS Access Key ID and AWS Secret Access Key.
 
-        require("crypto").randomBytes(32).toString("hex")
+        
 
     <br>
 
