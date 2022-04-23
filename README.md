@@ -4,6 +4,16 @@
 
 <br>
 
+## Table of Contents
+
+- [Link to Live Site](https://github.com/willkee/CampBnB#link-to-live-site)
+- [Description](https://github.com/willkee/CampBnB#description)
+- [Technologies](https://github.com/willkee/CampBnB#technologies)
+- [Getting Started](https://github.com/willkee/CampBnB#getting-started)
+- [Features](https://github.com/willkee/CampBnB#features)
+- [Screenshots](https://github.com/willkee/CampBnB#screenshots)
+
+
 ---
 
 ## Link to Live Site
@@ -16,7 +26,7 @@
 
 ## Description
 
-CampBnB is based off of AirBnB for users to list their spots or make bookings at existing spots on the platform. Users may also choose to leave a rating or review at any of the existing spots.
+CampBnB is based off of AirBnB for users to list their spots or make bookings at existing spots on the platform. Spots may be edited or deleted by the owner of the spot as well. In a future development, users may also choose to leave a rating or review at any of the existing spots.
 
 <br>
 
