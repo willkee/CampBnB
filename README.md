@@ -12,7 +12,7 @@
 - [Getting Started](https://github.com/willkee/CampBnB#getting-started)
 - [Features](https://github.com/willkee/CampBnB#features)
 - [Screenshots](https://github.com/willkee/CampBnB#screenshots)
-
+- [Screenshots](https://github.com/willkee/CampBnB#future-development-ideas)
 
 ---
 
@@ -163,3 +163,9 @@ CampBnB is based off of AirBnB for users to list their spots or make bookings at
 <img src="https://campbnb.s3.us-west-1.amazonaws.com/new_ss_mybookings.png" style="width:800px;" />
 <img src="https://campbnb.s3.us-west-1.amazonaws.com/new_ss_myspots.png" style="width:800px;"/>
 <img src="https://campbnb.s3.us-west-1.amazonaws.com/ss_settings.png" style="width:800px;"/>
+
+## Future Development Ideas
+
+- Setting up ratings and reviews (as a single entity) that will be displayed on each spot page.
+- Total average rating to be displayed on the home (main) page.
+- Setting up search functionality where users may search campgrounds by name or city.
