@@ -50,15 +50,15 @@ const NewSpotForm = () => {
 		try {
 			const newSpot = await dispatch(
 				createSpot({
-					name,
-					address,
-					city,
+					name: name.trim(),
+					address: address.trim(),
+					city: city.trim(),
 					lat,
 					long,
 					imageUrl,
 					type,
 					price,
-					description,
+					description: description.trim(),
 					capacity,
 				})
 			);

@@ -38,9 +38,9 @@ function SignUpForm() {
 		try {
 			await dispatch(
 				sessionActions.signup({
-					firstName,
-					lastName,
-					email,
+					firstName: firstName.trim(),
+					lastName: lastName.trim(),
+					email: email.trim(),
 					password,
 					confirmPassword,
 				})
