@@ -24,8 +24,8 @@ const UserInfo = () => {
 			await dispatch(
 				updateUserNames({
 					id: sessionUser.id,
-					firstName,
-					lastName,
+					firstName: firstName.trim(),
+					lastName: lastName.trim(),
 				})
 			);
 			setShowNameUpdate(false);
@@ -47,7 +47,7 @@ const UserInfo = () => {
 			]);
 
 		try {
-			await dispatch(updateUserEmail(sessionUser.id, email));
+			await dispatch(updateUserEmail(sessionUser.id, email.trim()));
 			setShowEmailUpdate(false);
 		} catch (err) {
 			const data = await err.json();

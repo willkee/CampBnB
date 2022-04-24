@@ -80,15 +80,15 @@ const EditSpotForm = ({ spot }) => {
 					await dispatch(
 						updateOneSpot({
 							id: spot.id,
-							name,
-							address,
-							city,
+							name: name.trim(),
+							address: address.trim(),
+							city: city.trim(),
 							lat: null,
 							long: null,
 							imageUrl: newImg,
 							type,
 							price,
-							description,
+							description: description.trim(),
 							capacity,
 						})
 					);
@@ -96,15 +96,15 @@ const EditSpotForm = ({ spot }) => {
 					await dispatch(
 						updateOneSpot({
 							id: spot.id,
-							name,
-							address,
-							city,
+							name: name.trim(),
+							address: address.trim(),
+							city: city.trim(),
 							lat,
 							long,
 							imageUrl: newImg,
 							type,
 							price,
-							description,
+							description: description.trim(),
 							capacity,
 						})
 					);
@@ -116,15 +116,15 @@ const EditSpotForm = ({ spot }) => {
 					await dispatch(
 						updateOneSpot({
 							id: spot.id,
-							name,
-							address,
-							city,
+							name: name.trim(),
+							address: address.trim(),
+							city: city.trim(),
 							lat: null,
 							long: null,
 							imageUrl,
 							type,
 							price,
-							description,
+							description: description.trim(),
 							capacity,
 						})
 					);
@@ -132,15 +132,15 @@ const EditSpotForm = ({ spot }) => {
 					await dispatch(
 						updateOneSpot({
 							id: spot.id,
-							name,
-							address,
-							city,
+							name: name.trim(),
+							address: address.trim(),
+							city: city.trim(),
 							lat,
 							long,
 							imageUrl,
 							type,
 							price,
-							description,
+							description: description.trim(),
 							capacity,
 						})
 					);
