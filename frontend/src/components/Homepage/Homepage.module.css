@@ -34,7 +34,7 @@
 	top: 0;
 	height: 100%;
 	width: 100%;
-	z-index: 800;
+	z-index: 50;
 	background: linear-gradient(90deg, rgb(0, 0, 0), rgb(210, 20, 20));
 	opacity: 0.5;
 	border-radius: 8px;

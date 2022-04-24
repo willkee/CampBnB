@@ -6,6 +6,7 @@
 	width: 600px;
 	padding: 30px 0;
 	background-color: #cad2c5;
+	z-index: 999;
 }
 
 .sign_up_logo {
