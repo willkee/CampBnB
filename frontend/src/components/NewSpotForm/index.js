@@ -17,9 +17,9 @@ const NewSpotForm = () => {
 	const [long, setLong] = useState("");
 	const [imageUrl, setImageUrl] = useState(null);
 	const [type, setType] = useState("tent");
-	const [price, setPrice] = useState(0);
+	const [price, setPrice] = useState("");
 	const [description, setDescription] = useState("");
-	const [capacity, setCapacity] = useState(4);
+	const [capacity, setCapacity] = useState("");
 
 	const [submitted, setSubmitted] = useState(false);
 
@@ -66,7 +66,8 @@ const NewSpotForm = () => {
 			return history.push(`/spots/${newSpot.id}`);
 		} catch (err) {
 			const data = await err.json();
-			if (data && data.errors) setErrors(data.errors);
+			if (data && data.errors)
+				setErrors(data.errors.filter((err) => err !== "Invalid value"));
 			setSubmitted(false);
 			window.scrollTo({ top: 0 });
 		}
@@ -112,7 +113,7 @@ const NewSpotForm = () => {
 									value={name}
 									onChange={(e) => setName(e.target.value)}
 								/>
-								{name && name.length <= 255
+								{name && name.length > 4 && name.length < 256
 									? rightInput()
 									: wrongInput()}
 							</div>
@@ -136,11 +137,7 @@ const NewSpotForm = () => {
 								</label>
 								<div
 									className={styles.loc_switch}
-									onClick={() => {
-										setLatLongOnly(true);
-										// setLat(parseFloat("37").toFixed(6));
-										// setLong(parseFloat("-102").toFixed(6));
-									}}
+									onClick={() => setLatLongOnly(true)}
 								>
 									No street address? Click here.
 								</div>
@@ -246,7 +243,7 @@ const NewSpotForm = () => {
 									value={city}
 									onChange={(e) => setCity(e.target.value)}
 								/>
-								{city && city.length <= 255
+								{city && city.length > 2 && city.length < 201
 									? rightInput()
 									: wrongInput()}
 							</div>
@@ -349,7 +346,7 @@ const NewSpotForm = () => {
 									value={price}
 									onChange={(e) => setPrice(e.target.value)}
 								/>
-								{price && price >= 1
+								{price && price >= 1 && price < 10000
 									? rightInput()
 									: wrongInput()}
 							</div>
@@ -364,7 +361,7 @@ const NewSpotForm = () => {
 										setCapacity(e.target.value)
 									}
 								/>
-								{capacity && capacity >= 1
+								{capacity && capacity >= 1 && capacity < 1000
 									? rightInput()
 									: wrongInput()}
 							</div>
