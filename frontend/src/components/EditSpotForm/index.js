@@ -206,7 +206,7 @@ const EditSpotForm = ({ spot }) => {
 							value={name}
 							onChange={(e) => setName(e.target.value)}
 						/>
-						{name && name.length <= 255
+						{name && name.length > 4 && name.length < 256
 							? rightInput()
 							: wrongInput()}
 					</div>
@@ -305,7 +305,7 @@ const EditSpotForm = ({ spot }) => {
 							value={city}
 							onChange={(e) => setCity(e.target.value)}
 						/>
-						{city && city.length <= 255
+						{city && city.length > 2 && city.length < 201
 							? rightInput()
 							: wrongInput()}
 					</div>
@@ -427,9 +427,7 @@ const EditSpotForm = ({ spot }) => {
 							value={price}
 							onChange={(e) => setPrice(e.target.value)}
 						/>
-						{price === 0
-							? rightInput()
-							: price > 0
+						{price && price >= 1 && price < 10000
 							? rightInput()
 							: wrongInput()}
 					</div>
@@ -442,7 +440,9 @@ const EditSpotForm = ({ spot }) => {
 							value={capacity}
 							onChange={(e) => setCapacity(e.target.value)}
 						/>
-						{capacity ? rightInput() : wrongInput()}
+						{capacity && capacity >= 1 && capacity < 1000
+							? rightInput()
+							: wrongInput()}
 					</div>
 				</label>
 				<label>
