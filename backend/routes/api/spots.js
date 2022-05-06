@@ -55,17 +55,12 @@ const validateSpot = [
 	check("name")
 		.exists({ checkFalsy: true })
 		.withMessage("Please enter a name for your spot.")
-		.isLength({ max: 255 })
-		.withMessage(
-			"Please enter no more than 255 characters for the name of your spot."
-		),
+		.isLength({ min: 5, max: 255 })
+		.withMessage("Please enter a name between 5 and 255 characters."),
 	check("city")
 		.exists({ checkFalsy: true })
-		.withMessage("Please enter the city of your spot.")
-		.isLength({ max: 255 })
-		.withMessage(
-			"There's no city name in the world longer than 255 characters!"
-		),
+		.isLength({ min: 3, max: 200 })
+		.withMessage("Please enter a city name between 3 and 200 characters."),
 	check("imageUrl").custom(async (_value, { req }) => {
 		if (!req.file && !req.body.imageUrl) {
 			return await Promise.reject("Please upload an image.");
