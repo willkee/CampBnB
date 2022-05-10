@@ -14,6 +14,7 @@ import SingleSpot from "./components/SingleSpot";
 import ProfilePage from "./components/ProfilePage";
 import Footer from "./components/Footer";
 import ErrorPage from "./components/ErrorPage";
+import SearchResults from "./components/Search/Results";
 
 function App() {
 	const dispatch = useDispatch();
@@ -56,6 +57,9 @@ function App() {
 						) : (
 							<Redirect to="/main" />
 						)}
+					</Route>
+					<Route exact path="/search/:query">
+						<SearchResults />
 					</Route>
 					<Route>
 						<ErrorPage />

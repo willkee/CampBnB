@@ -1,0 +1,50 @@
+.container {
+	padding: 50px;
+	width: 600px;
+	height: 300px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(45deg, #10191d, rgb(22, 81, 8));
+}
+
+.container h2 {
+	font-size: 35px;
+	margin-bottom: 20px;
+	color: white;
+}
+
+.errors {
+	color: rgb(227, 203, 117);
+	font-size: 14px;
+	margin-bottom: 20px;
+}
+
+.container form {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 4fr 1fr;
+	gap: 15px;
+}
+
+.container form input {
+	padding: 5px;
+}
+
+.container form button {
+	background-color: #84a98c;
+	border: none;
+	filter: none;
+	cursor: pointer;
+	color: rgb(0, 0, 0);
+	transition: all linear 0.2s;
+	font-size: 14px;
+	font-weight: 500;
+	text-transform: uppercase;
+}
+
+.container form button:hover {
+	background-color: #557d5d;
+	color: white;
+}
