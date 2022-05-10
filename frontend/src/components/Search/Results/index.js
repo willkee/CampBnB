@@ -12,28 +12,40 @@ const SearchResults = () => {
 	Object.values(spots).forEach((spot) => {
 		const spotName = spot.name.toLowerCase();
 		const spotCity = spot.city.toLowerCase();
-		const inputQuery = query.toLowerCase();
+		console.log(query, decodeURIComponent(query));
+		const inputQuery = decodeURIComponent(query).toLowerCase();
 
 		if (spotName.includes(inputQuery) || spotCity === inputQuery) {
 			matchedSpots.push(spot);
 		}
 	});
 
+	const goHome = () => history.push("/main");
+
 	const goToSpot = (spotId) => history.push(`/spots/${spotId}`);
 
 	return (
-		<div>
+		<div className={styles.outer_container}>
 			<div className={styles.search_query}>
 				<span className={styles.search_for}>
-					You searched for: {query}.
+					You searched for: {decodeURIComponent(query)}.
 				</span>
 				<span>
 					<span>
 						{matchedSpots.length > 0 ? matchedSpots.length : "No"}
 					</span>{" "}
-					results were found.
+					{matchedSpots.length === 1
+						? "result was found."
+						: "results were found."}
 				</span>
 			</div>
+			<button
+				type="button"
+				onClick={goHome}
+				className={styles.return_home}
+			>
+				Return Home
+			</button>
 			<div>
 				{matchedSpots.map((spot) => (
 					<div
@@ -43,7 +55,11 @@ const SearchResults = () => {
 					>
 						<img src={spot.imageUrl} alt="spot" />
 						<div>
-							<h3>{spot.name}</h3>
+							<h3 className={styles.spot_name}>
+								{spot.name.length > 70
+									? spot.name.slice(0, 70) + "..."
+									: spot.name}
+							</h3>
 							<div className={styles.city}>{spot.city}</div>
 							<div>
 								<span className={styles.price_info}>

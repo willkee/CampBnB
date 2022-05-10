@@ -20,6 +20,11 @@ const SearchInput = () => {
 			setSearch("");
 			return;
 		}
+		if (search.length > 200) {
+			setErrors(["Please keep your search query within 200 characters."]);
+			setSearch("");
+			return;
+		}
 
 		history.push(`/search/${encodeURIComponent(search)}`);
 		setSearch("");
