@@ -6,6 +6,7 @@ import ProfileButton from "./ProfileButton";
 import { showModal, currentModal } from "../../store/modal";
 import SignUpForm from "../SignUpForm";
 import LoginForm from "../LoginForm";
+import SearchInput from "../Search/Input";
 
 import styles from "./Navigation.module.css";
 
@@ -20,6 +21,11 @@ function Navigation({ sessionUser, isLoaded }) {
 
 	const displayLoginForm = () => {
 		dispatch(currentModal(LoginForm));
+		dispatch(showModal());
+	};
+
+	const displaySearchInput = () => {
+		dispatch(currentModal(SearchInput));
 		dispatch(showModal());
 	};
 
@@ -44,6 +50,13 @@ function Navigation({ sessionUser, isLoaded }) {
 								<i className="fa-light fa-campground" />
 								<span>Explore</span>
 							</NavLink>
+							<div
+								className={styles.search}
+								onClick={displaySearchInput}
+							>
+								<i className="fa-regular fa-magnifying-glass-location"></i>
+								Search
+							</div>
 							{sessionUser ? (
 								<>
 									<NavLink

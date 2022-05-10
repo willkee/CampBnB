@@ -51,7 +51,8 @@
 	margin-right: 30px;
 }
 
-.right a i {
+.right a i,
+.search i {
 	font-size: 22px;
 	margin-right: 8px;
 }
@@ -62,6 +63,10 @@
 .explore_button:hover,
 .add_new:hover {
 	color: #84a98c;
+}
+
+.add_new {
+	margin-left: 40px;
 }
 
 .profile_icon {
@@ -75,17 +80,20 @@
 }
 
 .log_in,
-.sign_up {
+.sign_up,
+.search {
 	margin-left: 40px;
 	cursor: pointer;
 }
 .log_in:hover,
-.sign_up:hover {
+.sign_up:hover,
+.search:hover {
 	color: #84a98c;
 }
 
 .log_in i,
-.sign_up i {
+.sign_up i,
+.search i {
 	margin-right: 5px;
 }
 
