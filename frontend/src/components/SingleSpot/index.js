@@ -8,6 +8,8 @@ import { getOneSpot } from "../../store/spots";
 import NewBookingForm from "../NewBookingForm";
 import OwnerControls from "./Utilities/OwnerControls";
 import AcceptBookings from "./Utilities/AcceptBookings";
+import Reviews from "../Reviews";
+
 import styles from "./SingleSpot.module.css";
 
 const SingleSpot = () => {
@@ -156,6 +158,7 @@ const SingleSpot = () => {
 							<div className={styles.desc}>
 								{spot.description}
 							</div>
+							<Reviews reviews={spot.Reviews} spotId={id} />
 						</div>
 						<div className={styles.booking_form}>
 							{sessionUser && (

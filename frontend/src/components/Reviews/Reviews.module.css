@@ -1,0 +1,82 @@
+.list_reviews {
+	margin-top: 20px;
+	display: flex;
+	flex-direction: column-reverse;
+}
+.header {
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
+}
+
+.profile {
+	display: flex;
+}
+.profile i {
+	font-size: 28px;
+	padding: 5px;
+}
+.name {
+	font-size: 14px;
+	font-weight: 600;
+}
+.date {
+	font-size: 11px;
+}
+
+.reviews_container h3 {
+	margin: 20px 0;
+}
+
+.each_review {
+	border: 1px solid rgba(92, 92, 92, 0.482);
+	margin: 10px 0;
+	box-shadow: 1px 1px 0.5px rgba(214, 214, 214, 0.44);
+	width: 100%;
+	border-radius: 5px;
+}
+
+.stars {
+	padding-right: 0;
+	display: flex;
+	justify-content: flex-end;
+}
+.stars i {
+	color: gold;
+}
+
+.review_owner {
+	display: flex;
+	width: 100%;
+	justify-content: flex-end;
+	margin: 5px 0;
+}
+
+.review_owner div {
+	margin-left: 10px;
+}
+
+.text {
+	font-size: 15px;
+	padding: 10px;
+	width: 100%;
+	overflow-wrap: break-word;
+}
+
+#edit_button {
+	cursor: pointer;
+	transition: all linear 0.1s;
+}
+#edit_button:hover {
+	color: orange;
+	font-weight: 600;
+}
+#delete_button {
+	cursor: pointer;
+	transition: all linear 0.1s;
+	padding-right: 1px;
+}
+#delete_button:hover {
+	color: rgb(255, 0, 0);
+	font-weight: 600;
+}

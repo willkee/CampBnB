@@ -7,6 +7,34 @@ const UPDATED_SPOT = "spots/UPDATED_SPOT";
 const SWITCHED_OPENING = "spots/SWITCHED_OPENING";
 const DELETED_SPOT = "spots/DELETED_SPOT";
 
+// ------------------------------------------------
+// Reviews
+// ------------------------------------------------
+
+const CREATED_REVIEW = "reviews/CREATED_REVIEW";
+const UPDATED_REVIEW = "reviews/UPDATED_REVIEW";
+const DELETED_REVIEW = "reviews/DELETED_REVIEW";
+
+const createdReview = (review, spotId) => ({
+	type: CREATED_REVIEW,
+	review,
+	spotId,
+});
+
+const updatedReview = (review, spotId) => ({
+	type: UPDATED_REVIEW,
+	review,
+	spotId,
+});
+
+const deletedReview = (reviewId, spotId) => ({
+	type: DELETED_REVIEW,
+	reviewId,
+	spotId,
+});
+
+// ------------------------------------------------
+
 const retrievedSpots = (spots) => ({
 	type: RETRIEVED_SPOTS,
 	spots,
@@ -189,6 +217,51 @@ export const deleteSpot = (id) => async (dispatch) => {
 	}
 };
 
+// ------------------------------------------------
+// ------------------------------------------------
+// REVIEWS
+
+export const createReview = (data) => async (dispatch) => {
+	const res = await csrfFetch(`/api/spots/${data.spotId}/reviews`, {
+		method: "POST",
+		body: JSON.stringify(data),
+	});
+
+	if (res.ok) {
+		const review = await res.json();
+		await dispatch(createdReview(review, data.spotId));
+		return review;
+	}
+};
+
+export const updateReview = (data) => async (dispatch) => {
+	const res = await csrfFetch(`/api/reviews/${data.id}`, {
+		method: "PUT",
+		body: JSON.stringify(data),
+	});
+
+	if (res.ok) {
+		const update = await res.json();
+		await dispatch(updatedReview(update, data.spotId));
+		return update;
+	}
+};
+
+export const deleteReview = (id, spotId) => async (dispatch) => {
+	const res = await csrfFetch(`/api/reviews/${id}`, {
+		method: "DELETE",
+	});
+
+	if (res.ok) {
+		const update = await res.json();
+		await dispatch(deletedReview(id, spotId));
+		return update;
+	}
+};
+
+// ------------------------------------------------
+// ------------------------------------------------
+
 const initialState = {};
 
 const spotsReducer = (state = initialState, action) => {
@@ -206,6 +279,13 @@ const spotsReducer = (state = initialState, action) => {
 		}
 		// READ ONE
 		case ONE_SPOT_RETRIEVED: {
+			console.log(action.spot.Reviews, "STORE REVIEWS!");
+			const obj = {};
+			action.spot.Reviews.forEach((review) => {
+				obj[review.id] = review;
+			});
+			action.spot.Reviews = obj;
+			console.log(action.spot);
 			newState[action.spot.id] = action.spot;
 			return newState;
 		}
@@ -222,6 +302,21 @@ const spotsReducer = (state = initialState, action) => {
 		// DELETE
 		case DELETED_SPOT: {
 			delete newState[action.deletedId];
+			return newState;
+		}
+		// CREATE REVIEW
+		case CREATED_REVIEW: {
+			newState[action.spotId].Reviews[action.review.id] = action.review;
+			return newState;
+		}
+		// UPDATE REVIEW
+		case UPDATED_REVIEW: {
+			newState[action.spotId].Reviews[action.review.id] = action.review;
+			return newState;
+		}
+		// DELETE REVIEW
+		case DELETED_REVIEW: {
+			delete newState[action.spotId].Reviews[action.reviewId];
 			return newState;
 		}
 		default:

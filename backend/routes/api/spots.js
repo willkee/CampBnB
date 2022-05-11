@@ -4,7 +4,7 @@ const asyncHandler = require("express-async-handler");
 
 const { Op } = require("sequelize");
 const { requireAuth } = require("../../utils/auth");
-const { Spot, User, Booking } = require("../../db/models");
+const { Spot, User, Booking, Review } = require("../../db/models");
 const { handleValidationErrors } = require("../../utils/validation");
 const { fileUpload, multerUpload } = require("../../awsS3");
 
@@ -125,7 +125,11 @@ router.get(
 	asyncHandler(async (req, res) => {
 		const id = parseInt(req.params.id, 10);
 		const spot = await Spot.findByPk(id, {
-			include: [{ model: User }, { model: Booking }],
+			include: [
+				{ model: User },
+				{ model: Booking },
+				{ model: Review, include: User },
+			],
 		});
 
 		if (spot) {
@@ -188,12 +192,6 @@ router.put(
 	asyncHandler(async (req, res) => {
 		const id = parseInt(req.params.id, 10);
 		const spot = await Spot.findOne({ where: { id } });
-
-		console.log(
-			"REQ BODY PUT REQUEST \n\n\n\n\n",
-			req.body,
-			"REQ BODY \n\n\n\n\n\n"
-		);
 
 		try {
 			if (spot) {

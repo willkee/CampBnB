@@ -20,7 +20,7 @@ module.exports = {
 					people: 3,
 				},
 				{
-					spotId: 26,
+					spotId: 8,
 					userId: 6,
 					startDate: "2023-04-12",
 					endDate: "2023-04-17",
