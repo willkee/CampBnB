@@ -33,6 +33,7 @@
 	margin: 10px 0;
 	box-shadow: 1px 1px 0.5px rgba(214, 214, 214, 0.44);
 	width: 100%;
+	border-radius: 5px;
 }
 
 .stars i {
