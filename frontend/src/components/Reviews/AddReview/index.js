@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { createReview } from "../../store/spots";
-import styles from "./Reviews.module.css";
+import { createReview } from "../../../store/spots";
+import styles from "./AddReview.module.css";
 
 const AddReview = ({ spotId }) => {
 	const [content, setContent] = useState("");

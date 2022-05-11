@@ -12,9 +12,16 @@ const DELETED_SPOT = "spots/DELETED_SPOT";
 // ------------------------------------------------
 
 const CREATED_REVIEW = "reviews/CREATED_REVIEW";
+const UPDATED_REVIEW = "reviews/UPDATED_REVIEW";
 
 const createdReview = (review, spotId) => ({
 	type: CREATED_REVIEW,
+	review,
+	spotId,
+});
+
+const updatedReview = (review, spotId) => ({
+	type: UPDATED_REVIEW,
 	review,
 	spotId,
 });
@@ -220,6 +227,19 @@ export const createReview = (data) => async (dispatch) => {
 	}
 };
 
+export const updateReview = (data) => async (dispatch) => {
+	const res = await csrfFetch(`/api/reviews/${data.id}`, {
+		method: "PUT",
+		body: JSON.stringify(data),
+	});
+
+	if (res.ok) {
+		const update = await res.json();
+		await dispatch(updatedReview(update, data.spotId));
+		return update;
+	}
+};
+
 // ------------------------------------------------
 // ------------------------------------------------
 
@@ -265,7 +285,13 @@ const spotsReducer = (state = initialState, action) => {
 			delete newState[action.deletedId];
 			return newState;
 		}
+		// CREATE REVIEW
 		case CREATED_REVIEW: {
+			newState[action.spotId].Reviews[action.review.id] = action.review;
+			return newState;
+		}
+		// UPDATE REVIEW
+		case UPDATED_REVIEW: {
 			newState[action.spotId].Reviews[action.review.id] = action.review;
 			return newState;
 		}

@@ -44,4 +44,39 @@ router.post(
 	})
 );
 
+router.put(
+	"/reviews/:id",
+	validateReview,
+	requireAuth,
+	asyncHandler(async (req, res) => {
+		const { user } = req;
+		const id = parseInt(req.params.id, 10);
+		const review = await Review.findByPk(id);
+		const { rating, content } = req.body;
+
+		try {
+			if (user.id === review.userId) {
+				if (review) {
+					await Review.update(
+						{ rating, content },
+						{ where: { id }, returning: true }
+					);
+					const updatedReview = await Review.findByPk(id, {
+						include: User,
+					});
+					return res.json(updatedReview);
+				} else {
+					throw new Error("Review Not Found.");
+				}
+			} else {
+				throw new Error(
+					"Unauthorized. You are not permitted to update this review."
+				);
+			}
+		} catch (err) {
+			console.error("Review Not Found: ", err);
+		}
+	})
+);
+
 module.exports = router;

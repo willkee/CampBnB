@@ -1,11 +1,20 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+import { showModal, currentModal } from "../../store/modal";
 
 import StarCount from "./StarCount";
 import AddReview from "./AddReview";
+import EditReview from "./EditReview";
 import styles from "./Reviews.module.css";
 
 const Reviews = ({ reviews, spotId }) => {
+	const dispatch = useDispatch();
 	const sessionUser = useSelector((state) => state.session.user);
+
+	const showEditModal = (review) => {
+		dispatch(currentModal(() => <EditReview review={review} />));
+		dispatch(showModal());
+	};
 
 	return (
 		<div className={styles.reviews_container}>
@@ -29,7 +38,25 @@ const Reviews = ({ reviews, spotId }) => {
 									</div>
 								</div>
 							</div>
-							<StarCount stars={review.rating} />
+							<div>
+								<StarCount stars={review.rating} />
+								{sessionUser.id === review.userId && (
+									<div className={styles.review_owner}>
+										<div>
+											<i
+												id={styles.edit_button}
+												onClick={() =>
+													showEditModal(review)
+												}
+												className="fa-light fa-pen-to-square"
+											></i>
+										</div>
+										<div>
+											<i className="fa-light fa-trash-can"></i>
+										</div>
+									</div>
+								)}
+							</div>
 						</div>
 						<div className={styles.text}>{review.content}</div>
 					</div>

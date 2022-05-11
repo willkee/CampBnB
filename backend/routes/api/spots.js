@@ -193,12 +193,6 @@ router.put(
 		const id = parseInt(req.params.id, 10);
 		const spot = await Spot.findOne({ where: { id } });
 
-		console.log(
-			"REQ BODY PUT REQUEST \n\n\n\n\n",
-			req.body,
-			"REQ BODY \n\n\n\n\n\n"
-		);
-
 		try {
 			if (spot) {
 				const {
