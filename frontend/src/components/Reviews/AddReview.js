@@ -1,18 +1,57 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+
+import { createReview } from "../../store/spots";
 import styles from "./Reviews.module.css";
 
-const AddReview = () => {
+const AddReview = ({ spotId }) => {
 	const [content, setContent] = useState("");
-	const [rating, setRating] = useState("");
+	const [rating, setRating] = useState(0);
+	const [errors, setErrors] = useState([]);
+	const dispatch = useDispatch();
+
+	const submitReview = async (e) => {
+		e.preventDefault();
+		setErrors([]);
+
+		try {
+			await dispatch(
+				createReview({
+					spotId,
+					rating,
+					content: content.trim(),
+				})
+			);
+			setContent("");
+			setRating(0);
+			return;
+		} catch (res) {
+			const data = await res.json();
+			if (data && data.errors) {
+				setErrors(
+					data.errors.filter((error) => error !== "Invalid value")
+				);
+			}
+		}
+	};
 
 	const clear = () => {
 		setContent("");
+		setRating(0);
+		setErrors([]);
 	};
 
 	return (
 		<div className={styles.add_review_container}>
 			<h4>Add Your Review</h4>
-			<form>
+			{errors.length > 0 && (
+				<div className={styles.error_container}>
+					{errors.map((error, idx) => (
+						<div key={idx}>{error}</div>
+					))}
+				</div>
+			)}
+			<form onSubmit={submitReview}>
 				<textarea
 					type="text"
 					className={styles.add_review_text}
@@ -21,10 +60,10 @@ const AddReview = () => {
 				></textarea>
 				<section>
 					<select
-						defaultValue={""}
+						value={rating}
 						onChange={(e) => setRating(e.target.value)}
 					>
-						<option disabled value={""}>
+						<option value={0} disabled>
 							Select Rating
 						</option>
 						<option value={5}>★★★★★</option>

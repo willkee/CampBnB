@@ -1,4 +1,7 @@
-.reviews_container {
+.list_reviews {
+	margin-top: 20px;
+	display: flex;
+	flex-direction: column-reverse;
 }
 .header {
 	display: flex;
@@ -108,4 +111,10 @@
 }
 .clear:hover {
 	background-color: rgb(91, 67, 67);
+}
+
+.error_container {
+	font-size: 14px;
+	color: rgb(255, 233, 153);
+	margin: 5px 0;
 }

@@ -17,9 +17,31 @@ const validateReview = [
 	check("content")
 		.exists({ checkFalsy: true })
 		.isLength({ min: 10 })
-		.withMessage("Please enter some more details!")
+		.withMessage("Please enter a review with more than 10 characters.")
 		.isLength({ max: 1000 })
 		.withMessage("Please limit your review to 1000 characters."),
+	handleValidationErrors,
 ];
+
+router.post(
+	"/spots/:spotId/reviews",
+	validateReview,
+	requireAuth,
+	asyncHandler(async (req, res) => {
+		const { user } = req;
+		const spotId = parseInt(req.params.spotId, 10);
+		const { rating, content } = req.body;
+
+		const review = await Review.create({
+			spotId,
+			userId: user.id,
+			rating,
+			content,
+		});
+
+		const newReview = await Review.findByPk(review.id, { include: User });
+		return res.json(newReview);
+	})
+);
 
 module.exports = router;

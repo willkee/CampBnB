@@ -52,7 +52,7 @@ router.use("/spots", spotsRouter);
 
 router.use("/bookings", bookingsRouter);
 
-router.use("/reviews", reviewsRouter);
+router.use(reviewsRouter);
 
 router.use("/google", googleRouter);
 

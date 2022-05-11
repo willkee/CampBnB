@@ -158,7 +158,7 @@ const SingleSpot = () => {
 							<div className={styles.desc}>
 								{spot.description}
 							</div>
-							<Reviews reviews={spot.Reviews} />
+							<Reviews reviews={spot.Reviews} spotId={id} />
 						</div>
 						<div className={styles.booking_form}>
 							{sessionUser && (
