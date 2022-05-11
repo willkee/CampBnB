@@ -1,0 +1,37 @@
+.container {
+	padding: 50px;
+	width: 600px;
+	text-align: center;
+	background: linear-gradient(45deg, rgb(36, 36, 36), rgb(101, 26, 26));
+	color: white;
+}
+
+.buttons {
+	display: flex;
+	width: 100%;
+	justify-content: space-evenly;
+	margin-top: 30px;
+}
+
+.buttons button {
+	width: 100px;
+	height: 40px;
+	border: 1px solid rgba(0, 0, 0, 0.652);
+	border-radius: 5px;
+	cursor: pointer;
+	text-transform: uppercase;
+	color: white;
+	font-weight: 600;
+}
+.buttons button:first-child {
+	background-color: rgb(147, 30, 30);
+}
+.buttons button:first-child:hover {
+	background-color: rgb(205, 38, 38);
+}
+.buttons button:last-child {
+	background-color: rgb(78, 78, 78);
+}
+.buttons button:last-child:hover {
+	background-color: rgb(63, 63, 63);
+}

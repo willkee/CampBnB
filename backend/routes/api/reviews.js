@@ -6,6 +6,7 @@ const { Op } = require("sequelize");
 const { requireAuth } = require("../../utils/auth");
 const { Spot, User, Review } = require("../../db/models");
 const { handleValidationErrors } = require("../../utils/validation");
+const { parse } = require("path");
 
 const router = express.Router();
 
@@ -71,6 +72,33 @@ router.put(
 			} else {
 				throw new Error(
 					"Unauthorized. You are not permitted to update this review."
+				);
+			}
+		} catch (err) {
+			console.error("Review Not Found: ", err);
+		}
+	})
+);
+
+router.delete(
+	"/reviews/:id",
+	requireAuth,
+	asyncHandler(async (req, res) => {
+		const { user } = req;
+		const id = parseInt(req.params.id, 10);
+		const review = await Review.findByPk(id);
+
+		try {
+			if (user.id === review.userId) {
+				if (review) {
+					await Review.destroy({ where: { id } });
+					return res.json({ id });
+				} else {
+					throw new Error("Review Not Found.");
+				}
+			} else {
+				throw new Error(
+					"Unauthorized. You are not permitted to delete this review."
 				);
 			}
 		} catch (err) {

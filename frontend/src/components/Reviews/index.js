@@ -5,6 +5,7 @@ import { showModal, currentModal } from "../../store/modal";
 import StarCount from "./StarCount";
 import AddReview from "./AddReview";
 import EditReview from "./EditReview";
+import DeleteReview from "./DeleteReview";
 import styles from "./Reviews.module.css";
 
 const Reviews = ({ reviews, spotId }) => {
@@ -13,6 +14,11 @@ const Reviews = ({ reviews, spotId }) => {
 
 	const showEditModal = (review) => {
 		dispatch(currentModal(() => <EditReview review={review} />));
+		dispatch(showModal());
+	};
+
+	const showDeleteModal = (id) => {
+		dispatch(currentModal(() => <DeleteReview id={id} spotId={spotId} />));
 		dispatch(showModal());
 	};
 
@@ -40,22 +46,31 @@ const Reviews = ({ reviews, spotId }) => {
 							</div>
 							<div>
 								<StarCount stars={review.rating} />
-								{sessionUser.id === review.userId && (
-									<div className={styles.review_owner}>
-										<div>
-											<i
-												id={styles.edit_button}
-												onClick={() =>
-													showEditModal(review)
-												}
-												className="fa-light fa-pen-to-square"
-											></i>
+								{sessionUser &&
+									sessionUser.id === review.userId && (
+										<div className={styles.review_owner}>
+											<div>
+												<i
+													id={styles.edit_button}
+													onClick={() =>
+														showEditModal(review)
+													}
+													className="fa-light fa-pen-to-square"
+												></i>
+											</div>
+											<div>
+												<i
+													id={styles.delete_button}
+													onClick={() =>
+														showDeleteModal(
+															review.id
+														)
+													}
+													className="fa-light fa-trash-can"
+												></i>
+											</div>
 										</div>
-										<div>
-											<i className="fa-light fa-trash-can"></i>
-										</div>
-									</div>
-								)}
+									)}
 							</div>
 						</div>
 						<div className={styles.text}>{review.content}</div>

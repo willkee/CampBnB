@@ -36,6 +36,11 @@
 	border-radius: 5px;
 }
 
+.stars {
+	padding-right: 0;
+	display: flex;
+	justify-content: flex-end;
+}
 .stars i {
 	color: gold;
 }
@@ -64,5 +69,14 @@
 }
 #edit_button:hover {
 	color: orange;
+	font-weight: 600;
+}
+#delete_button {
+	cursor: pointer;
+	transition: all linear 0.1s;
+	padding-right: 1px;
+}
+#delete_button:hover {
+	color: rgb(255, 0, 0);
 	font-weight: 600;
 }
