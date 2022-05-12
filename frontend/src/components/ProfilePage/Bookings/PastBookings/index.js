@@ -16,11 +16,13 @@ const PastBookings = ({ myBookings }) => {
 					.valueOf())
 		);
 		setPastBookings(
-			bookings.filter(
-				(booking) =>
-					booking.startDate <
-					new Date().setHours(0, 0, 0, 0).valueOf()
-			)
+			bookings
+				.filter(
+					(booking) =>
+						booking.startDate <
+						new Date().setHours(0, 0, 0, 0).valueOf()
+				)
+				.sort((a, b) => new Date(b.endDate) - new Date(a.endDate))
 		);
 		setLoaded(true);
 

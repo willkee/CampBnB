@@ -59,6 +59,9 @@ const Bookings = () => {
 									.valueOf() >=
 								new Date().setHours(0, 0, 0, 0).valueOf()
 						)
+						.sort(
+							(a, b) => new Date(b.endDate) - new Date(a.endDate)
+						)
 						.map((booking) => (
 							<div
 								className={styles.each_booking}
