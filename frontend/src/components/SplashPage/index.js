@@ -1,5 +1,6 @@
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import * as sessionActions from "../../store/session";
 
 import { currentModal, showModal } from "../../store/modal";
 import LoginForm from "../LoginForm";
@@ -8,6 +9,7 @@ import styles from "./SplashPage.module.css";
 
 const SplashPage = ({ sessionUser }) => {
 	const history = useHistory();
+	const location = useLocation();
 	const dispatch = useDispatch();
 
 	const displaySignupForm = () => {
@@ -18,6 +20,16 @@ const SplashPage = ({ sessionUser }) => {
 	const displayLoginForm = () => {
 		dispatch(currentModal(LoginForm));
 		dispatch(showModal());
+	};
+
+	const demoLogin = async (e) => {
+		e.preventDefault();
+		await dispatch(sessionActions.login("demo@user.io", "password"));
+		await dispatch(sessionActions.getMyBookings());
+		if (location.pathname === "/") {
+			return history.push("/main");
+		}
+		return;
 	};
 
 	return (
@@ -49,7 +61,7 @@ const SplashPage = ({ sessionUser }) => {
 								className={styles.just_browsing}
 								onClick={() => history.push("/main")}
 							>
-								<div>Enter the Site</div>
+								<div>Enter Here</div>
 							</div>
 						</>
 					) : (
@@ -64,6 +76,12 @@ const SplashPage = ({ sessionUser }) => {
 										Sign Up
 									</div>
 								</div>
+								<div className={styles.demo_user}>
+									Demo the Site
+									<div role="button" onClick={demoLogin}>
+										Demo User
+									</div>
+								</div>
 								<div className={styles.existing_user}>
 									Returning user?
 									<div
@@ -74,11 +92,15 @@ const SplashPage = ({ sessionUser }) => {
 									</div>
 								</div>
 							</div>
-							<div
-								className={styles.just_browsing}
-								onClick={() => history.push("/main")}
-							>
-								Just browsing?<div>Explore the Site</div>
+							<div>
+								Just browsing? Explore the site{" "}
+								<span
+									id={styles.here}
+									onClick={() => history.push("/main")}
+								>
+									here
+								</span>
+								.
 							</div>
 						</div>
 					)}

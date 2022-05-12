@@ -98,7 +98,7 @@ function LoginForm() {
 					className="login_signup_switch"
 					onClick={showSignUp}
 				>
-					Don't have an account? Sign up here.
+					Don't have an account? Sign up <span id="here">here</span>.
 				</div>
 			</form>
 		</div>
