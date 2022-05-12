@@ -140,7 +140,7 @@ function SignUpForm() {
 					role="button"
 					onClick={showLogin}
 				>
-					Already have an account? Log in here.
+					Already have an account? Log in <span id="here">here</span>.
 				</div>
 			</form>
 		</div>
