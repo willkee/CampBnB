@@ -1,8 +1,8 @@
-const faker = require("faker");
+// const faker = require("faker");
 // const bcrypt = require("bcryptjs");
 
-const randomNum = (max) => Math.ceil(Math.random() * max);
-const randomNumFloor = (max) => Math.floor(Math.random() * max);
+// const randomNum = (max) => Math.ceil(Math.random() * max);
+// const randomNumFloor = (max) => Math.floor(Math.random() * max);
 
 // const spotNames = [
 // 	{
@@ -386,28 +386,28 @@ const randomNumFloor = (max) => Math.floor(Math.random() * max);
 
 // userSeed(29);
 
-const reviewSeed = (max) => {
-	let i = 0;
-	while (i < max) {
-		let randomRating = randomNum(20);
-		if (randomRating > 10) {
-			randomRating = 5;
-		} else if (randomRating > 5 && randomRating <= 10) {
-			randomRating = 4;
-		} else if (randomRating <= 5 && randomRating >= 3) {
-			randomRating = 3;
-		}
+// const reviewSeed = (max) => {
+// 	let i = 0;
+// 	while (i < max) {
+// 		let randomRating = randomNum(20);
+// 		if (randomRating > 10) {
+// 			randomRating = 5;
+// 		} else if (randomRating > 5 && randomRating <= 10) {
+// 			randomRating = 4;
+// 		} else if (randomRating <= 5 && randomRating >= 3) {
+// 			randomRating = 3;
+// 		}
 
-		const review = {
-			spotId: randomNum(31),
-			userId: randomNum(30),
-			rating: randomRating,
-			content: faker.lorem.paragraph(5),
-		};
+// 		const review = {
+// 			spotId: randomNum(31),
+// 			userId: randomNum(30),
+// 			rating: randomRating,
+// 			content: faker.lorem.paragraph(5),
+// 		};
 
-		console.log(review, ",");
-		i++;
-	}
-};
+// 		console.log(review, ",");
+// 		i++;
+// 	}
+// };
 
-reviewSeed(100);
+// reviewSeed(100);

@@ -155,7 +155,6 @@ export const updateOneSpot = (data) => async (dispatch) => {
 	formData.append("name", name);
 	formData.append("address", address);
 	formData.append("city", city);
-	console.log(lat, long, "STORE LOG TESTING LAT LONG");
 	if (lat) {
 		formData.append("lat", lat);
 	}
@@ -279,13 +278,11 @@ const spotsReducer = (state = initialState, action) => {
 		}
 		// READ ONE
 		case ONE_SPOT_RETRIEVED: {
-			console.log(action.spot.Reviews, "STORE REVIEWS!");
 			const obj = {};
 			action.spot.Reviews.forEach((review) => {
 				obj[review.id] = review;
 			});
 			action.spot.Reviews = obj;
-			console.log(action.spot);
 			newState[action.spot.id] = action.spot;
 			return newState;
 		}

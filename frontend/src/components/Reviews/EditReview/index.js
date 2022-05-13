@@ -26,7 +26,6 @@ const EditReview = ({ review }) => {
 			await dispatch(hideModal());
 			return;
 		} catch (err) {
-			console.log(err, "ERR");
 			const data = await err.json();
 			if (data && data.errors)
 				setErrors(data.errors.filter((err) => err !== "Invalid value"));
