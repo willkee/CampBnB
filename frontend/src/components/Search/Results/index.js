@@ -12,7 +12,6 @@ const SearchResults = () => {
 	Object.values(spots).forEach((spot) => {
 		const spotName = spot.name.toLowerCase();
 		const spotCity = spot.city.toLowerCase();
-		console.log(query, decodeURIComponent(query));
 		const inputQuery = decodeURIComponent(query).toLowerCase();
 
 		if (spotName.includes(inputQuery) || spotCity === inputQuery) {

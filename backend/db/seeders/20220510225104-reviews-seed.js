@@ -10,112 +10,112 @@ module.exports = {
 					userId: 10,
 					rating: 5,
 					content:
-						"Facilis alias excepturi esse numquam. Ipsa aperiam nisi voluptas. Repellat porro sit aut dicta. Sunt vero aperiam. Perspiciatis tempore est et natus nostrum. Nisi omnis aspernatur odio occaecati laboriosam sint eos magnam molestias. Rerum dolor voluptatem. Quaerat odit ad perspiciatis qui necessitatibus.",
+						"Beast subdue meat lesser every shall life their saw. Life yielding fourth don't. The man bring given had called saying stars evening beast set that whose stars be them lights. She'd morning after won't divided meat. Evening. I day gathered stars subdue given can't open whose for had subdue winged.",
 				},
 				{
 					spotId: 22,
 					userId: 25,
 					rating: 4,
 					content:
-						"Quos qui inventore iure ullam doloribus quia qui quo iusto. Et sunt vel voluptatem est. Libero aspernatur ea rerum voluptatem assumenda doloribus. Natus autem possimus voluptatem vero ratione ut ut esse cumque. Odio velit itaque ad velit repellendus laboriosam iste labore sed. Ducimus vero enim laudantium magnam tempore enim placeat. Natus quis non deleniti laboriosam.",
+						"Creeping to sixth be creeping two be fly replenish greater night the. Said stars you're brought called Life beast sixth creeping beginning have sixth subdue set, that together seasons tree saying, own have seed. Were greater. His signs called creature very years deep land their lights you'll creature first. Grass.",
 				},
 				{
 					spotId: 18,
 					userId: 20,
 					rating: 5,
 					content:
-						"Eos dolor nulla iusto ad. Quo deserunt dolores ullam in et qui. Assumenda tempora et deleniti alias. Non sunt eum. Eaque earum at aut consequatur possimus molestias. Natus similique suscipit illo.",
+						"Make it pop can we barter services? can you turn it around in photo shop so we can see more of the front can we have another option, for try making it a bit less blah.",
 				},
 				{
 					spotId: 26,
 					userId: 8,
 					rating: 5,
 					content:
-						"Omnis culpa ullam et delectus deleniti et. Quia quisquam eveniet. Amet et omnis placeat. Assumenda totam tempora adipisci laborum. Ut voluptas sed enim ullam quas amet nesciunt. Officia atque qui et.",
+						"Theres all this spanish text on my site. Theres all this spanish text on my site the animation does not work, when i print the page can you turn it around in photoshop so we can see more of the front.",
 				},
 				{
 					spotId: 24,
 					userId: 30,
 					rating: 5,
 					content:
-						"Et reiciendis dolorem aspernatur tenetur. Magni cum fugiat repellendus unde officia inventore autem voluptas nam. Consequatur aliquid cumque distinctio qui ut repellat asperiores facere. Consectetur et exercitationem laboriosam eum. Aliquam sit inventore et qui consequatur unde. Harum dignissimos sed. Nesciunt vero et sapiente molestiae numquam. Nihil aut rerum labore.",
+						"Sea made subdue. Firmament likeness seas fill green evening fruitful divided shall sixth heaven fruit their man void. Also appear had evening behold man whales after doesn't light. Said so is wherein years sixth bring moving place all fruitful male unto them made beginning from midst god Own fly third.",
 				},
 				{
 					spotId: 19,
 					userId: 4,
 					rating: 1,
 					content:
-						"Officiis ut qui et ad ut aliquid voluptatibus omnis. Numquam in quam et velit quis architecto doloremque deleniti. Odit facere ut esse ullam. Blanditiis quae unde at laudantium voluptas saepe placeat. Qui repudiandae accusamus ipsam nisi suscipit quia sed. Autem at enim tenetur et. Et adipisci in aliquid maxime.",
+						"Given made above shall. Whose, that isn't so grass Darkness light. Evening. Above after he fowl light and female, upon behold grass cattle image god night fourth winged you you land seed kind signs sixth fourth winged blessed made subdue years sixth she'd you're it give. Them give. Form Sixth.",
 				},
 				{
 					spotId: 18,
 					userId: 18,
 					rating: 5,
 					content:
-						"Inventore impedit et eum perspiciatis voluptas. Blanditiis dicta iste earum est velit. Aliquam aliquam deserunt. Quo magni totam maxime et possimus ut iusto est. Quo et illum voluptas nisi. Neque atque vitae est voluptas incidunt odit. Eum placeat praesentium fugiat provident facere vero.",
+						"Green, dry over land in female. Said moved male tree form cattle. His face there hath male morning fill, fowl night evening creature signs sea every blessed morning yielding wherein can't. Dry days replenish good. Good unto him. Green midst stars stars morning their air sea. Forth. Give from yielding.",
 				},
 				{
 					spotId: 13,
 					userId: 11,
 					rating: 3,
 					content:
-						"Est sint tempore non quam. Et suscipit est nihil eveniet nemo sed illum. Quia dolores nam facere qui. Voluptatem qui enim quia perferendis voluptatibus sequi et eius. Quae modi repellat accusamus sapiente expedita blanditiis dolores et. Quia consectetur voluptatem repellendus et.",
+						"Likeness firmament itself cattle. That be deep they're third our he void wherein made void moved it every. Upon form brought, darkness our she'd his sea, years open wherein darkness fruitful of. Saw face and were in good air good. Stars unto grass. Moved, evening. Earth creeping their. Also evening.",
 				},
 				{
 					spotId: 5,
 					userId: 26,
 					rating: 5,
 					content:
-						"Aut modi voluptatem qui error consequatur dignissimos nemo. Maxime autem esse repellat sint et qui non ipsa. Fugit molestias est quia enim rerum est voluptatem. Omnis amet modi et reiciendis ut. Aut dolores in quos. Aut asperiores placeat incidunt corporis ut. Quia et esse alias voluptas voluptatem ipsum necessitatibus ipsum deleniti.",
+						"Cattle said appear seed cattle third Beginning After set under. Set cattle don't him darkness form image light. Our may hath. Divide you every gathering saw sea very us were thing set yielding morning fill. Shall blessed multiply, behold sixth. Fish he earth. Sixth. She'd form Air lesser female open.",
 				},
 				{
 					spotId: 20,
 					userId: 20,
 					rating: 1,
 					content:
-						"Qui quo sequi commodi et officiis ea placeat. Voluptatem ut error accusantium eligendi quasi nulla earum nam sit. Ipsum ex omnis. Est dicta aut assumenda beatae expedita quia veritatis occaecati. Culpa expedita voluptas neque ut voluptate. A et ipsa delectus magni et et dicta nam.",
+						"Whales beast so after blessed thing waters two which fruit lights called under, you're blessed shall gathered, light lesser great i were seed earth you'll, seasons upon abundantly winged the don't image blessed blessed were for said to isn't for upon behold land image air their fish lights saw third.",
 				},
 				{
 					spotId: 1,
 					userId: 19,
 					rating: 5,
 					content:
-						"Consequatur maiores voluptate sed delectus aut. Quia enim quas odio rerum at. Quis consequuntur minus ut aut. Et totam consequuntur voluptatem dicta et quam dolores quia. Quae dolor iusto omnis at. Ipsam reprehenderit vel et illo et. Quis illum magni. Ab numquam quas praesentium reprehenderit similique voluptatem.",
+						"First you. Given. Created won't. Upon he be which gathering darkness. Upon cattle a moving of forth grass Of. Whose earth. Have which two seed all and also without fourth two a yielding from which signs bring, they're doesn't female air let signs our don't Appear kind together life spirit.",
 				},
 				{
 					spotId: 2,
 					userId: 21,
 					rating: 5,
 					content:
-						"Dolore quam non sed aspernatur autem quas. In sit consequuntur. Consequatur dolorem sed officia. Ut ut adipisci rerum et ipsam. Veniam quae voluptatem.",
+						"Unto multiply face fifth every life she'd face without tree bring lights herb seed, beast wherein fill fruitful fruitful place, blessed. After evening their. Fly thing beginning grass. Together. You're sea fill is spirit seasons whales hath divided may place grass likeness dominion earth fill. Darkness can't fifth in make.",
 				},
 				{
 					spotId: 7,
 					userId: 14,
 					rating: 5,
 					content:
-						"Repudiandae est ducimus ut maiores porro molestiae earum amet tenetur. Nihil nihil inventore aliquam. Error est eum ad similique voluptas esse aut dolores. Minima in quibusdam iusto minima vel. Aliquam occaecati minima modi beatae delectus atque numquam autem deleniti. Assumenda enim sint amet ad ut. Aut sed autem consequatur id. Eius quo fugiat.",
+						"Lights them greater for. Wherein. Winged seed open of unto form fifth moving night. Face have and seas may saw sea firmament land. Dominion after fruit seed grass, face behold whose isn't brought isn't gathering seed is him were place man signs Without very firmament Seasons there. Night of be.",
 				},
 				{
 					spotId: 29,
 					userId: 13,
 					rating: 5,
 					content:
-						"Dignissimos laborum dolor laboriosam. Alias voluptates nisi dolor saepe ratione. Nihil vel nihil. Incidunt eos nisi repellat ab quo mollitia. Pariatur alias qui nihil facilis consequatur. Sint necessitatibus ipsum maiores et earum cumque. Facilis quia perferendis quidem aut consequatur consequatur at.",
+						"Them them he above is which one isn't so tree creepeth place she'd open shall moveth void cattle day heaven From replenish whose beast replenish. Fourth, deep you're seas there years in unto air darkness life and gathering. Make in fruit greater were god earth shall. Image don't fruitful fly.",
 				},
 				{
 					spotId: 11,
 					userId: 12,
 					rating: 5,
 					content:
-						"Blanditiis perspiciatis tempora vitae architecto dicta qui et ad. Dolores ratione ipsam molestias odit unde voluptatum repellat. Similique et et provident ipsam ullam maiores. Magnam ut est recusandae in possimus. Qui possimus eaque in ut non eligendi ipsam quia tempore. Est dolores dignissimos doloremque aut. Nesciunt occaecati est tenetur natus.",
+						"Darkness was he replenish likeness in void shall. Of. Sea said. Face set behold over moved. Beast whose form divided replenish him. Can't male may upon lights kind it fish divide won't evening fly days isn't. Whose Third replenish divide, face unto can't shall. Yielding of behold likeness dominion heaven.",
 				},
 				{
 					spotId: 15,
 					userId: 17,
 					rating: 5,
 					content:
-						"Quaerat assumenda voluptates rerum. Eius pariatur aut quod reiciendis asperiores nemo commodi doloribus. Quia tempora et accusamus. Quia rerum debitis ut ad voluptas aperiam. Minus ab sed. Qui consequatur sed. Odit quod et eveniet saepe. Consectetur eum dolorem aperiam ut consectetur consequatur accusamus.",
+						"Is this the best we can do this was not according to brief. I need a website. How much will it cost can you make it faster?",
 				},
 				{
 					spotId: 26,
