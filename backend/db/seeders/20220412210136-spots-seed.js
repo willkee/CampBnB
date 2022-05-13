@@ -13,7 +13,7 @@ module.exports = {
 					lat: 39.611617,
 					long: -105.718656,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed1.jpeg",
+						"https://campbnb.s3.us-west-1.amazonaws.com/guanellapass.jpeg",
 					type: "tent",
 					price: 3,
 					description:
@@ -38,8 +38,8 @@ module.exports = {
 					lat: 39.653649,
 					long: -105.708646,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed2.jpg",
-					type: "rv",
+						"https://campbnb.s3.us-west-1.amazonaws.com/clearlake.jpeg",
+					type: "tent",
 					price: 83,
 					description:
 						"Eum mollitia id necessitatibus. Autem non nostrum aut et sint itaque voluptas. Aut excepturi qui qui ipsum facilis. Quo soluta ad dolorum non amet illo.\n" +
@@ -63,7 +63,7 @@ module.exports = {
 					lat: 39.662328,
 					long: -105.595553,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed3.jpg",
+						"https://campbnb.s3.us-west-1.amazonaws.com/echolake.jpg",
 					type: "tent",
 					price: 2,
 					description:
@@ -88,8 +88,8 @@ module.exports = {
 					lat: 39.367691,
 					long: -105.332681,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed4.jpg",
-					type: "rv",
+						"https://campbnb.s3.us-west-1.amazonaws.com/buffalocreek.jpeg",
+					type: "tent",
 					price: 58,
 					description:
 						"Temporibus recusandae voluptatem et et est ut. Voluptate nemo praesentium. Quo provident aspernatur eos dicta deleniti laborum modi ut. Qui quibusdam velit alias aperiam at maxime. Eos ducimus eum quod quo nihil porro.\n" +
@@ -113,8 +113,8 @@ module.exports = {
 					lat: 39.537705,
 					long: -105.733472,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed5.jpg",
-					type: "rv",
+						"https://campbnb.s3.us-west-1.amazonaws.com/genevapark.jpeg",
+					type: "tent",
 					price: 89,
 					description:
 						"Dolores facilis eligendi error. Ea distinctio soluta perspiciatis at. Qui laboriosam similique. Delectus praesentium eaque. Et blanditiis eum officia voluptates et ullam quod quas.\n" +
@@ -138,7 +138,7 @@ module.exports = {
 					lat: 40.087755,
 					long: -105.571472,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed6.jpeg",
+						"https://campbnb.s3.us-west-1.amazonaws.com/pawnee.jpeg",
 					type: "tent",
 					price: 2,
 					description:
@@ -163,7 +163,7 @@ module.exports = {
 					lat: 39.105834,
 					long: -107.267646,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed7.jpeg",
+						"https://campbnb.s3.us-west-1.amazonaws.com/boganflats.jpeg",
 					type: "vehicle",
 					price: 64,
 					description:
@@ -182,13 +182,13 @@ module.exports = {
 				},
 				{
 					ownerId: 1,
-					name: "South Fork Campground",
+					name: "Southfork Campground",
 					address: "",
 					city: "South Fork",
 					lat: 37.693618,
 					long: -106.569404,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed8.jpg",
+						"https://campbnb.s3.us-west-1.amazonaws.com/southfork.jpeg",
 					type: "rv",
 					price: 52,
 					description:
@@ -213,7 +213,7 @@ module.exports = {
 					lat: 38.339811,
 					long: -107.226687,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed9.jpg",
+						"https://campbnb.s3.us-west-1.amazonaws.com/redbridge.jpeg",
 					type: "tent",
 					price: 42,
 					description:
@@ -238,7 +238,7 @@ module.exports = {
 					lat: 38.466541,
 					long: -107.32351,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed10.jpg",
+						"https://campbnb.s3.us-west-1.amazonaws.com/lakefork.jpeg",
 					type: "vehicle",
 					price: 94,
 					description:
@@ -263,7 +263,7 @@ module.exports = {
 					lat: 38.189957,
 					long: -106.515939,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed11.jpg",
+						"https://campbnb.s3.us-west-1.amazonaws.com/buffalopass.jpeg",
 					type: "tent",
 					price: 61,
 					description:
@@ -288,7 +288,7 @@ module.exports = {
 					lat: 37.962576,
 					long: -106.427481,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed12.jpg",
+						"https://campbnb.s3.us-west-1.amazonaws.com/stormking.jpeg",
 					type: "vehicle",
 					price: 64,
 					description:
@@ -313,7 +313,7 @@ module.exports = {
 					lat: 37.384788,
 					long: -106.341346,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed13.jpg",
+						"https://campbnb.s3.us-west-1.amazonaws.com/alamosa.jpeg",
 					type: "tent",
 					price: 24,
 					description:
@@ -338,7 +338,7 @@ module.exports = {
 					lat: 37.625677,
 					long: -105.560244,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed14.jpg",
+						"https://campbnb.s3.us-west-1.amazonaws.com/zapatafalls.jpeg",
 					type: "rv",
 					price: 44,
 					description:
@@ -363,7 +363,7 @@ module.exports = {
 					lat: 37.697591,
 					long: -105.547759,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed15.jpg",
+						"https://campbnb.s3.us-west-1.amazonaws.com/greatsanddunes.jpeg",
 					type: "tent",
 					price: 39,
 					description:
@@ -388,7 +388,7 @@ module.exports = {
 					lat: 37.010883,
 					long: -102.744805,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed16.jpg",
+						"https://campbnb.s3.us-west-1.amazonaws.com/picturecanyon.jpeg",
 					type: "tent",
 					price: 82,
 					description:
@@ -413,8 +413,8 @@ module.exports = {
 					lat: 39.298739,
 					long: -103.494084,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed17.jpeg",
-					type: "vehicle",
+						"https://campbnb.s3.us-west-1.amazonaws.com/genoarv.jpeg",
+					type: "rv",
 					price: 99,
 					description:
 						"Provident autem nobis ratione maiores iusto molestiae vel deleniti. Praesentium et doloribus veritatis cum officiis officiis officia alias sed. Quidem a inventore. Qui sunt accusantium ad sint. Hic aperiam quaerat velit quisquam perferendis doloribus.\n" +
@@ -438,8 +438,8 @@ module.exports = {
 					lat: 40.179456,
 					long: -103.205293,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed18.jpeg",
-					type: "tent",
+						"https://campbnb.s3.us-west-1.amazonaws.com/akronrv.jpeg",
+					type: "rv",
 					price: 94,
 					description:
 						"Eveniet expedita ducimus nemo nemo omnis quaerat nihil provident. Sunt voluptatum consequatur qui quia voluptatem ut et est dicta. Corrupti et autem blanditiis impedit voluptas ducimus. Accusantium incidunt deleniti distinctio ut eos porro ut consectetur assumenda.\n" +
@@ -463,7 +463,7 @@ module.exports = {
 					lat: 40.349491,
 					long: -105.532908,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed19.jpg",
+						"https://campbnb.s3.us-west-1.amazonaws.com/estespark.jpeg",
 					type: "vehicle",
 					price: 74,
 					description:
@@ -488,7 +488,7 @@ module.exports = {
 					lat: 40.400519,
 					long: -105.592699,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed20.jpg",
+						"https://campbnb.s3.us-west-1.amazonaws.com/aspenglen.jpg",
 					type: "vehicle",
 					price: 44,
 					description:
@@ -513,7 +513,7 @@ module.exports = {
 					lat: 40.365012,
 					long: -105.28196,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed21.jpeg",
+						"https://campbnb.s3.us-west-1.amazonaws.com/pinewood.jpeg",
 					type: "vehicle",
 					price: 41,
 					description:
@@ -538,7 +538,7 @@ module.exports = {
 					lat: 40.131326,
 					long: -105.768782,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed22.jpeg",
+						"https://campbnb.s3.us-west-1.amazonaws.com/arapahoebay.jpeg",
 					type: "vehicle",
 					price: 90,
 					description:
@@ -563,7 +563,7 @@ module.exports = {
 					lat: 40.362349,
 					long: -105.604769,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed23.jpeg",
+						"https://campbnb.s3.us-west-1.amazonaws.com/morainepark.jpeg",
 					type: "rv",
 					price: 13,
 					description:
@@ -588,7 +588,7 @@ module.exports = {
 					lat: 40.569543,
 					long: -106.600919,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed24.jpeg",
+						"https://campbnb.s3.us-west-1.amazonaws.com/grizzlycreek.jpeg",
 					type: "vehicle",
 					price: 11,
 					description:
@@ -613,7 +613,7 @@ module.exports = {
 					lat: 40.549326,
 					long: -106.780176,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed25.jpeg",
+						"https://campbnb.s3.us-west-1.amazonaws.com/drylake.jpeg",
 					type: "vehicle",
 					price: 98,
 					description:
@@ -638,7 +638,7 @@ module.exports = {
 					lat: 40.753386,
 					long: -106.83296,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed26.jpg",
+						"https://campbnb.s3.us-west-1.amazonaws.com/hinmanpark.jpg",
 					type: "vehicle",
 					price: 76,
 					description:
@@ -663,7 +663,7 @@ module.exports = {
 					lat: 40.080072,
 					long: -107.434558,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed27.jpeg",
+						"https://campbnb.s3.us-west-1.amazonaws.com/northfork.jpeg",
 					type: "vehicle",
 					price: 48,
 					description:
@@ -688,8 +688,8 @@ module.exports = {
 					lat: 40.551325,
 					long: -108.810851,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed28.jpeg",
-					type: "tent",
+						"https://campbnb.s3.us-west-1.amazonaws.com/bigjoe.jpeg",
+					type: "backpacking",
 					price: 63,
 					description:
 						"Nostrum necessitatibus explicabo eaque. Eos itaque in doloribus eveniet occaecati tenetur illum ut. Esse quia sed aut. Et et voluptas dolorem assumenda facilis eius. Voluptatem nobis sit suscipit est omnis molestias tempore vero.\n" +
@@ -713,8 +713,8 @@ module.exports = {
 					lat: 39.113051,
 					long: -108.727335,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed29.jpeg",
-					type: "rv",
+						"https://campbnb.s3.us-west-1.amazonaws.com/saddlehorn.jpeg",
+					type: "backpacking",
 					price: 58,
 					description:
 						"Quo quae voluptate impedit est dolorem. Dicta tempore voluptatibus eos. Est aperiam voluptas et ut ea saepe dolor odit doloribus. Velit perferendis voluptatem aut ullam commodi qui qui. Enim praesentium animi aliquid eos aperiam odio perferendis aut non.\n" +
@@ -738,8 +738,8 @@ module.exports = {
 					lat: 37.220513,
 					long: -107.266577,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed30.jpeg",
-					type: "vehicle",
+						"https://campbnb.s3.us-west-1.amazonaws.com/utecamp.jpeg",
+					type: "rv",
 					price: 98,
 					description:
 						"Eum ratione et. Ex dolor necessitatibus et recusandae hic laborum minus. Aspernatur illo esse. Quibusdam consequatur ad debitis libero et ipsum eligendi. Rerum necessitatibus exercitationem. Dolore rerum et.\n" +
@@ -763,8 +763,8 @@ module.exports = {
 					lat: 37.394108,
 					long: -107.538176,
 					imageUrl:
-						"https://campbnb.s3.us-west-1.amazonaws.com/seed31.jpeg",
-					type: "vehicle",
+						"https://campbnb.s3.us-west-1.amazonaws.com/grahamcreek.jpeg",
+					type: "tent",
 					price: 85,
 					description:
 						"Sed voluptatibus saepe. Non animi consequatur. Quisquam praesentium aut dolorem assumenda ad. Quia rerum blanditiis commodi nostrum repellendus quos iusto adipisci occaecati.\n" +
