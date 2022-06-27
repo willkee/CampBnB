@@ -21,6 +21,11 @@ module.exports = (sequelize, DataTypes) => {
 				onDelete: "CASCADE",
 				hooks: "true",
 			});
+			Spot.belongsToMany(models.Favorite, {
+				through: "Favorite",
+				foreignKey: "spotId",
+				otherKey: "userId",
+			});
 		}
 	}
 	Spot.init(
