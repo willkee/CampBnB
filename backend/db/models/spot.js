@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
 				onDelete: "CASCADE",
 				hooks: "true",
 			});
+			Spot.hasMany(models.Favorite, { foreignKey: "spotId" });
 		}
 	}
 	Spot.init(
