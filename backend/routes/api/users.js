@@ -149,30 +149,6 @@ router.post(
 	asyncHandler(async (req, res) => {
 		const { firstName, lastName, email, password } = req.body;
 
-		/*
-
-		const room = await Room.findOne({ include: Occupant, where: { occupied: false }})
-
-		const numOccupants = room.Occupant.length
-		if (!room) throw new Error("Full")
-
-		if (numOccupants === room.capacity - 1) {
-			await Room.update({ occupied: true  }, {
-				where: { id: room.id },
-				returning: true,
-			})
-		}
-
-
-		const occupant = await Occupant.create({
-			firstName,
-			lastName,
-			coach,
-			room_id: room.id
-		})
-
-
-		*/
 		const user = await User.signup({
 			firstName,
 			lastName,
