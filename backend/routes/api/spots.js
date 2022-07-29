@@ -304,7 +304,11 @@ router.patch(
 				);
 
 				const result = await Spot.findByPk(spot.id, {
-					include: [{ model: User }, { model: Booking }],
+					include: [
+						{ model: User },
+						{ model: Booking },
+						{ model: Review, include: User },
+					],
 				});
 				return res.json(result);
 			}
