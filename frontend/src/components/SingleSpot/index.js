@@ -34,6 +34,8 @@ const SingleSpot = () => {
 
 	if (isLoaded && !spot) return <Redirect to="/main" />;
 
+	console.log(spot);
+
 	return (
 		<div className={styles.container1}>
 			{isLoaded && (
