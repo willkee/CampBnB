@@ -65,6 +65,7 @@ router.put(
 					const updatedReview = await Review.findByPk(id, {
 						include: User,
 					});
+
 					return res.json(updatedReview);
 				} else {
 					throw new Error("Review Not Found.");

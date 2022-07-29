@@ -43,9 +43,7 @@ function LoginForm() {
 		await dispatch(sessionActions.login("demo@user.io", "password"));
 		await dispatch(sessionActions.getMyBookings());
 		await dispatch(hideModal());
-		if (location.pathname === "/") {
-			return history.push("/main");
-		}
+		if (location.pathname === "/") return history.push("/main");
 		return;
 	};
 
