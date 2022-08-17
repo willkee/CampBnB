@@ -10,6 +10,8 @@ import OwnerControls from "./Utilities/OwnerControls";
 import AcceptBookings from "./Utilities/AcceptBookings";
 import Reviews from "../Reviews";
 
+import FavoritesStatus from "./FavoritesStatus";
+
 import styles from "./SingleSpot.module.css";
 
 const SingleSpot = () => {
@@ -133,6 +135,9 @@ const SingleSpot = () => {
 									{spot.city}
 								</div>
 							</div>
+
+							<FavoritesStatus spotId={id} />
+
 							{spot.lat && spot.long ? (
 								<iframe
 									title={id}

@@ -9,15 +9,14 @@ const router = express.Router();
 
 router.get(
 	"/spots/:spotId/favorites",
-	asyncHandler(async (_req, res) => {
+	asyncHandler(async (req, res) => {
 		// Find all of the favorites for a single spot.
 		const spotId = parseInt(req.params.spotId, 10);
-
 		const spot = await Spot.findByPk(spotId);
 
 		try {
 			if (spot) {
-				const favorites = await Favorite.FindAll({ where: { spotId } });
+				const favorites = await Favorite.findAll({ where: { spotId } });
 
 				return res.json(favorites);
 			} else {

@@ -23,9 +23,12 @@ const deletedFavorite = (favId, spotId) => ({
 
 export const getFavorites = (spotId) => async (dispatch) => {
 	const res = await csrfFetch(`/api/spots/${spotId}/favorites`);
+	console.log("test0");
 	if (res.ok) {
 		const favorites = await res.json();
+		console.log("test1");
 		await dispatch(retrievedFavorites(spotId, favorites));
+		console.log("test2");
 		return favorites;
 	}
 };
@@ -61,6 +64,7 @@ const favoriteReducer = (state = initialState, action) => {
 	const newState = { ...state };
 	switch (action.type) {
 		case RETRIEVED_FAVORITES: {
+			console.log(action, "action \n\n\n\n\n\n");
 			newState[action.spotId] = action.favorites;
 			return newState;
 		}
