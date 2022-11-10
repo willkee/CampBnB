@@ -6,13 +6,13 @@
 
 ## Table of Contents
 
-- [Link to Live Site](https://github.com/willkee/CampBnB#link-to-live-site)
-- [Description](https://github.com/willkee/CampBnB#description)
-- [Technologies](https://github.com/willkee/CampBnB#technologies)
-- [Getting Started](https://github.com/willkee/CampBnB#getting-started)
-- [Features](https://github.com/willkee/CampBnB#features)
-- [Screenshots](https://github.com/willkee/CampBnB#screenshots)
-- [Future Development Ideas](https://github.com/willkee/CampBnB#future-development-ideas)
+-   [Link to Live Site](https://github.com/willkee/CampBnB#link-to-live-site)
+-   [Description](https://github.com/willkee/CampBnB#description)
+-   [Technologies](https://github.com/willkee/CampBnB#technologies)
+-   [Getting Started](https://github.com/willkee/CampBnB#getting-started)
+-   [Features](https://github.com/willkee/CampBnB#features)
+-   [Screenshots](https://github.com/willkee/CampBnB#screenshots)
+-   [Future Development Ideas](https://github.com/willkee/CampBnB#future-development-ideas)
 
 ---
 
@@ -63,7 +63,6 @@ CampBnB is based off of AirBnB for users to list their spots or make bookings at
   &nbsp;
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" style="width:75px;" />
 
-
 </p>
 
 <br>
@@ -74,11 +73,11 @@ CampBnB is based off of AirBnB for users to list their spots or make bookings at
 <br>
 
 1.  Clone this repository:
-            
+
          HTTPS: https://github.com/willkee/CampBnB.git
-         
+
          or
-         
+
          SSH: git@github.com:willkee/CampBnB.git
 
     <br>
@@ -98,12 +97,11 @@ CampBnB is based off of AirBnB for users to list their spots or make bookings at
 4.  In the backend directory, create a `.env` file based on the `.env.example` file.
     <br>
 
-5.  Enter your username and password into the respective fields in the `.env` file you just created. Enter your chosen database name and `PORT`. You may enter a secure combination of characters into `JWT_SECRET` or use the `require("crypto")` code below in `node` in your terminal to generate a secure string. You may use `localhost` for `DB_HOST`. 
-    - require("crypto").randomBytes(32).toString("hex")
-    - You may need to set up Google Maps API credentials [here](https://developers.google.com/maps/documentation/embed/get-api-key) to obtain an API key for the `MAPS_API_KEY`.
-    - You may need to set up an Amazon Web Services (AWS) S3 account [here](https://aws.amazon.com/) to create a S3 bucket, and generate an AWS Access Key ID and AWS Secret Access Key.
+5.  Enter your username and password into the respective fields in the `.env` file you just created. Enter your chosen database name and `PORT`. You may enter a secure combination of characters into `JWT_SECRET` or use the `require("crypto")` code below in `node` in your terminal to generate a secure string. You may use `localhost` for `DB_HOST`.
 
-        
+    -   require("crypto").randomBytes(32).toString("hex")
+    -   You may need to set up Google Maps API credentials [here](https://developers.google.com/maps/documentation/embed/get-api-key) to obtain an API key for the `MAPS_API_KEY`.
+    -   You may need to set up an Amazon Web Services (AWS) S3 account [here](https://aws.amazon.com/) to create a S3 bucket, and generate an AWS Access Key ID and AWS Secret Access Key.
 
     <br>
 
@@ -139,10 +137,10 @@ CampBnB is based off of AirBnB for users to list their spots or make bookings at
 
 ## Features
 
-- There will be a splash page welcoming users to the site, with options to log in, sign up, log in as a demo user, or browse the site unauthenticated.
-- The homepage will display a grid of spots already on the platform.
-- Unauthenticated users may view (but not add) spots and associated reviews and ratings.
-- Authenticated users may post a new spot, or a review/rating for an existing spot.
+-   There will be a splash page welcoming users to the site, with options to log in, sign up, log in as a demo user, or browse the site unauthenticated.
+-   The homepage will display a grid of spots already on the platform.
+-   Unauthenticated users may view (but not add) spots and associated reviews and ratings.
+-   Authenticated users may post a new spot, or a review/rating for an existing spot.
 
 <br>
 
@@ -166,6 +164,6 @@ CampBnB is based off of AirBnB for users to list their spots or make bookings at
 
 ## Future Development Ideas
 
-- Setting up ratings and reviews (as a single entity) that will be displayed on each spot page.
-- Total average rating to be displayed on the home (main) page.
-- Setting up search functionality where users may search campgrounds by name or city.
+-   Setting up ratings and reviews (as a single entity) that will be displayed on each spot page.
+-   Total average rating to be displayed on the home (main) page.
+-   Setting up search functionality where users may search campgrounds by name or city.

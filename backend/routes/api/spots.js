@@ -100,9 +100,30 @@ const validateSpot = [
 	handleValidationErrors,
 ];
 
+// router.get(
+// 	"/",
+// 	asyncHandler(async (_req, res) => {
+// 		const spots = await Spot.findAll({
+// 			attributes: [
+// 				"id",
+// 				"ownerId",
+// 				"name",
+// 				"city",
+// 				"imageUrl",
+// 				"type",
+// 				"price",
+// 				"open",
+// 			],
+// 			include: Booking,
+
+// 		});
+// 		return res.json(spots);
+// 	})
+// );
 router.get(
 	"/",
 	asyncHandler(async (_req, res) => {
+		const asdf = [1, 2, 3, 4, 5];
 		const spots = await Spot.findAll({
 			attributes: [
 				"id",
@@ -114,7 +135,7 @@ router.get(
 				"price",
 				"open",
 			],
-			include: Booking,
+			include: { model: Booking, where: { id: { [Op.in]: asdf } } },
 		});
 		return res.json(spots);
 	})
