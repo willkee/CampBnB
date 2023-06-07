@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { updateOneSpot } from "../../store/spots";
 import { hideModal } from "../../store/modal";
 import styles from "./EditSpot.module.css";
+import { SquareCheck, RectangleX, Square } from "../../assets/icons";
 
 const EditSpotForm = ({ spot }) => {
 	const [errors, setErrors] = useState([]);
@@ -170,12 +171,8 @@ const EditSpotForm = ({ spot }) => {
 		setChooseNewImg(false);
 	};
 
-	const rightInput = () => (
-		<i id={styles.yes} className="fa-solid fa-square-check" />
-	);
-	const wrongInput = () => (
-		<i id={styles.no} className="fa-solid fa-rectangle-xmark" />
-	);
+	const rightInput = () => <SquareCheck />;
+	const wrongInput = () => <RectangleX />;
 
 	return (
 		<div className={styles.container}>
@@ -454,7 +451,7 @@ const EditSpotForm = ({ spot }) => {
 							placeholder="Optional: Please provide a brief description of your spot."
 							onChange={(e) => setDescription(e.target.value)}
 						></textarea>
-						<i id={styles.opt} className="fa-solid fa-square" />
+						<Square />
 					</div>
 				</label>
 

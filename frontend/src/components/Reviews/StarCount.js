@@ -1,36 +1,38 @@
 import styles from "./Reviews.module.css";
 
+import { Star } from "../../assets/icons";
+
 const StarCount = ({ stars }) => {
 	return (
 		<div className={styles.stars}>
 			{stars === 5 ? (
 				<>
-					<i className="fa-solid fa-star-sharp" />
-					<i className="fa-solid fa-star-sharp" />
-					<i className="fa-solid fa-star-sharp" />
-					<i className="fa-solid fa-star-sharp" />
-					<i className="fa-solid fa-star-sharp" />
+					<Star />
+					<Star />
+					<Star />
+					<Star />
+					<Star />
 				</>
 			) : stars === 4 ? (
 				<>
-					<i className="fa-solid fa-star-sharp" />
-					<i className="fa-solid fa-star-sharp" />
-					<i className="fa-solid fa-star-sharp" />
-					<i className="fa-solid fa-star-sharp" />
+					<Star />
+					<Star />
+					<Star />
+					<Star />
 				</>
 			) : stars === 3 ? (
 				<>
-					<i className="fa-solid fa-star-sharp" />
-					<i className="fa-solid fa-star-sharp" />
-					<i className="fa-solid fa-star-sharp" />
+					<Star />
+					<Star />
+					<Star />
 				</>
 			) : stars === 2 ? (
 				<>
-					<i className="fa-solid fa-star-sharp" />
-					<i className="fa-solid fa-star-sharp" />
+					<Star />
+					<Star />
 				</>
 			) : (
-				<i className="fa-solid fa-star-sharp" />
+				<Star />
 			)}
 		</div>
 	);

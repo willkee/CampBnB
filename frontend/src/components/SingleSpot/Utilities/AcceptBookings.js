@@ -1,3 +1,4 @@
+import { HexagonCheck, HexagonX } from "../../../assets/icons";
 import styles from "../SingleSpot.module.css";
 
 const AcceptBookings = ({ spot }) => {
@@ -9,16 +10,7 @@ const AcceptBookings = ({ spot }) => {
 					: styles.accept_container_red
 			}
 		>
-			<span>
-				{spot.open ? (
-					<i
-						id={styles.green}
-						className="fa-light fa-hexagon-check"
-					/>
-				) : (
-					<i id={styles.red} className="fa-light fa-hexagon-xmark" />
-				)}
-			</span>
+			<span>{spot.open ? <HexagonCheck /> : <HexagonX />}</span>
 			<span className={spot.open ? styles.green : styles.red}>
 				{spot.open ? "Accepting New Bookings" : "No New Bookings"}
 			</span>

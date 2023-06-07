@@ -1,4 +1,5 @@
 import styles from "./Footer.module.css";
+import { GitHub, LinkedIn } from "../../assets/brands";
 
 const Footer = () => {
 	return (
@@ -25,20 +26,8 @@ const Footer = () => {
 			</div>
 			<div className={styles.right}>
 				<div>Developed by Will Kee</div>
-				<a
-					href="https://github.com/willkee"
-					target="_blank"
-					rel="noreferrer"
-				>
-					<i className="fa-brands fa-github-square" />
-				</a>
-				<a
-					href="https://www.linkedin.com/in/will-kee/"
-					target="_blank"
-					rel="noreferrer"
-				>
-					<i className="fa-brands fa-linkedin" />
-				</a>
+				<GitHub />
+				<LinkedIn />
 			</div>
 		</div>
 	);

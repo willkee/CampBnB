@@ -71,8 +71,9 @@
 	margin: 20px 20px 5px 0;
 }
 
-.type_info i {
-	margin-right: 5px;
+.type_info {
+	display: flex;
+	align-items: center;
 }
 
 .type_info span {
@@ -227,4 +228,10 @@
 	margin: 20px 0 0 0;
 	border: 1px solid rgba(108, 108, 108, 0.505);
 	filter: drop-shadow(0 0 4px rgba(5, 52, 4, 0.328));
+}
+
+.addr {
+	margin-bottom: 5px;
+	display: flex;
+	align-items: center;
 }

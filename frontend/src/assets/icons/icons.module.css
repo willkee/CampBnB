@@ -1,0 +1,47 @@
+.mr5 {
+	margin-right: 5px;
+}
+
+.ac {
+	display: flex;
+	align-items: center;
+}
+
+.spacer {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.validator {
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	margin-left: 5px;
+}
+
+.yes {
+	color: green;
+}
+
+.no {
+	color: red;
+}
+
+.edit_button {
+	cursor: pointer;
+	transition: all linear 0.1s;
+	margin-right: 8px;
+}
+.edit_button:hover {
+	color: orange;
+	font-weight: 600;
+}
+.delete_button {
+	cursor: pointer;
+	transition: all linear 0.1s;
+	padding-right: 1px;
+}
+.delete_button:hover {
+	color: rgb(255, 0, 0);
+	font-weight: 600;
+}

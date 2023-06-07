@@ -64,10 +64,11 @@
 	display: flex;
 	justify-content: space-between;
 	width: 80px;
+	align-items: center;
 }
 
-.dec i:hover,
-.inc i:hover {
+.dec,
+.inc {
 	color: #dda15e;
 	cursor: pointer;
 }

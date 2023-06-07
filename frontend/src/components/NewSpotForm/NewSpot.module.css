@@ -45,9 +45,10 @@
 	margin-bottom: 15px;
 }
 
-.input_container i {
+.input_container {
 	margin-left: 5px;
 	font-size: 20px;
+	display: flex;
 }
 
 #yes {

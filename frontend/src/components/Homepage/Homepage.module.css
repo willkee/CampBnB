@@ -53,6 +53,15 @@
 	border-radius: 8px;
 }
 
+.desc_container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.desc_type_icon {
+	margin-top: 5px;
+}
+
 .city_info {
 	font-size: 14px;
 }
