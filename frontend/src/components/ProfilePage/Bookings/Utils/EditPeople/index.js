@@ -4,6 +4,11 @@ import { hideModal } from "../../../../../store/modal";
 import { updatePeopleInBooking } from "../../../../../store/session";
 import styles from "./EditPeople.module.css";
 
+import {
+	PersonCircleMinus,
+	PersonCirclePlus,
+} from "../../../../../assets/icons";
+
 const EditPeople = ({ booking }) => {
 	const dispatch = useDispatch();
 	const [people, setPeople] = useState(booking.people);
@@ -64,7 +69,7 @@ const EditPeople = ({ booking }) => {
 					onClick={decrement}
 					className={people > 1 ? styles.dec : styles.disable}
 				>
-					<i className="fa-solid fa-person-circle-minus"></i>
+					<PersonCircleMinus />
 				</button>
 				<div>{people}</div>
 				<button
@@ -76,7 +81,7 @@ const EditPeople = ({ booking }) => {
 							: styles.disable
 					}
 				>
-					<i className="fa-solid fa-person-circle-plus"></i>
+					<PersonCirclePlus />
 				</button>
 			</div>
 			<div className={styles.buttons}>

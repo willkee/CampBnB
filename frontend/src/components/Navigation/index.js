@@ -10,6 +10,15 @@ import SearchInput from "../Search/Input";
 
 import styles from "./Navigation.module.css";
 
+import {
+	Campground,
+	MagnifyingGlassLocation,
+	LocationPlus,
+	FaceSmilePlus,
+	ArrowRightToBracket,
+	ArrowLeft,
+} from "../../assets/icons";
+
 function Navigation({ sessionUser, isLoaded }) {
 	const dispatch = useDispatch();
 	const location = useLocation();
@@ -47,14 +56,14 @@ function Navigation({ sessionUser, isLoaded }) {
 								exact
 								to="/main"
 							>
-								<i className="fa-light fa-campground" />
+								<Campground />
 								<span>Explore</span>
 							</NavLink>
 							<div
 								className={styles.search}
 								onClick={displaySearchInput}
 							>
-								<i className="fa-regular fa-magnifying-glass-location"></i>
+								<MagnifyingGlassLocation />
 								Search
 							</div>
 							{sessionUser ? (
@@ -64,7 +73,7 @@ function Navigation({ sessionUser, isLoaded }) {
 										exact
 										to="/spots/new"
 									>
-										<i className="fa-solid fa-location-plus" />
+										<LocationPlus />
 										<span>Add New Spot</span>
 									</NavLink>
 									<ProfileButton />
@@ -75,14 +84,14 @@ function Navigation({ sessionUser, isLoaded }) {
 										className={styles.sign_up}
 										onClick={displaySignupForm}
 									>
-										<i className="fa-light fa-face-smile-plus"></i>
+										<FaceSmilePlus />
 										Sign Up
 									</div>
 									<div
 										className={styles.log_in}
 										onClick={displayLoginForm}
 									>
-										<i className="fa-light fa-right-to-bracket" />
+										<ArrowRightToBracket />
 										Log In
 									</div>
 								</>
@@ -93,8 +102,8 @@ function Navigation({ sessionUser, isLoaded }) {
 			</nav>
 			<div className={styles.c1}>
 				<NavLink className={styles.return_to_splash} exact to="/">
-					<i className="fa-light fa-arrow-left" /> Trying to return to
-					the splash page? Click here.
+					<ArrowLeft /> Trying to return to the splash page? Click
+					here.
 				</NavLink>
 			</div>
 		</>

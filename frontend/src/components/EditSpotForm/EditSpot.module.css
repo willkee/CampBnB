@@ -66,9 +66,9 @@
 	margin-bottom: 15px;
 }
 
-.input_container i {
-	margin-left: 5px;
+.input_container {
 	font-size: 20px;
+	display: flex;
 }
 
 #yes {

@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styles from "./SearchResults.module.css";
 
+import { CarMirrors, RV, Tent, Backpack } from "../../../assets/icons";
 const SearchResults = () => {
 	const { query } = useParams();
 	const history = useHistory();
@@ -67,13 +68,13 @@ const SearchResults = () => {
 								</span>
 								<span>
 									{spot.type === "vehicle" ? (
-										<i className="fa-solid fa-car-mirrors" />
+										<CarMirrors />
 									) : spot.type === "rv" ? (
-										<i className="fa-solid fa-rv" />
+										<RV />
 									) : spot.type === "tent" ? (
-										<i className="fa-solid fa-tent" />
+										<Tent />
 									) : spot.type === "backpacking" ? (
-										<i className="fa-solid fa-backpack" />
+										<Backpack />
 									) : (
 										""
 									)}

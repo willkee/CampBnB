@@ -3,6 +3,13 @@ import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllSpots } from "../../store/spots";
 import styles from "./Homepage.module.css";
+import {
+	MountainCity,
+	CarMirrors,
+	RV,
+	Tent,
+	Backpack,
+} from "../../assets/icons";
 
 const Homepage = ({ spots }) => {
 	const [loaded, setLoaded] = useState(false);
@@ -67,31 +74,36 @@ const Homepage = ({ spots }) => {
 										</div>
 									)}
 								</div>
-								<h4>
-									{spot.name.length > 20
-										? spot.name.slice(0, 20) + "..."
-										: spot.name}
-								</h4>
-								<div className={styles.city_info}>
-									<i className="fa-light fa-mountain-city" />
-									{spot?.city?.length > 20
-										? spot?.city?.slice(0, 20) + "..."
-										: spot?.city}
-								</div>
-								<div className={styles.price_type}>
+								<div className={styles.desc_container}>
 									<div>
-										<span>${spot.price}</span>
-										<span>night</span>
+										<h4>
+											{spot.name.length > 20
+												? spot.name.slice(0, 20) + "..."
+												: spot.name}
+										</h4>
+										<div className={styles.city_info}>
+											<MountainCity />
+											{spot?.city?.length > 20
+												? spot?.city?.slice(0, 20) +
+												  "..."
+												: spot?.city}
+										</div>
+										<div className={styles.price_type}>
+											<div>
+												<span>${spot.price}</span>
+												<span>night</span>
+											</div>
+										</div>
 									</div>
-									<div>
+									<div className={styles.desc_type_icon}>
 										{spot.type === "vehicle" ? (
-											<i className="fa-solid fa-car-mirrors" />
+											<CarMirrors />
 										) : spot.type === "rv" ? (
-											<i className="fa-solid fa-rv" />
+											<RV />
 										) : spot.type === "tent" ? (
-											<i className="fa-solid fa-tent" />
+											<Tent />
 										) : spot.type === "backpacking" ? (
-											<i className="fa-solid fa-backpack" />
+											<Backpack />
 										) : (
 											""
 										)}
@@ -130,7 +142,7 @@ const Homepage = ({ spots }) => {
 										: spot?.name}
 								</h4>
 								<div className={styles.city_info}>
-									<i className="fa-light fa-mountain-city" />
+									<MountainCity />
 									{spot?.city?.length > 20
 										? spot?.city?.slice(0, 20) + "..."
 										: spot?.city}

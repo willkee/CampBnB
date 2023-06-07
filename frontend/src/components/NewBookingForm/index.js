@@ -7,6 +7,8 @@ import { createBooking } from "../../store/session";
 import "react-calendar/dist/Calendar.css";
 import styles from "./NewBooking.module.css";
 
+import { Minus, Plus } from "../../assets/icons";
+
 const NewBookingForm = ({ spot }) => {
 	const [startDate, setStartDate] = useState();
 	const [endDate, setEndDate] = useState();
@@ -204,7 +206,7 @@ const NewBookingForm = ({ spot }) => {
 										people > 1 && setPeople(people - 1)
 									}
 								>
-									<i className="fa-regular fa-minus"></i>
+									<Minus />
 								</div>
 								<div>{people}</div>
 								<div
@@ -218,7 +220,7 @@ const NewBookingForm = ({ spot }) => {
 										setPeople(people + 1)
 									}
 								>
-									<i className="fa-regular fa-plus"></i>
+									<Plus />
 								</div>
 							</div>
 						</label>

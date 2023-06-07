@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
 import { useHistory, useLocation } from "react-router-dom";
 import styles from "./Navigation.module.css";
-
+import { User } from "../../assets/icons";
 function ProfileButton() {
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -40,7 +40,7 @@ function ProfileButton() {
 	return (
 		<>
 			<div className={styles.profile_icon} onClick={openMenu}>
-				<i className="fa-light fa-user" />
+				<User />
 			</div>
 			{showMenu && (
 				<div

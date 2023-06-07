@@ -10,6 +10,14 @@ import ConfirmCancel from "./Utils/ConfirmCancel";
 
 import styles from "./Bookings.module.css";
 
+import {
+	PeopleGroup,
+	CarMirrors,
+	RV,
+	Tent,
+	Backpack,
+} from "../../../assets/icons";
+
 const Bookings = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -119,21 +127,21 @@ const Bookings = () => {
 									</div>
 									<div className={styles.each_more_info}>
 										<div>
-											<i className="fa-thin fa-people-group" />{" "}
+											<PeopleGroup />
 											<span className={styles.num}>
 												{booking.people}
 											</span>
 										</div>
 										<div>
 											{booking.Spot.type === "vehicle" ? (
-												<i className="fa-solid fa-car-mirrors" />
+												<CarMirrors />
 											) : booking.Spot.type === "rv" ? (
-												<i className="fa-solid fa-rv" />
+												<RV />
 											) : booking.Spot.type === "tent" ? (
-												<i className="fa-solid fa-tent" />
+												<Tent />
 											) : booking.Spot.type ===
 											  "backpacking" ? (
-												<i className="fa-solid fa-backpack" />
+												<Backpack />
 											) : (
 												""
 											)}

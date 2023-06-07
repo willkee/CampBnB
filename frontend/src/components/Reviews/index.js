@@ -7,6 +7,7 @@ import AddReview from "./AddReview";
 import EditReview from "./EditReview";
 import DeleteReview from "./DeleteReview";
 import styles from "./Reviews.module.css";
+import { User, Edit, Delete } from "../../assets/icons";
 
 const Reviews = ({ reviews, spotId }) => {
 	const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const Reviews = ({ reviews, spotId }) => {
 					<div className={styles.each_review} key={review.id}>
 						<div className={styles.header}>
 							<div className={styles.profile}>
-								<i className="fa-thin fa-user"></i>
+								<User />
 								<div>
 									<div className={styles.name}>
 										{review.User.firstName}{" "}
@@ -49,26 +50,11 @@ const Reviews = ({ reviews, spotId }) => {
 								{sessionUser &&
 									sessionUser.id === review.userId && (
 										<div className={styles.review_owner}>
-											<div>
-												<i
-													id={styles.edit_button}
-													onClick={() =>
-														showEditModal(review)
-													}
-													className="fa-light fa-pen-to-square"
-												></i>
-											</div>
-											<div>
-												<i
-													id={styles.delete_button}
-													onClick={() =>
-														showDeleteModal(
-															review.id
-														)
-													}
-													className="fa-light fa-trash-can"
-												></i>
-											</div>
+											<Edit review={review} />
+											<Delete
+												id={review.id}
+												spotId={spotId}
+											/>
 										</div>
 									)}
 							</div>

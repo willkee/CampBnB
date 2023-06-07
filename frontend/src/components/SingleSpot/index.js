@@ -10,6 +10,17 @@ import OwnerControls from "./Utilities/OwnerControls";
 import AcceptBookings from "./Utilities/AcceptBookings";
 import Reviews from "../Reviews";
 
+import {
+	CircleSmall,
+	CarMirrors,
+	RV,
+	Tent,
+	Backpack,
+	MountainCity,
+	Road,
+	GPS,
+} from "../../assets/icons";
+
 import styles from "./SingleSpot.module.css";
 
 const SingleSpot = () => {
@@ -63,7 +74,7 @@ const SingleSpot = () => {
 											{spot.capacity}
 										</span>
 									</span>
-									<i className="fa-solid fa-circle-small"></i>
+									<CircleSmall />
 									<span className={styles.price_header}>
 										<span>${spot.price}</span>
 										<span>night</span>
@@ -83,22 +94,30 @@ const SingleSpot = () => {
 							<div className={styles.type_site_container}>
 								{spot.type === "vehicle" ? (
 									<div className={styles.type_info}>
-										<i className="fa-solid fa-car-mirrors" />
+										<span style={{ marginRight: "5px" }}>
+											<CarMirrors />
+										</span>
 										<span>Car Camping Site</span>
 									</div>
 								) : spot.type === "rv" ? (
 									<div className={styles.type_info}>
-										<i className="fa-solid fa-rv" />
+										<span style={{ marginRight: "5px" }}>
+											<RV />
+										</span>
 										<span>RV Camping Site</span>
 									</div>
 								) : spot.type === "tent" ? (
 									<div className={styles.type_info}>
-										<i className="fa-solid fa-tent" />
+										<span style={{ marginRight: "5px" }}>
+											<Tent />
+										</span>
 										<span>Tent Camping Site</span>
 									</div>
 								) : (
 									<div className={styles.type_info}>
-										<i className="fa-solid fa-backpack" />
+										<span style={{ marginRight: "5px" }}>
+											<Backpack />
+										</span>
 										<span>
 											Backpacking Site (No Road Access)
 										</span>
@@ -108,11 +127,8 @@ const SingleSpot = () => {
 
 							<div className={styles.location_container}>
 								{spot.address && (
-									<div>
-										<i
-											id={styles.road_icon}
-											className="fa-regular fa-road"
-										></i>
+									<div className={styles.addr}>
+										<Road />
 										{spot.address}
 									</div>
 								)}
@@ -120,16 +136,13 @@ const SingleSpot = () => {
 									spot?.long &&
 									spot?.lat !== "NaN" &&
 									spot?.long !== "NaN" && (
-										<div>
-											<i
-												id={styles.x_hairs}
-												className="fa-light fa-location-crosshairs"
-											/>
+										<div className={styles.addr}>
+											<GPS />
 											{`${spot.lat}, ${spot.long}`}
 										</div>
 									)}
 								<div>
-									<i className="fa-light fa-mountain-city" />
+									<MountainCity />
 									{spot.city}
 								</div>
 							</div>

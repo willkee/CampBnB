@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import { createSpot } from "../../store/spots";
 import styles from "./NewSpot.module.css";
 
+import { SquareCheck, RectangleX, Square } from "../../assets/icons";
+
 const NewSpotForm = () => {
 	const history = useHistory();
 	const [errors, setErrors] = useState([]);
@@ -78,12 +80,8 @@ const NewSpotForm = () => {
 		setImageUrl(file);
 	};
 
-	const rightInput = () => (
-		<i id={styles.yes} className="fa-solid fa-square-check" />
-	);
-	const wrongInput = () => (
-		<i id={styles.no} className="fa-solid fa-rectangle-xmark" />
-	);
+	const rightInput = () => <SquareCheck />;
+	const wrongInput = () => <RectangleX />;
 
 	return (
 		<div className={styles.container}>
@@ -377,10 +375,7 @@ const NewSpotForm = () => {
 										setDescription(e.target.value)
 									}
 								></textarea>
-								<i
-									id={styles.opt}
-									className="fa-solid fa-square"
-								/>
+								<Square />
 							</div>
 						</label>
 						<div className={styles.button_container}>

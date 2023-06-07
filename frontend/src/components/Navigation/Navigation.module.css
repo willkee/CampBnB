@@ -58,6 +58,7 @@
 }
 
 .explore_button {
+	display: flex;
 	color: white;
 }
 .explore_button:hover,
@@ -67,6 +68,8 @@
 
 .add_new {
 	margin-left: 40px;
+	display: flex;
+	align-items: center;
 }
 
 .profile_icon {
@@ -84,6 +87,7 @@
 .search {
 	margin-left: 40px;
 	cursor: pointer;
+	display: flex;
 }
 .log_in:hover,
 .sign_up:hover,
@@ -160,6 +164,7 @@
 	color: white;
 	cursor: pointer;
 	font-size: 12px;
+	display: flex;
 }
 
 .return_to_splash:hover {
