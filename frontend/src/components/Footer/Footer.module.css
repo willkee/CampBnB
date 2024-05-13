@@ -16,6 +16,12 @@
 	filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.328));
 }
 
+@media screen and (max-width: 1215px) {
+	.footer_container {
+		width: 100%;
+	}
+}
+
 .footer_container a {
 	color: white;
 	text-decoration: none;

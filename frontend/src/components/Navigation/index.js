@@ -51,14 +51,16 @@ function Navigation({ sessionUser, isLoaded }) {
 							/>
 						</NavLink>
 						<div className={styles.right}>
-							<NavLink
-								className={styles.explore_button}
-								exact
-								to="/main"
-							>
-								<Campground />
-								<span>Explore</span>
-							</NavLink>
+							{location.pathname !== "/main" && (
+								<NavLink
+									className={styles.explore_button}
+									exact
+									to="/main"
+								>
+									<Campground />
+									<span>Explore</span>
+								</NavLink>
+							)}
 							<div
 								className={styles.search}
 								onClick={displaySearchInput}

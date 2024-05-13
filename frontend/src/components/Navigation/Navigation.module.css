@@ -47,9 +47,9 @@
 	align-items: center;
 }
 
-.right a:first-child {
-	margin-right: 30px;
-}
+/* .right a:first-child {
+	margin-right: 10px;
+} */
 
 .right a i,
 .search i {
