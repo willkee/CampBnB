@@ -15,7 +15,7 @@ const AboutModal = () => {
 	return (
 		<div className={styles.about_container}>
 			<header>
-				<div>
+				<div className={styles.logo_wrapper}>
 					<img
 						src={`${process.env.PUBLIC_URL}/images/logo_only.png`}
 						alt="green logo"

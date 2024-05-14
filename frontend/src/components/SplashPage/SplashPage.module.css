@@ -28,7 +28,7 @@
 	transition: all 0.5s ease-in-out;
 	min-width: 320px;
 	width: 60vw;
-	max-width: 100vw;
+	max-width: 700px;
 }
 
 .content {
@@ -154,6 +154,7 @@
 	display: flex;
 	flex-direction: column;
 	width: 100%;
+	max-width: 500px;
 	opacity: 0;
 }
 
@@ -186,6 +187,7 @@
 	justify-content: center;
 	background-color: rgba(0, 0, 0, 0.85);
 	width: 75vw;
+	max-width: 800px;
 	padding: 45px;
 	color: white;
 	min-width: 320px;
@@ -195,6 +197,11 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+}
+
+.logo_wrapper {
+	display: flex;
+	align-items: center;
 }
 
 .about_container header p {
