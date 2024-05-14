@@ -8,6 +8,30 @@
 	grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
+@media screen and (max-width: 1150px) {
+	.container {
+		display: grid;
+		padding: 20px;
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+}
+
+@media screen and (max-width: 880px) {
+	.container {
+		display: grid;
+		padding: 20px;
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media screen and (max-width: 580px) {
+	.container {
+		display: flex;
+		flex-direction: column;
+		padding: 20px;
+	}
+}
+
 .each_spot_container {
 	cursor: pointer;
 	margin: 10px;
