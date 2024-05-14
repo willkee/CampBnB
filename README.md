@@ -28,6 +28,8 @@
 
 CampBnB is based off of AirBnB for users to list their spots or make bookings at existing spots on the platform. Spots may be edited or deleted by the owner of the spot as well. In a future development, users may also choose to leave a rating or review at any of the existing spots.
 
+<b>In Progress: Improving responsiveness throughout website. UI modernization.</b>
+
 <br>
 
 ## Technologies
@@ -148,8 +150,8 @@ CampBnB is based off of AirBnB for users to list their spots or make bookings at
 
 ## Screenshots
 
-<img src="https://campbnb.s3.us-west-1.amazonaws.com/new_ss_splash1.png" style="width:800px;" />
-<img src="https://campbnb.s3.us-west-1.amazonaws.com/new_ss_splash2.png" style="width:800px;" />
+<img src="https://campbnb.s3.us-west-1.amazonaws.com/ss_new_signin.png" style="width:800px;" />
+<img src="https://campbnb.s3.us-west-1.amazonaws.com/ss_new_signup.png" style="width:800px;" />
 <img src="https://campbnb.s3.us-west-1.amazonaws.com/new_ss_home.png" style="width:800px;" />
 <img src="https://campbnb.s3.us-west-1.amazonaws.com/new_ss_homeclosed.png" style="width:800px;" />
 <img src="https://campbnb.s3.us-west-1.amazonaws.com/ss_signup.png" style="width:800px;" />
@@ -166,6 +168,4 @@ CampBnB is based off of AirBnB for users to list their spots or make bookings at
 
 ## Future Development Ideas
 
-- Setting up ratings and reviews (as a single entity) that will be displayed on each spot page.
-- Total average rating to be displayed on the home (main) page.
-- Setting up search functionality where users may search campgrounds by name or city.
+- Improve responsiveness throughout website (in progress)
