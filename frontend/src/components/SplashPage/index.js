@@ -4,17 +4,19 @@ import SplashLogin from "./SplashLogin";
 import SplashSignup from "./SplashSignup";
 import styles from "./SplashPage.module.css";
 
-// import { useDispatch } from "react-redux";
-// import * as sessionActions from "../../store/session";
-
-// import { currentModal, showModal } from "../../store/modal";
+import AboutModal from "./AboutModal";
+import { useDispatch } from "react-redux";
+import { currentModal, showModal } from "../../store/modal";
 // import LoginForm from "../LoginForm";
 // import SignUpForm from "../SignUpForm";
+
+import { CircleQuestion } from "../../assets/icons";
 
 const SplashPage = ({ sessionUser }) => {
 	const [activeForm, setActiveForm] = useState("signin");
 	const [switchMessage, setSwitchMessage] = useState("No account? Sign up.");
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	const content = useRef(null);
 	const [sz, setSz] = useState({ height: 0, width: 0 });
@@ -26,6 +28,11 @@ const SplashPage = ({ sessionUser }) => {
 	// useEffect(() => {
 	// 	if (sessionUser) navigate("/main");
 	// }, [sessionUser, navigate]);
+
+	const showAboutModal = () => {
+		dispatch(currentModal(AboutModal));
+		dispatch(showModal());
+	};
 
 	const handleSwitch = () => {
 		if (activeForm === "signin") {
@@ -46,7 +53,10 @@ const SplashPage = ({ sessionUser }) => {
 							src={`${process.env.PUBLIC_URL}/images/logo_only.png`}
 							alt="green logo"
 						/>
-						<p>campbnb</p>
+						<p style={{ marginRight: "10px" }}>campbnb</p>
+						<div onClick={showAboutModal}>
+							<CircleQuestion />
+						</div>
 					</header>
 					<SplashLogin active={activeForm === "signin"} />
 					<SplashSignup active={activeForm === "signup"} />
