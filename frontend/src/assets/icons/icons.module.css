@@ -45,3 +45,22 @@
 	color: rgb(255, 0, 0);
 	font-weight: 600;
 }
+
+.about {
+	margin-top: 3.5px;
+}
+.about:hover {
+	cursor: pointer;
+	color: #fff;
+}
+
+.xmark {
+	cursor: pointer;
+	display: flex;
+	align-self: flex-start;
+	color: #ddd;
+}
+
+.xmark:hover {
+	color: #fff;
+}
