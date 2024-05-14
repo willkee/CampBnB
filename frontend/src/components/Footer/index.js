@@ -1,7 +1,12 @@
 import styles from "./Footer.module.css";
 import { GitHub, LinkedIn } from "../../assets/brands";
+import { useLocation } from "react-router-dom";
 
 const Footer = () => {
+	const location = useLocation();
+
+	if (location.pathname === "/") return null;
+
 	return (
 		<div className={styles.footer_container}>
 			<div className={styles.left}>

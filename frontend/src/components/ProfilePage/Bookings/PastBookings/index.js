@@ -1,5 +1,5 @@
 import styles from "../Bookings.module.css";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import {
@@ -11,7 +11,7 @@ import {
 } from "../../../../assets/icons";
 
 const PastBookings = ({ myBookings }) => {
-	const history = useHistory();
+	const navigate = useNavigate();
 	const [loaded, setLoaded] = useState(false);
 	const [pastBookings, setPastBookings] = useState();
 
@@ -72,9 +72,7 @@ const PastBookings = ({ myBookings }) => {
 								<div
 									className={styles.booking_spotInfo}
 									onClick={() =>
-										history.push(
-											`/spots/${booking.Spot.id}`
-										)
+										navigate(`/spots/${booking.Spot.id}`)
 									}
 								>
 									<h3 id={styles.past_info}>

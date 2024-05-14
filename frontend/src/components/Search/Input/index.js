@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { hideModal } from "../../../store/modal";
 import styles from "./SearchInput.module.css";
 
 const SearchInput = () => {
 	const [search, setSearch] = useState("");
 	const [errors, setErrors] = useState([]);
-	const history = useHistory();
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
 	const handleSearch = (e) => {
@@ -26,7 +26,7 @@ const SearchInput = () => {
 			return;
 		}
 
-		history.push(`/search/${encodeURIComponent(search)}`);
+		navigate(`/search/${encodeURIComponent(search)}`);
 		setSearch("");
 		dispatch(hideModal());
 		return;

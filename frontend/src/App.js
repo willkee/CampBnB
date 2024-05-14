@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { getAllSpots } from "./store/spots";
 
 import * as sessionActions from "./store/session";
@@ -34,37 +34,51 @@ function App() {
 			<Navigation sessionUser={sessionUser} isLoaded={isLoaded} />
 			<Modal />
 			{isLoaded && (
-				<Switch>
-					<Route exact path="/">
-						<SplashPage sessionUser={sessionUser} />
-					</Route>
-					<Route exact path="/main">
-						<Homepage spots={spotsList} />
-					</Route>
-					<Route exact path="/spots/new">
-						{sessionUser ? (
-							<NewSpotForm />
-						) : (
-							<Redirect to="/main" />
-						)}
-					</Route>
-					<Route exact path="/spots/:id">
-						<SingleSpot />
-					</Route>
-					<Route exact path="/profile">
-						{sessionUser ? (
-							<ProfilePage />
-						) : (
-							<Redirect to="/main" />
-						)}
-					</Route>
-					<Route exact path="/search/:query">
-						<SearchResults />
-					</Route>
-					<Route>
-						<ErrorPage />
-					</Route>
-				</Switch>
+				<Routes>
+					<Route
+						exact="true"
+						path="/"
+						element={<SplashPage sessionUser={sessionUser} />}
+					/>
+					<Route
+						exact="true"
+						path="/main"
+						element={<Homepage spots={spotsList} />}
+					/>
+					<Route
+						exact="true"
+						path="/spots/new"
+						element={
+							sessionUser ? (
+								<NewSpotForm />
+							) : (
+								<Navigate to="/main" />
+							)
+						}
+					/>
+					<Route
+						exact="true"
+						path="/spots/:id"
+						element={<SingleSpot />}
+					/>
+					<Route
+						exact="true"
+						path="/profile"
+						element={
+							sessionUser ? (
+								<ProfilePage />
+							) : (
+								<Navigate to="/main" />
+							)
+						}
+					/>
+					<Route
+						exact="true"
+						path="/search/:query"
+						element={<SearchResults />}
+					/>
+					<Route element={<ErrorPage />} />
+				</Routes>
 			)}
 			<Footer />
 		</div>

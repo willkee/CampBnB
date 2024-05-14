@@ -1,35 +1,139 @@
 .container {
-	width: 100%;
-	position: absolute;
-	top: 0;
+	width: 100vw;
+	height: 100vh;
+	background-image: url("./camp.jpg");
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	margin: 0;
+	padding: 0;
 	display: flex;
-	z-index: 99;
+	justify-content: center;
+	align-items: center;
 }
 
-.logo {
-	width: 200px;
-	z-index: 5;
-	margin-left: 50px;
+.main {
+	color: #ddd;
+	height: 50vh;
+	width: 600px;
+	margin: 50px;
+	border-radius: 8px;
+	background: linear-gradient(
+		to right bottom,
+		rgba(0, 0, 0, 0.4) 0%,
+		rgba(0, 0, 0, 0.9) 100%
+	);
+	backdrop-filter: blur(5px);
+	box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-direction: column;
+	padding: 30px;
 }
 
-.splash_header {
-	background-color: #132128;
+.main header {
 	width: 100%;
-	position: absolute;
 	display: flex;
 	align-items: center;
-	top: 0;
-	height: 130px;
-	z-index: 2;
 }
 
-.splash_content {
-	background: linear-gradient(45deg, #10191d, rgb(22, 81, 8));
-	position: absolute;
-	top: 150px;
+.main header p {
+	font-size: 14px;
+	margin-left: 5px;
+	background: -webkit-linear-gradient(#555, #fff);
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.main header img {
+	width: 50px;
+}
+
+/* LOGIN */
+
+.login_form {
+	display: flex;
+	flex-direction: column;
 	width: 100%;
-	border-left: 50px solid white;
-	border-right: 50px solid white;
+}
+.login_form h1 {
+	margin: 25px 0 20px 0;
+}
+
+.login_form label {
+	font-size: 12px;
+	color: #999;
+	margin: 15px 0 10px 0;
+}
+
+.login_input {
+	height: 60px;
+	padding: 10px;
+	margin-bottom: 5px;
+	background-color: #222;
+	border: none;
+	border-radius: 5px;
+	outline: none;
+	color: #eee;
+	font-size: 16px;
+}
+
+.login_button {
+	width: 100%;
+	background-color: #059669;
+	border-radius: 5px;
+	height: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px;
+	cursor: pointer;
+}
+
+.login_button:hover {
+	background-color: #057853;
+}
+
+.switch_button {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 15px;
+	cursor: pointer;
+	font-size: 14px;
+	color: #ccc;
+}
+
+.switch_button:hover {
+	color: #eee;
+}
+
+.form_error {
+	color: red;
+	font-size: 12px;
+	margin-bottom: 10px;
+}
+
+.demo {
+	width: 100%;
+	background-color: #313131;
+	border-radius: 5px;
+	height: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 5px;
+	cursor: pointer;
+}
+
+.demo:hover {
+	background-color: #4c4c4c;
+}
+
+/* .splash_content {
+	background: linear-gradient(45deg, #10191d, rgb(22, 81, 8));
 	padding: 50px;
 	color: white;
 	display: flex;
@@ -37,7 +141,6 @@
 	align-items: center;
 	flex-direction: column;
 	text-align: center;
-	height: 720px;
 }
 
 .splash_content img {
@@ -46,12 +149,9 @@
 
 .splash_content * {
 	font-size: 14px;
-	margin: 10px 0;
+	margin: 0px 0;
 }
 
-.splash_button_container {
-	margin-top: 20px;
-}
 .buttons {
 	display: flex;
 	width: 80%;
@@ -139,4 +239,4 @@
 	width: 30%;
 	border: 1px solid black;
 	background-color: rgb(196, 230, 187);
-}
+} */

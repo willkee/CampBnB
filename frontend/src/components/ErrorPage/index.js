@@ -1,15 +1,15 @@
 import styles from "./ErrorPage.module.css";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ErrorPage = () => {
-	const history = useHistory();
+	const navigate = useNavigate();
 	return (
 		<div className={styles.container}>
 			<h1 className={styles.lost}>Page Not Found</h1>
 			<button
 				className={styles.return_home}
 				type="button"
-				onClick={() => history.push("/main")}
+				onClick={() => navigate("/main")}
 			>
 				Return Home
 			</button>

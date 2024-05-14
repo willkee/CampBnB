@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
-import { useHistory, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./Navigation.module.css";
 import { User } from "../../assets/icons";
 function ProfileButton() {
 	const dispatch = useDispatch();
-	const history = useHistory();
+	const navigate = useNavigate();
 	const location = useLocation();
 	const [showMenu, setShowMenu] = useState(false);
 
@@ -33,7 +33,7 @@ function ProfileButton() {
 	};
 
 	const goToProfile = () => {
-		history.push("/profile");
+		navigate("/profile");
 		setShowMenu(false);
 	};
 

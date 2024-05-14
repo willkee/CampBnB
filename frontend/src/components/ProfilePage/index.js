@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./ProfilePage.module.css";
 
 import Bookings from "./Bookings/";
@@ -10,11 +10,11 @@ import MySpots from "./MySpots";
 const ProfilePage = () => {
 	const [activePage, setActivePage] = useState(<Bookings />);
 
-	const history = useHistory();
+	const navigate = useNavigate();
 	const sessionUser = useSelector((state) => state.session.user);
 
 	if (!sessionUser) {
-		return history.push("/main");
+		return navigate("/main");
 	}
 
 	return (

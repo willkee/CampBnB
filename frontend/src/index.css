@@ -2,7 +2,6 @@
 	font-family: "Montserrat", sans-serif;
 	box-sizing: border-box;
 	overflow-wrap: break-word;
-
 	margin: 0;
 	padding: 0;
 }
@@ -15,18 +14,25 @@ body {
 	align-items: center;
 }
 
+button {
+	all: unset;
+}
+
 .app_page_container {
-	width: 85vw;
-	height: 100%;
+	height: 100vh;
 	min-height: 100vh;
-	width: 1200px;
 	background-color: white;
 	display: flex;
 	position: relative;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-	padding-bottom: 70px;
+}
+
+@media screen and (min-width: 1216px) {
+	.app_page_container {
+		/* max-width: 1200px; */
+	}
 }
 
 @media screen and (max-width: 1215px) {

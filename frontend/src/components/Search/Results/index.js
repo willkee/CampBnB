@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./SearchResults.module.css";
 
 import { CarMirrors, RV, Tent, Backpack } from "../../../assets/icons";
 const SearchResults = () => {
 	const { query } = useParams();
-	const history = useHistory();
+	const navigate = useNavigate();
 	const spots = useSelector((state) => state.spots);
 
 	const matchedSpots = [];
@@ -20,9 +20,9 @@ const SearchResults = () => {
 		}
 	});
 
-	const goHome = () => history.push("/main");
+	const goHome = () => navigate("/main");
 
-	const goToSpot = (spotId) => history.push(`/spots/${spotId}`);
+	const goToSpot = (spotId) => navigate(`/spots/${spotId}`);
 
 	return (
 		<div className={styles.outer_container}>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Redirect } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { csrfFetch } from "../../store/csrf";
 import { getOneSpot } from "../../store/spots";
@@ -25,6 +25,7 @@ import styles from "./SingleSpot.module.css";
 
 const SingleSpot = () => {
 	const { id } = useParams();
+	const navigate = useNavigate();
 
 	const spot = useSelector((state) => state.spots[parseInt(id, 10)]);
 	const sessionUser = useSelector((state) => state.session.user);
@@ -43,7 +44,7 @@ const SingleSpot = () => {
 		load();
 	}, [dispatch, id]);
 
-	if (isLoaded && !spot) return <Redirect to="/main" />;
+	if (isLoaded && !spot) return navigate("/main");
 
 	return (
 		<div className={styles.container1}>
