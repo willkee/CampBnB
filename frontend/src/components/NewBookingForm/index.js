@@ -1,7 +1,7 @@
 import Calendar from "react-calendar";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { createBooking } from "../../store/session";
 
 import "react-calendar/dist/Calendar.css";
@@ -20,7 +20,7 @@ const NewBookingForm = ({ spot }) => {
 	const [confirm, setConfirm] = useState(false);
 
 	const dispatch = useDispatch();
-	const history = useHistory();
+	const navigate = useNavigate();
 
 	const startDatePlusOne = new Date(startDate);
 	startDatePlusOne.setDate(startDatePlusOne.getDate() + 1);
@@ -56,7 +56,7 @@ const NewBookingForm = ({ spot }) => {
 					people,
 				})
 			);
-			history.push("/profile");
+			navigate("/profile");
 		} catch (err) {
 			const data = await err.json();
 			if (data && data.errors) setErrors(data.errors);

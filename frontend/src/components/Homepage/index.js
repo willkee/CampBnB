@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllSpots } from "../../store/spots";
 import styles from "./Homepage.module.css";
@@ -17,7 +17,7 @@ const Homepage = ({ spots }) => {
 	const sessionUser = useSelector((state) => state.session.user);
 	// const spots = useSelector((state) => Object.values(state.spots));
 
-	const history = useHistory();
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
 	const spotsOpen = spots.filter((spot) => spot.open);
@@ -33,10 +33,10 @@ const Homepage = ({ spots }) => {
 		return () => setLoaded(false);
 	}, [dispatch]);
 
-	const sendToSpot = (id) => history.push(`/spots/${id}`);
+	const sendToSpot = (id) => navigate(`/spots/${id}`);
 
 	return (
-		<div>
+		<div className={styles.outer_container}>
 			{loaded && (
 				<>
 					{sessionUser ? (

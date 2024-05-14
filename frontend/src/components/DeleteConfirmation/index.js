@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { hideModal } from "../../store/modal";
 import { deleteSpot } from "../../store/spots";
 import { getOneSpot } from "../../store/spots";
@@ -10,7 +10,7 @@ import styles from "./DeleteSpot.module.css";
 const DeleteConfirmation = ({ id }) => {
 	const [upcomingBookings, setUpcomingBookings] = useState(false);
 	const dispatch = useDispatch();
-	const history = useHistory();
+	const navigate = useNavigate();
 
 	const spots = useSelector((state) => state.spots);
 	const spot = spots[id];
@@ -26,13 +26,13 @@ const DeleteConfirmation = ({ id }) => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dispatch, id]);
 
-	if (!id || !spot) return <Redirect to="/main" />;
+	if (!id || !spot) return navigate("/main");
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		dispatch(deleteSpot(id))
 			.then(() => dispatch(hideModal()))
-			.then(() => history.push("/main"));
+			.then(() => navigate("/main"));
 	};
 
 	return (

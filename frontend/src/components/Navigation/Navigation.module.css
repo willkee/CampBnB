@@ -4,10 +4,19 @@
 	width: 100%;
 	filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.581));
 	padding: 15px;
+	position: sticky;
+	top: 0;
+	z-index: 99;
+}
+
+@media screen and (max-width: 880px) {
+	.nav_container {
+	}
 }
 
 .loaded_container {
 	display: flex;
+
 	justify-content: space-between;
 	align-items: center;
 }
@@ -39,19 +48,18 @@
 		opacity: 1;
 	}
 }
+.right_narrow {
+	display: none;
+}
 
-.right {
+.right_wide {
 	display: flex;
 	margin-right: 50px;
 	justify-content: center;
 	align-items: center;
 }
 
-/* .right a:first-child {
-	margin-right: 10px;
-} */
-
-.right a i,
+.right_wide a i,
 .search i {
 	font-size: 22px;
 	margin-right: 8px;

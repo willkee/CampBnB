@@ -1,47 +1,46 @@
-import { useHistory, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import * as sessionActions from "../../store/session";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+// import { useDispatch } from "react-redux";
+// import * as sessionActions from "../../store/session";
 
-import { currentModal, showModal } from "../../store/modal";
-import LoginForm from "../LoginForm";
-import SignUpForm from "../SignUpForm";
+// import { currentModal, showModal } from "../../store/modal";
+// import LoginForm from "../LoginForm";
+// import SignUpForm from "../SignUpForm";
 import styles from "./SplashPage.module.css";
 
+import SplashLogin from "./SplashLogin";
+
 const SplashPage = ({ sessionUser }) => {
-	const history = useHistory();
-	const location = useLocation();
-	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	// const displaySignupForm = () => {
+	// 	dispatch(currentModal(SignUpForm));
+	// 	dispatch(showModal());
+	// };
 
-	const displaySignupForm = () => {
-		dispatch(currentModal(SignUpForm));
-		dispatch(showModal());
-	};
+	// const displayLoginForm = () => {
+	// 	dispatch(currentModal(LoginForm));
+	// 	dispatch(showModal());
+	// };
 
-	const displayLoginForm = () => {
-		dispatch(currentModal(LoginForm));
-		dispatch(showModal());
-	};
-
-	const demoLogin = async (e) => {
-		e.preventDefault();
-		await dispatch(sessionActions.login("demo@user.io", "password"));
-		await dispatch(sessionActions.getMyBookings());
-		if (location.pathname === "/") {
-			return history.push("/main");
+	useEffect(() => {
+		if (sessionUser) {
+			navigate("/main");
 		}
-		return;
-	};
+	}, [sessionUser, navigate]);
 
 	return (
 		<div className={styles.container}>
-			<div className={styles.splash_header}>
-				<img
-					className={styles.logo}
-					src={`${process.env.PUBLIC_URL}/images/logo_title.png`}
-					alt="CampBnB Logo"
-				/>
+			<div className={styles.main}>
+				<header>
+					<img
+						src={`${process.env.PUBLIC_URL}/images/logo_only.png`}
+						alt="green logo"
+					/>
+					<p>campbnb</p>
+				</header>
+				<SplashLogin />
 			</div>
-			<div className={styles.splash_content}>
+			{/* <div className={styles.splash_content}>
 				<img
 					src={`${process.env.PUBLIC_URL}/images/logo_only.png`}
 					alt="green logo"
@@ -51,7 +50,7 @@ const SplashPage = ({ sessionUser }) => {
 				<p>
 					CampBnB is a site where you can find and discover new places
 					to camp within the state of Colorado. If you have a place to
-					share, you can list your spot too!
+					share, you can list your spot too.
 				</p>
 				<div className={styles.buttons}>
 					{sessionUser ? (
@@ -59,7 +58,7 @@ const SplashPage = ({ sessionUser }) => {
 							<div>{`Welcome back ${sessionUser.firstName}!`}</div>
 							<div
 								className={styles.just_browsing}
-								onClick={() => history.push("/main")}
+								onClick={() => navigate("/main")}
 							>
 								<div>Enter Here</div>
 							</div>
@@ -96,7 +95,7 @@ const SplashPage = ({ sessionUser }) => {
 								Just browsing? Explore the site{" "}
 								<span
 									id={styles.here}
-									onClick={() => history.push("/main")}
+									onClick={() => navigate("/main")}
 								>
 									here
 								</span>
@@ -105,7 +104,7 @@ const SplashPage = ({ sessionUser }) => {
 						</div>
 					)}
 				</div>
-			</div>
+			</div> */}
 		</div>
 	);
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createSpot } from "../../store/spots";
 import styles from "./NewSpot.module.css";
@@ -8,7 +8,7 @@ import styles from "./NewSpot.module.css";
 import { SquareCheck, RectangleX, Square } from "../../assets/icons";
 
 const NewSpotForm = () => {
-	const history = useHistory();
+	const navigate = useNavigate();
 	const [errors, setErrors] = useState([]);
 	const [loaded, setLoaded] = useState(false);
 
@@ -65,7 +65,7 @@ const NewSpotForm = () => {
 				})
 			);
 			setSubmitted(false);
-			return history.push(`/spots/${newSpot.id}`);
+			return navigate(`/spots/${newSpot.id}`);
 		} catch (err) {
 			const data = await err.json();
 			if (data && data.errors)
@@ -390,7 +390,7 @@ const NewSpotForm = () => {
 							</button>
 							<div
 								role="button"
-								onClick={() => history.push("/main")}
+								onClick={() => navigate("/main")}
 								className={styles.cancel}
 							>
 								Cancel

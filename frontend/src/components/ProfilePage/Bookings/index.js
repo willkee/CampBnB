@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getMyBookings } from "../../../store/session";
 import { showModal, currentModal } from "../../../store/modal";
 
@@ -20,7 +20,7 @@ import {
 
 const Bookings = () => {
 	const dispatch = useDispatch();
-	const history = useHistory();
+	const navigate = useNavigate();
 	const [isLoaded, setIsLoaded] = useState(false);
 
 	const myBookings = useSelector((state) => state.session.bookings);
@@ -89,7 +89,7 @@ const Bookings = () => {
 									<div
 										className={styles.booking_spotInfo}
 										onClick={() =>
-											history.push(
+											navigate(
 												`/spots/${booking.Spot.id}`
 											)
 										}

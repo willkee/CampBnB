@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getAllSpots } from "../../../store/spots";
 import styles from "./MySpots.module.css";
 
@@ -11,7 +11,7 @@ const MySpots = () => {
 		(spot) => spot.ownerId === sessionUser.id
 	);
 	const dispatch = useDispatch();
-	const history = useHistory();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		dispatch(getAllSpots()).then(() => setLoaded(true));
@@ -31,7 +31,7 @@ const MySpots = () => {
 									key={spot.id}
 									className={styles.my_each_spot}
 									onClick={() =>
-										history.push(`/spots/${spot.id}`)
+										navigate(`/spots/${spot.id}`)
 									}
 								>
 									<img

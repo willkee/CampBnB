@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import { currentModal, hideModal } from "../../store/modal";
 import "./SignUpForm.css";
@@ -9,7 +9,7 @@ import LoginForm from "../LoginForm";
 function SignUpForm() {
 	const dispatch = useDispatch();
 	const location = useLocation();
-	const history = useHistory();
+	const navigate = useNavigate();
 
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
@@ -26,7 +26,7 @@ function SignUpForm() {
 		await dispatch(sessionActions.getMyBookings());
 		await dispatch(hideModal());
 		if (location.pathname === "/") {
-			return history.push("/main");
+			return navigate("/main");
 		}
 		return;
 	};
@@ -48,7 +48,7 @@ function SignUpForm() {
 			await dispatch(sessionActions.getMyBookings());
 			await dispatch(hideModal());
 			if (location.pathname === "/") {
-				return history.push("/main");
+				return navigate("/main");
 			}
 			return;
 		} catch (res) {

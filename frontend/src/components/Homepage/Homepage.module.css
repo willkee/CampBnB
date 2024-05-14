@@ -2,6 +2,10 @@
 	margin: 30px;
 }
 
+.outer_container {
+	overflow-y: auto;
+}
+
 .container {
 	display: grid;
 	padding: 20px;
