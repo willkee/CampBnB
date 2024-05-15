@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getMyBookings } from "../../../store/session";
-import { showModal, currentModal } from "../../../store/modal";
+import { showModal, setCurrentModal } from "../../../store/modal/actions";
 
 import PastBookings from "./PastBookings";
 import EditPeople from "./Utils/EditPeople";
@@ -30,12 +30,12 @@ const Bookings = () => {
 	}, [dispatch]);
 
 	const showEditPeopleModal = (booking) => {
-		dispatch(currentModal(() => <EditPeople booking={booking} />));
+		dispatch(setCurrentModal(() => <EditPeople booking={booking} />));
 		dispatch(showModal());
 	};
 
 	const showConfirm = (id) => {
-		dispatch(currentModal(() => <ConfirmCancel id={id} />));
+		dispatch(setCurrentModal(() => <ConfirmCancel id={id} />));
 		dispatch(showModal());
 	};
 

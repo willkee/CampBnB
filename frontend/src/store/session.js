@@ -1,4 +1,5 @@
 import { csrfFetch } from "./csrf.js";
+import { produce } from "immer";
 
 const SET_USER = "session/setUser";
 const UPDATED_USER_NAMES = "session/updateUserNames";
@@ -197,62 +198,49 @@ export const deleteBooking = (id) => async (dispatch) => {
 const initialState = { user: null, bookings: {} };
 
 function sessionReducer(state = initialState, action) {
-	let newState;
-	switch (action.type) {
-		// ---------- USERS ----------
+	return produce(state, (draft) => {
+		switch (action.type) {
+			case SET_USER:
+				draft.user = action.payload;
+				break;
+			case REMOVE_USER:
+				draft.user = null;
+				draft.bookings = {};
+				break;
+			case UPDATED_USER_NAMES:
+				if (draft.user) {
+					draft.user.firstName = action.data.firstName;
+					draft.user.lastName = action.data.lastName;
+				}
+				break;
+			case UPDATED_USER_EMAIL:
+				if (draft.user) {
+					draft.user.email = action.email;
+				}
+				break;
+			case CREATED_BOOKING:
+				draft.bookings[action.booking.id] = action.booking;
+				break;
+			case RETRIEVED_BOOKINGS:
+				draft.bookings = {};
+				action.bookings.forEach((book) => {
+					draft.bookings[book.id] = book;
+				});
+				break;
+			case UPDATED_PEOPLE_FOR_BOOKING:
+				if (draft.bookings[action.booking.id]) {
+					draft.bookings[action.booking.id].people =
+						action.booking.people;
+				}
+				break;
+			case DELETED_BOOKING:
+				delete draft.bookings[action.deletedId];
+				break;
 
-		case SET_USER:
-			newState = Object.assign({}, state, { user: action.payload });
-			return newState;
-
-		case REMOVE_USER:
-			newState = Object.assign({}, state, { user: null });
-			newState.bookings = {};
-			return newState;
-
-		case UPDATED_USER_NAMES:
-			newState = { ...state };
-			newState.user.firstName = action.data.firstName;
-			newState.user.lastName = action.data.lastName;
-			return newState;
-
-		case UPDATED_USER_EMAIL:
-			newState = { ...state };
-			newState.user.email = action.email;
-			return newState;
-
-		// ---------- BOOKINGS ----------
-
-		// Create
-		case CREATED_BOOKING:
-			newState = { ...state };
-			newState.bookings[action.booking.id] = action.booking;
-			return newState;
-
-		// Read
-		case RETRIEVED_BOOKINGS:
-			newState = { ...state };
-			action.bookings.forEach(
-				(booking) => (newState.bookings[booking.id] = booking)
-			);
-			return newState;
-
-		// Update
-		case UPDATED_PEOPLE_FOR_BOOKING:
-			const bookings = { ...state.bookings };
-			bookings[action.booking.id] = action.booking;
-			return { ...state, bookings };
-
-		// Delete
-		case DELETED_BOOKING:
-			const oldBookings = { ...state.bookings };
-			delete oldBookings[action.deletedId];
-			return { ...state, bookings: oldBookings };
-
-		// ---------- DEFAULT ----------
-		default:
-			return state;
-	}
+			default:
+				break;
+		}
+	});
 }
 
 export default sessionReducer;

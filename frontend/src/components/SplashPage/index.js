@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { currentModal, showModal } from "../../store/modal";
+import { setCurrentModal, showModal } from "../../store/modal/actions";
 
 import SplashLogin from "./SplashLogin";
 import SplashSignup from "./SplashSignup";
@@ -27,12 +27,12 @@ const SplashPage = ({ sessionUser }) => {
 	const continueToSite = () => navigate("/main");
 
 	const showAboutModal = () => {
-		dispatch(currentModal(AboutModal));
+		dispatch(setCurrentModal("ABOUT_MODAL"));
 		dispatch(showModal());
 	};
 
 	const showLogoutModal = () => {
-		dispatch(currentModal(LogoutConfirmation));
+		dispatch(setCurrentModal("LOGOUT_CONFIRMATION"));
 		dispatch(showModal());
 	};
 

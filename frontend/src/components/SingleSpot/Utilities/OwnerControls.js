@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { showModal, currentModal } from "../../../store/modal";
+import { showModal, setCurrentModal } from "../../../store/modal/actions";
 import { switchOpening } from "../../../store/spots";
 import EditSpotForm from "../../EditSpotForm";
 import DeleteConfirmation from "../../DeleteConfirmation";
@@ -11,12 +11,12 @@ const OwnerControls = ({ sessionUser, spot }) => {
 	const dispatch = useDispatch();
 
 	const editSpotForm = (spot) => {
-		dispatch(currentModal(() => <EditSpotForm spot={spot} />));
+		dispatch(setCurrentModal(() => <EditSpotForm spot={spot} />));
 		dispatch(showModal());
 	};
 
 	const showDeleteConfirmation = (id) => {
-		dispatch(currentModal(() => <DeleteConfirmation id={id} />));
+		dispatch(setCurrentModal(() => <DeleteConfirmation id={id} />));
 		dispatch(showModal());
 	};
 

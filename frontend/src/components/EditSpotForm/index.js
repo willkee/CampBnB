@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateOneSpot } from "../../store/spots";
-import { hideModal } from "../../store/modal";
+import { hideModal } from "../../store/modal/actions";
 import styles from "./EditSpot.module.css";
 import { SquareCheck, RectangleX, Square } from "../../assets/icons";
 

@@ -4,6 +4,9 @@ import styles from "./Navigation.module.css";
 
 import NavWidescreen from "./NavWidescreen";
 import { LeftChevron } from "../../assets/icons";
+
+import Menu from "./Menu";
+
 function Navigation({ sessionUser, isLoaded }) {
 	const location = useLocation();
 	const navigate = useNavigate();
@@ -28,7 +31,8 @@ function Navigation({ sessionUser, isLoaded }) {
 							/>
 						</NavLink>
 					</div>
-					<NavWidescreen sessionUser={sessionUser} />
+					{/* <NavWidescreen sessionUser={sessionUser} /> */}
+					<Menu />
 				</div>
 			)}
 		</nav>

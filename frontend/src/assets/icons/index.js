@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { showModal, currentModal } from "../../store/modal";
+import { showModal, setCurrentModal } from "../../store/modal/actions";
 import EditReview from "../../components/Reviews/EditReview";
 import DeleteReview from "../../components/Reviews/DeleteReview";
 import css from "./icons.module.css";
@@ -30,7 +30,7 @@ export function LeftChevron() {
 				fill="none"
 				d="M20 28 8.7 16.7a1 1 0 0 1 0-1.4L20 4"
 				stroke="currentColor"
-				stroke-width="4px"
+				strokeWidth="4px"
 			></path>
 		</svg>
 	);
@@ -377,7 +377,7 @@ export function GPS() {
 export function Edit({ review }) {
 	const dispatch = useDispatch();
 	const showEditModal = (review) => {
-		dispatch(currentModal(() => <EditReview review={review} />));
+		dispatch(setCurrentModal(() => <EditReview review={review} />));
 		dispatch(showModal());
 	};
 
@@ -398,7 +398,9 @@ export function Edit({ review }) {
 export function Delete({ id, spotId }) {
 	const dispatch = useDispatch();
 	const showDeleteModal = (id) => {
-		dispatch(currentModal(() => <DeleteReview id={id} spotId={spotId} />));
+		dispatch(
+			setCurrentModal(() => <DeleteReview id={id} spotId={spotId} />)
+		);
 		dispatch(showModal());
 	};
 	return (

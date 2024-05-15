@@ -2,13 +2,13 @@ import { useDispatch } from "react-redux";
 import { XMark } from "../../assets/icons";
 import styles from "./SplashPage.module.css";
 
-import { currentModal, hideModal } from "../../store/modal";
+import { setCurrentModal, hideModal } from "../../store/modal/actions";
 
 const AboutModal = () => {
 	const dispatch = useDispatch();
 
 	const closeAboutModal = () => {
-		dispatch(currentModal(null));
+		dispatch(setCurrentModal(null));
 		dispatch(hideModal());
 	};
 

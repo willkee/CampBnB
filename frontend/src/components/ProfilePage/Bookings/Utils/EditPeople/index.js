@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { hideModal } from "../../../../../store/modal";
+import { hideModal } from "../../../../../store/modal/actions";
 import { updatePeopleInBooking } from "../../../../../store/session";
 import styles from "./EditPeople.module.css";
 

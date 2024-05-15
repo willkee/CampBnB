@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { hideModal } from "../../../store/modal";
+import { hideModal } from "../../../store/modal/actions";
 import { deleteReview } from "../../../store/spots";
 import styles from "./DeleteReview.module.css";
 

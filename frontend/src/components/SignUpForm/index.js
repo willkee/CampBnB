@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-import { currentModal, hideModal } from "../../store/modal";
+import { setCurrentModal, hideModal } from "../../store/modal/actions";
 import "./SignUpForm.css";
 import LoginForm from "../LoginForm";
 
@@ -18,7 +18,7 @@ function SignUpForm() {
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [errors, setErrors] = useState([]);
 
-	const showLogin = () => dispatch(currentModal(LoginForm));
+	const showLogin = () => dispatch(setCurrentModal(LoginForm));
 
 	const demoLogin = async (e) => {
 		e.preventDefault();

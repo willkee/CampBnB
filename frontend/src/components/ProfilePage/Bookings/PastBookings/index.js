@@ -13,31 +13,26 @@ import {
 const PastBookings = ({ myBookings }) => {
 	const navigate = useNavigate();
 	const [loaded, setLoaded] = useState(false);
-	const [pastBookings, setPastBookings] = useState();
+	const [pastBookings, setPastBookings] = useState([]);
 
 	useEffect(() => {
-		const bookings = Object.values(myBookings);
-		bookings.forEach(
-			(booking) =>
-				(booking.startDate = new Date(booking.startDate)
-					.setHours(0, 0, 0, 0)
-					.valueOf())
-		);
-		setPastBookings(
-			bookings
-				.filter(
-					(booking) =>
-						booking.startDate <
-						new Date().setHours(0, 0, 0, 0).valueOf()
-				)
-				.sort((a, b) => new Date(b.endDate) - new Date(a.endDate))
-		);
-		setLoaded(true);
+		const bookings = Object.values(myBookings).map((booking) => ({
+			...booking,
+			startDate: new Date(booking.startDate)
+				.setHours(0, 0, 0, 0)
+				.valueOf(),
+		}));
 
-		return () => {
-			setLoaded(false);
-			setPastBookings([]);
-		};
+		const _pastBookings = bookings
+			.filter(
+				(booking) =>
+					booking.startDate <
+					new Date().setHours(0, 0, 0, 0).valueOf()
+			)
+			.sort((a, b) => new Date(b.endDate - new Date(a.endDate)));
+
+		setPastBookings(_pastBookings);
+		setLoaded(true);
 	}, [myBookings]);
 
 	return (

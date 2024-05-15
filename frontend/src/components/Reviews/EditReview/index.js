@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { hideModal } from "../../../store/modal";
+import { hideModal } from "../../../store/modal/actions";
 import { updateReview } from "../../../store/spots";
 import styles from "./EditReview.module.css";
 

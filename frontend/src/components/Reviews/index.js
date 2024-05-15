@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 
-import { showModal, currentModal } from "../../store/modal";
+import { showModal, setCurrentModal } from "../../store/modal/actions";
 
 import StarCount from "./StarCount";
 import AddReview from "./AddReview";
@@ -14,12 +14,14 @@ const Reviews = ({ reviews, spotId }) => {
 	const sessionUser = useSelector((state) => state.session.user);
 
 	const showEditModal = (review) => {
-		dispatch(currentModal(() => <EditReview review={review} />));
+		dispatch(setCurrentModal(() => <EditReview review={review} />));
 		dispatch(showModal());
 	};
 
 	const showDeleteModal = (id) => {
-		dispatch(currentModal(() => <DeleteReview id={id} spotId={spotId} />));
+		dispatch(
+			setCurrentModal(() => <DeleteReview id={id} spotId={spotId} />)
+		);
 		dispatch(showModal());
 	};
 
