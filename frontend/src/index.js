@@ -1,11 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import { Provider, useDispatch } from "react-redux";
+import { Provider } from "react-redux";
 
 import { restoreCSRF, csrfFetch } from "./store/csrf";
-import * as sessionActions from "./store/session";
-import { modalMount } from "./store/modal";
+import * as sessionActions from "./store/session/thunks";
 
 // Redux Store
 import store from "./store";
@@ -21,20 +20,14 @@ if (process.env.NODE_ENV !== "production") {
 	window.sessionActions = sessionActions;
 }
 
-function Root() {
-	return (
-		<BrowserRouter>
-			<App />
-		</BrowserRouter>
-	);
-}
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<Root />
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
 		</Provider>
 	</React.StrictMode>
 );

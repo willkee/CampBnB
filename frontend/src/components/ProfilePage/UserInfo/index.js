@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateUserNames, updateUserEmail } from "../../../store/session";
+import {
+	updateUserNames,
+	updateUserEmail,
+} from "../../../store/session/thunks";
 import styles from "./UserInfo.module.css";
 
 const UserInfo = () => {

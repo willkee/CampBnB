@@ -48,11 +48,20 @@
 	gap: 0.5rem;
 	width: 100%;
 	padding: 0.5rem;
-	font-size: 0.75rem;
+	font-size: 0.9rem;
 	font-weight: 500;
 	white-space: nowrap;
 	border-radius: 0.375rem;
 	color: #acaeb3;
 	cursor: pointer;
 	transition: background-color 0.3s, color 0.3s;
+}
+
+.option:hover {
+	color: #eaebed;
+}
+
+.action_icon {
+	display: flex;
+	align-items: center;
 }

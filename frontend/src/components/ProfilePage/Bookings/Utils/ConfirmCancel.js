@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { deleteBooking } from "../../../../store/session";
+import { deleteBooking } from "../../../../store/session/thunks";
 import { hideModal } from "../../../../store/modal/actions";
 import styles from "../Bookings.module.css";
 

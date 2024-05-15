@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { getAllSpots } from "./store/spots";
 
-import * as sessionActions from "./store/session";
+import * as sessionActions from "./store/session/thunks";
 
 import { selectSpotsList } from "./selectors/spots";
 

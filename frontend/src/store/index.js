@@ -1,13 +1,15 @@
-import { configureStore, applyMiddleware } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 
-import sessionReducer from "./session";
-import modalReducer from "./modal/reducer";
 import spotsReducer from "./spots";
+import modalReducer from "./modal/reducer";
+import sessionReducer from "./session/reducer";
+import favoriteReducer from "./favorites/reducer";
 
 const reducer = {
 	session: sessionReducer,
 	spots: spotsReducer,
 	modal: modalReducer,
+	favorites: favoriteReducer,
 };
 
 let logger;

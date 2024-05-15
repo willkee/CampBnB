@@ -2,7 +2,7 @@ import Calendar from "react-calendar";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { createBooking } from "../../store/session";
+import { createBooking } from "../../store/session/thunks";
 
 import "react-calendar/dist/Calendar.css";
 import styles from "./NewBooking.module.css";

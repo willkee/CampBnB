@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getMyBookings } from "../../../store/session";
+import { getMyBookings } from "../../../store/session/thunks";
 import { showModal, setCurrentModal } from "../../../store/modal/actions";
 
 import PastBookings from "./PastBookings";

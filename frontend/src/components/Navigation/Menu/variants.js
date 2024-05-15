@@ -11,11 +11,11 @@ export const variants = {
 			scaleY: 0,
 			transition: {
 				when: "afterChildren",
-				staggerChildren: 0.1,
+				staggerChildren: 0.05,
 			},
 		},
 	},
-	icon: { open: { rotate: 0 }, closed: { rotate: 0 } },
+	icon: { open: { rotate: 180 }, closed: { rotate: 0 } },
 	item: {
 		open: {
 			opacity: 1,
@@ -33,7 +33,7 @@ export const variants = {
 		},
 	},
 	actionIcon: {
-		open: { scale: 1 },
+		open: { scale: 1, y: 0 },
 		closed: { scale: 0, y: -7 },
 	},
 };

@@ -1,9 +1,9 @@
 import {
-	FiEdit,
+	FiUser,
 	FiChevronDown,
-	FiShare,
 	FiPlusSquare,
 	FiMenu,
+	FiLogOut,
 } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
@@ -59,7 +59,10 @@ const Menu = () => {
 					<span className={styles.buttonText}>
 						<FiMenu size="24px" />
 					</span>
-					<motion.span variants={variants.icon}>
+					<motion.span
+						variants={variants.icon}
+						style={{ display: "flex", alignItems: "center" }}
+					>
 						<FiChevronDown />
 					</motion.span>
 				</button>
@@ -78,7 +81,7 @@ const Menu = () => {
 					>
 						<Option
 							setOpen={setOpen}
-							Icon={FiEdit}
+							Icon={FiUser}
 							text="Profile"
 							to="/profile"
 						/>
@@ -86,10 +89,11 @@ const Menu = () => {
 							setOpen={setOpen}
 							Icon={FiPlusSquare}
 							text="Add New Spot"
+							to="/spots/new"
 						/>
 						<Option
 							setOpen={setOpen}
-							Icon={FiShare}
+							Icon={FiLogOut}
 							text="Sign Out"
 						/>
 					</motion.ul>
@@ -121,7 +125,10 @@ const Option = ({ text, Icon, setOpen, to }) => {
 			}}
 			className={styles.option}
 		>
-			<motion.span variants={variants.actionIcon}>
+			<motion.span
+				variants={variants.actionIcon}
+				className={styles.action_icon}
+			>
 				<Icon />
 			</motion.span>
 			<span>{text}</span>

@@ -4,7 +4,7 @@ import styles from "./SplashPage.module.css";
 
 import { setCurrentModal, hideModal } from "../../store/modal/actions";
 
-import { logout } from "../../store/session";
+import { logout } from "../../store/session/thunks";
 
 const LogoutConfirmation = () => {
 	const dispatch = useDispatch();

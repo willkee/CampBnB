@@ -1,5 +1,5 @@
 import { useState } from "react";
-import * as sessionActions from "../../store/session";
+import * as sessionActions from "../../store/session/thunks";
 import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 

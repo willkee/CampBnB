@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
-import * as sessionActions from "../../store/session";
+import * as sessionActions from "../../store/session/thunks";
 
 import styles from "./SplashPage.module.css";
 const SplashSignup = ({ active }) => {
