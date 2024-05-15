@@ -84,7 +84,7 @@
 	height: 60px;
 	padding: 10px;
 	margin-bottom: 5px;
-	background-color: rgba(0, 0, 0, 0.6);
+	background-color: rgba(24, 27, 26, 0.6);
 	border: none;
 	border-radius: 5px;
 	outline: none;
@@ -136,7 +136,7 @@
 
 .demo {
 	width: 100%;
-	background-color: rgba(0, 0, 0, 0.38);
+	background-color: rgba(24, 27, 26, 0.6);
 	border-radius: 5px;
 	height: 30px;
 	display: flex;
@@ -159,11 +159,11 @@
 }
 
 .signup_button {
-	background-color: rgba(5, 90, 150, 0.7);
+	background-color: rgba(33, 5, 150, 0.7);
 }
 
 .signup_button:hover {
-	background-color: rgba(5, 90, 150, 1);
+	background-color: rgba(33, 5, 150, 1);
 }
 
 .visible {
