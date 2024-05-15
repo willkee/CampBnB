@@ -1,5 +1,5 @@
 .nav_container {
-	background: linear-gradient(45deg, #10191d, rgb(21, 91, 124));
+	background: linear-gradient(45deg, #10191d, #036546);
 	color: white;
 	width: 100%;
 	filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.581));
@@ -9,16 +9,35 @@
 	z-index: 99;
 }
 
-@media screen and (max-width: 880px) {
-	.nav_container {
-	}
-}
-
 .loaded_container {
 	display: flex;
-
 	justify-content: space-between;
 	align-items: center;
+}
+
+.left_chevron {
+	background: linear-gradient(
+		90deg,
+		rgba(16, 25, 29, 1) 0%,
+		rgba(11, 58, 43, 1) 100%
+	);
+
+	display: flex;
+	justify-content: center;
+	color: white;
+	width: 20px;
+	margin: -15px 15px -15px -15px;
+	opacity: 0.5;
+}
+
+.left_chevron:hover {
+	background: rgb(16, 25, 29);
+	background: linear-gradient(
+		90deg,
+		rgba(16, 25, 29, 1) 0%,
+		rgba(16, 85, 63, 1) 100%
+	);
+	cursor: pointer;
 }
 
 .loaded_container a {

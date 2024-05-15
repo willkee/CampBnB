@@ -18,6 +18,24 @@ export function ArrowLeft() {
 	);
 }
 
+export function LeftChevron() {
+	return (
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 32 32"
+			width="14px"
+			fill="currentColor"
+		>
+			<path
+				fill="none"
+				d="M20 28 8.7 16.7a1 1 0 0 1 0-1.4L20 4"
+				stroke="currentColor"
+				stroke-width="4px"
+			></path>
+		</svg>
+	);
+}
+
 export function ArrowRightToBracket() {
 	return (
 		<svg

@@ -34,6 +34,9 @@
 		flex-direction: column;
 		padding: 20px;
 	}
+	::-webkit-scrollbar {
+		display: none;
+	}
 }
 
 .each_spot_container {
