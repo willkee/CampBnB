@@ -1,16 +1,15 @@
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import SplashLogin from "./SplashLogin";
-import SplashSignup from "./SplashSignup";
-import styles from "./SplashPage.module.css";
-
-import AboutModal from "./AboutModal";
 import { useDispatch } from "react-redux";
 import { currentModal, showModal } from "../../store/modal";
-// import LoginForm from "../LoginForm";
-// import SignUpForm from "../SignUpForm";
+
+import SplashLogin from "./SplashLogin";
+import SplashSignup from "./SplashSignup";
+import AboutModal from "./AboutModal";
+import LogoutConfirmation from "./LogoutConfirmation";
 
 import { CircleQuestion } from "../../assets/icons";
+import styles from "./SplashPage.module.css";
 
 const SplashPage = ({ sessionUser }) => {
 	const [activeForm, setActiveForm] = useState("signin");
@@ -23,14 +22,17 @@ const SplashPage = ({ sessionUser }) => {
 
 	useEffect(() => {
 		setSz(content.current.getBoundingClientRect());
-	}, [activeForm]);
+	}, [activeForm, sessionUser]);
 
-	// useEffect(() => {
-	// 	if (sessionUser) navigate("/main");
-	// }, [sessionUser, navigate]);
+	const continueToSite = () => navigate("/main");
 
 	const showAboutModal = () => {
 		dispatch(currentModal(AboutModal));
+		dispatch(showModal());
+	};
+
+	const showLogoutModal = () => {
+		dispatch(currentModal(LogoutConfirmation));
 		dispatch(showModal());
 	};
 
@@ -43,6 +45,43 @@ const SplashPage = ({ sessionUser }) => {
 			setSwitchMessage("No account? Sign up.");
 		}
 	};
+
+	if (sessionUser) {
+		return (
+			<div className={styles.container}>
+				<div
+					className={styles.main}
+					style={{ height: `${sz.height}px` }}
+				>
+					<div className={styles.content} ref={content}>
+						<img
+							src={`${process.env.PUBLIC_URL}/images/logo_only.png`}
+							style={{ width: "40px", marginBottom: "20px" }}
+							alt="green logo"
+						/>
+						<h2>Hello {sessionUser.firstName}!</h2>
+
+						<p className={styles.continue_msg}>
+							You are currently logged in.
+						</p>
+						<button
+							type="button"
+							className={styles.continue}
+							onClick={continueToSite}
+						>
+							Continue to Site
+						</button>
+						<div
+							className={styles.continue_sign_out}
+							onClick={showLogoutModal}
+						>
+							Sign out instead?
+						</div>
+					</div>
+				</div>
+			</div>
+		);
+	}
 
 	return (
 		<div className={styles.container}>

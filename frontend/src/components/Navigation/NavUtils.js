@@ -14,7 +14,7 @@ import {
 	FaceSmilePlus,
 	ArrowRightToBracket,
 } from "../../assets/icons";
-import ProfileButton from "./ProfileButton";
+import MenuBar from "./MenuBar";
 
 export const ExploreButton = () => {
 	const location = useLocation();
@@ -65,7 +65,7 @@ export const NewSpotButton = () => {
 				<LocationPlus />
 				<span>Add New Spot</span>
 			</NavLink>
-			<ProfileButton />
+			<MenuBar />
 		</>
 	);
 };

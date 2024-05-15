@@ -4,7 +4,7 @@ import * as sessionActions from "../../store/session";
 import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./Navigation.module.css";
 import { User } from "../../assets/icons";
-function ProfileButton() {
+function MenuBar() {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const location = useLocation();
@@ -74,4 +74,4 @@ function ProfileButton() {
 	);
 }
 
-export default ProfileButton;
+export default MenuBar;

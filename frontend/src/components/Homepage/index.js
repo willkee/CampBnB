@@ -39,7 +39,7 @@ const Homepage = ({ spots }) => {
 		<div className={styles.outer_container}>
 			{loaded && (
 				<>
-					{sessionUser ? (
+					{/* {sessionUser ? (
 						<h1
 							className={styles.h1_element}
 						>{`Welcome back, ${sessionUser.firstName}!`}</h1>
@@ -47,7 +47,7 @@ const Homepage = ({ spots }) => {
 						<h1 className={styles.h1_element}>
 							Welcome to CampBnB!
 						</h1>
-					)}
+					)} */}
 					<div className={styles.container}>
 						{spotsOpen.map((spot) => (
 							<div

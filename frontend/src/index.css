@@ -7,7 +7,11 @@
 }
 
 body {
-	background-color: rgb(189, 189, 189);
+	/* background-color: rgb(11, 12, 12); */
+	background-image: url("./camp_dark.png");
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -21,17 +25,15 @@ button {
 .app_page_container {
 	height: 100vh;
 	min-height: 100vh;
-	background-color: white;
+	background-color: rgba(24, 27, 26, 0.75);
+	color: #ddd;
 	display: flex;
 	position: relative;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-}
-
-@media screen and (min-width: 1216px) {
-	.app_page_container {
-		/* max-width: 1200px; */
+	::-webkit-scrollbar {
+		display: none;
 	}
 }
 

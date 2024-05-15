@@ -1,7 +1,7 @@
 .container {
 	width: 100vw;
 	height: 100vh;
-	background-image: url("./camp.jpg");
+	background-image: url("../../camp.jpg");
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
@@ -84,7 +84,7 @@
 	height: 60px;
 	padding: 10px;
 	margin-bottom: 5px;
-	background-color: rgba(0, 0, 0, 0.6);
+	background-color: rgba(24, 27, 26, 0.6);
 	border: none;
 	border-radius: 5px;
 	outline: none;
@@ -136,7 +136,7 @@
 
 .demo {
 	width: 100%;
-	background-color: rgba(0, 0, 0, 0.38);
+	background-color: rgba(24, 27, 26, 0.6);
 	border-radius: 5px;
 	height: 30px;
 	display: flex;
@@ -159,11 +159,11 @@
 }
 
 .signup_button {
-	background-color: rgba(5, 90, 150, 0.7);
+	background-color: rgba(33, 5, 150, 0.7);
 }
 
 .signup_button:hover {
-	background-color: rgba(5, 90, 150, 1);
+	background-color: rgba(33, 5, 150, 1);
 }
 
 .visible {
@@ -181,7 +181,8 @@
 	transform: translateX(-200%);
 }
 
-.about_container {
+.about_container,
+.logout_container {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -233,4 +234,57 @@
 .xmark_wrapper {
 	display: flex;
 	align-self: start;
+}
+
+.continue {
+	width: 100%;
+	border-radius: 5px;
+	height: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px;
+	cursor: pointer;
+	background-color: rgba(5, 150, 105, 0.7);
+}
+
+.continue:hover {
+	background-color: rgba(5, 150, 105, 1);
+}
+
+.continue_msg {
+	font-size: 14px;
+	margin: 10px 0 10px 0;
+}
+
+.continue_sign_out {
+	font-size: 14px;
+	margin: 10px 0 10px 0;
+	cursor: pointer;
+	color: #bbb;
+}
+
+.continue_sign_out:hover {
+	opacity: 0.8;
+}
+
+.logout_container h1 {
+	font-size: 20px;
+	text-align: center;
+}
+
+.logout {
+	width: 100%;
+	border-radius: 5px;
+	height: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px;
+	cursor: pointer;
+	background-color: rgba(131, 131, 131, 0.7);
+}
+
+.logout:hover {
+	background-color: rgba(131, 131, 131, 0.5);
 }
