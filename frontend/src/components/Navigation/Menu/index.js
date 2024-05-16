@@ -52,7 +52,7 @@ const Menu = ({ user }) => {
 	};
 
 	const confirmSignOut = () => {
-		dispatch(setCurrentModal("CONFIRM_SIGN_OUT"));
+		dispatch(setCurrentModal("CONFIRM_SIGN_OUT", null));
 		dispatch(showModal());
 	};
 

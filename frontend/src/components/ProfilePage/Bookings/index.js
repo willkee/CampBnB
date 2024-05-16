@@ -4,11 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getMyBookings } from "../../../store/session/thunks";
 import { showModal, setCurrentModal } from "../../../store/modal/actions";
 import { FiArrowRight } from "react-icons/fi";
-
 import PastBookings from "./PastBookings";
-import EditPeople from "./Utils/EditPeople";
-import ConfirmCancel from "./Utils/ConfirmCancel";
-
 import styles from "./Bookings.module.css";
 
 import {
@@ -31,12 +27,17 @@ const Bookings = () => {
 	}, [dispatch]);
 
 	const showEditPeopleModal = (booking) => {
-		dispatch(setCurrentModal(() => <EditPeople booking={booking} />));
+		dispatch(
+			setCurrentModal("EDIT_PEOPLE", {
+				id: booking.id,
+				initialData: booking,
+			})
+		);
 		dispatch(showModal());
 	};
 
 	const showConfirm = (id) => {
-		dispatch(setCurrentModal(() => <ConfirmCancel id={id} />));
+		dispatch(setCurrentModal("CONFIRM_CANCEL", { id }));
 		dispatch(showModal());
 	};
 

@@ -9,7 +9,7 @@ const About = () => {
 
 	const closeModal = () => {
 		dispatch(hideModal());
-		dispatch(setCurrentModal(null));
+		dispatch(setCurrentModal(null, null));
 	};
 
 	return (

@@ -9,9 +9,9 @@ import {
 	PersonCirclePlus,
 } from "../../../../../assets/icons";
 
-const EditPeople = ({ booking }) => {
+const EditPeople = ({ id, initialData }) => {
 	const dispatch = useDispatch();
-	const [people, setPeople] = useState(booking.people);
+	const [people, setPeople] = useState(initialData.people);
 	const [errors, setErrors] = useState([]);
 
 	useEffect(() => {
@@ -22,7 +22,7 @@ const EditPeople = ({ booking }) => {
 	}, []);
 
 	const loader = () => {
-		setPeople(booking.people);
+		setPeople(initialData.people);
 		setErrors([]);
 	};
 
@@ -32,7 +32,7 @@ const EditPeople = ({ booking }) => {
 
 		try {
 			await dispatch(
-				updatePeopleInBooking(booking.id, booking.spotId, people)
+				updatePeopleInBooking(id, initialData.spotId, people)
 			);
 			await dispatch(hideModal());
 		} catch (e) {
@@ -43,9 +43,9 @@ const EditPeople = ({ booking }) => {
 
 	const decrement = () => (people > 1 ? setPeople(people - 1) : setPeople(1));
 	const increment = () =>
-		people < booking.Spot.capacity
+		people < initialData.Spot.capacity
 			? setPeople(people + 1)
-			: setPeople(booking.Spot.capacity);
+			: setPeople(initialData.Spot.capacity);
 
 	return (
 		<div className={styles.edit_container}>
@@ -59,9 +59,9 @@ const EditPeople = ({ booking }) => {
 					))}
 				</div>
 			)}
-			<h2>{booking.Spot.name}</h2>
+			<h2>{initialData.Spot.name}</h2>
 			<div className={styles.cap}>
-				Maximum Capacity: {booking.Spot.capacity} People
+				Maximum Capacity: {initialData.Spot.capacity} People
 			</div>
 			<div className={styles.changer}>
 				<button
@@ -76,7 +76,7 @@ const EditPeople = ({ booking }) => {
 					type="button"
 					onClick={increment}
 					className={
-						people < booking.Spot.capacity
+						people < initialData.Spot.capacity
 							? styles.inc
 							: styles.disable
 					}

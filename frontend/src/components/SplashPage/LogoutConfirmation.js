@@ -10,7 +10,7 @@ const LogoutConfirmation = () => {
 	const dispatch = useDispatch();
 
 	const closeModal = () => {
-		dispatch(setCurrentModal(null));
+		dispatch(setCurrentModal(null, null));
 		dispatch(hideModal());
 	};
 

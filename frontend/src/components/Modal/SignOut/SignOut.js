@@ -11,7 +11,7 @@ const SignOut = () => {
 
 	const closeModal = () => {
 		dispatch(hideModal());
-		dispatch(setCurrentModal(null));
+		dispatch(setCurrentModal(null, null));
 	};
 
 	const confirmLogout = () => {

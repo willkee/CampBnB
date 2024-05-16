@@ -5,7 +5,7 @@ export const SET_CURRENT_MODAL = "SET_MODAL_TYPE";
 export const showModal = () => ({ type: SHOW_MODAL });
 export const hideModal = () => ({ type: HIDE_MODAL });
 
-export const setCurrentModal = (component) => ({
+export const setCurrentModal = (componentId, modalProps) => ({
 	type: SET_CURRENT_MODAL,
-	payload: component,
+	payload: { componentId, modalProps },
 });

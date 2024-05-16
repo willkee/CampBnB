@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import spotsReducer from "./spots";
+import spotsReducer from "./spots/reducer";
 import modalReducer from "./modal/reducer";
 import sessionReducer from "./session/reducer";
 import favoriteReducer from "./favorites/reducer";

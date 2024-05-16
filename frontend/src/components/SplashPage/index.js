@@ -23,12 +23,12 @@ const SplashPage = ({ sessionUser }) => {
 	const continueToSite = () => navigate("/main");
 
 	const showAboutModal = () => {
-		dispatch(setCurrentModal("ABOUT_MODAL"));
+		dispatch(setCurrentModal("ABOUT_MODAL", null));
 		dispatch(showModal());
 	};
 
 	const showLogoutModal = () => {
-		dispatch(setCurrentModal("CONFIRM_SIGN_OUT"));
+		dispatch(setCurrentModal("CONFIRM_SIGN_OUT", null));
 		dispatch(showModal());
 	};
 

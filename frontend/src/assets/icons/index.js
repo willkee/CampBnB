@@ -1,7 +1,5 @@
 import { useDispatch } from "react-redux";
 import { showModal, setCurrentModal } from "../../store/modal/actions";
-import EditReview from "../../components/Reviews/EditReview";
-import DeleteReview from "../../components/Reviews/DeleteReview";
 import css from "./icons.module.css";
 
 export function ArrowLeft() {
@@ -376,8 +374,14 @@ export function GPS() {
 
 export function Edit({ review }) {
 	const dispatch = useDispatch();
+
 	const showEditModal = (review) => {
-		dispatch(setCurrentModal(() => <EditReview review={review} />));
+		dispatch(
+			setCurrentModal("EDIT_REVIEW", {
+				id: review.id,
+				initialData: review,
+			})
+		);
 		dispatch(showModal());
 	};
 
@@ -398,9 +402,7 @@ export function Edit({ review }) {
 export function Delete({ id, spotId }) {
 	const dispatch = useDispatch();
 	const showDeleteModal = (id) => {
-		dispatch(
-			setCurrentModal(() => <DeleteReview id={id} spotId={spotId} />)
-		);
+		dispatch(setCurrentModal("DELETE_REVIEW", { id, spotId }));
 		dispatch(showModal());
 	};
 	return (

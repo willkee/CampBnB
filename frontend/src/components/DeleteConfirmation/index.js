@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { hideModal } from "../../store/modal/actions";
-import { deleteSpot } from "../../store/spots";
-import { getOneSpot } from "../../store/spots";
+import { deleteSpot } from "../../store/spots/thunks";
+import { getOneSpot } from "../../store/spots/thunks";
 
 import styles from "./DeleteSpot.module.css";
 

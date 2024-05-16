@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import { getAllSpots } from "./store/spots";
+import { getAllSpots } from "./store/spots/thunks";
 import * as sessionActions from "./store/session/thunks";
 import { selectSpotsList } from "./selectors/spots";
 

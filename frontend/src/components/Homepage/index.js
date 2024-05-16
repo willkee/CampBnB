@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { getAllSpots } from "../../store/spots";
+import { useDispatch } from "react-redux";
+import { getAllSpots } from "../../store/spots/thunks";
 import styles from "./Homepage.module.css";
 import {
 	MountainCity,
@@ -13,9 +13,6 @@ import {
 
 const Homepage = ({ spots }) => {
 	const [loaded, setLoaded] = useState(false);
-
-	const sessionUser = useSelector((state) => state.session.user);
-	// const spots = useSelector((state) => Object.values(state.spots));
 
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
