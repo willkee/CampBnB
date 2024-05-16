@@ -1,5 +1,6 @@
 .container h3 {
 	margin-bottom: 30px;
+	padding-left: 30px;
 }
 
 .container button {
@@ -23,17 +24,19 @@
 	font-size: 14px;
 	color: white;
 	padding: 20px;
+	margin: 10px 0 10px 0;
 }
 
 .names,
 .email {
 	display: flex;
 	justify-content: space-between;
-	padding: 30px;
 }
-
+.names {
+	padding: 0 30px 50px 30px;
+}
 .email {
-	height: 150px;
+	padding: 0 30px 10px 30px;
 }
 
 .info_text {
@@ -45,14 +48,21 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	background-color: rgb(255, 255, 255);
 	width: 450px;
-	padding: 15px 0;
+}
+
+.ln {
+	padding-top: 20px;
 }
 
 .fn h4,
-.ln h4 {
+.ln h4,
+.email_info h4 {
 	margin-bottom: 5px;
+	font-size: 14px;
+	font-weight: 100;
+	color: #bcbcbc;
+	user-select: none;
 }
 
 .email_info {
@@ -60,52 +70,56 @@
 	flex-direction: column;
 }
 
-.email_info h4 {
-	margin-bottom: 15px;
-}
-
-#update_name {
-	position: relative;
-	top: 10px;
-}
-
-.update_name_buttons,
-.update_email_buttons {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
-}
-
-.update_name_buttons button:last-child,
-.update_email_buttons button:last-child {
-	background-color: #cecece;
-	color: black;
-}
-.update_name_buttons button:last-child:hover,
-.update_email_buttons button:last-child:hover {
-	background-color: #acacac;
-}
-
-.names input {
+.names input,
+.email_info input {
+	all: unset;
 	height: 30px;
-	padding: 5px;
+	padding: 8px;
 	width: 250px;
 	border-radius: 5px;
-	border: 1px solid rgb(130, 130, 130);
+	background-color: #2f3e46;
+	color: #fff;
 }
 
-#update_email_disabled {
-	background-color: #939393;
-	cursor: not-allowed;
-}
-#update_email_disabled:hover {
-	transform: none;
+.update_buttons span {
+	margin-left: 10px;
 }
 
-.email_info input {
-	height: 30px;
-	padding: 5px;
-	width: 400px;
-	border-radius: 5px;
-	border: 1px solid rgb(130, 130, 130);
+.check,
+.cancel,
+.edit_name,
+.edit_email {
+	cursor: pointer;
+}
+
+.check {
+	color: rgb(18, 139, 18);
+}
+.check:hover {
+	color: rgb(42, 197, 42);
+}
+.cancel {
+	color: rgb(137, 11, 11);
+}
+.cancel:hover {
+	color: rgb(255, 0, 0);
+}
+.edit_name,
+.edit_email {
+	color: rgb(185, 185, 185);
+}
+.edit_name:hover,
+.edit_email:hover {
+	color: rgb(255, 255, 255);
+}
+
+.demo_error {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+.demo_error span {
+	color: red;
+	font-size: 12px;
+	margin-top: 10px;
 }

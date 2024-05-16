@@ -1,6 +1,7 @@
 import styles from "../Bookings.module.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { FiArrowRight } from "react-icons/fi";
 
 import {
 	PeopleGroup,
@@ -79,13 +80,19 @@ const PastBookings = ({ myBookings }) => {
 								</div>
 								<div className={styles.time_container}>
 									<div>
-										Started:{"  "}
 										{new Date(
 											booking.startDate
 										).toDateString()}
 									</div>
+									<span
+										style={{
+											display: "flex",
+											alignItems: "center",
+										}}
+									>
+										<FiArrowRight />
+									</span>
 									<div>
-										Ended:{"  "}
 										{new Date(
 											booking.endDate
 										).toDateString()}

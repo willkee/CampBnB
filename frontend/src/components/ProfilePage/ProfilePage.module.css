@@ -1,11 +1,12 @@
 .pf_oc,
 .profile_container {
-	width: 100%;
+	width: 80vw;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
 	padding-top: 20px;
+	min-height: calc(100vh - 168px);
+	height: 100%;
 }
 
 .name_cont {

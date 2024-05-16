@@ -7,6 +7,7 @@
 	position: sticky;
 	top: 0;
 	z-index: 99;
+	height: 118px;
 }
 
 .loaded_container {
@@ -28,6 +29,7 @@
 	width: 20px;
 	margin: -15px 15px -15px -15px;
 	opacity: 0.5;
+	height: 118px;
 }
 
 .left_chevron:hover {
