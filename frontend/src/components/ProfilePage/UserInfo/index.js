@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateUserNames, updateUserEmail } from "../../../store/session";
+import {
+	updateUserNames,
+	updateUserEmail,
+} from "../../../store/session/thunks";
 import styles from "./UserInfo.module.css";
+import { FiCheck, FiX, FiEdit, FiAlertOctagon } from "react-icons/fi";
 
 const UserInfo = () => {
 	const sessionUser = useSelector((state) => state.session.user);
@@ -84,7 +88,7 @@ const UserInfo = () => {
 			<div className={styles.names}>
 				<div>
 					<div className={styles.fn}>
-						<h4>First Name</h4>
+						<h4>First name</h4>
 						{showNameUpdate ? (
 							<input
 								type="text"
@@ -98,7 +102,7 @@ const UserInfo = () => {
 						)}
 					</div>
 					<div className={styles.ln}>
-						<h4>Last Name</h4>
+						<h4>Last name</h4>
 						{showNameUpdate ? (
 							<input
 								type="text"
@@ -113,22 +117,18 @@ const UserInfo = () => {
 					</div>
 				</div>
 				{showNameUpdate ? (
-					<div className={styles.update_name_buttons}>
-						<button type="button" onClick={handleNameUpdate}>
-							Make Changes
-						</button>
-						<button type="button" onClick={cancelNameChange}>
-							Cancel
-						</button>
+					<div className={styles.update_buttons}>
+						<span className={styles.check}>
+							<FiCheck size="20px" onClick={handleNameUpdate} />
+						</span>
+						<span className={styles.cancel}>
+							<FiX size="20px" onClick={cancelNameChange} />
+						</span>
 					</div>
 				) : (
-					<button
-						id={styles.update_name}
-						type="button"
-						onClick={() => setShowNameUpdate(true)}
-					>
-						Update Name
-					</button>
+					<span className={styles.edit_name}>
+						<FiEdit onClick={() => setShowNameUpdate(true)} />
+					</span>
 				)}
 			</div>
 			{emailErrors.length > 0 && (
@@ -154,29 +154,29 @@ const UserInfo = () => {
 					)}
 				</div>
 				{showEmailUpdate ? (
-					<div className={styles.update_email_buttons}>
-						<button type="button" onClick={handleEmailChange}>
-							Make Changes
-						</button>
-						<button type="button" onClick={cancelEmailChange}>
-							Cancel
-						</button>
+					<div className={styles.update_buttons}>
+						<span className={styles.check}>
+							<FiCheck size="20px" onClick={handleEmailChange} />
+						</span>
+						<span className={styles.cancel}>
+							<FiX size="20px" onClick={cancelEmailChange} />
+						</span>
 					</div>
 				) : (
-					<button
-						id={
-							sessionUser.id === 1
-								? styles.update_email_disabled
-								: ""
-						}
-						type="button"
-						disabled={sessionUser.id === 1 ? true : false}
-						onClick={() => setShowEmailUpdate(true)}
-					>
-						{sessionUser.id === 1
-							? "Update Not Allowed"
-							: "Update Email"}
-					</button>
+					<>
+						{sessionUser.id === 1 ? (
+							<div className={styles.demo_error}>
+								<FiAlertOctagon color="red" />
+								<span>Demo User email change not allowed</span>
+							</div>
+						) : (
+							<span className={styles.edit_email}>
+								<FiEdit
+									onClick={() => setShowEmailUpdate(true)}
+								/>
+							</span>
+						)}
+					</>
 				)}
 			</div>
 		</div>

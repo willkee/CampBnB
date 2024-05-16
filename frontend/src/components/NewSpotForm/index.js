@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { createSpot } from "../../store/spots";
+import { createSpot } from "../../store/spots/thunks";
 import styles from "./NewSpot.module.css";
 
 import { SquareCheck, RectangleX, Square } from "../../assets/icons";

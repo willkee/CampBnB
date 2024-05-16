@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { hideModal } from "../../../store/modal";
-import { updateReview } from "../../../store/spots";
+import { hideModal } from "../../../store/modal/actions";
+import { updateReview } from "../../../store/spots/thunks";
 import styles from "./EditReview.module.css";
 
-const EditReview = ({ review }) => {
-	const [content, setContent] = useState(review.content);
-	const [rating, setRating] = useState(review.rating);
+const EditReview = ({ id, initialData }) => {
+	const [content, setContent] = useState(initialData.content);
+	const [rating, setRating] = useState(initialData.rating);
 	const [errors, setErrors] = useState([]);
 	const dispatch = useDispatch();
+
+	console.log(initialData, "edit review initial data");
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -17,8 +19,8 @@ const EditReview = ({ review }) => {
 		try {
 			await dispatch(
 				updateReview({
-					id: review.id,
-					spotId: review.spotId,
+					id,
+					spotId: initialData.spotId,
 					rating,
 					content,
 				})
@@ -26,6 +28,7 @@ const EditReview = ({ review }) => {
 			await dispatch(hideModal());
 			return;
 		} catch (err) {
+			console.log(err, "err?");
 			const data = await err.json();
 			if (data && data.errors)
 				setErrors(data.errors.filter((err) => err !== "Invalid value"));

@@ -1,8 +1,8 @@
-import { csrfFetch } from "./csrf";
+import { csrfFetch } from "../csrf";
 
-const RETRIEVED_FAVORITES = "reviews/RETRIEVED_FAVORITES";
-const ADDED_FAVORITE = "reviews/ADDED_FAVORITE";
-const DELETED_FAVORITE = "reviews/DELETED_FAVORITE";
+export const RETRIEVED_FAVORITES = "reviews/RETRIEVED_FAVORITES";
+export const ADDED_FAVORITE = "reviews/ADDED_FAVORITE";
+export const DELETED_FAVORITE = "reviews/DELETED_FAVORITE";
 
 const retrievedFavorites = (spotId, favorites) => ({
 	type: RETRIEVED_FAVORITES,
@@ -54,25 +54,3 @@ export const removeFavorite = (favId, spotId) => async (dispatch) => {
 		return update;
 	}
 };
-
-const initialState = {};
-
-const favoriteReducer = (state = initialState, action) => {
-	const newState = { ...state };
-	switch (action.type) {
-		case RETRIEVED_FAVORITES: {
-			newState[action.spotId] = action.favorites;
-			return newState;
-		}
-		case ADDED_FAVORITE: {
-			return newState;
-		}
-		case DELETED_FAVORITE: {
-			return newState;
-		}
-		default:
-			return state;
-	}
-};
-
-export default favoriteReducer;

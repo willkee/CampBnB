@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getMyBookings } from "../../../store/session";
-import { showModal, currentModal } from "../../../store/modal";
-
+import { getMyBookings } from "../../../store/session/thunks";
+import { showModal, setCurrentModal } from "../../../store/modal/actions";
+import { FiArrowRight } from "react-icons/fi";
 import PastBookings from "./PastBookings";
-import EditPeople from "./Utils/EditPeople";
-import ConfirmCancel from "./Utils/ConfirmCancel";
-
 import styles from "./Bookings.module.css";
 
 import {
@@ -30,12 +27,17 @@ const Bookings = () => {
 	}, [dispatch]);
 
 	const showEditPeopleModal = (booking) => {
-		dispatch(currentModal(() => <EditPeople booking={booking} />));
+		dispatch(
+			setCurrentModal("EDIT_PEOPLE", {
+				id: booking.id,
+				initialData: booking,
+			})
+		);
 		dispatch(showModal());
 	};
 
 	const showConfirm = (id) => {
-		dispatch(currentModal(() => <ConfirmCancel id={id} />));
+		dispatch(setCurrentModal("CONFIRM_CANCEL", { id }));
 		dispatch(showModal());
 	};
 
@@ -113,13 +115,19 @@ const Bookings = () => {
 									</div>
 									<div className={styles.time_container}>
 										<div>
-											Start:{" "}
 											{new Date(
 												booking.startDate
 											).toDateString()}
 										</div>
+										<span
+											style={{
+												display: "flex",
+												alignItems: "center",
+											}}
+										>
+											<FiArrowRight />
+										</span>
 										<div>
-											End:{" "}
 											{new Date(
 												booking.endDate
 											).toDateString()}

@@ -4,6 +4,7 @@
 
 .outer_container {
 	overflow-y: auto;
+	width: 80vw;
 }
 
 .container {

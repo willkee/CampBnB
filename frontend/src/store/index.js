@@ -1,28 +1,31 @@
-import { createStore, combineReducers, applyMiddleware, compose } from "redux";
-import thunk from "redux-thunk";
-import sessionReducer from "./session";
-import modalReducer from "./modal";
-import spotsReducer from "./spots";
+import { configureStore } from "@reduxjs/toolkit";
 
-const rootReducer = combineReducers({
+import spotsReducer from "./spots/reducer";
+import modalReducer from "./modal/reducer";
+import sessionReducer from "./session/reducer";
+import favoriteReducer from "./favorites/reducer";
+
+const reducer = {
 	session: sessionReducer,
 	spots: spotsReducer,
 	modal: modalReducer,
-});
-
-let enhancer;
-
-if (process.env.NODE_ENV === "production") {
-	enhancer = applyMiddleware(thunk);
-} else {
-	const logger = require("redux-logger").default;
-	const composeEnhancers =
-		window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-	enhancer = composeEnhancers(applyMiddleware(thunk, logger));
-}
-
-const configureStore = (preloadedState) => {
-	return createStore(rootReducer, preloadedState, enhancer);
+	favorites: favoriteReducer,
 };
 
-export default configureStore;
+let logger;
+if (process.env.NODE_ENV !== "production") {
+	const { createLogger } = require("redux-logger");
+	logger = createLogger();
+}
+
+const store = configureStore({
+	reducer,
+	middleware: (getDefaultMiddleware) => {
+		if (process.env.NODE_ENV !== "production") {
+			return getDefaultMiddleware().concat(logger);
+		}
+		return getDefaultMiddleware();
+	},
+});
+
+export default store;

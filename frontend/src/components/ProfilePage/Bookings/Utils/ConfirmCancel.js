@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
-import { deleteBooking } from "../../../../store/session";
-import { hideModal } from "../../../../store/modal";
+import { deleteBooking } from "../../../../store/session/thunks";
+import { hideModal } from "../../../../store/modal/actions";
 import styles from "../Bookings.module.css";
 
 const ConfirmCancel = ({ id }) => {

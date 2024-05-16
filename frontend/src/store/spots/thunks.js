@@ -1,72 +1,16 @@
-import { csrfFetch } from "./csrf";
+import {
+	createdSpot,
+	retrievedOneSpot,
+	retrievedSpots,
+	updatedSpot,
+	switchedOpening,
+	deletedSpot,
+	createdReview,
+	updatedReview,
+	deletedReview,
+} from "./actions";
+import { csrfFetch } from "../csrf";
 
-const CREATED_SPOT = "spots/CREATED_SPOT";
-const RETRIEVED_SPOTS = "spots/RETRIEVED_SPOTS";
-const ONE_SPOT_RETRIEVED = "spots/ONE_SPOT_RETRIEVED";
-const UPDATED_SPOT = "spots/UPDATED_SPOT";
-const SWITCHED_OPENING = "spots/SWITCHED_OPENING";
-const DELETED_SPOT = "spots/DELETED_SPOT";
-
-// ------------------------------------------------
-// Reviews
-// ------------------------------------------------
-
-const CREATED_REVIEW = "reviews/CREATED_REVIEW";
-const UPDATED_REVIEW = "reviews/UPDATED_REVIEW";
-const DELETED_REVIEW = "reviews/DELETED_REVIEW";
-
-const createdReview = (review, spotId) => ({
-	type: CREATED_REVIEW,
-	review,
-	spotId,
-});
-
-const updatedReview = (review, spotId) => ({
-	type: UPDATED_REVIEW,
-	review,
-	spotId,
-});
-
-const deletedReview = (reviewId, spotId) => ({
-	type: DELETED_REVIEW,
-	reviewId,
-	spotId,
-});
-
-// ------------------------------------------------
-
-const retrievedSpots = (spots) => ({
-	type: RETRIEVED_SPOTS,
-	spots,
-});
-
-const retrievedOneSpot = (spot) => ({
-	type: ONE_SPOT_RETRIEVED,
-	spot,
-});
-
-const createdSpot = (payload) => ({
-	type: CREATED_SPOT,
-	payload,
-});
-
-const updatedSpot = (payload) => ({
-	type: UPDATED_SPOT,
-	payload,
-});
-
-const switchedOpening = (payload) => ({
-	type: SWITCHED_OPENING,
-	payload,
-});
-
-const deletedSpot = (deletedId) => ({
-	type: DELETED_SPOT,
-	deletedId,
-});
-
-// CREATE
-// Create a new spot.
 export const createSpot = (data) => async (dispatch) => {
 	const {
 		name,
@@ -257,68 +201,3 @@ export const deleteReview = (id, spotId) => async (dispatch) => {
 		return update;
 	}
 };
-
-// ------------------------------------------------
-// ------------------------------------------------
-
-const initialState = {};
-
-const spotsReducer = (state = initialState, action) => {
-	const newState = { ...state };
-	switch (action.type) {
-		// CREATE
-		case CREATED_SPOT: {
-			newState[action.payload.id] = action.payload;
-			return newState;
-		}
-		// READ ALL
-		case RETRIEVED_SPOTS: {
-			action.spots.forEach((spot) => (newState[spot.id] = spot));
-			return newState;
-		}
-		// READ ONE
-		case ONE_SPOT_RETRIEVED: {
-			const obj = {};
-			action.spot.Reviews.forEach((review) => {
-				obj[review.id] = review;
-			});
-			action.spot.Reviews = obj;
-			newState[action.spot.id] = action.spot;
-			return newState;
-		}
-		// UPDATE
-		case UPDATED_SPOT: {
-			newState[action.payload.id] = action.payload;
-			return newState;
-		}
-		//SWITCH OPENING
-		case SWITCHED_OPENING: {
-			newState[action.payload.id] = action.payload;
-			return newState;
-		}
-		// DELETE
-		case DELETED_SPOT: {
-			delete newState[action.deletedId];
-			return newState;
-		}
-		// CREATE REVIEW
-		case CREATED_REVIEW: {
-			newState[action.spotId].Reviews[action.review.id] = action.review;
-			return newState;
-		}
-		// UPDATE REVIEW
-		case UPDATED_REVIEW: {
-			newState[action.spotId].Reviews[action.review.id] = action.review;
-			return newState;
-		}
-		// DELETE REVIEW
-		case DELETED_REVIEW: {
-			delete newState[action.spotId].Reviews[action.reviewId];
-			return newState;
-		}
-		default:
-			return state;
-	}
-};
-
-export default spotsReducer;

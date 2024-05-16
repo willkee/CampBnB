@@ -1,11 +1,8 @@
-import styles from "./Navigation.module.css";
-import { useDispatch } from "react-redux";
-import { showModal, currentModal } from "../../store/modal";
-
-import SignUpForm from "../SignUpForm";
-import LoginForm from "../LoginForm";
-import SearchInput from "../Search/Input";
 import { NavLink, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { showModal, setCurrentModal } from "../../store/modal/actions";
+import Menu from "./Menu";
+import styles from "./Navigation.module.css";
 
 import {
 	Campground,
@@ -14,7 +11,6 @@ import {
 	FaceSmilePlus,
 	ArrowRightToBracket,
 } from "../../assets/icons";
-import MenuBar from "./MenuBar";
 
 export const ExploreButton = () => {
 	const location = useLocation();
@@ -31,7 +27,7 @@ export const SignUpButton = () => {
 	const dispatch = useDispatch();
 
 	const displaySignupForm = () => {
-		dispatch(currentModal(SignUpForm));
+		dispatch(setCurrentModal("SIGN_UP_FORM", null));
 		dispatch(showModal());
 	};
 
@@ -47,7 +43,7 @@ export const LogInButton = () => {
 	const dispatch = useDispatch();
 
 	const displayLoginForm = () => {
-		dispatch(currentModal(LoginForm));
+		dispatch(setCurrentModal("LOGIN_FORM", null));
 		dispatch(showModal());
 	};
 	return (
@@ -65,7 +61,7 @@ export const NewSpotButton = () => {
 				<LocationPlus />
 				<span>Add New Spot</span>
 			</NavLink>
-			<MenuBar />
+			<Menu />
 		</>
 	);
 };
@@ -74,7 +70,7 @@ export const SearchButton = () => {
 	const dispatch = useDispatch();
 
 	const displaySearchInput = () => {
-		dispatch(currentModal(SearchInput));
+		dispatch(setCurrentModal("SEARCH_INPUT", null));
 		dispatch(showModal());
 	};
 	return (

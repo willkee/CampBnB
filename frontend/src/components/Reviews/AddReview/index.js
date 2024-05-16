@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { createReview } from "../../../store/spots";
+import { createReview } from "../../../store/spots/thunks";
 import styles from "./AddReview.module.css";
 
 const AddReview = ({ spotId }) => {

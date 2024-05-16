@@ -1,9 +1,6 @@
 import { useDispatch } from "react-redux";
-import { showModal, currentModal } from "../../../store/modal";
-import { switchOpening } from "../../../store/spots";
-import EditSpotForm from "../../EditSpotForm";
-import DeleteConfirmation from "../../DeleteConfirmation";
-
+import { showModal, setCurrentModal } from "../../../store/modal/actions";
+import { switchOpening } from "../../../store/spots/thunks";
 import AcceptBookings from "./AcceptBookings";
 import styles from "../SingleSpot.module.css";
 
@@ -11,12 +8,17 @@ const OwnerControls = ({ sessionUser, spot }) => {
 	const dispatch = useDispatch();
 
 	const editSpotForm = (spot) => {
-		dispatch(currentModal(() => <EditSpotForm spot={spot} />));
+		dispatch(
+			setCurrentModal("EDIT_SPOT_FORM", {
+				id: spot.id,
+				initialData: spot,
+			})
+		);
 		dispatch(showModal());
 	};
 
 	const showDeleteConfirmation = (id) => {
-		dispatch(currentModal(() => <DeleteConfirmation id={id} />));
+		dispatch(setCurrentModal("DELETE_CONFIRMATION", { id }));
 		dispatch(showModal());
 	};
 

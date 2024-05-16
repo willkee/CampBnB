@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 
 import { csrfFetch } from "../../store/csrf";
-import { getOneSpot } from "../../store/spots";
+import { getOneSpot } from "../../store/spots/thunks";
 
 import NewBookingForm from "../NewBookingForm";
 import OwnerControls from "./Utilities/OwnerControls";

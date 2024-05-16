@@ -1,12 +1,13 @@
 .nav_container {
-	background: linear-gradient(45deg, #10191d, #036546);
+	background: linear-gradient(45deg, rgba(16, 25, 29), rgba(3, 101, 70));
 	color: white;
 	width: 100%;
-	filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.581));
+	filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0));
 	padding: 15px;
 	position: sticky;
 	top: 0;
 	z-index: 99;
+	height: 118px;
 }
 
 .loaded_container {
@@ -28,6 +29,7 @@
 	width: 20px;
 	margin: -15px 15px -15px -15px;
 	opacity: 0.5;
+	height: 118px;
 }
 
 .left_chevron:hover {

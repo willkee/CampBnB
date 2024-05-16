@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getAllSpots } from "../../../store/spots";
+import { getAllSpots } from "../../../store/spots/thunks";
 import styles from "./MySpots.module.css";
 
 const MySpots = () => {

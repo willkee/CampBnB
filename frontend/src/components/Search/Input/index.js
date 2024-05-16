@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { hideModal } from "../../../store/modal";
+import { hideModal } from "../../../store/modal/actions";
 import styles from "./SearchInput.module.css";
 
 const SearchInput = () => {

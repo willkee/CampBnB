@@ -1,27 +1,11 @@
-import { useSelector, useDispatch } from "react-redux";
-
-import { showModal, currentModal } from "../../store/modal";
-
+import { useSelector } from "react-redux";
 import StarCount from "./StarCount";
 import AddReview from "./AddReview";
-import EditReview from "./EditReview";
-import DeleteReview from "./DeleteReview";
 import styles from "./Reviews.module.css";
 import { User, Edit, Delete } from "../../assets/icons";
 
 const Reviews = ({ reviews, spotId }) => {
-	const dispatch = useDispatch();
 	const sessionUser = useSelector((state) => state.session.user);
-
-	const showEditModal = (review) => {
-		dispatch(currentModal(() => <EditReview review={review} />));
-		dispatch(showModal());
-	};
-
-	const showDeleteModal = (id) => {
-		dispatch(currentModal(() => <DeleteReview id={id} spotId={spotId} />));
-		dispatch(showModal());
-	};
 
 	return (
 		<div className={styles.reviews_container}>

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Routes, Navigate } from "react-router-dom";
-import { getAllSpots } from "./store/spots";
-
-import * as sessionActions from "./store/session";
+import { Route, Routes } from "react-router-dom";
+import { getAllSpots } from "./store/spots/thunks";
+import * as sessionActions from "./store/session/thunks";
+import { selectSpotsList } from "./selectors/spots";
 
 import Navigation from "./components/Navigation";
 import Homepage from "./components/Homepage";
@@ -15,13 +15,14 @@ import ProfilePage from "./components/ProfilePage";
 import Footer from "./components/Footer";
 import ErrorPage from "./components/ErrorPage";
 import SearchResults from "./components/Search/Results";
+import ProtectedRoute from "./utils/ProtectedRoute";
 
 function App() {
 	const dispatch = useDispatch();
 	const [isLoaded, setIsLoaded] = useState(false);
 
 	const sessionUser = useSelector((state) => state.session.user);
-	const spotsList = useSelector((state) => Object.values(state.spots));
+	const spotsList = useSelector(selectSpotsList);
 
 	useEffect(() => {
 		dispatch(sessionActions.restoreUser()).then(() =>
@@ -36,48 +37,32 @@ function App() {
 			{isLoaded && (
 				<Routes>
 					<Route
-						exact="true"
 						path="/"
 						element={<SplashPage sessionUser={sessionUser} />}
 					/>
 					<Route
-						exact="true"
 						path="/main"
 						element={<Homepage spots={spotsList} />}
 					/>
 					<Route
-						exact="true"
 						path="/spots/new"
 						element={
-							sessionUser ? (
+							<ProtectedRoute>
 								<NewSpotForm />
-							) : (
-								<Navigate to="/main" />
-							)
+							</ProtectedRoute>
 						}
 					/>
+					<Route path="/spots/:id" element={<SingleSpot />} />
 					<Route
-						exact="true"
-						path="/spots/:id"
-						element={<SingleSpot />}
-					/>
-					<Route
-						exact="true"
 						path="/profile"
 						element={
-							sessionUser ? (
+							<ProtectedRoute>
 								<ProfilePage />
-							) : (
-								<Navigate to="/main" />
-							)
+							</ProtectedRoute>
 						}
 					/>
-					<Route
-						exact="true"
-						path="/search/:query"
-						element={<SearchResults />}
-					/>
-					<Route element={<ErrorPage />} />
+					<Route path="/search/:query" element={<SearchResults />} />
+					<Route path="*" element={<ErrorPage />} />
 				</Routes>
 			)}
 			<Footer />

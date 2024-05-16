@@ -1,26 +1,29 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateOneSpot } from "../../store/spots";
-import { hideModal } from "../../store/modal";
+import { updateOneSpot } from "../../store/spots/thunks";
+import { hideModal } from "../../store/modal/actions";
 import styles from "./EditSpot.module.css";
 import { SquareCheck, RectangleX, Square } from "../../assets/icons";
 
-const EditSpotForm = ({ spot }) => {
+const EditSpotForm = ({ id, initialData }) => {
+	console.log(id, initialData, "EDIT SPOT FORM ID");
 	const [errors, setErrors] = useState([]);
-	const [name, setName] = useState(spot.name);
-	const [address, setAddress] = useState(spot.address);
-	const [city, setCity] = useState(spot.city);
-	const [lat, setLat] = useState(spot.lat);
-	const [long, setLong] = useState(spot.long);
+	const [name, setName] = useState(initialData.name);
+	const [address, setAddress] = useState(initialData.address);
+	const [city, setCity] = useState(initialData.city);
+	const [lat, setLat] = useState(initialData.lat);
+	const [long, setLong] = useState(initialData.long);
 
-	const [imageUrl, setImageUrl] = useState(spot.imageUrl);
+	const [imageUrl, setImageUrl] = useState(initialData.imageUrl);
 	const [newImg, setNewImg] = useState(null);
 
-	const [type, setType] = useState(spot.type);
-	const [price, setPrice] = useState(spot.price);
-	const [description, setDescription] = useState(spot.description || "");
-	const [capacity, setCapacity] = useState(spot.capacity);
+	const [type, setType] = useState(initialData.type);
+	const [price, setPrice] = useState(initialData.price);
+	const [description, setDescription] = useState(
+		initialData.description || ""
+	);
+	const [capacity, setCapacity] = useState(initialData.capacity);
 
 	const [latLongOnly, setLatLongOnly] = useState(false);
 	const [chooseNewImg, setChooseNewImg] = useState(false);
@@ -49,17 +52,17 @@ const EditSpotForm = ({ spot }) => {
 
 	const loader = () => {
 		setErrors([]);
-		setName(spot.name);
-		setAddress(spot.address);
-		setCity(spot.city);
-		setLat(spot.lat);
-		setLong(spot.long);
-		setImageUrl(spot.imageUrl);
+		setName(initialData.name);
+		setAddress(initialData.address);
+		setCity(initialData.city);
+		setLat(initialData.lat);
+		setLong(initialData.long);
+		setImageUrl(initialData.imageUrl);
 		setNewImg(null);
-		setType(spot.type);
-		setPrice(spot.price);
-		setDescription(spot.description || "");
-		setCapacity(spot.capacity);
+		setType(initialData.type);
+		setPrice(initialData.price);
+		setDescription(initialData.description || "");
+		setCapacity(initialData.capacity);
 		setLatLongOnly(false);
 		setChooseNewImg(false);
 		setSubmitted(false);
@@ -80,7 +83,7 @@ const EditSpotForm = ({ spot }) => {
 				if (lat == 0 && long == 0) {
 					await dispatch(
 						updateOneSpot({
-							id: spot.id,
+							id,
 							name: name.trim(),
 							address: address.trim(),
 							city: city.trim(),
@@ -96,7 +99,7 @@ const EditSpotForm = ({ spot }) => {
 				} else {
 					await dispatch(
 						updateOneSpot({
-							id: spot.id,
+							id: id,
 							name: name.trim(),
 							address: address.trim(),
 							city: city.trim(),
@@ -116,7 +119,7 @@ const EditSpotForm = ({ spot }) => {
 				if (lat == 0 && long == 0) {
 					await dispatch(
 						updateOneSpot({
-							id: spot.id,
+							id: id,
 							name: name.trim(),
 							address: address.trim(),
 							city: city.trim(),
@@ -132,7 +135,7 @@ const EditSpotForm = ({ spot }) => {
 				} else {
 					await dispatch(
 						updateOneSpot({
-							id: spot.id,
+							id: id,
 							name: name.trim(),
 							address: address.trim(),
 							city: city.trim(),
@@ -166,7 +169,7 @@ const EditSpotForm = ({ spot }) => {
 	};
 
 	const chooseOld = () => {
-		setImageUrl(spot.imageUrl);
+		setImageUrl(initialData.imageUrl);
 		setNewImg(null);
 		setChooseNewImg(false);
 	};
@@ -227,8 +230,10 @@ const EditSpotForm = ({ spot }) => {
 							className={styles.loc_switch}
 							onClick={() => {
 								setLatLongOnly(true);
-								setLat(spot?.lat ? spot.lat : 0);
-								setLong(spot?.long ? spot.long : 0);
+								setLat(initialData?.lat ? initialData.lat : 0);
+								setLong(
+									initialData?.long ? initialData.long : 0
+								);
 							}}
 						>
 							No street address? Click here.
@@ -320,7 +325,7 @@ const EditSpotForm = ({ spot }) => {
 										alert(
 											"Please upload an image instead."
 										);
-										setImageUrl(spot.imageUrl);
+										setImageUrl(initialData.imageUrl);
 									}}
 									placeholder="Accepted formats: .jpg, .jpeg, .png, .gif."
 								/>
