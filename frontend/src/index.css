@@ -7,7 +7,6 @@
 }
 
 body {
-	/* background-color: rgb(11, 12, 12); */
 	background-image: url("../public/images/camp_dark.png");
 	background-size: cover;
 	background-position: center;
@@ -23,7 +22,7 @@ button {
 }
 
 .app_page_container {
-	height: 100vh;
+	height: 100%;
 	min-height: 100vh;
 	background-color: rgba(24, 27, 26, 0.75);
 	color: #ddd;
