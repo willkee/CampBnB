@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ReactDOM from "react-dom";
-import "./Modal.css";
+import styles from "./Modal.module.css";
 
 import EditReview from "../Reviews/EditReview";
 import SignUpForm from "../SignUpForm";
@@ -11,8 +11,9 @@ import EditPeople from "../ProfilePage/Bookings/Utils/EditPeople";
 import ConfirmCancel from "../ProfilePage/Bookings/Utils/ConfirmCancel";
 import EditSpotForm from "../EditSpotForm";
 import DeleteConfirmation from "../DeleteConfirmation";
-import AboutModal from "../SplashPage/AboutModal";
+import AboutModal from "./About/About";
 import LogoutConfirmation from "../SplashPage/LogoutConfirmation";
+import SignOut from "./SignOut/SignOut";
 
 import { hideModal } from "../../store/modal/actions";
 
@@ -27,6 +28,7 @@ const MODAL_COMPONENTS = {
 	DELETE_CONFIRMATION: DeleteConfirmation,
 	ABOUT_MODAL: AboutModal,
 	LOGOUT_CONFIRMATION: LogoutConfirmation,
+	CONFIRM_SIGN_OUT: SignOut,
 };
 
 export const Modal = () => {
@@ -42,11 +44,11 @@ export const Modal = () => {
 		isVisible &&
 		ReactDOM.createPortal(
 			<div
-				className="modal-background"
+				className={styles.overlay}
 				onClick={() => dispatch(hideModal())}
 			>
 				<div
-					className="modal-content"
+					className={styles.content}
 					onClick={(e) => e.stopPropagation()}
 				>
 					<ModalComponent />

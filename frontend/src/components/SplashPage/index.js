@@ -2,12 +2,8 @@ import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCurrentModal, showModal } from "../../store/modal/actions";
-
 import SplashLogin from "./SplashLogin";
 import SplashSignup from "./SplashSignup";
-import AboutModal from "./AboutModal";
-import LogoutConfirmation from "./LogoutConfirmation";
-
 import { CircleQuestion } from "../../assets/icons";
 import styles from "./SplashPage.module.css";
 
@@ -32,7 +28,7 @@ const SplashPage = ({ sessionUser }) => {
 	};
 
 	const showLogoutModal = () => {
-		dispatch(setCurrentModal("LOGOUT_CONFIRMATION"));
+		dispatch(setCurrentModal("CONFIRM_SIGN_OUT"));
 		dispatch(showModal());
 	};
 

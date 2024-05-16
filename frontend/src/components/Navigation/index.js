@@ -31,8 +31,7 @@ function Navigation({ sessionUser, isLoaded }) {
 							/>
 						</NavLink>
 					</div>
-					{/* <NavWidescreen sessionUser={sessionUser} /> */}
-					<Menu />
+					<Menu user={sessionUser} />
 				</div>
 			)}
 		</nav>

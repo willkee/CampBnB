@@ -4,18 +4,23 @@ import {
 	FiPlusSquare,
 	FiMenu,
 	FiLogOut,
+	FiLogIn,
 } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import styles from "./Menu.module.css";
 import { variants } from "./variants";
 
-const Menu = () => {
+import { showModal, setCurrentModal } from "../../../store/modal/actions";
+
+const Menu = ({ user }) => {
 	const [open, setOpen] = useState(false);
 	const [exitTimer, setExitTimer] = useState(null);
 	const location = useLocation();
 	const menuRef = useRef(null);
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		setOpen(false);
@@ -44,6 +49,11 @@ const Menu = () => {
 			clearTimeout(exitTimer);
 			setExitTimer(null);
 		}
+	};
+
+	const confirmSignOut = () => {
+		dispatch(setCurrentModal("CONFIRM_SIGN_OUT"));
+		dispatch(showModal());
 	};
 
 	return (
@@ -79,23 +89,35 @@ const Menu = () => {
 							transform: "translateX(-50%)",
 						}}
 					>
-						<Option
-							setOpen={setOpen}
-							Icon={FiUser}
-							text="Profile"
-							to="/profile"
-						/>
-						<Option
-							setOpen={setOpen}
-							Icon={FiPlusSquare}
-							text="Add New Spot"
-							to="/spots/new"
-						/>
-						<Option
-							setOpen={setOpen}
-							Icon={FiLogOut}
-							text="Sign Out"
-						/>
+						{user ? (
+							<>
+								<Option
+									setOpen={setOpen}
+									Icon={FiUser}
+									text="Profile"
+									to="/profile"
+								/>
+								<Option
+									setOpen={setOpen}
+									Icon={FiPlusSquare}
+									text="Add New Spot"
+									to="/spots/new"
+								/>
+								<Option
+									setOpen={setOpen}
+									Icon={FiLogOut}
+									text="Sign Out"
+									fn={confirmSignOut}
+								/>
+							</>
+						) : (
+							<Option
+								setOpen={setOpen}
+								Icon={FiLogIn}
+								text="Sign in to continue"
+								to="/"
+							/>
+						)}
 					</motion.ul>
 				) : null}
 			</motion.div>
@@ -103,7 +125,7 @@ const Menu = () => {
 	);
 };
 
-const Option = ({ text, Icon, setOpen, to }) => {
+const Option = ({ text, Icon, setOpen, to, user, fn }) => {
 	const navigate = useNavigate();
 	const location = useLocation();
 
@@ -122,6 +144,7 @@ const Option = ({ text, Icon, setOpen, to }) => {
 			onClick={() => {
 				setOpen(false);
 				navigate(to);
+				if (fn) fn();
 			}}
 			className={styles.option}
 		>

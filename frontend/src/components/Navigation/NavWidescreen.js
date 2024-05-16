@@ -1,28 +1,28 @@
-import {
-	SignUpButton,
-	LogInButton,
-	NewSpotButton,
-	SearchButton,
-	ExploreButton,
-} from "./NavUtils";
+// import {
+// 	SignUpButton,
+// 	LogInButton,
+// 	NewSpotButton,
+// 	SearchButton,
+// 	ExploreButton,
+// } from "./NavUtils";
 
-import styles from "./Navigation.module.css";
+// import styles from "./Navigation.module.css";
 
-const NavWidescreen = ({ sessionUser }) => {
-	return (
-		<div className={styles.right_wide}>
-			<ExploreButton />
-			<SearchButton />
-			{sessionUser ? (
-				<NewSpotButton />
-			) : (
-				<>
-					<SignUpButton />
-					<LogInButton />
-				</>
-			)}
-		</div>
-	);
-};
+// const NavWidescreen = ({ sessionUser }) => {
+// 	return (
+// 		<div className={styles.right_wide}>
+// 			<ExploreButton />
+// 			<SearchButton />
+// 			{sessionUser ? (
+// 				<NewSpotButton />
+// 			) : (
+// 				<>
+// 					<SignUpButton />
+// 					<LogInButton />
+// 				</>
+// 			)}
+// 		</div>
+// 	);
+// };
 
-export default NavWidescreen;
+// export default NavWidescreen;
