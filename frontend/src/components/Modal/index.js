@@ -15,6 +15,7 @@ import AboutModal from "./About/About";
 import LogoutConfirmation from "../SplashPage/LogoutConfirmation";
 import SignOut from "./SignOut/SignOut";
 import DeleteReview from "../Reviews/DeleteReview";
+import NewBookingModal from "./NewBooking/NewBooking";
 
 import { hideModal } from "../../store/modal/actions";
 
@@ -23,6 +24,7 @@ const MODAL_COMPONENTS = {
 	DELETE_REVIEW: DeleteReview,
 	// SIGN_UP_FORM: SignUpForm,
 	// LOGIN_FORM: LoginForm,
+	NEW_BOOKING: NewBookingModal,
 	SEARCH_INPUT: SearchInput,
 	EDIT_PEOPLE: EditPeople,
 	CONFIRM_CANCEL: ConfirmCancel,

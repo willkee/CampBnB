@@ -11,6 +11,7 @@ import store from "./store";
 
 import App from "./App";
 import "./index.css";
+import "./react_calendar.css";
 
 if (process.env.NODE_ENV !== "production") {
 	restoreCSRF();
