@@ -17,7 +17,7 @@ const OwnerControls = ({ sessionUser, spot }) => {
 		dispatch(showModal());
 	};
 
-	const showDeleteConfirmation = (id) => {
+	const showConfirmDeleteSpot = (id) => {
 		dispatch(setCurrentModal("DELETE_CONFIRMATION", { id }));
 		dispatch(showModal());
 	};
@@ -44,7 +44,7 @@ const OwnerControls = ({ sessionUser, spot }) => {
 					</div>
 					<div
 						className={styles.delete}
-						onClick={() => showDeleteConfirmation(spot.id)}
+						onClick={() => showConfirmDeleteSpot(spot.id)}
 					>
 						Delete Spot
 					</div>

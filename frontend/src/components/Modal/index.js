@@ -10,7 +10,8 @@ import SearchInput from "../Search/Input";
 import EditPeople from "../ProfilePage/Bookings/Utils/EditPeople";
 import ConfirmCancel from "../ProfilePage/Bookings/Utils/ConfirmCancel";
 import EditSpotForm from "../EditSpotForm";
-import DeleteConfirmation from "../DeleteConfirmation";
+import ConfirmDeleteSpot from "./ConfirmDeleteSpot/ConfirmDeleteSpot";
+// import DeleteConfirmation from "../DeleteConfirmation";
 import AboutModal from "./About/About";
 import LogoutConfirmation from "../SplashPage/LogoutConfirmation";
 import SignOut from "./SignOut/SignOut";
@@ -29,7 +30,7 @@ const MODAL_COMPONENTS = {
 	EDIT_PEOPLE: EditPeople,
 	CONFIRM_CANCEL: ConfirmCancel,
 	EDIT_SPOT_FORM: EditSpotForm,
-	DELETE_CONFIRMATION: DeleteConfirmation,
+	SPOT_DELETE_CONFIRMATION: ConfirmDeleteSpot,
 	ABOUT_MODAL: AboutModal,
 	LOGOUT_CONFIRMATION: LogoutConfirmation,
 	CONFIRM_SIGN_OUT: SignOut,

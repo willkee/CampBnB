@@ -29,7 +29,7 @@ const SpotOptions = ({ id, sessionUser, spot }) => {
 		};
 
 		const showDeleteConfirmation = (id) => {
-			dispatch(setCurrentModal("DELETE_CONFIRMATION", { id }));
+			dispatch(setCurrentModal("SPOT_DELETE_CONFIRMATION", { id }));
 			dispatch(showModal());
 		};
 
