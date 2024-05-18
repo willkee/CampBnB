@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { csrfFetch } from "../../store/csrf";
 import { getOneSpot } from "../../store/spots/thunks";
 import Reviews from "../Reviews";
@@ -15,7 +15,6 @@ import styles from "./SingleSpot.module.css";
 
 const SingleSpot = () => {
 	const { id } = useParams();
-	const navigate = useNavigate();
 
 	const spot = useSelector((state) => state.spots[parseInt(id, 10)]);
 	const sessionUser = useSelector((state) => state.session.user);
