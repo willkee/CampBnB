@@ -40,11 +40,12 @@ const SingleSpot = () => {
 			"https://campbnb.s3.us-west-1.amazonaws.com/placeholder.jpeg";
 	};
 
-	if (isLoaded && !spot) return navigate("/main");
-
+	if (isLoaded && !spot) {
+		return null;
+	}
 	return (
 		<div className={styles.container}>
-			{isLoaded && (
+			{isLoaded && spot && (
 				<div>
 					<img
 						src={spot.imageUrl}
