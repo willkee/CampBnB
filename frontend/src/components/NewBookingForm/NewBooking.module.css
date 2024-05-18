@@ -22,7 +22,7 @@
 }
 
 .container_green {
-	background-color: rgb(214, 214, 214);
+	background-color: rgb(41, 41, 41);
 }
 
 .container_red {
@@ -119,13 +119,13 @@
 .num_days {
 	margin-top: 20px;
 	font-size: 14px;
-	color: rgb(16, 16, 134);
+	color: rgb(255, 255, 255);
 }
 
 .total_price {
 	font-size: 14px;
 	margin-top: 10px;
-	color: rgb(156, 0, 0);
+	color: rgb(255, 255, 255);
 }
 
 .disabled_button {
@@ -137,7 +137,7 @@
 
 .confirm_box {
 	z-index: 999;
-	background-color: white;
+	background-color: rgb(0, 0, 0);
 	opacity: 0.5;
 	margin-top: 10px;
 	text-align: center;

@@ -1,25 +1,15 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-
 import { csrfFetch } from "../../store/csrf";
 import { getOneSpot } from "../../store/spots/thunks";
-
-import NewBookingForm from "../NewBookingForm";
-import OwnerControls from "./Utilities/OwnerControls";
-import AcceptBookings from "./Utilities/AcceptBookings";
 import Reviews from "../Reviews";
 
-import {
-	CircleSmall,
-	CarMirrors,
-	RV,
-	Tent,
-	Backpack,
-	MountainCity,
-	Road,
-	GPS,
-} from "../../assets/icons";
+import SpotOptions from "./SpotOptions";
+import SpotMaps from "./SpotMaps";
+import { CircleSmall } from "../../assets/icons";
+
+import { FiUnlock, FiLock } from "react-icons/fi";
 
 import styles from "./SingleSpot.module.css";
 
@@ -44,27 +34,46 @@ const SingleSpot = () => {
 		load();
 	}, [dispatch, id]);
 
+	const imgOnError = (e) => {
+		e.onerror = null;
+		e.target.src =
+			"https://campbnb.s3.us-west-1.amazonaws.com/placeholder.jpeg";
+	};
+
 	if (isLoaded && !spot) return navigate("/main");
 
 	return (
-		<div className={styles.container1}>
+		<div className={styles.container}>
 			{isLoaded && (
-				<div className={styles.container2}>
+				<div>
 					<img
 						src={spot.imageUrl}
 						alt="spot"
 						className={styles.img_header}
-						onError={(e) => {
-							e.onerror = null;
-							e.target.src =
-								"https://campbnb.s3.us-west-1.amazonaws.com/placeholder.jpeg";
-						}}
+						onError={imgOnError}
 					></img>
 					<div className={styles.content}>
 						<div className={styles.text_content}>
-							<h1 className={styles.spot_title_name}>
-								{spot.name}
-							</h1>
+							<div className={styles.title_layer}>
+								<h1 className={styles.spot_title_name}>
+									<span>{spot.name}</span>
+									<span className={styles.lock_icon}>
+										{spot.open ? (
+											<FiUnlock
+												size={14}
+												color="#ACD995"
+											/>
+										) : (
+											<FiLock size={14} color="red" />
+										)}
+									</span>
+								</h1>
+								<SpotOptions
+									id={id}
+									sessionUser={sessionUser}
+									spot={spot}
+								/>
+							</div>
 							<div className={styles.host}>
 								<div className={styles.cap_price_info}>
 									<span>
@@ -82,116 +91,26 @@ const SingleSpot = () => {
 									</span>
 								</div>
 								<div>
-									Host:{" "}
-									{sessionUser &&
-									spot.ownerId === sessionUser.id
-										? "You!"
-										: spot.User.firstName +
-										  " " +
-										  spot.User.lastName}
+									{`Host:
+									${
+										sessionUser &&
+										spot.ownerId === sessionUser.id
+											? "You!"
+											: `${spot.User.firstName} ${spot.User.lastName}`
+									}`}
 								</div>
 							</div>
-
-							<div className={styles.type_site_container}>
-								{spot.type === "vehicle" ? (
-									<div className={styles.type_info}>
-										<span style={{ marginRight: "5px" }}>
-											<CarMirrors />
-										</span>
-										<span>Car Camping Site</span>
-									</div>
-								) : spot.type === "rv" ? (
-									<div className={styles.type_info}>
-										<span style={{ marginRight: "5px" }}>
-											<RV />
-										</span>
-										<span>RV Camping Site</span>
-									</div>
-								) : spot.type === "tent" ? (
-									<div className={styles.type_info}>
-										<span style={{ marginRight: "5px" }}>
-											<Tent />
-										</span>
-										<span>Tent Camping Site</span>
-									</div>
-								) : (
-									<div className={styles.type_info}>
-										<span style={{ marginRight: "5px" }}>
-											<Backpack />
-										</span>
-										<span>
-											Backpacking Site (No Road Access)
-										</span>
-									</div>
-								)}
-							</div>
-
-							<div className={styles.location_container}>
-								{spot.address && (
-									<div className={styles.addr}>
-										<Road />
-										{spot.address}
-									</div>
-								)}
-								{spot?.lat &&
-									spot?.long &&
-									spot?.lat !== "NaN" &&
-									spot?.long !== "NaN" && (
-										<div className={styles.addr}>
-											<GPS />
-											{`${spot.lat}, ${spot.long}`}
-										</div>
-									)}
-								<div>
-									<MountainCity />
-									{spot.city}
-								</div>
-							</div>
-							{spot.lat && spot.long ? (
-								<iframe
-									title={id}
-									className={styles.google_maps}
-									src={`
-									https://www.google.com/maps/embed/v1/place
-									?key=${apiKey}
-									&q=${spot.lat}%2C${spot.long}&zoom=13
-								`}
-								></iframe>
-							) : (
-								<iframe
-									title={id}
-									className={styles.google_maps}
-									src={`
-									https://www.google.com/maps/embed/v1/place
-									?key=${apiKey}
-									&q=${spot.address}%2C${spot.city}&zoom=13
-								`}
-								></iframe>
-							)}
-
+							<SpotMaps
+								id={id}
+								setIsLoaded={setIsLoaded}
+								apiKey={apiKey}
+								setApiKey={setApiKey}
+								spot={spot}
+							/>
 							<div className={styles.desc}>
 								{spot.description}
 							</div>
 							<Reviews reviews={spot.Reviews} spotId={id} />
-						</div>
-						<div className={styles.booking_form}>
-							{sessionUser && (
-								<>
-									<div>
-										{sessionUser.id === spot.ownerId ? (
-											<OwnerControls
-												sessionUser={sessionUser}
-												spot={spot}
-											/>
-										) : (
-											<AcceptBookings spot={spot} />
-										)}
-									</div>
-									{sessionUser.id !== spot.ownerId && (
-										<NewBookingForm spot={spot} />
-									)}
-								</>
-							)}
 						</div>
 					</div>
 				</div>

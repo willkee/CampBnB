@@ -2,6 +2,12 @@ const AWS = require("aws-sdk");
 const multer = require("multer");
 const S3_BUCKET = process.env.S3_BUCKET;
 
+AWS.config.update({
+	region: "us-west-1",
+	accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+	secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+});
+
 const s3 = new AWS.S3({ apiVersion: "2006-03-01" });
 
 const fileUpload = async (file) => {
