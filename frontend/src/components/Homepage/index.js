@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getAllSpots } from "../../store/spots/thunks";
-import styles from "./Homepage.module.css";
+import { GrMapLocation } from "react-icons/gr";
 import {
-	MountainCity,
-	CarMirrors,
-	RV,
-	Tent,
-	Backpack,
-} from "../../assets/icons";
+	getTypeIcon,
+	processName,
+	processCity,
+	ImageHandler,
+} from "./HelperFunctions";
+import styles from "./Homepage.module.css";
 
 const Homepage = ({ spots }) => {
 	const [loaded, setLoaded] = useState(false);
@@ -21,118 +21,69 @@ const Homepage = ({ spots }) => {
 	const spotsClosed = spots.filter((spot) => !spot.open);
 
 	useEffect(() => {
-		const loader = async () => {
-			await dispatch(getAllSpots());
-			setLoaded(true);
-		};
-		loader();
-
+		dispatch(getAllSpots()).then(() => setLoaded(true));
 		return () => setLoaded(false);
 	}, [dispatch]);
 
 	const sendToSpot = (id) => navigate(`/spots/${id}`);
 
+	if (!loaded) return <div className={styles.outer_container} />;
+
 	return (
 		<div className={styles.outer_container}>
-			{loaded && (
-				<div className={styles.container}>
-					{spotsOpen.map((spot) => (
-						<div
-							key={spot.id}
-							className={styles.each_spot_container}
-							onClick={() => sendToSpot(spot.id)}
-						>
-							<div className={styles.img_container}>
-								<img
-									src={spot.imageUrl}
-									alt="spot"
-									width="100px"
-									onError={(e) => {
-										e.onerror = null;
-										e.target.src =
-											"https://campbnb.s3.us-west-1.amazonaws.com/placeholder.jpeg";
-									}}
-								/>
-								{!spot.open && (
-									<div className={styles.img_overlay_grid}>
-										Not Accepting New Bookings
-									</div>
-								)}
-							</div>
-							<div className={styles.desc_container}>
-								<div>
-									<h4>
-										{spot.name.length > 20
-											? spot.name.slice(0, 20) + "..."
-											: spot.name}
-									</h4>
-									<div className={styles.city_info}>
-										<MountainCity />
-										{spot?.city?.length > 20
-											? spot?.city?.slice(0, 20) + "..."
-											: spot?.city}
-									</div>
-									<div className={styles.price_type}>
-										<div>
-											<span>${spot.price}</span>
-											<span>night</span>
-										</div>
-									</div>
-								</div>
-								<div className={styles.desc_type_icon}>
-									{spot.type === "vehicle" ? (
-										<CarMirrors />
-									) : spot.type === "rv" ? (
-										<RV />
-									) : spot.type === "tent" ? (
-										<Tent />
-									) : spot.type === "backpacking" ? (
-										<Backpack />
-									) : (
-										""
-									)}
+			<div className={styles.container}>
+				{spotsOpen.map((spot) => (
+					<div
+						key={spot.id}
+						className={styles.each_spot_container}
+						onClick={() => sendToSpot(spot.id)}
+					>
+						<div className={styles.img_container}>
+							<ImageHandler img={spot.imageUrl} />
+							<div className={styles.img_overlay_open}>
+								<div className={styles.o1}>
+									<span className={styles.dollar}>$</span>
+									<span className={styles.price_overlay}>
+										{spot.price}
+									</span>
+									<span className={styles.nt}>/nt</span>
 								</div>
 							</div>
 						</div>
-					))}
-					{spotsClosed.map((spot) => (
-						<div
-							key={spot.id}
-							className={styles.each_spot_container}
-							onClick={() => sendToSpot(spot.id)}
-						>
-							<div className={styles.img_container}>
-								<img
-									src={spot.imageUrl}
-									alt="spot"
-									width="100px"
-									onError={(e) => {
-										e.onerror = null;
-										e.target.src =
-											"https://campbnb.s3.us-west-1.amazonaws.com/placeholder.jpeg";
-									}}
-								/>
-								{!spot.open && (
-									<div className={styles.img_overlay_grid}>
-										Not Accepting New Bookings
-									</div>
-								)}
+						<div className={styles.desc_container}>
+							<div>
+								<h4>{processName(spot.name)}</h4>
+								<div className={styles.city_info}>
+									<GrMapLocation />
+									<span>{processCity(spot.city)}</span>
+								</div>
 							</div>
-							<h4>
-								{spot?.name?.length > 20
-									? spot?.name?.slice(0, 20) + "..."
-									: spot?.name}
-							</h4>
-							<div className={styles.city_info}>
-								<MountainCity />
-								{spot?.city?.length > 20
-									? spot?.city?.slice(0, 20) + "..."
-									: spot?.city}
+							<div className={styles.desc_type_icon}>
+								{getTypeIcon(spot.type)}
 							</div>
 						</div>
-					))}
-				</div>
-			)}
+					</div>
+				))}
+				{spotsClosed.map((spot) => (
+					<div
+						key={spot.id}
+						className={styles.each_spot_container}
+						onClick={() => sendToSpot(spot.id)}
+					>
+						<div className={styles.img_container}>
+							<ImageHandler img={spot.imageUrl} />
+							<div className={styles.img_overlay_closed}>
+								Not Accepting New Bookings
+							</div>
+						</div>
+						<h4>{processName(spot.name)}</h4>
+						<div className={styles.city_info}>
+							<GrMapLocation />
+							<span>{processCity(spot.city)}</span>
+						</div>
+					</div>
+				))}
+			</div>
 		</div>
 	);
 };

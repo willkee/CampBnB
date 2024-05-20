@@ -64,7 +64,7 @@ const AddReview = ({ spotId }) => {
 						onChange={(e) => setRating(e.target.value)}
 					>
 						<option value={0} disabled>
-							Select Rating
+							Rating
 						</option>
 						<option value={5}>★★★★★</option>
 						<option value={4}>★★★★</option>

@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { createSpot } from "../../store/spots/thunks";
 import styles from "./NewSpot.module.css";
 
-import { SquareCheck, RectangleX, Square } from "../../assets/icons";
+import { SquareCheck, RectangleX } from "../../assets/icons";
 
 const NewSpotForm = () => {
 	const navigate = useNavigate();
@@ -91,6 +91,9 @@ const NewSpotForm = () => {
 					<div className={styles.sub_heading}>
 						We encourage users to post spots within Colorado at this
 						time. More states coming soon!
+						<div>
+							Responsiveness: Page construction in progress.
+						</div>
 					</div>
 					<form
 						onSubmit={submitClicked}
@@ -104,9 +107,10 @@ const NewSpotForm = () => {
 							</div>
 						)}
 						<label>
-							Name Your Spot!
+							Campground name
 							<div className={styles.input_container}>
 								<input
+									className={styles.input_box}
 									type="text"
 									value={name}
 									onChange={(e) => setName(e.target.value)}
@@ -122,6 +126,7 @@ const NewSpotForm = () => {
 									Street Address
 									<div className={styles.input_container}>
 										<input
+											className={styles.input_box}
 											type="text"
 											value={address}
 											onChange={(e) =>
@@ -144,19 +149,13 @@ const NewSpotForm = () => {
 							<>
 								<div className={styles.coordinates_info}>
 									<h5>
-										Please limit latitude and longitude
-										coordinates to within Colorado. (We are
-										expanding to more states soon!) Valid
-										coordinates:
+										Please limit coordinates to the
+										following (decimal format only):
 									</h5>
 									<p>Latitude: 37° to 41° (37°N to 41°N).</p>
 									<p>
 										Longitude -102° to -109° (102° to
 										109°W).
-									</p>
-									<p>
-										Please enter coordinates in decimal
-										format only.
 									</p>
 								</div>
 								<div className={styles.coordinates}>
@@ -164,6 +163,7 @@ const NewSpotForm = () => {
 										Latitude
 										<div className={styles.input_container}>
 											<input
+												className={styles.input_box}
 												id={styles.latitude}
 												type="number"
 												value={lat}
@@ -190,6 +190,7 @@ const NewSpotForm = () => {
 										Longitude
 										<div className={styles.input_container}>
 											<input
+												className={styles.input_box}
 												id={styles.longitude}
 												type="number"
 												value={long}
@@ -237,6 +238,7 @@ const NewSpotForm = () => {
 							City or Town
 							<div className={styles.input_container}>
 								<input
+									className={styles.input_box}
 									type="text"
 									value={city}
 									onChange={(e) => setCity(e.target.value)}
@@ -248,7 +250,7 @@ const NewSpotForm = () => {
 						</label>
 						<label>
 							Image Upload
-							<div className={styles.input_container}>
+							<div>
 								<input
 									type="file"
 									onChange={updateFile}
@@ -296,28 +298,6 @@ const NewSpotForm = () => {
 								</div>
 							</>
 						)}
-						{/* <label>
-							Image URL
-							<div className={styles.input_container}>
-								<input
-									type="text"
-									value={imageUrl}
-									onChange={(e) =>
-										setImageUrl(e.target.value)
-									}
-									placeholder="Accepted formats: .jpg, .jpeg, .png, .gif."
-								/>
-								{imageUrl &&
-								imageUrl.length >= 3 &&
-								imageUrl.length <= 2048 &&
-								(imageUrl.endsWith(".jpg") ||
-									imageUrl.endsWith(".jpeg") ||
-									imageUrl.endsWith(".png") ||
-									imageUrl.endsWith(".gif"))
-									? rightInput()
-									: wrongInput()}
-							</div>
-						</label> */}
 						<label>
 							Type of Site
 							<div className={styles.input_container}>
@@ -340,6 +320,7 @@ const NewSpotForm = () => {
 							Price per night
 							<div className={styles.input_container}>
 								<input
+									className={styles.input_box}
 									type="number"
 									value={price}
 									onChange={(e) => setPrice(e.target.value)}
@@ -353,6 +334,7 @@ const NewSpotForm = () => {
 							Maximum capacity
 							<div className={styles.input_container}>
 								<input
+									className={styles.input_box}
 									type="number"
 									value={capacity}
 									onChange={(e) =>
@@ -375,7 +357,7 @@ const NewSpotForm = () => {
 										setDescription(e.target.value)
 									}
 								></textarea>
-								<Square />
+								{/* <Square /> */}
 							</div>
 						</label>
 						<div className={styles.button_container}>

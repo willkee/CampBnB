@@ -66,7 +66,7 @@ const PastBookings = ({ myBookings }) => {
 							/>
 							<div className={styles.each_booking_right}>
 								<div
-									className={styles.booking_spotInfo}
+									className={styles.booking_spotInfo_past}
 									onClick={() =>
 										navigate(`/spots/${booking.Spot.id}`)
 									}
@@ -80,9 +80,9 @@ const PastBookings = ({ myBookings }) => {
 								</div>
 								<div className={styles.time_container}>
 									<div>
-										{new Date(
-											booking.startDate
-										).toDateString()}
+										{new Date(booking.startDate)
+											.toDateString()
+											.slice(4)}
 									</div>
 									<span
 										style={{
@@ -93,9 +93,9 @@ const PastBookings = ({ myBookings }) => {
 										<FiArrowRight />
 									</span>
 									<div>
-										{new Date(
-											booking.endDate
-										).toDateString()}
+										{new Date(booking.endDate)
+											.toDateString()
+											.slice(4)}
 									</div>
 								</div>
 								<div className={styles.each_more_info}>
