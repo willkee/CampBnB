@@ -96,7 +96,7 @@ const SingleSpot = () => {
 										sessionUser &&
 										spot.ownerId === sessionUser.id
 											? "You!"
-											: `${spot.User.firstName} ${spot.User.lastName}`
+											: `${spot.User?.firstName} ${spot.User?.lastName}`
 									}`}
 								</div>
 							</div>

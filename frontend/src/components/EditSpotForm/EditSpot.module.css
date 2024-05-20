@@ -33,20 +33,21 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
-	padding: 500px 50px 50px 50px;
-	background-color: rgb(33, 33, 33);
+	padding: 50px 50px 50px 50px;
+	background-color: rgb(48, 48, 48);
 	color: white;
 	text-align: end;
 	width: 800px;
-	overflow: scroll;
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 
 .error_container {
-	background-color: rgb(222, 222, 222);
-	color: rgb(0, 0, 0);
+	background-color: rgb(34, 34, 34);
+	color: rgb(255, 120, 120);
 	text-align: center;
-	padding: 40px 20px;
-	margin: 100px 0 30px 0;
+	padding: 20px 20px;
+	margin: 0px 0 30px 0;
 }
 
 .error_notification {
@@ -70,7 +71,26 @@
 	font-size: 20px;
 	display: flex;
 }
+.input_container select,
+.input_box {
+	background-color: #1f1f1fce;
+	border: none;
+	color: #fff;
+	outline: none;
+	border-radius: 5px;
+}
 
+.add_spot_textarea {
+	height: 300px;
+	width: 425px;
+	padding: 5px;
+	resize: none;
+	background-color: #1f1f1fce;
+	border: none;
+	color: #fff;
+	outline: none;
+	border-radius: 5px;
+}
 #yes {
 	color: green;
 }
@@ -88,13 +108,6 @@
 	width: 400px;
 	height: 40px;
 	padding: 5px;
-}
-
-.add_spot_textarea {
-	height: 300px;
-	width: 400px;
-	padding: 5px;
-	resize: none;
 }
 
 .coordinates_info {
@@ -150,7 +163,6 @@
 .cancel {
 	padding: 20px;
 	filter: none;
-	border: 1px solid rgba(0, 0, 0, 0.626);
 	color: white;
 	font-size: 14px;
 	display: flex;
@@ -163,18 +175,17 @@
 }
 
 .submit {
-	background-color: #2f3e46;
+	background-color: #33763593;
 }
 .submit:hover {
-	background-color: #354f52;
-	animation: button-hover 0.25s ease-in;
+	background-color: #337635d5;
 }
 .cancel {
-	background-color: rgb(201, 201, 201);
-	color: black;
+	color: #898989;
 }
 .cancel:hover {
-	background-color: #cad2c5;
+	color: rgb(255, 255, 255);
+	background-color: #0c0c0c93;
 }
 
 .switch_upload {

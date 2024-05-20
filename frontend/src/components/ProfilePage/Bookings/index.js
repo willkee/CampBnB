@@ -6,6 +6,12 @@ import { showModal, setCurrentModal } from "../../../store/modal/actions";
 import { FiArrowRight } from "react-icons/fi";
 import PastBookings from "./PastBookings";
 import styles from "./Bookings.module.css";
+import {
+	FaPeopleArrows,
+	FaPlus,
+	FaMinus,
+	FaCalendarXmark,
+} from "react-icons/fa6";
 
 import {
 	PeopleGroup,
@@ -104,7 +110,7 @@ const Bookings = () => {
 												  ) + "..."
 												: booking?.Spot?.name}
 										</h3>
-										<div>
+										<div className={styles.city_info}>
 											{booking?.Spot?.city?.length > 50
 												? booking?.Spot?.city?.slice(
 														0,
@@ -115,9 +121,9 @@ const Bookings = () => {
 									</div>
 									<div className={styles.time_container}>
 										<div>
-											{new Date(
-												booking.startDate
-											).toDateString()}
+											{new Date(booking.startDate)
+												.toDateString()
+												.slice(4)}
 										</div>
 										<span
 											style={{
@@ -128,9 +134,9 @@ const Bookings = () => {
 											<FiArrowRight />
 										</span>
 										<div>
-											{new Date(
-												booking.endDate
-											).toDateString()}
+											{new Date(booking.endDate)
+												.toDateString()
+												.slice(4)}
 										</div>
 									</div>
 									<div className={styles.each_more_info}>
@@ -154,25 +160,30 @@ const Bookings = () => {
 												""
 											)}
 										</div>
-
-										<button
-											type="button"
-											onClick={() =>
-												showEditPeopleModal(booking)
-											}
-											className={styles.edit}
-										>
-											Edit People
-										</button>
-										<button
-											type="button"
-											onClick={() =>
-												showConfirm(booking.id)
-											}
-											className={styles.delete}
-										>
-											Cancel Booking
-										</button>
+										<div className={styles.btn_container}>
+											<button
+												type="button"
+												onClick={() =>
+													showEditPeopleModal(booking)
+												}
+												className={styles.edit}
+											>
+												<FaMinus size={10} />
+												<span>
+													<FaPeopleArrows />
+												</span>
+												<FaPlus size={10} />
+											</button>
+											<button
+												type="button"
+												onClick={() =>
+													showConfirm(booking.id)
+												}
+												className={styles.delete}
+											>
+												<FaCalendarXmark />
+											</button>
+										</div>
 									</div>
 								</div>
 							</div>

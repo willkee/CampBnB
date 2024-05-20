@@ -12,8 +12,22 @@
 	border-radius: 5px;
 }
 
+.each_booking * {
+	font-size: 1em;
+}
+
+.city_info {
+	font-size: 0.9em;
+}
+
 .each_booking img {
-	width: 200px;
+	width: 150px;
+}
+
+@media screen and (max-width: 800px) {
+	.each_booking img {
+		display: none;
+	}
 }
 
 .each_booking_right {
@@ -30,6 +44,16 @@
 	color: #4c7136;
 }
 
+.booking_spotInfo_past {
+	background-color: rgba(57, 57, 57, 0.67);
+	padding: 5px 0 5px 15px;
+	cursor: pointer;
+}
+
+.booking_spotInfo_past:hover {
+	color: #4c7136;
+}
+
 .subheading {
 	margin-left: 20px;
 }
@@ -43,14 +67,14 @@
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
-	height: 50px;
+	height: 30px;
 	padding: 10px;
 	font-size: 15px;
 	font-weight: 600;
 }
 
 .each_more_info {
-	padding: 20px;
+	padding: 10px;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
@@ -67,45 +91,46 @@
 }
 
 #past_info * {
-	opacity: 0.7;
+	opacity: 0.8;
+	font-size: 0.98em;
 }
 
 .edit,
 .delete {
-	width: 100px;
+	width: 40px;
 	text-transform: uppercase;
 	border-radius: 5px;
-	padding: 10px;
+	padding: 5px;
 	border: 1px solid black;
 	cursor: pointer;
 	color: white;
 	font-weight: 400;
 	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0.3;
 }
 
 .edit {
-	background-color: #e39e4e;
-	color: black;
+	background-color: #f6c500;
+	color: #000;
 	transition: all linear 0.2s;
 	font-weight: 600;
 }
-.edit:hover {
-	background-color: #ca7a20;
-	color: rgb(255, 255, 255);
+.edit span {
+	margin: 0 5px 0 5px;
+	display: flex;
+	align-items: center;
 }
 .delete {
-	background-color: rgb(87, 10, 10);
+	background-color: rgb(146, 0, 0);
 	transition: all linear 0.1s;
 	font-weight: 600;
 }
-
+.edit:hover,
 .delete:hover {
-	background-color: rgb(133, 13, 13);
-	border: 1px solid #e51919;
-	filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.397));
-}
-.delete:active {
-	transform: translateY(1px);
+	opacity: 1;
 }
 
 .booking_img {
@@ -155,4 +180,8 @@
 .confirm_button_container button:hover {
 	opacity: 0.7;
 	filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.397));
+}
+
+.btn_container button:first-child {
+	margin-bottom: 5px;
 }

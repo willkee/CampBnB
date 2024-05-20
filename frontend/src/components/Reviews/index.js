@@ -19,8 +19,8 @@ const Reviews = ({ reviews, spotId }) => {
 								<User />
 								<div>
 									<div className={styles.name}>
-										{review.User.firstName}{" "}
-										{review.User.lastName}
+										{review?.User?.firstName}{" "}
+										{review?.User?.lastName}
 									</div>
 									<div className={styles.date}>
 										{new Date(review.createdAt)
@@ -30,13 +30,13 @@ const Reviews = ({ reviews, spotId }) => {
 								</div>
 							</div>
 							<div>
-								<StarCount stars={review.rating} />
+								<StarCount stars={review?.rating} />
 								{sessionUser &&
-									sessionUser.id === review.userId && (
+									sessionUser.id === review?.userId && (
 										<div className={styles.review_owner}>
 											<Edit review={review} />
 											<Delete
-												id={review.id}
+												id={review?.id}
 												spotId={spotId}
 											/>
 										</div>

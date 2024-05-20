@@ -61,7 +61,60 @@
 	position: relative;
 }
 
-.img_overlay_grid {
+.img_overlay_open {
+	position: absolute;
+	bottom: 0;
+	height: 18%;
+	width: 100%;
+	z-index: 50;
+	background: linear-gradient(
+		to right,
+		rgba(0, 0, 0, 0) 2%,
+		rgb(0, 0, 0) 70%
+	);
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	padding-right: 1em;
+	align-items: flex-end;
+	color: white;
+	font-weight: 600;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+	padding: 5px 0 5px 0;
+}
+
+.o1 {
+	display: flex;
+}
+.o2 {
+	font-size: 12px;
+	color: rgb(184, 184, 184);
+	padding-top: 2px;
+	padding-right: 5px;
+}
+
+.dollar,
+.nt {
+	font-size: 0.5em;
+	color: rgb(123, 123, 123);
+}
+.dollar {
+	display: flex;
+	align-items: flex-start;
+}
+.price_overlay {
+	display: flex;
+	align-items: center;
+	margin: 0 2px 0 2px;
+}
+.nt {
+	display: flex;
+	align-items: flex-end;
+	padding-right: 5px;
+}
+
+.img_overlay_closed {
 	position: absolute;
 	top: 0;
 	height: 100%;
@@ -101,15 +154,6 @@
 .city_info i {
 	margin-right: 5px;
 }
-
-.price_type {
-	display: flex;
-	justify-content: space-between;
-}
-.price_type span:first-child {
-	font-weight: 600;
-}
-.price_type span:last-child {
-	font-size: 12px;
+.city_info span {
 	margin-left: 5px;
 }

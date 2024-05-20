@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { updateOneSpot } from "../../store/spots/thunks";
 import { hideModal } from "../../store/modal/actions";
 import styles from "./EditSpot.module.css";
-import { SquareCheck, RectangleX, Square } from "../../assets/icons";
+import { SquareCheck, RectangleX } from "../../assets/icons";
 
 const EditSpotForm = ({ id, initialData }) => {
 	console.log(id, initialData, "EDIT SPOT FORM ID");
@@ -202,6 +202,7 @@ const EditSpotForm = ({ id, initialData }) => {
 					Name
 					<div className={styles.input_container}>
 						<input
+							className={styles.input_box}
 							type="text"
 							value={name}
 							onChange={(e) => setName(e.target.value)}
@@ -217,6 +218,7 @@ const EditSpotForm = ({ id, initialData }) => {
 							Street Address
 							<div className={styles.input_container}>
 								<input
+									className={styles.input_box}
 									type="text"
 									value={address}
 									onChange={(e) => setAddress(e.target.value)}
@@ -261,6 +263,7 @@ const EditSpotForm = ({ id, initialData }) => {
 								Latitude
 								<div className={styles.input_container}>
 									<input
+										className={styles.input_box}
 										id={styles.latitude}
 										type="number"
 										value={lat}
@@ -276,6 +279,7 @@ const EditSpotForm = ({ id, initialData }) => {
 								Longitude
 								<div className={styles.input_container}>
 									<input
+										className={styles.input_box}
 										id={styles.longitude}
 										type="number"
 										value={long}
@@ -303,6 +307,7 @@ const EditSpotForm = ({ id, initialData }) => {
 					City or Town
 					<div className={styles.input_container}>
 						<input
+							className={styles.input_box}
 							type="text"
 							value={city}
 							onChange={(e) => setCity(e.target.value)}
@@ -354,6 +359,7 @@ const EditSpotForm = ({ id, initialData }) => {
 							Image Upload
 							<div className={styles.input_container}>
 								<input
+									className={styles.input_box}
 									type="file"
 									onChange={updateFile}
 									accept="image/*"
@@ -425,6 +431,7 @@ const EditSpotForm = ({ id, initialData }) => {
 					Price per night
 					<div className={styles.input_container}>
 						<input
+							className={styles.input_box}
 							type="number"
 							value={price}
 							onChange={(e) => setPrice(e.target.value)}
@@ -438,6 +445,7 @@ const EditSpotForm = ({ id, initialData }) => {
 					Maximum capacity
 					<div className={styles.input_container}>
 						<input
+							className={styles.input_box}
 							type="number"
 							value={capacity}
 							onChange={(e) => setCapacity(e.target.value)}
@@ -455,8 +463,7 @@ const EditSpotForm = ({ id, initialData }) => {
 							className={styles.add_spot_textarea}
 							placeholder="Optional: Please provide a brief description of your spot."
 							onChange={(e) => setDescription(e.target.value)}
-						></textarea>
-						<Square />
+						/>
 					</div>
 				</label>
 
